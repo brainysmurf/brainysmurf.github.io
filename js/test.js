@@ -7,12 +7,14 @@ this.awtble = {};
 	awtble.app = function (ss) {
 		awtble.$sidebar = $('#sidebar');
 		awtble.$container = $('#middleContainer');
-		console.log(awtble.$container);
+		awtble.$count = $('#middleContainer > .count');
+		console.log(awtble.$count);
+		awtble.$count.addBefore('<b>success</b>')
 	};
 
 	awtble.embedForm = function(formId) {
 
-		
+
 
 	}
 
