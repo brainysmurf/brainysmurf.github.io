@@ -1,14 +1,20 @@
-this.app = {};
+this.awtble = {};
 
-(function (app) {
+(function (awtble) {
     /*
       
     */
-	app.app = function (ss) {
-		app.sidebar = $('#sidebar');
-		console.log(app.sidebar);
+	awtble.app = function (ss) {
+		awtble.$sidebar = $('#sidebar');
+		console.log(awtble.sidebar);
+	};
+
+	awtble.embedForm = function(formId) {
+
+
+
 	}
 
-}(this.app));
+}(this.awtble));
 
-app.app();
+this.awtble.app();
