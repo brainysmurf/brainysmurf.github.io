@@ -6,12 +6,13 @@ this.awtble = {};
     */
 	awtble.app = function (ss) {
 		awtble.$sidebar = $('#sidebar');
-		console.log(awtble.sidebar);
+		awtble.$container = $('#middleContainer');
+		console.log(awtble.$container);
 	};
 
 	awtble.embedForm = function(formId) {
 
-
+		
 
 	}
 
