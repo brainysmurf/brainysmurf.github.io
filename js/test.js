@@ -1,17 +1,14 @@
-this.SSWrapper = {};
+this.App = {};
 
-(function (SSWrapper) {
+(function (app) {
     /*
       
     */
-	SSWrapper.app = function (ss) {
-       if (ss === undefined) {
-         SSWrapper.ss = SpreadsheetApp.getActiveSpreadsheet();
-       } else {
-         SSWrapper.ss = undefined;
-       }
+	app.app = function (ss) {
+		app.sidebar = $('#sidebar');
+		console.log(app.sidebar);
 	}
 
-}(this.SSWrapper));
+}(this.app));
 
-SSWrapper.app();
+app.app();
