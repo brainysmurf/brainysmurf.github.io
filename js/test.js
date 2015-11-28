@@ -8,8 +8,7 @@ this.awtble = {};
 		awtble.$sidebar = $('#sidebar');
 		awtble.$container = $('#middleContainer');
 		awtble.$count = $('#middleContainer > .count');
-		console.log(awtble.$count);
-		awtble.$count.before('<b>success</b>')
+		awtble.$container.before('<input type="submit" value="New entry">')
 	};
 
 	awtble.embedForm = function(formId) {
