@@ -9,7 +9,7 @@ this.awtble = {};
 		awtble.$container = $('#middleContainer');
 		awtble.$count = $('#middleContainer > .count');
 		console.log(awtble.$count);
-		awtble.$count.addBefore('<b>success</b>')
+		awtble.$count.before('<b>success</b>')
 	};
 
 	awtble.embedForm = function(formId) {
