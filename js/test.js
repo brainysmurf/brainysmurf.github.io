@@ -1,4 +1,4 @@
-this.App = {};
+this.app = {};
 
 (function (app) {
     /*
