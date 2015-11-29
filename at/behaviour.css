@@ -19,6 +19,12 @@
     -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
     -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
     box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+    min-width: 0;
+}
+
+div.charts-menu-button-dropdown {
+    padding-top: 2px;
+    margin-left: 5px;
 }
 
 .google-visualization-table-td {
