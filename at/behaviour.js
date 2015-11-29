@@ -1,3 +1,4 @@
 function main() {
-	awtble.$container.before('<button>New entry</button>').button();
+	awtble.$container.before($('<button/>', {id:'newButton', text:'New entry'}));
+	$('#newButton').button();
 }
