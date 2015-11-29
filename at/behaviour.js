@@ -1,4 +1,3 @@
 function main() {
-	console.log(awtble);
-	alert('i work');
+	awtble.$container.before('<button>New entry</button>').button();
 }
