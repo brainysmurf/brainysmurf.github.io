@@ -7,7 +7,6 @@ function main(embedUrl, prefill) {
 	//$("#addNewDialog").append('hi');
 	$("#addNewDialog").append($('<iframe/>', {src:embedUrl, width:'760', height:'500', frameborder: "0", marginheight:0, text:'Loading…'}));
 	$('#newButton').button({icons:{primary:'ui-icon-circle-plus'}});
-	debugger;
 	$('#addNewDialog').dialog({autoOpen:false, height:"auto", width:750, modal:true, draggable:false,show:"fold"});
 	$('#newButton').click(function() {
 		$('#addNewDialog').dialog("open");
