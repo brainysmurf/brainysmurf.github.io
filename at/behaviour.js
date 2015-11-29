@@ -7,5 +7,6 @@ function main(embedUrl, prefill) {
 	$('#addNewDialog').dialog({autoOpen:false});
 	$('#newButton').click(function() {
 		$('#addNewDialog').dialog("open");
+		console.log(awtble.embedUrl);
 	});
 }
