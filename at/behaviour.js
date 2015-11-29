@@ -5,7 +5,7 @@ function main(embedUrl, prefill) {
 	awtble.$container.before($('<button/>', {id:'newButton', text:'Add New', style:'margin-bottom:10px'}));
 	awtble.$container.before($('<div/>', {id:"addNewDialog", style: "display:none;", title:'Add New!'}));
 	//$("#addNewDialog").append('hi');
-	$("#addNewDialog").append($('<iframe/>', {src:embedUrl, width:'760', height:'760', frameborder: "0", marginheight:0, text:'Loading…'}));
+	$("#addNewDialog").append($('<iframe/>', {src:embedUrl, width:760, frameborder: 0, marginheight:0, text:'Loading…'}));
 	$('#newButton').button({icons:{primary:'ui-icon-circle-plus'}});
 	$('#addNewDialog').dialog({autoOpen:false, height:"auto", width:750, modal:true, draggable:false,show:"fold"});
 	$('#newButton').click(function() {
