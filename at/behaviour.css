@@ -1,7 +1,8 @@
 .google-visualization-controls-categoryfilter .charts-menu-button.charts-menu-button-hover, .google-visualization-controls-categoryfilter .charts-menu-button, .google-visualization-controls-categoryfilter .charts-menu-button.charts-menu-button-active {
 	font-family: Arial,sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
+    line-height: 1.5em;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
     color: #4F4F4F;
     border: 1px solid #B6B6B6;
