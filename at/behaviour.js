@@ -7,7 +7,8 @@ function main(url, prefill) {
 	//$("#addNewDialog").append('hi');
 	//$("#addNewDialog").append($('<iframe/>', {src:url, width:760, frameborder: 0, marginheight:0, text:'Loading…'}));
 	$('#newButton').button({icons:{primary:'ui-icon-circle-plus'}});
-	//$('#addNewDialog').dialog({autoOpen:false, height:"auto", width:750, modal:true, draggable:false,show:"fold"});
+	debugger;
+	//$('#addNewDialog').dialog({autoOpen:false, height:"auto", width:750, modal:true, draggable:false,show:"fold", appendTo:$(window.parent.body)});
 	$('#newButton').click(function() {
 		//$('#addNewDialog').dialog("open");
 		var w = window.open(url + '/viewform');
