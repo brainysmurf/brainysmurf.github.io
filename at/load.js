@@ -32,13 +32,12 @@ this.awtble = {};
 		// Take the raw prefill Url and extract just the bits we want
 		// So we have a 'prefillPhrase'
 		awtble.prefillPhrase = prefillUrl.match(/entry.*$/)[0].split('&').reduce(function (obj, value, index) {
-			s = v.split('=');
-			if (s.length>1) o.push(s);
-			return o;
+			s = value.split('=');
+			if (s.length>1) obj.push(s);
+			return obj;
 		}, []).map(function (v, i, _) {
 			return v.join('=');
 		}).join('&');
-		console.log(awtble.prefillPhrase);
 	}
 
 }(this.awtble));
