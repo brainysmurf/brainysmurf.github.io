@@ -9,6 +9,7 @@ this.awtble = {};
 		awtble.$title = $('h4.sites-embed-title');
 		awtble.$container = $('#middleContainer');
 		awtble.$count = $('#middleContainer > .count');
+		awtlbe.prefills = {};
 	};
 
 	awtble.updateUrl = function(url) {
@@ -25,6 +26,19 @@ this.awtble = {};
 		$('#newButton').click(function() {
 			$('#addNewDialog').dialog("open");
 		});
+	}
+	
+	awtble.definePrefill = function(prefillUrl) {
+		// Take the raw prefill Url and extract just the bits we want
+		// So we have a 'prefillPhrase'
+		awtble.prefillPhrase = prefillUrl.match(/entry.*$/)[0].split('&').reduce(function (obj, value, index) {
+			s = v.split('=');
+			if (s.length>1) o.push(s);
+			return o;
+		}, []).map(function (v, i, _) {
+			return v.join('=');
+		}).join('&');
+		console.log(awtble.prefillPhrase);
 	}
 
 }(this.awtble));
