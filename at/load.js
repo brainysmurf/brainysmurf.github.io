@@ -15,7 +15,6 @@ this.awtble = {};
 	awtble.updateUrl = function(url) {
 		awtble.url = url;
 		//awtble.embedUrl = url + '/viewform?embedded=true#start=embed';
-		debugger;
 		if (awtble.prefillPhrase) awtble.embedUrl = url + '/viewform?' + awtble.prefillPhrase + '&embedded=true#start=embed';
 		else awtble.embedUrl = url + '/viewform?embedded=true#start=embed';
 	}
