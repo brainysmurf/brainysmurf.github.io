@@ -21,7 +21,7 @@ this.awtble = {};
 		awtble.$container.before($('<div/>', {id:"addNewDialog", style: "display:none;", title:dialogTitle}));
 		$("#addNewDialog").append($('<iframe/>', {src:awtble.embedUrl, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'}));
 		$('#newButton').button({icons:{primary:'ui-icon-circle-plus'}});
-		$('#addNewDialog').dialog({autoOpen:false, height:750, min-width:"700px"; width:"100%", modal:true, draggable:false,show:"fold"});
+		$('#addNewDialog').dialog({autoOpen:false, height:750, min-width:"700px", width:"100%", modal:true, draggable:false,show:"fold"});
 		$('#newButton').click(function() {
 			$('#addNewDialog').dialog("open");
 		});
