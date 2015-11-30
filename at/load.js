@@ -15,6 +15,8 @@ this.awtble = {};
 	awtble.updateUrl = function(url) {
 		awtble.url = url;
 		awtble.embedUrl = url + '/viewform?embedded=true#start=embed';
+		if (awtble.prefillPhrase) awtble.embedUrl += '&' + awtble.prefillPhrase;
+		console.log(awtble.embedUrl);
 	}
 	
 	awtble.makeNewButton = function(buttonTitle, dialogTitle) {
