@@ -9,7 +9,7 @@ this.awtble = {};
 		awtble.$title = $('h4.sites-embed-title');
 		awtble.$container = $('#middleContainer');
 		awtble.$count = $('#middleContainer > .count');
-		awtlbe.prefillPhrase = '';
+		awtble.prefillPhrase = '';
 	};
 
 	awtble.updateUrl = function(url) {
