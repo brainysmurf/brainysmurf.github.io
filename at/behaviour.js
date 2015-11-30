@@ -2,7 +2,6 @@ function main(url, prefill) {
 	awtble.url = url;
 	awtble.embedUrl = url + '/viewform?embedded=true#start=embed';
 	awtble.prefill = prefill;
-	console.log(awtble.$title);
 	awtble.$container.before($('<button/>', {id:'newButton', text:'Add New', style:'margin-bottom:10px'}));
 	awtble.$container.before($('<div/>', {id:"addNewDialog", style: "display:none;", title:'Add New!'}));
 	//$("#addNewDialog").append('hi');
