@@ -1,11 +1,12 @@
 function main(url, prefill) {
 	awtble.url = url;
+	awtble.embedUrl = url + '/viewform?embedded=true#start=embed';
 	awtble.prefill = prefill;
 	console.log(awtble.$title);
 	awtble.$container.before($('<button/>', {id:'newButton', text:'Add New', style:'margin-bottom:10px'}));
 	awtble.$container.before($('<div/>', {id:"addNewDialog", style: "display:none;", title:'Add New!'}));
 	//$("#addNewDialog").append('hi');
-	//$("#addNewDialog").append($('<iframe/>', {src:url, width:760, frameborder: 0, marginheight:0, text:'Loading…'}));
+	$("#addNewDialog").append($('<iframe/>', {src:awtble.embedUrl, width:760, frameborder: 0, marginheight:0, text:'Loading…'}));
 	$('#newButton').button({icons:{primary:'ui-icon-circle-plus'}});
 	$('#addNewDialog').dialog({autoOpen:false, height:"auto", width:750, modal:true, draggable:false,show:"fold"});
 	$('#newButton').click(function() {
