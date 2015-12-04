@@ -1,3 +1,64 @@
+.banner {
+   padding: 10px;
+   border: 2px solid #999;
+   margin-bottom: 10px;
+   font-style: italic;
+   font-weight: bold;
+}
+
+.boxer .box-row {
+   display: table-row;
+   width:100%;
+}
+ 
+.boxer .box {
+   display: table-cell;
+   text-align: left;
+   vertical-align: top;
+}
+
+.studentInfo {
+   float: left;
+   padding: 5px;
+   width: 250px;
+   min-height: 200px;
+   border: 2px solid #999;
+   border-right: 1px solid #eee;
+}
+
+.parentInfo {
+   padding: 5px;
+   border: 2px solid #999;
+   border-left: 1px solid #eee;
+   width: 100%;
+}
+
+.parentrow {
+   margin-bottom: 5px !important;
+}
+
+.solid {
+   padding: 3px 10px 3px 10px;
+   border: 1px solid #999;
+}
+
+.dotted {
+   padding: 3px 10px 3px 10px;
+   border: 1px dashed #999;
+}
+
+.google-visualization-table-tr-sel td,
+.google-visualization-table-tr-over td {
+}
+
+.label {
+   font-weight: bold;
+}
+
+.smalllabel {
+   font-style: italic;
+}
+
 .google-visualization-controls-categoryfilter .charts-menu-button.charts-menu-button-hover, .google-visualization-controls-categoryfilter .charts-menu-button, .google-visualization-controls-categoryfilter .charts-menu-button.charts-menu-button-active {
 	font-family: Arial,sans-serif;
     font-size: 12px;
