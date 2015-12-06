@@ -94,9 +94,6 @@ div.charts-menu-button-dropdown {
 }
 
 .sidebackground {
-  -ms-transform: scale(3); /* IE 9 */
-  -webkit-transform: scale(3); /* Chrome, Safari, Opera */
-  transform: scale(3);
   float:right;
   margin-top: 1px;
   margin-right: 2px;
