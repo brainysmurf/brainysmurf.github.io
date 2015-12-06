@@ -92,3 +92,12 @@ div.charts-menu-button-dropdown {
 	font-family: Arial,sans-serif;
     font-size: 14px;
 }
+
+#sidebackground {
+  -ms-transform: scale(2); /* IE 9 */
+  -webkit-transform: scale(2); /* Chrome, Safari, Opera */
+  transform: scale(2);
+  float:right;
+  padding-right:10px;
+}  
+  
