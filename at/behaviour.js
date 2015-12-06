@@ -5,5 +5,6 @@ function main(url, prefill) {
 	awtble.makeNewButton('Add New', "Fill out this form");
 	
 	var kind = $('#sidebackground').data('kind');
-	$('sidebackground').addClass(kind == 'Internal Record' ? 'ui-icon-document' : 'ui-icon-mail-closed');
+	$('.sidebackground').addClass(kind == 'Internal Record' ? 'ui-icon-document' : 'ui-icon-mail-closed');
+	debugger;
 }
