@@ -93,7 +93,7 @@ div.charts-menu-button-dropdown {
     font-size: 14px;
 }
 
-#sidebackground {
+.sidebackground {
   -ms-transform: scale(2); /* IE 9 */
   -webkit-transform: scale(2); /* Chrome, Safari, Opera */
   transform: scale(2);
