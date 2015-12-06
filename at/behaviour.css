@@ -67,7 +67,7 @@
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
     color: #4F4F4F;
     border: 1px solid #B6B6B6;
-	background-color: buttonface;
+    background-color: buttonface;
     box-sizing: border-box;
     border-radius: 3px;
     background: #ededed url(images/bg_fallback.png) 0 0 repeat-x;
@@ -89,7 +89,7 @@ div.charts-menu-button-dropdown {
 }
 
 .google-visualization-table-td {
-	font-family: Arial,sans-serif;
+    font-family: Georgia,serif;
     font-size: 14px;
 }
 
