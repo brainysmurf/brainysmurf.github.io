@@ -98,6 +98,7 @@ div.charts-menu-button-dropdown {
   -webkit-transform: scale(3); /* Chrome, Safari, Opera */
   transform: scale(3);
   float:right;
-  padding-right:3px;
-}  
+  margin-top: 1px;
+  margin-right: 2px;
+}
   
