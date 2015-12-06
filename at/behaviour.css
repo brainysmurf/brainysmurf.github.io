@@ -17,7 +17,7 @@
    vertical-align: top;
 }
 
-.studentInfo {
+.mainInfo {
    float: left;
    padding: 5px;
    width: 250px;
@@ -26,14 +26,14 @@
    border-right: 1px solid #eee;
 }
 
-.parentInfo {
+.sideInfo {
    padding: 5px;
    border: 2px solid #999;
    border-left: 1px solid #eee;
    width: 100%;
 }
 
-.parentrow {
+.siderow {
    margin-bottom: 5px !important;
 }
 
