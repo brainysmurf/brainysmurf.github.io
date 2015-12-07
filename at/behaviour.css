@@ -9,6 +9,7 @@
 .boxer .box-row {
    display: table-row;
    width:100%;
+   background-color: #FFF;
 }
 
 .boxer {
