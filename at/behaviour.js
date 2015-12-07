@@ -4,13 +4,12 @@ function main(url, prefill) {
 	awtble.updateUrl(url);
 	awtble.makeNewButton('Add New', "Fill out this form");
 	
-	var kind = $('.sidebackground').data('kind');
-	//$('.sidebackground[data-kind="Internal Record"]').addClass('ui-icon ui-icon-document');
-	//$('.sidebackground[data-kind="Internal Communication"]').addClass('ui-icon ui-icon-mail-closed');
-	//$('.sidebackground[data-kind="External Communication"]').addClass('ui-icon ui-icon-mail-closed');
 	$(".info").each(function (index) {
+		$(this).find('js-student-info').text( $(this).data('student') + " " + $(this).data('grade') );
 		if ($(this).data('kind') == "Internal Record") {
-			$(this).find('.sidebackground').addClass('ui-icon ui-icon-docuent');
+			$(this).find('.sidebackground').addClass('ui-icon ui-icon-document');
+			$(this).find('.js-content-title').text('Record:');
+			$(this).find('.js-content-body').text( $(this).data('content') );
 		} else {
 			$(this).find('.sidebackground').addClass('ui-icon ui-icon-mail-closed')
 		}
