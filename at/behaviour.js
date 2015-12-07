@@ -10,7 +10,9 @@ function main(url, prefill) {
 	//$('.sidebackground[data-kind="External Communication"]').addClass('ui-icon ui-icon-mail-closed');
 	$(".info").each(function (index) {
 		if ($(this).data('kind') == "Internal Record") {
-			$(this).find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
+			$(this).find('.sidebackground').addClass('ui-icon ui-icon-docuent');
+		} else {
+			$(this).find('.sidebackground').addClass('ui-icon ui-icon-')
 		}
 	});
 }
