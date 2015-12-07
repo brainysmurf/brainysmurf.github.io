@@ -5,8 +5,8 @@ function main(url, prefill) {
 	awtble.makeNewButton('Add New', "Fill out this form");
 	
 	$(".info").each(function (index) {
-		debugger;
-		$(this).find('.js-student-info').text( $(this).data('student') + " " + $(this).data('grade') );
+		$(this).find('.js-student-info').text( $(this).data('student') );
+		$(this).find('.js-student-extra-info').text( $(this).data('grade') );
 		if ($(this).data('kind') == "Internal Record") {
 			$(this).find('.sidebackground').addClass('ui-icon ui-icon-document');
 			$(this).find('.js-content-title').text('Record:');
