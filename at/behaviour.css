@@ -27,8 +27,8 @@
    min-height: 200px;
    border: 2px solid #999;
    border-right: 1px solid #eee;
-   border-top-left-radius: 3px;
-   border-bottom-left-radius: 3px;
+   border-top-left-radius: 5px;
+   border-bottom-left-radius: 5px;
 }
 
 .sideInfo {
@@ -36,8 +36,8 @@
    border: 2px solid #999;
    border-left: 1px solid #eee;
    width: 100%;
-   border-top-right-radius: 3px;
-   border-bottom-right-radius: 3px;
+   border-top-right-radius: 5px;
+   border-bottom-right-radius: 5px;
 }
 
 .siderow {
