@@ -41,6 +41,11 @@
    border-bottom-right-radius: 5px;
 }
 
+.google-visualization-table-tr-sel td,
+.google-visualization-table-tr-over td {
+	background-color: #eee !important;
+}
+
 .siderow {
    margin-bottom: 5px !important;
 }
