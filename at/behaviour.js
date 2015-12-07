@@ -12,7 +12,7 @@ function main(url, prefill) {
 		if ($(this).data('kind') == "Internal Record") {
 			$(this).find('.sidebackground').addClass('ui-icon ui-icon-docuent');
 		} else {
-			$(this).find('.sidebackground').addClass('ui-icon ui-icon-')
+			$(this).find('.sidebackground').addClass('ui-icon ui-icon-mail-closed')
 		}
 	});
 }
