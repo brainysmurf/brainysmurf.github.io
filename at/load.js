@@ -32,7 +32,7 @@ this.awtble = {};
 			modal:true, 
 			draggable:false,
 			show:"fadeIn",
-			position: { my: 'top', at: 'top+150' }
+			position: { my: 'top', at: 'top+15' }
 		});
 		$('#newButton').click(function() {
 			$('#addNewDialog').dialog("open");
