@@ -5,11 +5,10 @@ function main(url, prefill) {
 	awtble.makeNewButton('Add New', "Fill out this form");
 	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	$('#controlers1').find('input').css('width', '350px')
-					.css('line-height', '1em')
-					.css('height', '22px')
-					.attr('placeholder', "Type to filter by Student")
-					.detach()
-					.prependTo($('#controlersPanel'));
+					.css('line-height', '1.5em')
+					.css('height', '25px')
+					.attr('placeholder', "Type to filter by Student");
+	awtble.moveStringFilterToFront($('#controlers1'));
 
 	$(".wrapper").each(function (index) {
 		$(this).find('.js-student-info').text( $(this).data('n') );
