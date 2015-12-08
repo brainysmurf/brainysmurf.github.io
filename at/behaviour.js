@@ -3,8 +3,12 @@ function main(url, prefill) {
 	awtble.definePrefill(prefill);
 	awtble.updateUrl(url);
 	awtble.makeNewButton('Add New', "Fill out this form");
-	$('#controlers1').find('input').css('width', '350px').css('line-height', '1.5em').detach().prependTo($('#controlersPanel'));
-	debugger;	
+	$('#controlers1').find('input').css('width', '350px')
+					.css('line-height', '1em')
+					.css('height', '22px')
+					attr('placeholder', "Type to filtery by Student")
+					.detach()
+					.prependTo($('#controlersPanel'));
 
 	$(".wrapper").each(function (index) {
 		$(this).find('.js-student-info').text( $(this).data('n') );
