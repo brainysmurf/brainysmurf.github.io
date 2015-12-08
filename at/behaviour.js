@@ -33,7 +33,7 @@ function main(url, prefill) {
 	$('#controlers1').find('input')
 		.addClass('studentSearch')
 		.attr('placeholder', "Type to filter by Student")
-		.on('keydown', function(e) {
+		.on('keyup', function(e) {
 			modifyDom();
 		});
 	awtble.moveStringFilterToFront($('#controlers1'));
