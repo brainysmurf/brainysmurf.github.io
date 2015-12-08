@@ -25,13 +25,13 @@ this.awtble = {};
 		awtble.$container.before($('<div/>', {id:"addNewDialog", style: "display:none;", title:dialogTitle}));
 		$("#addNewDialog").append($('<iframe/>', {src:awtble.embedUrl, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'}));
 		$('#newButton').button({icons:{primary:'ui-icon-circle-plus'}});
-		$('#addNewDialog').dialog(
-			{autoOpen:false, 
+		$('#addNewDialog').dialog({
+			autoOpen:false, 
 			height:700, 
 			width:"90%", 
 			modal:true, 
 			draggable:false,
-			show:"fadeIn"
+			show:"fadeIn",
 			position: { my: 'top', at: 'top+150' }
 		});
 		$('#newButton').click(function() {
