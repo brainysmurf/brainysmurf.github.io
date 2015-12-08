@@ -4,10 +4,7 @@ function main(url, prefill) {
 	awtble.updateUrl(url);
 	awtble.makeNewButton('Add New', "Fill out this form");
 	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
-	$('#controlers1').find('input').css('width', '350px')
-					.css('line-height', '1.5em')
-					.css('height', '25px')
-					.attr('placeholder', "Type to filter by Student");
+	$('#controlers1').find('input').addClass('studentSearch').attr('placeholder', "Type to filter by Student");
 	awtble.moveStringFilterToFront($('#controlers1'));
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
 
