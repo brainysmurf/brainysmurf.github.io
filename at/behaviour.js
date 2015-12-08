@@ -1,4 +1,5 @@
 function modifyDom() {
+	console.log("modding");
 	$(".wrapper").each(function (index) {
 		$(this).find('.js-student-info').text( $(this).data('n') );
 		$(this).find('.js-student-extra-info').html( $(this).data('o') + '<br />' + $(this).data('a') );
