@@ -6,7 +6,7 @@ function main(url, prefill) {
 	$('#controlers1').find('input').css('width', '350px')
 					.css('line-height', '1em')
 					.css('height', '22px')
-					attr('placeholder', "Type to filtery by Student")
+					.attr('placeholder', "Type to filtery by Student")
 					.detach()
 					.prependTo($('#controlersPanel'));
 
