@@ -21,7 +21,7 @@ function main(url, prefill) {
 			$(this).find('.js-content-body').html( $('<div/>', {
 					id:'emailTextPopup_'+index,
 				}).magnificPopup({
-					type'inline',
+					type: 'inline',
 					midClick: true
 				}) 
 			);
