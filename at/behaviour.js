@@ -1,13 +1,4 @@
-
-function main(url, prefill) {
-	awtble.definePrefill(prefill);
-	awtble.updateUrl(url);
-	awtble.makeNewButton('Add New', "Fill out this form");
-	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
-	$('#controlers1').find('input').addClass('studentSearch').attr('placeholder', "Type to filter by Student");
-	awtble.moveStringFilterToFront($('#controlers1'));
-	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
-
+function modifyDom() {
 	$(".wrapper").each(function (index) {
 		$(this).find('.js-student-info').text( $(this).data('n') );
 		$(this).find('.js-student-extra-info').html( $(this).data('o') + '<br />' + $(this).data('a') );
@@ -31,4 +22,23 @@ function main(url, prefill) {
 			);
 		}
 	});
+}
+
+function main(url, prefill) {
+	awtble.definePrefill(prefill);
+	awtble.updateUrl(url);
+	awtble.makeNewButton('Add New', "Fill out this form");
+	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
+	$('#controlers1').find('input')
+		.addClass('studentSearch')
+		.attr('placeholder', "Type to filter by Student")
+		.on('keydown', function(e) {
+			modifyDom();
+		});
+	awtble.moveStringFilterToFront($('#controlers1'));
+	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
+
+
+
+	modifyDom();
 }
