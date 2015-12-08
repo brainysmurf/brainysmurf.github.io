@@ -3,7 +3,7 @@ function main(url, prefill) {
 	awtble.definePrefill(prefill);
 	awtble.updateUrl(url);
 	awtble.makeNewButton('Add New', "Fill out this form");
-	$('#controlers0').find('charts-menu-button-caption').text("Filter by kind");
+	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	$('#controlers1').find('input').css('width', '350px')
 					.css('line-height', '1em')
 					.css('height', '22px')
