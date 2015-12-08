@@ -13,8 +13,8 @@ function main(url, prefill) {
 			$(this).find('.js-content-body').text( $(this).data('h') );
 		} else {
 			$(this).find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
-			$(this).find('.js-content-title').text('Email:');
-			$(this).find('.js-content-body').text( $(this).data('j') + '<br/>' + $(this).data('l') );
+			$(this).find('.js-content-title').text('Email with subject ' + $(this).data('j') + ':');
+			$(this).find('.js-content-body').text( $(this).data('l') );
 		}
 	});
 }
