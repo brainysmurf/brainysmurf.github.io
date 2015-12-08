@@ -10,7 +10,7 @@ function main(url, prefill) {
 
 	$(".wrapper").each(function (index) {
 		$(this).find('.js-student-info').text( $(this).data('n') );
-		$(this).find('.js-student-extra-info').text( $(this).data('o') );
+		$(this).find('.js-student-extra-info').html( $(this).data('o') + '<br />' $(this).data('a') );
 		if ($(this).data('d') === "Internal Record") {
 			$(this).find('.sidebackground').addClass('ui-icon ui-icon-document');
 			$(this).find('.js-content-title').text('Internal Record:');
