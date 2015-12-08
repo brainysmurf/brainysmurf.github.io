@@ -9,8 +9,8 @@
 
 .studentSearch {
   width: 350px;
-  line-height:1em;
-  height: 23px;
+  line-height:1.5em !important;
+  height: 23px !important;
 }
 
 .banner {
