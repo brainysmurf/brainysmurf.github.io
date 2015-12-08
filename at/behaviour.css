@@ -7,6 +7,12 @@
   margin: 20px auto;
 }
 
+.studentSearch {
+  width: 350px;
+  line-height:1.5em;
+  height: 25px;
+}
+
 .banner {
    padding: 10px;
    border: 2px solid #999;
