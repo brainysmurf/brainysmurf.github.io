@@ -9,6 +9,7 @@ function main(url, prefill) {
 					.css('height', '25px')
 					.attr('placeholder', "Type to filter by Student");
 	awtble.moveStringFilterToFront($('#controlers1'));
+	$('#controlers2').find('input').attr('placeholder', "Filter by grade");
 
 	$(".wrapper").each(function (index) {
 		$(this).find('.js-student-info').text( $(this).data('n') );
