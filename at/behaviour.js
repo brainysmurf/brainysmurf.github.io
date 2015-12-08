@@ -14,7 +14,7 @@ function main(url, prefill) {
 		} else if ($(this).data('d') === "External Communication") {
 			$(this).find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
 			var emailText = '<p>' + $(this).data('l').split('\n').join('</p><p>') + '</p>';
-			$(this).find('.js-hide-content').replaceWith( $('<div/>', {
+			$(this).find('.js-content-hide').replaceWith( $('<div/>', {
 				id:'emailText_'+index
 			}).addClass('white-popup mfp-hide').html(emailText) );
 			$(this).find('.js-content-title').html('Email to parents with subject <em>' + $(this).data('j') + '</em>:');
