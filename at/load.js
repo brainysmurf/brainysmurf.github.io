@@ -10,6 +10,7 @@ this.awtble = {};
 		awtble.$container = $('#middleContainer');
 		awtble.$count = $('#middleContainer > .count');
 		awtble.prefillPhrase = '';
+		awtble.$controllers = $('#controlersPanel');
 	};
 
 	awtble.updateUrl = function(url) {
@@ -40,6 +41,10 @@ this.awtble = {};
 		}, []).map(function (v, i, _) {
 			return v.join('=');
 		}).join('&');
+	}
+	
+	awtble.moveStringFilterToFront = function($stringFilter) {
+		$stringFilter.detach().prependTo(awtble.$controllers);
 	}
 
 }(this.awtble));
