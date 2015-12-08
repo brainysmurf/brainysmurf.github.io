@@ -3,7 +3,8 @@ function main(url, prefill) {
 	awtble.definePrefill(prefill);
 	awtble.updateUrl(url);
 	awtble.makeNewButton('Add New', "Fill out this form");
-	$('#controlers1').find('input').css('width', '250px');
+	$('#controlers1').find('input').css('width', '350px')css('line-height', '1.5em').detach().prependTo($('#controlersPanel'));
+	debugger;	
 
 	$(".wrapper").each(function (index) {
 		$(this).find('.js-student-info').text( $(this).data('n') );
