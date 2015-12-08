@@ -3,10 +3,11 @@ function main(url, prefill) {
 	awtble.definePrefill(prefill);
 	awtble.updateUrl(url);
 	awtble.makeNewButton('Add New', "Fill out this form");
+	$('#controlers0').text("Filter by kind");
 	$('#controlers1').find('input').css('width', '350px')
 					.css('line-height', '1em')
 					.css('height', '22px')
-					.attr('placeholder', "Type to filtery by Student")
+					.attr('placeholder', "Type to filter by Student")
 					.detach()
 					.prependTo($('#controlersPanel'));
 
