@@ -11,10 +11,10 @@ function main(url, prefill) {
 			$(this).find('.sidebackground').addClass('ui-icon ui-icon-document');
 			$(this).find('.js-content-title').text('Internal Record:');
 			$(this).find('.js-content-body').text( $(this).data('h') );
-		} else {
+		} else if ($(this).data('d') === "External Communication") {
 			$(this).find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
-			$(this).find('.js-content-title').html('Email with subject <em>' + $(this).data('j') + '</em>:');
-			$(this).find('.js-content-body').text( $(this).data('l') );
+			$(this).find('.js-content-title').html('Email to parents with subject <em>' + $(this).data('j') + '</em>:');
+			$(this).find('.js-content-body').html( '<p>' + $(this).data('l').split('\n').join('</p><p>') + '</p>' );
 		}
 	});
 }
