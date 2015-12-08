@@ -20,7 +20,7 @@ function main(url, prefill) {
 			$(this).find('.js-content-title').html('Email to parents with subject <em>' + $(this).data('j') + '</em>:');
 			$(this).find('.js-content-body').html( $('<div/>', {
 					id:'emailTextPopup_'+index,
-				}).magnificPopup({
+				}).html(emailText).magnificPopup({
 					type: 'inline',
 					midClick: true
 				}) 
