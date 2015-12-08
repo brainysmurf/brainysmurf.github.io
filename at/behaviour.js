@@ -22,5 +22,3 @@ function main(url, prefill) {
 		}
 	});
 }
-
-<a href="#test-popup" class="open-popup-link">Show inline popup</a>
