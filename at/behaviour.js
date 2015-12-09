@@ -33,8 +33,8 @@ function main(url, prefill) {
 	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	$('#controlers1').find('input')
 		.addClass('studentSearch')
-		.attr('placeholder', "Type to filter by Student")
-		.on('keyup', function(e) {
+		.attr('placeholder', "Type to filter by Student");
+	$("#controlers1").on('keyup', function(e) {
 			modifyDom();
 		});
 	awtble.moveStringFilterToFront($('#controlers1'));
