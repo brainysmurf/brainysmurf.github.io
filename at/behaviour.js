@@ -1,7 +1,7 @@
 function modifyDom() {
 	console.log("modding");
-	console.log( $(".wrapper") );
 	$(".wrapper").each(function (index) {
+		console.log($(this).data('n'));
 		$(this).find('.js-student-info').text( $(this).data('n') );
 		$(this).find('.js-student-extra-info').html( $(this).data('o') + '<br />' + $(this).data('a') );
 		if ($(this).data('d') === "Internal Record") {
