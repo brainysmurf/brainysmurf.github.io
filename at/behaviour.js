@@ -27,6 +27,7 @@ function modifyDom() {
 }
 
 function main(url, prefill) {
+	debugger;
 	awtble.definePrefill(prefill);
 	awtble.updateUrl(url);
 	awtble.makeNewButton('Add New', "Fill out this form");
@@ -40,8 +41,6 @@ function main(url, prefill) {
 		});
 	awtble.moveStringFilterToFront($('#controlers1'));
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
-
-
 
 	modifyDom();
 }
