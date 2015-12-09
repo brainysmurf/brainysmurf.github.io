@@ -17,10 +17,10 @@ function modifyDom() {
 			$(this).find('.js-content-title').html('Email to parents with subject <em>' + $(this).data('j') + '</em>:');
 			$(this).find('.js-content-body').html( $('<div/>', {
 					id:'emailTextPopup_'+index,
-				}).html(emailText).magnificPopup({
-					type: 'inline',
-					midClick: true
-				}) 
+				}).html(emailText) ); //.magnificPopup({
+					//type: 'inline',
+					//midClick: true
+				//}) 
 			);
 		}
 	});
