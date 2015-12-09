@@ -34,7 +34,7 @@ function main(url, prefill) {
 	$('#controlers1').find('input')
 		.addClass('studentSearch')
 		.attr('placeholder', "Type to filter by Student");
-	$("#controlers1").on('keyup', function(e) {
+	$("#controlers1").child('.google-visualization-controls-stringfilter').on('keyup', function(e) {
 			modifyDom();
 		});
 	awtble.moveStringFilterToFront($('#controlers1'));
