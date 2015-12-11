@@ -1,16 +1,19 @@
 function onLoad(element) {
-	if ($(this).data('d') === "Internal Record") {
-		$(this).find('.sidebackground').addClass('ui-icon ui-icon-document');
-		$(this).find('.js-content-title').text('Internal Record:');
-		$(this).find('.js-content-body').text( $(this).data('h') );
-	} else if ($(this).data('d') === "External Communication") {
-		$(this).find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
-		var emailText = '<p>' + $(this).data('l').split('\n').join('</p><p>') + '</p>';
-		$(this).find('.js-content-hide').replaceWith( $('<div/>', {
+	$(element).find('.js-student-info').text( $(element).data('n') );
+	$(element).find('.js-student-extra-info').html( $(element).data('o') + '<br />' + $(element).data('a') );
+
+	if ($(element).data('d') === "Internal Record") {
+		$(element).find('.sidebackground').addClass('ui-icon ui-icon-document');
+		$(element).find('.js-content-title').text('Internal Record:');
+		$(element).find('.js-content-body').text( $(element).data('h') );
+	} else if ($(element).data('d') === "External Communication") {
+		$(element).find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
+		var emailText = '<p>' + $(element).data('l').split('\n').join('</p><p>') + '</p>';
+		$(element).find('.js-content-hide').replaceWith( $('<div/>', {
 			id:'emailText_'+index
 		}).addClass('white-popup mfp-hide').html(emailText) );
-		$(this).find('.js-content-title').html('Email to parents with subject <em>' + $(this).data('j') + '</em>:');
-		$(this).find('.js-content-body').html( $('<div/>', {
+		$(element).find('.js-content-title').html('Email to parents with subject <em>' + $(element).data('j') + '</em>:');
+		$(element).find('.js-content-body').html( $('<div/>', {
 				id:'emailTextPopup_'+index,
 			}).html(emailText)  //.magnificPopup({
 				//type: 'inline',
@@ -40,6 +43,4 @@ function main(url, prefill) {
 		.attr('placeholder', "Type to filter by Student");
 	awtble.moveStringFilterToFront($('#controlers1'));
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
-
-	modifyDom();
 }
