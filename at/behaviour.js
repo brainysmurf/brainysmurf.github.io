@@ -1,19 +1,20 @@
-function onLoad(element) {
-	$(element).find('.js-student-info').text( $(element).data('n') );
-	$(element).find('.js-student-extra-info').html( $(element).data('o') + '<br />' + $(element).data('a') );
+function onLoad(e) {
+	$element = $(e).parent;
+	$element.find('.js-student-info').text( $element.data('n') );
+	$element.find('.js-student-extra-info').html( $element.data('o') + '<br />' + $element.data('a') );
 
-	if ($(element).data('d') === "Internal Record") {
-		$(element).find('.sidebackground').addClass('ui-icon ui-icon-document');
-		$(element).find('.js-content-title').text('Internal Record:');
-		$(element).find('.js-content-body').text( $(element).data('h') );
-	} else if ($(element).data('d') === "External Communication") {
-		$(element).find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
-		var emailText = '<p>' + $(element).data('l').split('\n').join('</p><p>') + '</p>';
-		$(element).find('.js-content-hide').replaceWith( $('<div/>', {
+	if ($element.data('d') === "Internal Record") {
+		$element.find('.sidebackground').addClass('ui-icon ui-icon-document');
+		$element.find('.js-content-title').text('Internal Record:');
+		$element.find('.js-content-body').text( $element.data('h') );
+	} else if ($element.data('d') === "External Communication") {
+		$element.find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
+		var emailText = '<p>' + $element.data('l').split('\n').join('</p><p>') + '</p>';
+		$element.find('.js-content-hide').replaceWith( $('<div/>', {
 			id:'emailText_'+index
 		}).addClass('white-popup mfp-hide').html(emailText) );
-		$(element).find('.js-content-title').html('Email to parents with subject <em>' + $(element).data('j') + '</em>:');
-		$(element).find('.js-content-body').html( $('<div/>', {
+		$element.find('.js-content-title').html('Email to parents with subject <em>' + $element.data('j') + '</em>:');
+		$element.find('.js-content-body').html( $('<div/>', {
 				id:'emailTextPopup_'+index,
 			}).html(emailText)  //.magnificPopup({
 				//type: 'inline',
