@@ -43,5 +43,6 @@ function main(url, prefill) {
 		.attr('placeholder', "Type to filter by Student");
 	awtble.moveStringFilterToFront($('#controlers1'));
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
+	var parentDiv = $('iframe').parentNode;
 	debugger;
 }
