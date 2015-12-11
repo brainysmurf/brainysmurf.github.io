@@ -43,7 +43,7 @@ function main(url, prefill) {
 		.attr('placeholder', "Type to filter by Student");
 	awtble.moveStringFilterToFront($('#controlers1'));
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
-	var parentDiv = $('iframe').parentNode;
+	var $parentDiv = $('iframe').parent();
 	var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 	
 	var observer = new MutationObserver(function(mutations, observer) {
@@ -51,10 +51,11 @@ function main(url, prefill) {
 	    console.log(mutations, observer);
 	    // ...
 	});
-	
+
+	console.log($parentDiv);
 	// define what element should be observed by the observer
 	// and what types of mutations trigger the callback
-	observer.observe($('iframe').parentNode, {
+	observer.observe($parentDiv, {
 	  subtree: true,
 	  attributes: true
 	  //...
