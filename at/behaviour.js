@@ -1,6 +1,5 @@
 function onLoad(e) {
-	$element = $(e).parent;
-	debugger;
+	$element = $(e).parent();
 	$element.find('.js-student-info').text( $element.data('n') );
 	$element.find('.js-student-extra-info').html( $element.data('o') + '<br />' + $element.data('a') );
 
@@ -45,4 +44,5 @@ function main(url, prefill) {
 		.attr('placeholder', "Type to filter by Student");
 	awtble.moveStringFilterToFront($('#controlers1'));
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
+	debugger;
 }
