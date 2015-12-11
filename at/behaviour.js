@@ -11,13 +11,13 @@ function onLoad(e) {
 	} else if ($element.data('d') === "External Communication") {
 		$element.find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
 		var emailText = '<p>' + $element.data('l').split('\n').join('</p><p>') + '</p>';
-		$element.find('.js-content-hide').replaceWith( $('<div/>', {
-			id:'emailText_'+index
-		}).addClass('white-popup mfp-hide').html(emailText) );
+		//$element.find('.js-content-hide').replaceWith( $('<div/>', {
+		//	id:'emailText_'+index
+		//}).addClass('white-popup mfp-hide').html(emailText) );
 		$element.find('.js-content-title').html('Email to parents with subject <em>' + $element.data('j') + '</em>:');
-		$element.find('.js-content-body').html( $('<div/>', {
-				id:'emailTextPopup_'+index,
-			}).html(emailText)  //.magnificPopup({
+		//$element.find('.js-content-body').html( $('<div/>', {
+		//		id:'emailTextPopup_'+index,
+		//	}).html(emailText)  //.magnificPopup({
 				//type: 'inline',
 				//midClick: true
 			//}) 
