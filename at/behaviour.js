@@ -1,5 +1,4 @@
 function onLoad(element) {
-	alert('hi');
 	$(element).find('.js-student-info').text( $(element).data('n') );
 	$(element).find('.js-student-extra-info').html( $(element).data('o') + '<br />' + $(element).data('a') );
 
