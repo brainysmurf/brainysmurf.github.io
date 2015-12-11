@@ -1,5 +1,4 @@
-function onLoad(e) {
-	$element = $(e).parent();
+function onLoad($element) {
 	$element.find('.js-student-info').text( $element.data('n') );
 	$element.find('.js-student-extra-info').html( $element.data('o') + '<br />' + $element.data('a') );
 
@@ -30,7 +29,7 @@ function modifyDom() {
 		console.log($(this).data('n'));
 		$(this).find('.js-student-info').text( $(this).data('n') );
 		$(this).find('.js-student-extra-info').html( $(this).data('o') + '<br />' + $(this).data('a') );
-		onLoad(this);
+		onLoad($(this));
 	});
 }
 
