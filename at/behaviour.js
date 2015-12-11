@@ -21,7 +21,7 @@ function onLoad(e) {
 				//type: 'inline',
 				//midClick: true
 			//}) 
-		); // ends here
+		//); // ends here
 	}
 }
 
