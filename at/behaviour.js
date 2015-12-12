@@ -55,7 +55,6 @@ function main(url, prefill) {
 	$(awtble.$container)
 		.observe('added', function(record) {
 			console.log(record.target);
-			debugger;
 			//modifyDom();
 		});
 
