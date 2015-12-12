@@ -55,6 +55,7 @@ function main(url, prefill) {
 	awtble.$tableBody
 		.observe('added', 'tr', function(record) {
 			console.log(record);
+			debugger;
 			//modifyDom();
 		});
 

@@ -13,6 +13,7 @@ this.awtble = {};
 		awtble.$controllers = $('#controlersPanel');
 		awtble.$table = awtble.$container.find('.google-visualization-table-table');
 		awtble.$tableBody = awtble.$table.find('tbody');
+		debugger;
 	};
 
 	awtble.updateUrl = function(url) {
