@@ -11,8 +11,8 @@ function modifyDom() {
 		var canEdit = $this.data('b').indexOf( $this.data('username') ) != -1;
 		if (canEdit) {
 			extraHtml += '<br />' + $('<a/>', {
-				src=$this.data('v'),
-				text="Edit"
+				src: $this.data('v'),
+				text: "Edit"
 			});
 		}
 		$this.find('.js-student-extra-info').html( extraHtml );
