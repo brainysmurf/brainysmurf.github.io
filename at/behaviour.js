@@ -8,8 +8,10 @@ function modifyDom() {
 		$this.find('.js-student-info').text( $this.data('n') );
 		var extraHtml = $this.data('o') + '<br />' + $this.data('a');
 
-		if ($this.data('v') && $this.data('username') == $this.data('b')) {
-			extraHtml += $this.data('v');
+		// If username is found to be in the username column...
+		console.log()
+		if ( $this.data('b').indexOf( $this.data('username') ) != -1 ) {
+			extraHtml += '<br />' + $this.data('v');
 		}
 		$this.find('.js-student-extra-info').html( extraHtml );
 
