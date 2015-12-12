@@ -55,8 +55,8 @@ function main(url, prefill) {
 
 	// 
 	modifyDom();
-	$parentDiv
-		.observe('childlist', 'iframe', function(record) {
+	awtble.$container
+		.observe('childlist subtree', function(record) {
 			console.log(record);
 			modifyDom();
 		});
