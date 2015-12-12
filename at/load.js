@@ -15,7 +15,6 @@ this.awtble = {};
 		awtble.$tableBody = awtble.$table.find('tbody');
 		awtble.$tableRows = awtble.$tableBody.find('tr');
 		awtble.$tableSelector = '.google-visualization-table-table'; 
-		debugger;
 	};
 
 	awtble.updateUrl = function(url) {

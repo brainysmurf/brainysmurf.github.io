@@ -56,6 +56,7 @@ function main(url, prefill) {
 		.observe('childList subtree', function(record) {
 			if (record.target.className == 'google-visualization-table' && record.addedNodes && record.addedNodes[0].firstChild.className === 'google-visualization-table-table') {
 				console.log(record);
+				debugger;
 			}
 			//modifyDom();
 		});
