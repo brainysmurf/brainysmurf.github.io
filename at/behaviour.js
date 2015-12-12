@@ -54,7 +54,7 @@ function main(url, prefill) {
 	modifyDom();
 	$(awtble.$container)
 		.observe('childList subtree', function(record) {
-			if (record.target.className == 'google-visualization-table' && record.addedNodes && record.addedNodes[0].firstChild.className === 'google-visualization-table-table') {
+			if (record.target.className == 'google-visualization-table' && record.addedNodes && record.addedNodes[0].firstChild && record.addedNodes[0].firstChild.className === 'google-visualization-table-table') {
 				console.log(record);
 				debugger;
 			}
