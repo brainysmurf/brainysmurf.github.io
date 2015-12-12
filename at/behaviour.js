@@ -53,7 +53,7 @@ function main(url, prefill) {
 
 	modifyDom();
 	$(awtble.$container)
-		.observe('childlist', function(record) {
+		.observe('childlist subtree', function(record) {
 			console.log(record);
 			debugger;
 			//modifyDom();
