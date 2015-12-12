@@ -3,7 +3,7 @@ function modifyDom() {
 	$(".wrapper").each(function (index) {
 		$this = $(this);
 		$this.isOwner = $this.data('b') == $this.data('username');
-		$this.canEdit = $this.data('s').indexOf($this.data('username'));
+		$this.canEdit = $this.data('s').indexOf($this.data('username')) != 1;
 
 		$this.find('.js-student-info').text( $this.data('n') );
 		$this.find('.js-student-extra-info').html( $this.data('o') + '<br />' + $this.data('a') );
