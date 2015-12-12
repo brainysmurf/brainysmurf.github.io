@@ -12,7 +12,7 @@ this.awtble = {};
 		awtble.prefillPhrase = '';
 		awtble.$controllers = $('#controlersPanel');
 		awtble.$table = awtble.$container.find('.google-visualization-table-table');
-		debugger;
+		awtble.$tableBody = awtble.$table.find('tbody');
 	};
 
 	awtble.updateUrl = function(url) {
