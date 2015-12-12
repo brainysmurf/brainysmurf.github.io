@@ -52,7 +52,7 @@ function main(url, prefill) {
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
 
 	modifyDom();
-	$(awtble.$tableSelector)
+	$('.google-visualization-table-table')
 		.observe('childList', function(record) {
 			console.log(record);
 			debugger;
