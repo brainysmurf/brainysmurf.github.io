@@ -55,10 +55,11 @@ function main(url, prefill) {
 	$(awtble.$container)
 		.observe('childList subtree', function(record) {
 			if (record.target.className == 'google-visualization-table') {
-				console.log(record);
-				debugger;
+				if (record.target.childNodes[0].childNodes[0].className === 'google-visualization-table-table') {
+					console.log(record);
+					debugger;
+				}
 			}
 			//modifyDom();
 		});
-
 }
