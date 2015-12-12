@@ -53,7 +53,7 @@ function main(url, prefill) {
 
 	modifyDom();
 	awtble.$tableBody
-		.observe('added', '.wrapper', function(record) {
+		.observe('added', '.google-visualization-table-td', function(record) {
 			console.log(record);
 			debugger;
 			//modifyDom();
