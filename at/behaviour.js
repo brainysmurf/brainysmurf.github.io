@@ -2,15 +2,14 @@ function modifyDom() {
 
 	$(".wrapper").each(function (index) {
 		$this = $(this);
-		console.log($this);
 		$this.find('.js-student-info').text( $this.data('n') );
 		$this.find('.js-student-extra-info').html( $this.data('o') + '<br />' + $this.data('a') );
 		$this.find('.js-student-info').text( $this.data('n') );
 		var extraHtml = $this.data('o') + '<br />' + $this.data('a');
 
 		// If username is found to be in the username column...
-		console.log()
-		if ( $this.data('b').indexOf( $this.data('username') ) != -1 ) {
+		var canEdit = $this.data('b').indexOf( $this.data('username') ) != -1;
+		if (canEdit) {
 			extraHtml += '<br />' + $this.data('v');
 		}
 		$this.find('.js-student-extra-info').html( extraHtml );
@@ -61,7 +60,6 @@ function main(url, prefill) {
 		.observe('childList subtree', function(record) {
 			if (record.target.className == 'google-visualization-table') {
 				if (record.target.childNodes[0].childNodes[0].className === 'google-visualization-table-table') {
-					console.log(record);
 					modifyDom();
 				}
 			}
