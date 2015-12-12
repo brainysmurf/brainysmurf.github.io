@@ -1,18 +1,18 @@
 function onLoad($element) {
-	$element.find('.js-student-info').text( $element.data('n') );
-	$element.find('.js-student-extra-info').html( $element.data('o') + '<br />' + $element.data('a') );
+	$me.find('.js-student-info').text( $me.data('n') );
+	$me.find('.js-student-extra-info').html( $me.data('o') + '<br />' + $me.data('a') );
 
-	if ($element.data('d') === "Internal Record") {
-		$element.find('.sidebackground').addClass('ui-icon ui-icon-document');
-		$element.find('.js-content-title').text('Internal Record:');
-		$element.find('.js-content-body').text( $element.data('h') );
-	} else if ($element.data('d') === "External Communication") {
-		$element.find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
-		var emailText = '<p>' + $element.data('l').split('\n').join('</p><p>') + '</p>';
-		//$element.find('.js-content-hide').replaceWith( $('<div/>', {
+	if ($me.data('d') === "Internal Record") {
+		$me.find('.sidebackground').addClass('ui-icon ui-icon-document');
+		$me.find('.js-content-title').text('Internal Record:');
+		$me.find('.js-content-body').text( $me.data('h') );
+	} else if ($me.data('d') === "External Communication") {
+		$me.find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
+		var emailText = '<p>' + $me.data('l').split('\n').join('</p><p>') + '</p>';
+		//$me.find('.js-content-hide').replaceWith( $('<div/>', {
 		//	id:'emailText_'+index
 		//}).addClass('white-popup mfp-hide').html(emailText) );
-		$element.find('.js-content-title').html('Email to parents with subject <em>' + $element.data('j') + '</em>:');
+		$me.find('.js-content-title').html('Email to parents with subject <em>' + $me.data('j') + '</em>:');
 		//$element.find('.js-content-body').html( $('<div/>', {
 		//		id:'emailTextPopup_'+index,
 		//	}).html(emailText)  //.magnificPopup({
@@ -24,12 +24,33 @@ function onLoad($element) {
 }
 
 function modifyDom() {
-	console.log("modding");
+	$this = $(this);
 	$(".wrapper").each(function (index) {
 		console.log($(this).data('n'));
-		$(this).find('.js-student-info').text( $(this).data('n') );
-		$(this).find('.js-student-extra-info').html( $(this).data('o') + '<br />' + $(this).data('a') );
-		onLoad($(this));
+		$this.find('.js-student-info').text( $this.data('n') );
+		$this.find('.js-student-extra-info').html( $this.data('o') + '<br />' + $this.data('a') );
+		$this.find('.js-student-info').text( $this.data('n') );
+		$this.find('.js-student-extra-info').html( $this.data('o') + '<br />' + $this.data('a') );
+
+		if ($this.data('d') === "Internal Record") {
+			$this.find('.sidebackground').addClass('ui-icon ui-icon-document');
+			$this.find('.js-content-title').text('Internal Record:');
+			$this.find('.js-content-body').text( $this.data('h') );
+		} else if ($this.data('d') === "External Communication") {
+			$this.find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
+			var emailText = '<p>' + $this.data('l').split('\n').join('</p><p>') + '</p>';
+			//$this.find('.js-content-hide').replaceWith( $('<div/>', {
+			//	id:'emailText_'+index
+			//}).addClass('white-popup mfp-hide').html(emailText) );
+			$this.find('.js-content-title').html('Email to parents with subject <em>' + $this.data('j') + '</em>:');
+			//$element.find('.js-content-body').html( $('<div/>', {
+			//		id:'emailTextPopup_'+index,
+			//	}).html(emailText)  //.magnificPopup({
+					//type: 'inline',
+					//midClick: true
+				//}) 
+			//); // ends here
+		}
 	});
 }
 
