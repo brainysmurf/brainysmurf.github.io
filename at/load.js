@@ -11,6 +11,8 @@ this.awtble = {};
 		awtble.$count = $('#middleContainer > .count');
 		awtble.prefillPhrase = '';
 		awtble.$controllers = $('#controlersPanel');
+		awtble.$table = awtble.$container.find('.google-visualization-table-table');
+		debugger;
 	};
 
 	awtble.updateUrl = function(url) {
