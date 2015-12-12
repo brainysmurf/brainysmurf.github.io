@@ -2,14 +2,15 @@ function modifyDom() {
 
 	$(".wrapper").each(function (index) {
 		$this = $(this);
+		$this.isOwner = $this.data('b') == $this.data('username');
+		$this.canEdit = $this.data('s').indexOf($this.data('username'));
+
 		$this.find('.js-student-info').text( $this.data('n') );
 		$this.find('.js-student-extra-info').html( $this.data('o') + '<br />' + $this.data('a') );
 		$this.find('.js-student-info').text( $this.data('n') );
 		var extraHtml = $this.data('o') + '<br />' + $this.data('a');
 
-		// If username is found to be in the username column...
-		var canEdit = $this.data('b').indexOf( $this.data('username') ) != -1;
-		if (canEdit) {
+		if ($this.isOwner || $this.canEdit) {
 			extraHtml += '<br /><a href="'+ $this.data('v') +'">Edit</a>';
 		}
 		$this.find('.js-student-extra-info').html( extraHtml );
