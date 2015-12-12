@@ -1,12 +1,102 @@
+.white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.studentSearch {
+  width: 350px;
+  line-height:1.5em !important;
+  height: 23px !important;
+}
+
+.banner {
+   padding: 10px;
+   border: 2px solid #999;
+   margin-bottom: 10px;
+   font-style: italic;
+   font-weight: bold;
+}
+
+.boxer .box-row {
+   display: table-row;
+   width:100%;
+   background-color: #FFF;
+}
+
+.boxer {
+   padding: 5px;
+}
+ 
+.boxer .box {
+   display: table-cell;
+   text-align: left;
+   vertical-align: top;
+}
+
+.mainInfo {
+   float: left;
+   padding: 5px;
+   width: 250px;
+   min-height: 200px;
+   border: 2px solid #999;
+   border-right: 1px solid #eee;
+   border-top-left-radius: 5px;
+   border-bottom-left-radius: 5px;
+}
+
+.sideInfo {
+   padding: 5px;
+   border: 2px solid #999;
+   border-left: 1px solid #eee;
+   width: 100%;
+   border-top-right-radius: 5px;
+   border-bottom-right-radius: 5px;
+}
+
+.google-visualization-table-tr-sel td,
+.google-visualization-table-tr-over td {
+	background-color: #eee !important;
+}
+
+.siderow {
+   margin-bottom: 5px !important;
+}
+
+.solid {
+   padding: 3px 10px 3px 10px;
+   border: 1px solid #999;
+}
+
+.dotted {
+   padding: 3px 10px 3px 10px;
+   border: 1px dashed #999;
+}
+
+.google-visualization-table-tr-sel td,
+.google-visualization-table-tr-over td {
+}
+
+.label {
+   font-weight: bold;
+}
+
+.smalllabel {
+   font-style: italic;
+}
+
 .google-visualization-controls-categoryfilter .charts-menu-button.charts-menu-button-hover, .google-visualization-controls-categoryfilter .charts-menu-button, .google-visualization-controls-categoryfilter .charts-menu-button.charts-menu-button-active {
-	font-family: Arial,sans-serif;
+    font-family: Arial,sans-serif;
     font-size: 12px;
     font-weight: bold;
     line-height: 1.5em;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
     color: #4F4F4F;
     border: 1px solid #B6B6B6;
-	background-color: buttonface;
+    background-color: buttonface;
     box-sizing: border-box;
     border-radius: 3px;
     background: #ededed url(images/bg_fallback.png) 0 0 repeat-x;
@@ -28,6 +118,12 @@ div.charts-menu-button-dropdown {
 }
 
 .google-visualization-table-td {
-	font-family: Arial,sans-serif;
+    font-family: Georgia,serif;
     font-size: 14px;
+}
+
+.sidebackground {
+  float:right;
+  margin-top: 1px;
+  margin-right: 2px;
 }
