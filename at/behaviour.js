@@ -50,14 +50,10 @@ function main(url, prefill) {
 		.attr('placeholder', "Type to filter by Student");
 	awtble.moveStringFilterToFront($('#controlers1'));
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
-	var $parentDiv = $('iframe').parent();
-	console.log($parentDiv);
 
-	// 
 	modifyDom();
 	awtble.$container
-		.observe('childlist', 'table tbody', function(record) {
-			debugger;
+		.observe('added', '.google-visualization-table-table', function(record) {
 			console.log(record);
 			//modifyDom();
 		});
