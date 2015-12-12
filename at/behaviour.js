@@ -49,11 +49,11 @@ function main(url, prefill) {
 		.addClass('studentSearch')
 		.attr('placeholder', "Type to filter by Student");
 	awtble.moveStringFilterToFront($('#controlers1'));
-	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
+	$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
 
 	modifyDom();
 	$(awtble.$container)
-		.observe('added', '.google-visualization-table-table .google-visualization-table-td .wrapper', function(record) {
+		.observe('added', '#chart1', function(record) {
 			console.log(record);
 			//modifyDom();
 		});
