@@ -1,7 +1,8 @@
 function modifyDom() {
-	$this = $(this);
+
 	$(".wrapper").each(function (index) {
-		console.log($(this).data('n'));
+		$this = $(this);
+		console.log($this);
 		$this.find('.js-student-info').text( $this.data('n') );
 		$this.find('.js-student-extra-info').html( $this.data('o') + '<br />' + $this.data('a') );
 		$this.find('.js-student-info').text( $this.data('n') );
@@ -29,6 +30,16 @@ function modifyDom() {
 	});
 }
 
+$('#content')
+    .observe('childlist', 'ul li:first', function(record) {
+        // Observe if elements matching '#content ul li:first' have been added or removed
+    })
+    .observe('attributes', '.section p:visible', function(record) {
+        // Observe if elements matching '#content .section p:visible' have been added or removed
+    })
+
+
+
 function main(url, prefill) {
 	awtble.definePrefill(prefill);
 	awtble.updateUrl(url);
@@ -41,4 +52,13 @@ function main(url, prefill) {
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
 	var $parentDiv = $('iframe').parent();
 	console.log($parentDiv);
+
+	// 
+	modifyDom();
+	$parentDiv
+		.observe('childlist', 'iframe', function(record) {
+			console.log(record);
+			modifyDom();
+		});
+
 }
