@@ -54,7 +54,9 @@ function main(url, prefill) {
 	modifyDom();
 	$(awtble.$container)
 		.observe('childlist subtree', function(record) {
-			console.log(record);
+			if (record.addedNodes) {
+				console.log(record);
+			}
 			//modifyDom();
 		});
 
