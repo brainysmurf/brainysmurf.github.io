@@ -52,8 +52,8 @@ function main(url, prefill) {
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
 
 	modifyDom();
-	awtble.$container
-		.observe('added', '.google-visualization-table-table', function(record) {
+	awtble.$tableBody
+		.observe('added', 'tr', function(record) {
 			console.log(record);
 			//modifyDom();
 		});
