@@ -53,7 +53,7 @@ function main(url, prefill) {
 
 	modifyDom();
 	$('.google-visualization-table-table')
-		.observe('childList', function(record) {
+		.observe('childlist', function(record) {
 			console.log(record);
 			debugger;
 			//modifyDom();
