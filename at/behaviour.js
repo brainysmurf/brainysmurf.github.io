@@ -54,7 +54,9 @@ function main(url, prefill) {
 	modifyDom();
 	$(awtble.$container)
 		.observe('childList subtree', function(record) {
-			console.log(record.target.className);
+			if (record.target.className == 'google-visualization-table') {
+				console.log(record);
+			}
 			//modifyDom();
 		});
 
