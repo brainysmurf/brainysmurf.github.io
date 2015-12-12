@@ -56,7 +56,7 @@ function main(url, prefill) {
 	// 
 	modifyDom();
 	awtble.$container
-		.observe('childlist subtree', function(record) {
+		.observe('childlist', 'table tbody', function(record) {
 			debugger;
 			console.log(record);
 			//modifyDom();
