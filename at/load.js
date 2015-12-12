@@ -13,6 +13,8 @@ this.awtble = {};
 		awtble.$controllers = $('#controlersPanel');
 		awtble.$table = awtble.$container.find('.google-visualization-table-table');
 		awtble.$tableBody = awtble.$table.find('tbody');
+		awtble.$tableRows = awtble.$tableBody.find('tr');
+		awtble.$tableSelector = '.google-visualization-table-table'; 
 		debugger;
 	};
 
