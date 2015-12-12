@@ -1,28 +1,3 @@
-function onLoad($element) {
-	$me.find('.js-student-info').text( $me.data('n') );
-	$me.find('.js-student-extra-info').html( $me.data('o') + '<br />' + $me.data('a') );
-
-	if ($me.data('d') === "Internal Record") {
-		$me.find('.sidebackground').addClass('ui-icon ui-icon-document');
-		$me.find('.js-content-title').text('Internal Record:');
-		$me.find('.js-content-body').text( $me.data('h') );
-	} else if ($me.data('d') === "External Communication") {
-		$me.find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
-		var emailText = '<p>' + $me.data('l').split('\n').join('</p><p>') + '</p>';
-		//$me.find('.js-content-hide').replaceWith( $('<div/>', {
-		//	id:'emailText_'+index
-		//}).addClass('white-popup mfp-hide').html(emailText) );
-		$me.find('.js-content-title').html('Email to parents with subject <em>' + $me.data('j') + '</em>:');
-		//$element.find('.js-content-body').html( $('<div/>', {
-		//		id:'emailTextPopup_'+index,
-		//	}).html(emailText)  //.magnificPopup({
-				//type: 'inline',
-				//midClick: true
-			//}) 
-		//); // ends here
-	}
-}
-
 function modifyDom() {
 	$this = $(this);
 	$(".wrapper").each(function (index) {
@@ -66,19 +41,4 @@ function main(url, prefill) {
 	$('#controlers2').find('.charts-menu-button-caption').text("Filter by grade");
 	var $parentDiv = $('iframe').parent();
 	console.log($parentDiv);
-	var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-	
-	var observer = new MutationObserver(function(mutations, observer) {
-	    // fired when a mutation occurs
-	    console.log(mutations, observer);
-	    // ...
-	});
-
-	// define what element should be observed by the observer
-	// and what types of mutations trigger the callback
-	observer.observe($parentDiv, {
-	  subtree: true,
-	  attributes: true
-	  //...
-	});
 }
