@@ -10,10 +10,7 @@ function modifyDom() {
 		// If username is found to be in the username column...
 		var canEdit = $this.data('b').indexOf( $this.data('username') ) != -1;
 		if (canEdit) {
-			extraHtml += '<br />' + $('<a/>', {
-				src: $this.data('v'),
-				text: "Edit"
-			});
+			extraHtml += '<br /><a href="'+ $this.data('v') +'">Edit</a>';
 		}
 		$this.find('.js-student-extra-info').html( extraHtml );
 
