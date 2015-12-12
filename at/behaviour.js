@@ -6,7 +6,12 @@ function modifyDom() {
 		$this.find('.js-student-info').text( $this.data('n') );
 		$this.find('.js-student-extra-info').html( $this.data('o') + '<br />' + $this.data('a') );
 		$this.find('.js-student-info').text( $this.data('n') );
-		$this.find('.js-student-extra-info').html( $this.data('o') + '<br />' + $this.data('a') );
+		var extraHtml = $this.data('o') + '<br />' + $this.data('a');
+
+		if ($this.data('v') && $this.data('username') == $this.data('b')) {
+			extraHtml += $this.data('v');
+		}
+		$this.find('.js-student-extra-info').html( extraHtml );
 
 		if ($this.data('d') === "Internal Record") {
 			$this.find('.sidebackground').addClass('ui-icon ui-icon-document');
@@ -37,8 +42,6 @@ $('#content')
     .observe('attributes', '.section p:visible', function(record) {
         // Observe if elements matching '#content .section p:visible' have been added or removed
     })
-
-
 
 function main(url, prefill) {
 	awtble.definePrefill(prefill);
