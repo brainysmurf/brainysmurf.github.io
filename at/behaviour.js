@@ -57,7 +57,7 @@ function main(url, prefill) {
 			if (record.target.className == 'google-visualization-table') {
 				if (record.target.childNodes[0].childNodes[0].className === 'google-visualization-table-table') {
 					console.log(record);
-					debugger;
+					modifyDom();
 				}
 			}
 			//modifyDom();
