@@ -53,7 +53,7 @@ function main(url, prefill) {
 
 	modifyDom();
 	$(awtble.$tableSelector)
-		.observe('added', function(record) {
+		.observe('childList', function(record) {
 			console.log(record);
 			debugger;
 			//modifyDom();
