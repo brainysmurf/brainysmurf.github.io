@@ -53,8 +53,8 @@ function main(url, prefill) {
 
 	modifyDom();
 	$(awtble.$container)
-		.observe('added', function(record) {
-			console.log(record.target);
+		.observe('added', '.google-visualization-table-table', function(record) {
+			console.log(record);
 			//modifyDom();
 		});
 
