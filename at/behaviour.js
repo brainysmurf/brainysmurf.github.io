@@ -1,5 +1,7 @@
 function modifyDom() {
 
+	debugger;
+
 	$(".wrapper").each(function (index) {
 		$this = $(this);
 		$this.isOwner = $this.data('b') == $this.data('username');
