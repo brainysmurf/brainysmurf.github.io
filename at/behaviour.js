@@ -1,33 +1,59 @@
-function modifyDom() {
+function update() {
 
-	debugger;
+	$('*[column]').each(function (item) { $(this).before($(this).parents('.wrapper').data( $(this).attr('column') )) ; });
 
 	$(".wrapper").each(function (index) {
 		$this = $(this);
-		$this.isOwner = $this.data('b') == $this.data('username');
-		$this.canEdit = $this.data('s').indexOf($this.data('username')) != 1;
+		$this.timestamp = $this.data('a');
+		$this.submittedBy = $this.data('b');
+		$this.kind = $this.data('d');
+		$this.frontendUser = $this.data('username');
+		$this.internalRecordContent = $this.data('h');
+		$this.whoCanEditMe = $this.data('s');
+		$this.studentName = $this.data('n');
+		$this.grade = $this.data('o');
+		$this.externalComBody = $this.data('l');
+		$this.externalComSubject = $this.data('j');
+		$this.uniqueId = $this.data('v');
+		$this.embedUrl = $this.data('w');
+		try {
+			$this.commentsRaw = JSON.parse($this.data('v'));
+			$this.comments = [];
+			$this.commentsRaw.forEach(function (item, index) {
+				var user, timestamp, uniqueId, content;
+				timestamp = item[0];
+				uniqueId = item[1];
+				content = item[2];
+				user = item[3] || null; 
+				$this.comments.push({user:user, content:content})
+			});
+		}
+		catch (e) {
+			$this.comments = [{user:null, content:"Error: Could not parse"}];
+		}
 
-		$this.find('.js-student-info').text( $this.data('n') );
-		$this.find('.js-student-extra-info').html( $this.data('o') + '<br />' + $this.data('a') );
-		$this.find('.js-student-info').text( $this.data('n') );
-		var extraHtml = $this.data('o') + '<br />' + $this.data('a');
+		$this.isOwner = $this.submittedBy == $this.frontendUser;
+		$this.canEdit = $this.whoCanEditMe.indexOf($this.frontendUser) != 1;
+
+		$this.find('.js-student-info').text( $this.studentName );
+		var extraHtml = $this.grade + '<br />' + $this.timestamp;
 
 		if ($this.isOwner || $this.canEdit) {
-			extraHtml += '<br /><a href="'+ $this.data('v') +'">Edit</a>';
+			extraHtml += '<br /><a href="'+ $this.embedUrl +'">Edit</a>';
 		}
 		$this.find('.js-student-extra-info').html( extraHtml );
 
-		if ($this.data('d') === "Internal Record") {
+		if ($this.kind === "Internal Record") {
 			$this.find('.sidebackground').addClass('ui-icon ui-icon-document');
 			$this.find('.js-content-title').text('Internal Record:');
-			$this.find('.js-content-body').text( $this.data('h') );
-		} else if ($this.data('d') === "External Communication") {
+			$this.find('.js-content-body').text( $this.internalRecordContent );
+		} else if ($this.kind === "External Communication") {
 			$this.find('.sidebackground').addClass('ui-icon ui-icon-mail-closed');
-			var emailText = '<p>' + $this.data('l').split('\n').join('</p><p>') + '</p>';
+			var emailText = '<p>' + $this.externalComBody.split('\n').join('</p><p>') + '</p>';
 			//$this.find('.js-content-hide').replaceWith( $('<div/>', {
 			//	id:'emailText_'+index
 			//}).addClass('white-popup mfp-hide').html(emailText) );
-			$this.find('.js-content-title').html('Email to parents with subject <em>' + $this.data('j') + '</em>:');
+			$this.find('.js-content-title').html('Email to parents with subject <em>' + $this.externalComSubject + '</em>:');
 			//$element.find('.js-content-body').html( $('<div/>', {
 			//		id:'emailTextPopup_'+index,
 			//	}).html(emailText)  //.magnificPopup({
@@ -36,6 +62,12 @@ function modifyDom() {
 				//}) 
 			//); // ends here
 		}
+
+		var comment = "";
+		$this.comments.forEach(function (comment) {
+			comment += 'User: ' + comment.user + '<br />' + 'Content: ' + comment.content;
+		});
+		$this.find('.comments').html( comment );
 	});
 }
 
@@ -58,12 +90,12 @@ function main(url, prefill) {
 	awtble.moveStringFilterToFront($('#controlers1'));
 	$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
 
-	modifyDom();
+	update();
 	$(awtble.$container)
 		.observe('childList subtree', function(record) {
 			if (record.target.className == 'google-visualization-table') {
 				if (record.target.childNodes[0].childNodes[0].className === 'google-visualization-table-table') {
-					modifyDom();
+					update();
 				}
 			}
 			//modifyDom();
