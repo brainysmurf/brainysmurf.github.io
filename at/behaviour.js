@@ -67,7 +67,8 @@ function update() {
 		$this.comments.forEach(function (comment) {
 			comment += 'User: ' + comment.user + '<br />' + 'Content: ' + comment.content;
 		});
-		$this.find('.comments').text( comment );
+		$this.find('.js-comments').text( comment );
+		debugger;
 	});
 }
 
