@@ -68,7 +68,6 @@ function update() {
 			comment += 'User: ' + thisComment.user + '<br />' + 'Content: ' + thisComment.content;
 		});
 		$this.find('.js-comments').text( comment );
-		debugger;
 	});
 }
 
