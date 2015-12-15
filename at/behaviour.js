@@ -24,9 +24,8 @@ function update() {
 				debugger;
 				var user, timestamp, uniqueId, content;
 				timestamp = item[0];
-				uniqueId = item[1];
-				content = item[2];
-				user = item[3] || null; 
+				content = item[1];
+				user = "<unknown>";
 				$this.comments.push({user:user, content:content})
 			})
 		} else {
