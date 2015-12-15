@@ -63,11 +63,12 @@ function update() {
 			//); // ends here
 		}
 
-		var comment = "";
-		if ($this.comments) $this.comments.forEach(function (thisComment) {
-			comment += 'User: ' + thisComment.user + '<br />' + 'Content: ' + thisComment.content;
-		});
-		$this.find('.js-comments').text( comment );
+		if ($this.comments) {
+			$this.find('.js-content-body').after($('<b/>', {text:"Follow-ups"}));
+			$this.comments.forEach(function (thisComment) {
+				$this.find('.js-content-body').after('<div/>', {text: thisComment.user + ' said ' + thisComment.content});
+			});
+		}
 	});
 }
 
