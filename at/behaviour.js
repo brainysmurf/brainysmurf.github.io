@@ -17,7 +17,8 @@ function update() {
 		$this.uniqueId = $this.data('v');
 		$this.embedUrl = $this.data('w');
 		try {
-			$this.commentsRaw = JSON.parse($this.data('v'));
+			// There could be quote html elements in there
+			$this.commentsRaw = JSON.parse($this.data('v').replace(/&quot;/g, '"'));
 			$this.comments = [];
 			$this.commentsRaw.forEach(function (item, index) {
 				var user, timestamp, uniqueId, content;
