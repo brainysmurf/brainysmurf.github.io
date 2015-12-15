@@ -66,7 +66,7 @@ function update() {
 			$comments = $this.find('.js-comments');
 			$comments.append($('<div/>', {class:"label", text:"Follow-ups"}));
 			$this.comments.forEach(function (thisComment) {
-				$comments.append('<div/>', {text: thisComment.user + ' said ' + thisComment.content});
+				$comments.append($('<div/>', {text: thisComment.user + ' said ' + thisComment.content}));
 			});
 			debugger;
 		}
