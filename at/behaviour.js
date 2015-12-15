@@ -20,7 +20,7 @@ function update() {
 		$this.comments = null;
 		try {
 			// There could be quote html elements in there
-			$this.commentsRaw = JSON.parse($this.data('v').replace(/&quot;/g, '"'));
+			$this.commentsRaw = JSON.parse($this.data('x').replace(/&quot;/g, '"'));
 		}
 		catch (e) {
 			debugger;
