@@ -17,7 +17,7 @@ function update() {
 		$this.uniqueId = $this.data('v');
 		$this.embedUrl = $this.data('w');
 		$this.commentsRaw = $this.data('x');
-		if (typeof $this.comments === 'object') {
+		if (typeof $this.commentsRaw === 'object') {
 			// We have to unpack them
 			$this.comments = [];
 			$this.commentsRaw.forEach(function (item, index) {
