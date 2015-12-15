@@ -63,7 +63,8 @@ function update() {
 		}
 
 		if ($this.comments) {
-			$comments = $this.find('.js-content-body').after($('<div/>', {class:"label", text:"Follow-ups"}));
+			$comments = $this.find('.js-comments');
+			$comments.append($('<div/>', {class:"label", text:"Follow-ups"}));
 			$this.comments.forEach(function (thisComment) {
 				$comments.append('<div/>', {text: thisComment.user + ' said ' + thisComment.content});
 			});
