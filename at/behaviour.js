@@ -21,7 +21,6 @@ function update() {
 			// We have to unpack them
 			$this.comments = [];
 			$this.commentsRaw.forEach(function (item, index) {
-				debugger;
 				var user, timestamp, uniqueId, content;
 				timestamp = item[0];
 				content = item[1];
@@ -64,10 +63,11 @@ function update() {
 		}
 
 		if ($this.comments) {
-			$this.find('.js-content-body').after($('<b/>', {text:"Follow-ups"}));
+			$this.find('.js-content-body').after($('<div/>', {class:"label", text:"Follow-ups"}));
 			$this.comments.forEach(function (thisComment) {
 				$this.find('.js-content-body').after('<div/>', {text: thisComment.user + ' said ' + thisComment.content});
 			});
+			debugger;
 		}
 	});
 }
