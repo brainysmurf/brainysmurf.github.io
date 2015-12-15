@@ -16,18 +16,8 @@ function update() {
 		$this.externalComSubject = $this.data('j');
 		$this.uniqueId = $this.data('v');
 		$this.embedUrl = $this.data('w');
-		$this.commentsRaw = null;
-		$this.comments = null;
-		try {
-			// There could be quote html elements in there
-			$this.commentsRaw = JSON.parse($this.data('x').replace(/&quot;/g, '"'));
-		}
-		catch (e) {
-			debugger;
-			$this.comments = [{user:null, content:"Error: Could not parse"}];
-		}
-
-		if ($this.commentsRaw && !$this.comments) {
+		$this.commentsRaw = $this.data('x');
+		if (typeof $this.comments === 'object') {
 			// We have to unpack them
 			$this.comments = [];
 			$this.commentsRaw.forEach(function (item, index) {
@@ -38,6 +28,8 @@ function update() {
 				user = item[3] || null; 
 				$this.comments.push({user:user, content:content})
 			})
+		} else {
+			$this.comments = null;
 		}
 
 		$this.isOwner = $this.submittedBy == $this.frontendUser;
