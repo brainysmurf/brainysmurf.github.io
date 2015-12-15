@@ -21,6 +21,7 @@ function update() {
 			// We have to unpack them
 			$this.comments = [];
 			$this.commentsRaw.forEach(function (item, index) {
+				debugger;
 				var user, timestamp, uniqueId, content;
 				timestamp = item[0];
 				uniqueId = item[1];
