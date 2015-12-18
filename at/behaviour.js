@@ -1,6 +1,24 @@
 function update() {
 
-	$('*[column]').each(function (item) { $(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )) ; });
+	$('*[column]').each(function (item) { 
+		$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
+	});
+
+	$('*[onlyif]:not([variable])').each(function (item) {
+		var value = $(this).attr('onlyif');
+		if ($(this).text() !== value) {
+			$(this).css('display', 'none');
+		}
+	});
+
+	$('*[onlyif][variable]').each(function (item) {
+		var column = $(this).attr('variable');
+		var variable = $(this).parents('.wrapper').data(column.lower());
+		var value = $(this).attr('onlyif');
+		if (variable === value) {
+			$(this).css('display', 'none');
+		}
+	});
 
 	$(".wrapper").each(function (index) {
 		$this = $(this);
