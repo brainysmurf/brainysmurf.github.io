@@ -1,6 +1,6 @@
 function update() {
 
-	$('*[column]').each(function (item) { $(this).before($(this).parents('.wrapper').data( $(this).attr('column') )) ; });
+	$('*[column]').each(function (item) { $(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )) ; });
 
 	$(".wrapper").each(function (index) {
 		$this = $(this);
