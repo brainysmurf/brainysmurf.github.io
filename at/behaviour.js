@@ -14,9 +14,10 @@ function update() {
 		$this.grade = $this.data('o');
 		$this.externalComBody = $this.data('l');
 		$this.externalComSubject = $this.data('j');
-		$this.uniqueId = $this.data('v');
-		$this.embedUrl = $this.data('w');
-		$this.commentsRaw = $this.data('x');
+		$this.row = $this.data('t');
+		$this.uniqueId = $this.data('w');
+		$this.embedUrl = $this.data('x');
+		$this.commentsRaw = $this.data('y');
 		if (typeof $this.commentsRaw === 'object') {
 			// We have to unpack them
 			$this.comments = [];
@@ -81,9 +82,10 @@ $('#content')
         // Observe if elements matching '#content .section p:visible' have been added or removed
     })
 
-function main(url, prefill) {
-	awtble.definePrefill(prefill);
-	awtble.updateUrl(url);
+function main(params) {
+	debugger;
+	awtble.definePrefill(params.prefill);
+	awtble.updateUrl(params.formUrl);
 	awtble.makeNewButton('Add New', "Fill out this form");
 	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	$('#controlers1').find('input')
