@@ -14,14 +14,14 @@ function update() {
 	$('*[onlyif]').each(function (item) {
 		var value = $(this).attr('onlyif');
 		if (value.indexOf('=') != -1) {
-			if ($(this).text() !== value) {
-				$(this).css('display', 'none');
-			}
-		} else {
 			var column = value.split("=")[0];
 			value = value.split("=")[1];
 			var variable = $(this).parents('.wrapper').data(column.toLowerCase());
 			if (variable === value) {
+				$(this).css('display', 'none');
+			}
+		} else {
+			if ($(this).text() !== value) {
 				$(this).css('display', 'none');
 			}
 		}
