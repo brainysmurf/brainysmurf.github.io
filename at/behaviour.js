@@ -25,6 +25,7 @@ function update() {
 				$(this).css('display', 'none');
 			}
 		}
+		debugger;
 	});
 
 	// $(".wrapper").each(function (index) {
@@ -108,7 +109,6 @@ $('#content')
     })
 
 function main(params) {
-	debugger;
 	awtble.definePrefill(params.prefill);
 	awtble.updateUrl(params.formUrl);
 	awtble.makeNewButton('Add New', "Fill out this form");
