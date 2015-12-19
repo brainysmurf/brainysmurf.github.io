@@ -17,7 +17,7 @@ function update() {
 			var column = value.split("=")[0];
 			value = value.split("=")[1];
 			var variable = $(this).parents('.wrapper').data(column.toLowerCase());
-			if (variable === value) {
+			if (variable !== value) {
 				$(this).css('display', 'none');
 			}
 		} else {
