@@ -96,7 +96,7 @@ function update() {
 	// 		});
 	// 		debugger;
 	// 	}
-	});
+	//});
 }
 
 $('#content')
