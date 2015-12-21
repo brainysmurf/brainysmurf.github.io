@@ -1,15 +1,17 @@
 function update() {
 
 	$('*[column]').each(function (item) { 
+		var value = $(this).parents('.wrapper').data( $(this).attr('column') );
 		switch ($(this).attr('at') && $(this).attr('at').toLowerCase()) {
 			case 'after': 
-				$(this).append($(this).parents('.wrapper').data( $(this).attr('column') )); 
+				$(this).append(value); 
+				debugger;
 				break;
 			case 'before':
-				$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
+				$(this).prepend(value); 
 				break;
 			default:
-				$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
+				$(this).prepend(value); 
 		}
 	});
 
