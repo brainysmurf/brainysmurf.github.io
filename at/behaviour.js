@@ -3,7 +3,7 @@ function update() {
 	$('*[column]').each(function (item) { 
 		switch ($(this).attr('at') && $(this).attr('at').toLowerCase()) {
 			case 'after': 
-				$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
+				$(this).append($(this).parents('.wrapper').data( $(this).attr('column') )); 
 				break;
 			case 'before':
 				$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
