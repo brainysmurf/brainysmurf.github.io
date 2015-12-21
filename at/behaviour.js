@@ -2,8 +2,8 @@ function update() {
 
 	$('*[column]').each(function (item) { 
 		var action = $(this).prepend;
-		if ($(this).attr('at').toLowerCase()) {
-			switch ($(this).attr('at')) {
+		if ($(this).attr('at')) {
+			switch ($(this).attr('at').toLowerCase()) {
 				case 'after': 
 					action = $(this).append;
 					break;
