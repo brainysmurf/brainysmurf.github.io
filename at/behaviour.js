@@ -1,20 +1,16 @@
 function update() {
 
 	$('*[column]').each(function (item) { 
-		debugger;
-		var action = $(this).prepend;
-			switch ($(this).attr('at') && $(this).attr('at').toLowerCase()) {
-				case 'after': 
-					$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
-					break;
-				case 'before':
-					$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
-					break;
-				default:
-					$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
-			}
+		switch ($(this).attr('at') && $(this).attr('at').toLowerCase()) {
+			case 'after': 
+				$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
+				break;
+			case 'before':
+				$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
+				break;
+			default:
+				$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
 		}
-		action($(this).parents('.wrapper').data( $(this).attr('column') )); 
 	});
 
 	// $('*[onlyif]:not([variable])').each(function (item) {
