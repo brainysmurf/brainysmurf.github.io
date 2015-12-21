@@ -5,7 +5,6 @@ function update() {
 		switch ($(this).attr('at') && $(this).attr('at').toLowerCase()) {
 			case 'after': 
 				$(this).append(value); 
-				debugger;
 				break;
 			case 'before':
 				$(this).prepend(value); 
