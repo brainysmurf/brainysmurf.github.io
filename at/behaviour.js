@@ -1,7 +1,15 @@
 function update() {
 
 	$('*[column]').each(function (item) { 
-		$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
+		var action = $(this).prepend;
+		if ($(this).attr('at').toLowerCase()) {
+			switch ($(this).attr('at')) {
+				case 'after': 
+					action = $(this).append;
+					break;
+			}
+		}
+		action($(this).parents('.wrapper').data( $(this).attr('column') )); 
 	});
 
 	// $('*[onlyif]:not([variable])').each(function (item) {
@@ -25,7 +33,6 @@ function update() {
 				$(this).css('display', 'none');
 			}
 		}
-		debugger;
 	});
 
 	// $(".wrapper").each(function (index) {
