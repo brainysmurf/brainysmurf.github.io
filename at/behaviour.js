@@ -3,11 +3,15 @@ function update() {
 	$('*[column]').each(function (item) { 
 		debugger;
 		var action = $(this).prepend;
-		if ($(this).attr('at')) {
-			switch ($(this).attr('at').toLowerCase()) {
+			switch ($(this).attr('at') && $(this).attr('at').toLowerCase()) {
 				case 'after': 
-					action = $(this).append;
+					$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
 					break;
+				case 'before':
+					$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
+					break;
+				default:
+					$(this).prepend($(this).parents('.wrapper').data( $(this).attr('column') )); 
 			}
 		}
 		action($(this).parents('.wrapper').data( $(this).attr('column') )); 
