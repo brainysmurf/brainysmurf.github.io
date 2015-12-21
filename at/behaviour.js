@@ -1,6 +1,7 @@
 function update() {
 
 	$('*[column]').each(function (item) { 
+		debugger;
 		var action = $(this).prepend;
 		if ($(this).attr('at')) {
 			switch ($(this).attr('at').toLowerCase()) {
