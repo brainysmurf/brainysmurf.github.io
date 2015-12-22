@@ -21,7 +21,7 @@ awtble.makeCommentButton = function(buttonTitle, dialogTitle) {
 function update() {
 
 	$('*[column]').each(function (item) { 
-		debugger;
+		if ($(this).attr('column') === 'y') debugger;
 		var value = $(this).parents('.wrapper').data( $(this).attr('column') );
 		if ($(this).attr('attr')) {
 			var attr = $(this).attr('attr');
