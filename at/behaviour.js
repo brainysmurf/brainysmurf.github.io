@@ -79,7 +79,7 @@ function main(params) {
 	awtble.makeNewButton('Add New', "Enter a new item");
 	//awtble.makeCommentButton('New Comment', "Enter a new comment");
 
-	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
+	//$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	$('#controlers1').find('input')
 		.addClass('studentSearch')
 		.attr('placeholder', "Type to filter by Student");
@@ -91,18 +91,22 @@ function main(params) {
 	// Add an observer so that we can run update whenever the data in the table changes.
 	// The selectors and if statements make it only run once
 	// TODO: Figure out a better way
-	$('#controlersPanel')
-		.observe('childList subtree', function(record) {
-			if (record.target.className == 'google-visualization-controls-categoryfilter-selected') {
-				switch ($(record.target).parents('.controlers-filters').get(0).id) {
-					case 'controlers0':
-						$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
-						break;
-					case 'controlers2':
-						$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
-						break;
-				}
-			}
+	// $('#controlersPanel')
+	// 	.observe('childList subtree', function(record) {
+	// 		if (record.target.className == 'google-visualization-controls-categoryfilter-selected') {
+	// 			switch ($(record.target).parents('.controlers-filters').get(0).id) {
+	// 				case 'controlers0':
+	// 					$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
+	// 					break;
+	// 				case 'controlers2':
+	// 					$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
+	// 					break;
+	// 			}
+	// 		}
+	// });
+
+	$('#controlers0').load(function (e) {
+		$(this).('.charts-menu-button-caption').text('Success'); //$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	});
 
 	$(awtble.$container)
