@@ -21,12 +21,11 @@ awtble.makeCommentButton = function(buttonTitle, dialogTitle) {
 function update() {
 
 	$('*[column]').each(function (item) { 
-		if ($(this).attr('column') === 'y') debugger;
 		var value = $(this).parents('.wrapper').data( $(this).attr('column') );
 		if ($(this).attr('attr')) {
 			var attr = $(this).attr('attr');
 			$(this).attr(attr, value);
-		} else if ($(this).prop('stringified') === "") {
+		} else if ($(this).attr('stringified') === "") {
 			// make a new div that will replace this one
 			//var comments = JSON.parse(value);
 			if (value instanceof Array) {
