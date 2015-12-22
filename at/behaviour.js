@@ -140,7 +140,6 @@ function main(params) {
 	// TODO: Figure out a better way
 	$('#controlersPanel')
 		.observe('childList subtree', function(record) {
-			console.log(record.target);
 			if (record.target.className == 'google-visualization-controls-categoryfilter-selected') {
 				switch ($(record.target).parents('.controlers-filters').get(0).id) {
 					case 'controlers0':
