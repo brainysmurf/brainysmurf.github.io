@@ -29,9 +29,8 @@ function update() {
 			// make a new div that will replace this one
 			//var comments = JSON.parse(value);
 			if (value instanceof Array) {
-				debugger;
 				$me = $(this);
-				template = _.template($me.html());
+				template = _.template($me.html().replace("&lt;", "<").replace("&gt;", ">"));
 				$me.html("");
 				value.forEach(function (item, index, arr) {
 					debugger;
