@@ -1,5 +1,13 @@
 function update() {
 
+	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
+	$('#controlers1').find('input')
+		.addClass('studentSearch')
+		.attr('placeholder', "Type to filter by Student");
+	awtble.moveStringFilterToFront($('#controlers1'));
+	$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
+
+
 	$('*[column]').each(function (item) { 
 		var value = $(this).parents('.wrapper').data( $(this).attr('column') );
 		if ($(this).attr('attr')) {
@@ -126,14 +134,12 @@ function main(params) {
 	awtble.definePrefill(params.prefill);
 	awtble.updateUrl(params.formUrl);
 	awtble.makeNewButton('Add New', "Fill out this form");
-	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
-	$('#controlers1').find('input')
-		.addClass('studentSearch')
-		.attr('placeholder', "Type to filter by Student");
-	awtble.moveStringFilterToFront($('#controlers1'));
-	$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
 
 	update();
+
+	// Add an observer so that we can run update whenever the data in the table changes.
+	// The selectors and if statements make it only run once
+	// TODO: Figure out a better way
 	$(awtble.$container)
 		.observe('childList subtree', function(record) {
 			if (record.addedNodes && record.addedNodes.length == 1 && record.target.className == 'google-visualization-table') {
