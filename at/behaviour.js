@@ -1,3 +1,23 @@
+awtble.updateComment = function(commentUrl) {
+	awtble.commentUrl = commentUrl;
+};
+
+awtble.makeCommentButton = function(buttonTitle, dialogTitle) {
+	awtble.$container.before($('<button/>', {id:'commentButton', text:buttonTitle, style:'margin-bottom:10px'}));
+	awtble.$container.before($('<div/>', {id:"commentDialog", style: "display:none;", title:dialogTitle}));
+	$("#commentDialog").append($('<iframe/>', {src:awtble.commentUrl, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'}));
+	$('#commentButton').button({icons:{primary:'ui-icon-circle-plus'}});
+	$('#addNewDialog').dialog({
+		autoOpen:false, 
+		height:700, 
+		width:"90%", 
+		modal:true, 
+		draggable:false,
+		show:"fadeIn",
+		position: { my: 'top', at: 'top+15' }
+	});
+};
+
 function update() {
 
 	$('*[column]').each(function (item) { 
@@ -125,7 +145,10 @@ $('#content')
 function main(params) {
 	awtble.definePrefill(params.prefill);
 	awtble.updateUrl(params.formUrl);
-	awtble.makeNewButton('Add New', "Fill out this form");
+	awtble.updateComment(params.commentUrl);
+	awtble.makeNewButton('Add New', "Enter a new item");
+	awtble.makeCommentButton('New Comment', "Enter a new comment");
+
 	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	$('#controlers1').find('input')
 		.addClass('studentSearch')
