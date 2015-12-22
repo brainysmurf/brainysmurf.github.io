@@ -29,6 +29,7 @@ function update() {
 			// make a new div that will replace this one
 			//var comments = JSON.parse(value);
 			if (value instanceof Array) {
+				debugger;
 				var $div = $('<div/>');
 				$me = $(this);
 				template = $me.html();
@@ -36,7 +37,6 @@ function update() {
 				value.forEach(function (item, index, arr) {
 					$(_.template(template, item)).appendTo($me);
 				});
-				debugger;
 			} else {
 				console.log('Expecting an array: ' + value);
 			}
