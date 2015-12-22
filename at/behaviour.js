@@ -33,7 +33,7 @@ function update() {
 				$me = $(this);
 				template = $me.html();
 				$me.html("");
-				value.forEach(function (item, index, _) {
+				value.forEach(function (item, index, arr) {
 					$(_.template(template, item)).appendTo($me);
 				});
 				debugger;
