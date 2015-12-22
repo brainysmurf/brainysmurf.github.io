@@ -31,7 +31,6 @@ function update() {
 			if (value instanceof Array) {
 				$me = $(this);
 				template = _.template($me.html().replace("&lt;", "<").replace("&gt;", ">"));
-				$me.html("");
 				value.forEach(function (item, index, arr) {
 					debugger;
 					$(template(item)).appendTo($me);
