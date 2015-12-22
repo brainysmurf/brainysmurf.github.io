@@ -134,14 +134,14 @@ function main(params) {
 	$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
 
 	update();
-	$(awtble.$container).find('google-visualization-table')
+	$(awtble.$container)
 		.observe('childList subtree', function(record) {
 			console.log(record);
-			// if (record.addedNodes && record.addedNodes.length == 1 && record.target.className == 'google-visualization-table') {
-			// 	if (record.target.childNodes[0].childNodes[0].className === 'google-visualization-table-table') {
-			// 		update();
-			// 	}
-			// }
-			//modifyDom();
+			if (record.addedNodes && record.addedNodes.length == 1 && record.target.className == 'google-visualization-table') {
+				if (record.target.childNodes[0].childNodes[0].className === 'google-visualization-table-table') {
+					console.log(record);
+					update();
+				}
+			}
 		});
 }
