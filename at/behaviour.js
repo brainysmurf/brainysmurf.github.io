@@ -138,6 +138,11 @@ function main(params) {
 	// Add an observer so that we can run update whenever the data in the table changes.
 	// The selectors and if statements make it only run once
 	// TODO: Figure out a better way
+	$('#controlers0')
+		.observe('childList subtree', function(record) {
+			console.log(record);
+	});
+
 	$(awtble.$container)
 		.observe('childList subtree', function(record) {
 			if (record.addedNodes && record.addedNodes.length == 1 && record.target.className == 'google-visualization-table') {
