@@ -2,17 +2,24 @@ function update() {
 
 	$('*[column]').each(function (item) { 
 		var value = $(this).parents('.wrapper').data( $(this).attr('column') );
-		switch ($(this).attr('at') && $(this).attr('at').toLowerCase()) {
-			case 'after': 
-				$(this).append(value); 
-				break;
-			case 'before':
-				$(this).prepend(value); 
-				break;
-			default:
-				$(this).prepend(value); 
+		if ($(this).attr('attr')) {
+			var attr = $(this).attr('attr');
+			$(this).attr(attr, value);
+		} else {
+			switch ($(this).attr('at') && $(this).attr('at').toLowerCase()) {
+				case 'after': 
+					$(this).append(value); 
+					break;
+				case 'before':
+					$(this).prepend(value); 
+					break;
+				default:
+					$(this).prepend(value); 
+			}
 		}
 	});
+
+	$('*[')
 
 	// $('*[onlyif]:not([variable])').each(function (item) {
 	// 	var value = $(this).attr('onlyif');
