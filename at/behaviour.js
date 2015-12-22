@@ -140,13 +140,16 @@ function main(params) {
 	// TODO: Figure out a better way
 	$('#controlersPanel')
 		.observe('childList subtree', function(record) {
-			switch (record.target.id) {
-				case 'controlers0':
-					$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
-					break;
-				case 'controlers2':
-					$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
-					break;
+			if (record.target.class == 'google-visualization-controls-categoryfilter-selected') {
+				console.log(record.target.parent);
+				switch (record.target.parent.id) {
+					case 'controlers0':
+						$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
+						break;
+					case 'controlers2':
+						$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
+						break;
+				}
 			}
 	});
 
