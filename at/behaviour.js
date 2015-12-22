@@ -26,7 +26,7 @@ function update() {
 		if ($(this).attr('attr')) {
 			var attr = $(this).attr('attr');
 			$(this).attr(attr, value);
-		} else if ($(this).prop('stringified')) {
+		} else if ($(this).prop('stringified') === "") {
 			// make a new div that will replace this one
 			//var comments = JSON.parse(value);
 			if (value instanceof Array) {
