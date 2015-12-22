@@ -28,9 +28,14 @@ function update() {
 		} else if ($(this).attr('stringified')) {
 			// make a new div that will replace this one
 			$div = $('<div>/');
-			comments.forEach(function (item, index, _) {
-				console.log(item);
-			});
+			//var comments = JSON.parse(value);
+			if (value instanceof Array) {
+				value.forEach(function (item, index, _) {
+					console.log(item);
+				});
+			} else {
+				console.log('Hey: ' + value);
+			}
 
 			$(this).replaceWith($div);
 
