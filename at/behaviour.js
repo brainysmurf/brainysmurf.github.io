@@ -30,11 +30,11 @@ function update() {
 			//var comments = JSON.parse(value);
 			if (value instanceof Array) {
 				debugger;
-				var $div = $('<div/>');
 				$me = $(this);
 				template = _.template($me.html());
 				$me.html("");
 				value.forEach(function (item, index, arr) {
+					debugger;
 					$(template(item)).appendTo($me);
 				});
 			} else {
