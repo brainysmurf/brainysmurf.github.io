@@ -140,7 +140,7 @@ function main(params) {
 	// TODO: Figure out a better way
 	$('#controlersPanel')
 		.observe('childList subtree', function(record) {
-			if (record.target.id = 'controlers1') {
+			if (record.target.id === 'controlers1') {
 				console.log(record);
 			}
 	});
