@@ -140,8 +140,13 @@ function main(params) {
 	// TODO: Figure out a better way
 	$('#controlersPanel')
 		.observe('childList subtree', function(record) {
-			if (record.target.id === 'controlers1') {
-				console.log(record);
+			switch (record.target.id) {
+				case 'controlers0':
+					$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
+					break;
+				case 'controlers2':
+					$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
+					break;
 			}
 	});
 
