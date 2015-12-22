@@ -142,8 +142,8 @@ function main(params) {
 		.observe('childList subtree', function(record) {
 			console.log(record.target);
 			if (record.target.className == 'google-visualization-controls-categoryfilter-selected') {
-				console.log($(record.target));
-				switch (record.target.parent.id) {
+				console.log($(record.target).parents('.controlers-filters'));
+				switch ($(record.target).parents('.controlers-filters').id) {
 					case 'controlers0':
 						$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 						break;
