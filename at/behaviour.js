@@ -30,7 +30,7 @@ function update() {
 			//var comments = JSON.parse(value);
 			if (value instanceof Array) {
 				$me = $(this);
-				template = _.template($me.html().replace("&lt;", "<").replace("&gt;", ">"));
+				template = _.template($me.html().replace(/&lt;/g, "<").replace(/&gt;/g, ">"));
 				value.forEach(function (item, index, arr) {
 					debugger;
 					$(template(item)).appendTo($me);
