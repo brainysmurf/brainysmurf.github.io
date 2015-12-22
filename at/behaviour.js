@@ -147,7 +147,7 @@ function main(params) {
 	awtble.updateUrl(params.formUrl);
 	awtble.updateComment(params.commentUrl);
 	awtble.makeNewButton('Add New', "Enter a new item");
-	awtble.makeCommentButton('New Comment', "Enter a new comment");
+	//awtble.makeCommentButton('New Comment', "Enter a new comment");
 
 	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	$('#controlers1').find('input')
