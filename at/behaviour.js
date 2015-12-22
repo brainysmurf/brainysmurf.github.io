@@ -136,7 +136,8 @@ function main(params) {
 	update();
 	$(awtble.$container)
 		.observe('childList subtree', function(record) {
-			if (record.addedNodes && record.target.className == 'google-visualization-table') {
+			if (record.addedNodes && record.addedNodes.length == 1 && record.target.className == 'google-visualization-table') {
+				console.log(record.addedNodes[0])
 				if (record.target.childNodes[0].childNodes[0].className === 'google-visualization-table-table') {
 					update();
 				}
