@@ -30,16 +30,20 @@ function update() {
 			//var comments = JSON.parse(value);
 			if (value instanceof Array) {
 				$me = $(this);
-				template = _.template($me.html().replace(/&lt;/g, "<").replace(/&gt;/g, ">"));
-				value.forEach(function (item, index, arr) {
-					debugger;
-					$(template(item)).appendTo($me);
-				});
+				if (value.length == 0) {
+					$me.html("");
+				} else {
+					template = _.template($me.html().replace(/&lt;/g, "<").replace(/&gt;/g, ">"));
+					$me.html("");
+					value.forEach(function (item, index, arr) {
+						$(template(item)).appendTo($me);
+					});
+				}
 			} else {
 				console.log('Expecting an array: ' + value);
 			}
 
-			$(this).replaceWith($div);
+			//$(this).replaceWith($div);
 
 		} else {
 			switch ($(this).attr('at') && $(this).attr('at').toLowerCase()) {
