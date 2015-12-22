@@ -156,7 +156,6 @@ function main(params) {
 		.observe('childList subtree', function(record) {
 			if (record.addedNodes && record.addedNodes.length == 1 && record.target.className == 'google-visualization-table') {
 				if (record.previousSibling == null) {
-					console.log(record);
 					update();
 				}
 			}
