@@ -25,14 +25,17 @@ function update() {
 		if ($(this).attr('attr')) {
 			var attr = $(this).attr('attr');
 			$(this).attr(attr, value);
-		} else if ($(this).attr('stringified')) {
+		} else if ($(this).prop('stringified')) {
 			// make a new div that will replace this one
-			$div = $('<div>/');
 			//var comments = JSON.parse(value);
 			if (value instanceof Array) {
+				var $div = $('<div/>');
+				$me = $(this);
+				template = $(this).find('div').detach().html();
 				value.forEach(function (item, index, _) {
-					console.log(item);
+					$(_.template(template, item)).appendTo($me);
 				});
+				debugger;
 			} else {
 				console.log('Hey: ' + value);
 			}
@@ -79,7 +82,7 @@ function main(params) {
 	awtble.makeNewButton('Add New', "Enter a new item");
 	//awtble.makeCommentButton('New Comment', "Enter a new comment");
 
-	//$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
+	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	$('#controlers1').find('input')
 		.addClass('studentSearch')
 		.attr('placeholder', "Type to filter by Student");
@@ -91,23 +94,18 @@ function main(params) {
 	// Add an observer so that we can run update whenever the data in the table changes.
 	// The selectors and if statements make it only run once
 	// TODO: Figure out a better way
-	// $('#controlersPanel')
-	// 	.observe('childList subtree', function(record) {
-	// 		if (record.target.className == 'google-visualization-controls-categoryfilter-selected') {
-	// 			switch ($(record.target).parents('.controlers-filters').get(0).id) {
-	// 				case 'controlers0':
-	// 					$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
-	// 					break;
-	// 				case 'controlers2':
-	// 					$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
-	// 					break;
-	// 			}
-	// 		}
-	// });
-
-	$('#controlers0').load(function (e) {
-		console('here');
-		$('#controlers0').find('.charts-menu-button-caption').text('Success'); //$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
+	$('#controlersPanel')
+		.observe('childList subtree', function(record) {
+			if (record.target.className == 'google-visualization-controls-categoryfilter-selected') {
+				switch ($(record.target).parents('.controlers-filters').get(0).id) {
+					case 'controlers0':
+						$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
+						break;
+					case 'controlers2':
+						$('#controlers2').find	('.charts-menu-button-caption').text("Filter by grade");
+						break;
+				}
+			}
 	});
 
 	$(awtble.$container)
