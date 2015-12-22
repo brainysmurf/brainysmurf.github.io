@@ -19,8 +19,6 @@ function update() {
 		}
 	});
 
-	$('*[')
-
 	// $('*[onlyif]:not([variable])').each(function (item) {
 	// 	var value = $(this).attr('onlyif');
 	// 	if ($(this).text() !== value) {
