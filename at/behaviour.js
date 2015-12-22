@@ -28,7 +28,6 @@ function update() {
 		} else if ($(this).attr('stringified')) {
 			// make a new div that will replace this one
 			$div = $('<div>/');
-			var comments = JSON.parse(value);
 			comments.forEach(function (item, index, _) {
 				console.log(item);
 			});
