@@ -106,7 +106,8 @@ function main(params) {
 	// });
 
 	$('#controlers0').load(function (e) {
-		$(this).find('.charts-menu-button-caption').text('Success'); //$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
+		console('here');
+		$('#controlers0').find('.charts-menu-button-caption').text('Success'); //$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	});
 
 	$(awtble.$container)
