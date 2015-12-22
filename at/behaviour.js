@@ -32,13 +32,14 @@ function update() {
 			if (value instanceof Array) {
 				var $div = $('<div/>');
 				$me = $(this);
-				template = $(this).find('div').detach().html();
+				template = $me.html();
+				$me.html("");
 				value.forEach(function (item, index, _) {
 					$(_.template(template, item)).appendTo($me);
 				});
 				debugger;
 			} else {
-				console.log('Hey: ' + value);
+				console.log('Expecting an array: ' + value);
 			}
 
 			$(this).replaceWith($div);
