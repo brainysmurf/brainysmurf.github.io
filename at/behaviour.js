@@ -32,10 +32,10 @@ function update() {
 				debugger;
 				var $div = $('<div/>');
 				$me = $(this);
-				template = $me.html();
+				template = _.template($me.html());
 				$me.html("");
 				value.forEach(function (item, index, arr) {
-					$(_.template(template, item)).appendTo($me);
+					$(template(item)).appendTo($me);
 				});
 			} else {
 				console.log('Expecting an array: ' + value);
