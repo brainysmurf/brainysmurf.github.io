@@ -138,9 +138,11 @@ function main(params) {
 	// Add an observer so that we can run update whenever the data in the table changes.
 	// The selectors and if statements make it only run once
 	// TODO: Figure out a better way
-	$('#controlers0')
+	$('#controlersPanel')
 		.observe('childList subtree', function(record) {
-			console.log(record);
+			if (record.target.id = 'controlers1') {
+				console.log(record);
+			}
 	});
 
 	$(awtble.$container)
