@@ -84,6 +84,10 @@
    font-weight: bold;
 }
 
+.section {
+  margin-bottom: 10px;
+}
+
 .smalllabel {
    font-style: italic;
 }
@@ -126,4 +130,15 @@ div.charts-menu-button-dropdown {
   float:right;
   margin-top: 1px;
   margin-right: 2px;
+}
+
+.comments {
+  font-family: sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.comments > div.comment-item {
+  padding-bottom:10px; 
 }
