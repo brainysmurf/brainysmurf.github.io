@@ -12,11 +12,18 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		modal:true, 
 		draggable:false,
 		show:"fadeIn",
-		position: { my: 'top', at: 'top+15' }
+		position: { my: 'top', at: 'top+15' },
+		open: function (event, ui) {
+			// disable the uniqueId thingie
+		}
 	});
 
 	$('button.comment-button').on('click', function (e) { // button.comment-button
 		var uniqueId = $(this).parents('.wrapper').data('w');
+
+		// Add prefill information to the source
+		var src = awtble.commentUrl + '?' + awtble.commentPrefill + '=' + uniqueId;
+		$('#commentDialog > iframe').attr('src', src);
 		$('#commentDialog').dialog("open");
 	});
 
