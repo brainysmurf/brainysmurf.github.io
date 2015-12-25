@@ -14,9 +14,6 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		draggable:false,
 		show:"fadeIn",
 		position: { my: 'top', at: 'top+15' },
-		open: function (event, ui) {
-			// disable the uniqueId thingie
-		}
 	});
 
 	$('button.comment-button').on('click', function (e) { // button.comment-button
@@ -25,6 +22,10 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		// Add prefill information to the source
 		var src = awtble.commentUrl + '?' + awtble.commentPrefill + '=' + uniqueId;
 		$('#commentDialog > iframe').attr('src', src);
+		$("#commentDialog > iframe").onload = function () {
+			$('input').css('background-color', '#000');
+		};
+
 		$('#commentDialog').dialog("open");
 	});
 
