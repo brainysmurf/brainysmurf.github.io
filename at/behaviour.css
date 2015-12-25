@@ -136,9 +136,9 @@ div.charts-menu-button-dropdown {
   font-family: sans-serif;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .comments > button {
-  margin-bottom:20px;
+  margin-bottom: 5px;
 }
