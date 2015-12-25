@@ -1,5 +1,6 @@
-awtble.updateComment = function(commentUrl) {
+awtble.updateComment = function(commentUrl, prefill) {
 	awtble.commentUrl = commentUrl;
+	awtble.commentPrefill = prefill;
 };
 
 awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
@@ -93,7 +94,7 @@ function update() {
 function main(params) {
 	awtble.definePrefill(params.prefill);
 	awtble.updateUrl(params.formUrl);
-	awtble.updateComment(params.commentUrl);
+	awtble.updateComment(params.commentUrl, params.commentPrefill);
 	awtble.makeNewButton('Add New', "Enter a new item");
 	awtble.makeCommentDialog('New Comment', "Enter a new comment");
 
