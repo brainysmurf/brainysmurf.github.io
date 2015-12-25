@@ -5,9 +5,9 @@ awtble.updateComment = function(commentUrl, prefill) {
 
 awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 	awtble.$container.before($('<div/>', {id:"commentDialog", style: "display:none;", title:dialogTitle}));
-	var iframe = $('<iframe/>', {src:awtble.commentUrl, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'});
+	var iframe = $('<iframe/>', {id:'commentIframe', src:awtble.commentUrl, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'});
 	iframe.load(function () {
-		console.log($('input'));
+		console.log($('#commentIframe'));
 	});
 	$("#commentDialog").append(iframe);
 	$('#commentDialog').dialog({
