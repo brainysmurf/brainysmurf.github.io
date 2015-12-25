@@ -2,12 +2,10 @@ awtble.updateComment = function(commentUrl) {
 	awtble.commentUrl = commentUrl;
 };
 
-awtble.makeCommentButton = function(buttonTitle, dialogTitle) {
-	awtble.$container.before($('<button/>', {id:'commentButton', text:buttonTitle, style:'margin-bottom:10px'}));
+awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 	awtble.$container.before($('<div/>', {id:"commentDialog", style: "display:none;", title:dialogTitle}));
 	$("#commentDialog").append($('<iframe/>', {src:awtble.commentUrl, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'}));
-	$('#commentButton').button({icons:{primary:'ui-icon-circle-plus'}});
-	$('#addNewDialog').dialog({
+	$('#commentDialog').dialog({
 		autoOpen:false, 
 		height:700, 
 		width:"90%", 
@@ -16,6 +14,12 @@ awtble.makeCommentButton = function(buttonTitle, dialogTitle) {
 		show:"fadeIn",
 		position: { my: 'top', at: 'top+15' }
 	});
+
+	$('button.comment-button').on('click', function (e) { // button.comment-button
+		var uniqueId = $(this).parents('.wrapper').data('w');
+		$('#commentDialog').dialog("open");
+	});
+
 };
 
 function update() {
@@ -33,6 +37,8 @@ function update() {
 				if (value.length == 0) {
 					$me.html("");
 				} else {
+					// We have to convert these specific html entitied otherwise the template won't recognize
+					// Or we could tell underscore templating to use a different pattern recognizer
 					template = _.template($me.html().replace(/&lt;/g, "<").replace(/&gt;/g, ">"));
 					$me.html("");
 					value.forEach(function (item, index, arr) {
@@ -75,7 +81,6 @@ function update() {
 		}
 	});
 
-
 }
 
 function main(params) {
@@ -83,7 +88,7 @@ function main(params) {
 	awtble.updateUrl(params.formUrl);
 	awtble.updateComment(params.commentUrl);
 	awtble.makeNewButton('Add New', "Enter a new item");
-	//awtble.makeCommentButton('New Comment', "Enter a new comment");
+	awtble.makeCommentDialog('New Comment', "Enter a new comment");
 
 	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	$('#controlers1').find('input')
