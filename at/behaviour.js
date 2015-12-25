@@ -5,7 +5,11 @@ awtble.updateComment = function(commentUrl, prefill) {
 
 awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 	awtble.$container.before($('<div/>', {id:"commentDialog", style: "display:none;", title:dialogTitle}));
-	$("#commentDialog").append($('<iframe/>', {src:awtble.commentUrl, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'}));
+	var iframe = $('<iframe/>', {src:awtble.commentUrl, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'});
+	iframe.load(function () {
+		console.log($('input'));
+	});
+	$("#commentDialog").append(iframe);
 	$('#commentDialog').dialog({
 		autoOpen:false, 
 		height:700, 
@@ -15,9 +19,6 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		show:"fadeIn",
 		position: { my: 'top', at: 'top+15' },
 	});
-	var $body = $("#commentDialog > iframe").contents().find('body');
-
-	$body.append($("<script/>", {"text":"console.log($('input'))"}));
 
 	$('button.comment-button').on('click', function (e) { // button.comment-button
 		var uniqueId = $(this).parents('.wrapper').data('w');
