@@ -32,6 +32,13 @@ function update() {
 
 	$('*[column]').each(function (item) { 
 		var value = $(this).parents('.wrapper').data( $(this).attr('column') );
+		if ($(this).attr('paragraphs')) {
+			// convert value to html-friendly paragraphs
+			var newValue = $("<div/>");
+			value.split('\r').forEach(function (iValue, ii, aa) {
+				newValue.append($('<p/>', {text:iValue}));
+			});
+		}
 		if ($(this).attr('attr')) {
 			var attr = $(this).attr('attr');
 			$(this).attr(attr, value);
