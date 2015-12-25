@@ -142,3 +142,7 @@ div.charts-menu-button-dropdown {
 .comments > div.comment-item {
   padding-bottom:10px; 
 }
+
+.comments > button {
+  margin-bottom:20px;
+}
