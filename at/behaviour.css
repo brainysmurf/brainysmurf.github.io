@@ -142,3 +142,8 @@ div.charts-menu-button-dropdown {
 .comments > button {
   margin-bottom: 5px;
 }
+
+.paragraph {
+  line-height: 1.5em;
+  padding-bottom: 10px;
+}

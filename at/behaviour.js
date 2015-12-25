@@ -35,9 +35,10 @@ function update() {
 		if ($(this).attr('paragraphs')) {
 			// convert value to html-friendly paragraphs
 			var newValue = $("<div/>");
-			value.split('\r').forEach(function (iValue, ii, aa) {
-				newValue.append($('<p/>', {text:iValue}));
+			value.split('\n').forEach(function (iValue, ii, aa) {
+				newValue.append($('<p/>', {text:iValue, class:'paragraph'}));
 			});
+			value = newValue;
 		}
 		if ($(this).attr('attr')) {
 			var attr = $(this).attr('attr');
