@@ -15,6 +15,9 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		show:"fadeIn",
 		position: { my: 'top', at: 'top+15' },
 	});
+	var $body = $("#commentDialog > iframe").contents().find('body');
+	console.log($body);
+	$body.append($('<script/>', text('console.log("here!");')));
 
 	$('button.comment-button').on('click', function (e) { // button.comment-button
 		var uniqueId = $(this).parents('.wrapper').data('w');
@@ -22,11 +25,6 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		// Add prefill information to the source
 		var src = awtble.commentUrl + '?' + awtble.commentPrefill + '=' + uniqueId;
 		$('#commentDialog > iframe').attr('src', src);
-		$("#commentDialog > iframe").onload = function () {
-			console.log('loading');
-			$('input').css('background-color', '#000');
-		};
-
 		$('#commentDialog').dialog("open");
 	});
 
