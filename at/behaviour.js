@@ -32,7 +32,7 @@ function update() {
 
 	$('*[column]').each(function (item) { 
 		var value = $(this).parents('.wrapper').data( $(this).attr('column') );
-		if ($(this).attr('paragraphs')) {
+		if ($(this).attr('paragraphs') === "") {
 			// convert value to html-friendly paragraphs
 			var newValue = $("<div/>");
 			value.split('\n').forEach(function (iValue, ii, aa) {
