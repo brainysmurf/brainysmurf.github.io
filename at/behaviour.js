@@ -23,6 +23,7 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		var src = awtble.commentUrl + '?' + awtble.commentPrefill + '=' + uniqueId;
 		$('#commentDialog > iframe').attr('src', src);
 		$("#commentDialog > iframe").onload = function () {
+			console.log('loading');
 			$('input').css('background-color', '#000');
 		};
 
