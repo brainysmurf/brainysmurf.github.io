@@ -17,7 +17,7 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 	});
 	var $body = $("#commentDialog > iframe").contents().find('body');
 	console.log($body);
-	$body.append($('<script/>', text('console.log("here!");')));
+	$body.append($('<script/>', {'text':'console.log("here!");'}));
 
 	$('button.comment-button').on('click', function (e) { // button.comment-button
 		var uniqueId = $(this).parents('.wrapper').data('w');
