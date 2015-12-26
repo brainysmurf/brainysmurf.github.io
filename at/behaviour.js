@@ -5,7 +5,6 @@ awtble.updateComment = function(commentUrl, prefill) {
 
 awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 	awtble.$container.before($('<div/>', {id:"commentDialog", style: "display:none;", title:dialogTitle}));
-	$("#commentDialog").append(iframe);
 	$('#commentDialog').dialog({
 		autoOpen:false, 
 		height:700, 
@@ -25,6 +24,7 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		// Add prefill information to the source
 		var src = awtble.commentUrl + '?' + awtble.commentPrefill + '=' + uniqueId;
 		var iframe = $('<iframe/>', {id:'commentIframe', src:awtble.commentUrl, src:src, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'});
+		$("#commentDialog").append(iframe);
 		$('#commentDialog').dialog("open");
 	});
 
