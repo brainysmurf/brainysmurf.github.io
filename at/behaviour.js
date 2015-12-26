@@ -89,7 +89,7 @@ function update() {
 				if (value === "" || value == "#ERROR") {
 					$me.html('Warning: Problem that needs to be fixed by admin. Comments can be added but will not be displayed here (until fixed).');
 				} else {
-					if (value == "#ERROR") {
+					if (value == "#ERROR!") {
 						$me.html("");
 					}
 					console.log("Array or empty string expected! What are you?:");
