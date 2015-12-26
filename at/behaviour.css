@@ -147,6 +147,6 @@ div.charts-menu-button-dropdown {
   padding-bottom: 3px;
 }
 
-.spacer:before {
-  margin-bottom: 10px;
-}
+.spacer {
+  padding-bottom: 10px;
+}}
