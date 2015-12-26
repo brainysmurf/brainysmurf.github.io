@@ -82,10 +82,8 @@ function update() {
 					});
 				}
 			} else {
-				console.log('Expecting an array: ' + value);
+				$me.html('Warning: Problem that needs to be fixed by admin. Comments can be added but will not be displayed here (until fixed.');
 			}
-
-			//$(this).replaceWith($div);
 
 		} else {
 			switch ($(this).attr('at') && $(this).attr('at').toLowerCase()) {
