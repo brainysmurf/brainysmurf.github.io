@@ -129,6 +129,7 @@ function main(params) {
 	awtble.definePrefill(params.prefill);
 	awtble.updateUrl(params.formUrl);
 	awtble.updateComment(params.commentUrl, params.commentPrefill);
+	awtble.makeRefreshButton();
 	awtble.makeNewButton('Add New', "Enter a new item");
 	awtble.makeCommentDialog('New Comment', "Enter a new comment");
 
