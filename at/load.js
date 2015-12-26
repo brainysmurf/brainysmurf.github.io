@@ -43,10 +43,10 @@ this.awtble = {};
 		});
 	}
 
-	awtble.makeRefreshButton = function() {
+	awtble.makeReloadButton = function() {
 		awtble.$container.before($('<button/>', {id:'refreshButton', text:"Refresh"}).button({icons:{primary:'ui-icon-refresh'}}));	
 		$('#refreshButton').click(function () {
-			window.reload();
+			window.location.reload();
 		});
 	}
 

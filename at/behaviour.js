@@ -129,8 +129,8 @@ function main(params) {
 	awtble.definePrefill(params.prefill);
 	awtble.updateUrl(params.formUrl);
 	awtble.updateComment(params.commentUrl, params.commentPrefill);
-	awtble.makeRefreshButton();
 	awtble.makeNewButton('Add New', "Enter a new item");
+	awtble.makeReloadButton();
 	awtble.makeCommentDialog('New Comment', "Enter a new comment");
 
 	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
