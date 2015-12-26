@@ -127,6 +127,21 @@ function update() {
 		}
 	});
 
+	$('*[classif]').each(function (item) {
+		var value = $(this).attr('classif');
+		if (split.length == 0) return;
+		var split = value.split(' ');
+		var klass = split[0];
+		var split = split[1].split('=');
+		if (split.legnth == 0) return;
+		var column = split[0];
+		var variable = $(this).parents('.wrapper').data(column.toLowerCase());
+		var value = split[1];
+		if (variable === value) {
+			$(this).addClass(klass);
+		}
+	});
+
 }
 
 function main(params) {
