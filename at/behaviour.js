@@ -41,7 +41,7 @@ function update() {
 			var newValue = $("<div/>");
 			if (value.split('\n') > 3) {
 				value.split('\n').forEach(function (iValue, ii, aa) {
-					newValue.append($('<p/>', {text:iValue, class:'paragraph' + ii >=2 ? ' first' : ''}));
+					newValue.append($('<p/>', {text:iValue, class:'paragraph' + (ii <=2 ? ' first' : '')}));
 				});
 				$more = $('<span/>', {class: "more"});
 				$less = $('<span/>', {class: "less"});
