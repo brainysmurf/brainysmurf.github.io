@@ -38,7 +38,6 @@
 }
 
 .mainInfo {
-   float: left;
    padding: 5px;
    width: 250px;
    min-height: 200px;
@@ -144,6 +143,6 @@ div.charts-menu-button-dropdown {
 }
 
 .paragraph {
-  line-height: 1.5em;
-  padding-bottom: 10px;
+  line-height: 1.2em;
+  padding-bottom: 3px;
 }
