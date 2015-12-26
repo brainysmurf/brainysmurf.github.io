@@ -68,13 +68,14 @@ function update() {
 		} else if ($(this).attr('stringified') === "") {
 			// make a new div that will replace this one
 			//var comments = JSON.parse(value);
+			$me = $(this);
 			if (value instanceof Array) {
-				$me = $(this);
 				if (value.length == 0) {
 					$me.html("");
 				} else {
 					// We have to convert these specific html entitied otherwise the template won't recognize
 					// Or we could tell underscore templating to use a different pattern recognizer
+					// TODO: Make this less ugly
 					template = _.template($me.html().replace(/&lt;/g, "<").replace(/&gt;/g, ">"));
 					$me.html("");
 					value.forEach(function (item, index, arr) {
@@ -82,7 +83,12 @@ function update() {
 					});
 				}
 			} else {
-				$me.html('Warning: Problem that needs to be fixed by admin. Comments can be added but will not be displayed here (until fixed.');
+				if (value === "") {
+					$me.html('Warning: Problem that needs to be fixed by admin. Comments can be added but will not be displayed here (until fixed.');
+				} else {
+					console.log("Array or empty string expected! What are you?:");
+					console.log(value);
+				}
 			}
 
 		} else {
