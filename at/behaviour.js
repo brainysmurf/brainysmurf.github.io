@@ -49,13 +49,9 @@ function update() {
 				newValue.find('p.first:last').addClass('first').append($more);
 				newValue.find('p:last').addClass('last').append($less);
 
-				// Hide all of them, except those labeled as first
-				$('#introduction p').hide();.slice(0,1).addClass('fixed').show();
-				$('.toggle').click(function(){
-					 $('.more').toggle();
-					 $('p:not(.toggle,.fixed)').slideToggle();
-				});
 				$(this).append(newValue);
+
+				// Hide all of them, except those labeled as first
 				newValue.find('p').hide();
 				newValue.find('p.first').show();
 				newValue.find('.toggle').click(function () {
