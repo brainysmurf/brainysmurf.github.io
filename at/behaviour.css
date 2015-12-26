@@ -149,4 +149,12 @@ div.charts-menu-button-dropdown {
 
 .spacer {
   padding-bottom: 10px;
-}}
+}
+
+.toggle {
+  margin-top: 5px;
+}
+
+.toggle > .ui-button-text {
+  font-size: 8pt;
+}
