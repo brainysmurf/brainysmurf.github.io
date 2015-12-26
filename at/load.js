@@ -42,7 +42,14 @@ this.awtble = {};
 			$('#addNewDialog').dialog("open");
 		});
 	}
-	
+
+	awtble.makeRefreshButton = function() {
+		awtble.$container.before($('<button/>', {id:'refreshButton', text:"Refresh"}).button({icons:{primary:'ui-icon-refresh'}}));	
+		$('#refreshButton').click(function () {
+			window.reload();
+		});
+	}
+
 	awtble.definePrefill = function(prefillUrl) {
 		// Take the raw prefill Url and extract just the bits we want
 		// So we have a 'prefillPhrase'
@@ -50,7 +57,7 @@ this.awtble = {};
 			s = value.split('=');
 			if (s.length>1) obj.push(s);
 			return obj;
-		}, []).map(function (v, i, _) {
+		}, []).map(function (v, i, arr) {
 			return v.join('=');
 		}).join('&');
 	}
