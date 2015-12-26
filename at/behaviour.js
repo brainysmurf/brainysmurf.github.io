@@ -38,16 +38,17 @@ function update() {
 		} else if ($(this).attr('paragraphs') === "") {
 			// convert value to html-friendly paragraphs
 			// with more and less button if there are a large amount of them
+			// TODO: less button (if needed?)
 			var newValue = $("<div/>");
 			if (value.split('\n').length > 3) {
 				value.split('\n').forEach(function (iValue, ii, aa) {
 					if (newValue) newValue.append($('<p/>', {text:iValue, class:'paragraph' + (ii <=2 ? ' first' : '')}));
 				});
 				$more = $('<div/>', {class: "more"});
-				$less = $('<div/>', {class: "less"});
+				//$less = $('<div/>', {class: "less"});
 				$more.append($('<button/>', {class: "toggle", text:"More"}));
 				newValue.find('p.first:last').addClass('first').append($more);
-				newValue.find('p:last').addClass('last').append($less);
+				//newValue.find('p:last').addClass('last').append($less);
 
 				$(this).append(newValue);
 
