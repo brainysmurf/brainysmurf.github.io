@@ -84,7 +84,7 @@ function update() {
 				}
 			} else {
 				if (value === "") {
-					$me.html('Warning: Problem that needs to be fixed by admin. Comments can be added but will not be displayed here (until fixed.');
+					$me.html('Warning: Problem that needs to be fixed by admin. Comments can be added but will not be displayed here (until fixed).');
 				} else {
 					console.log("Array or empty string expected! What are you?:");
 					console.log(value);
