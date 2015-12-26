@@ -39,12 +39,13 @@
 .mainInfo {
    padding: 5px;
    width: 25%;
-   min-height: 200px;
+   min-height: 500px;
    border: 2px solid #999;
    border-right: 1px solid #eee;
    border-top-left-radius: 5px;
    border-bottom-left-radius: 5px;
    padding-bottom: 20px;
+
 }
 
 .sideInfo {
@@ -52,6 +53,7 @@
    border: 2px solid #999;
    border-left: 1px solid #eee;
    width: 75%;
+   min-height: 500px;
    border-top-right-radius: 5px;
    border-bottom-right-radius: 5px;
 }
@@ -163,7 +165,18 @@ button.toggle {
   padding-bottom: 2px;
 }
 
-.private {
+.privateLeft {
+  background: rgba(255,255,255,0.91);
+  background: -moz-linear-gradient(left, rgba(255,255,255,0.91) 0%, rgba(255,130,130,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,0.91)), color-stop(100%, rgba(255,130,130,1)));
+  background: -webkit-linear-gradient(left, rgba(255,255,255,0.91) 0%, rgba(255,130,130,1) 100%);
+  background: -o-linear-gradient(left, rgba(255,255,255,0.91) 0%, rgba(255,130,130,1) 100%);
+  background: -ms-linear-gradient(left, rgba(255,255,255,0.91) 0%, rgba(255,130,130,1) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,0.91) 0%, rgba(255,130,130,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ff8282', GradientType=1 );  
+}
+
+.privateRight {
   background: rgba(255,130,130,1);
   background: -moz-linear-gradient(left, rgba(255,130,130,1) 0%, rgba(255,255,255,0.91) 100%);
   background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,130,130,1)), color-stop(100%, rgba(255,255,255,0.91)));
