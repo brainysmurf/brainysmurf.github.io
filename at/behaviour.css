@@ -15,9 +15,9 @@
 
 .banner {
    padding: 10px;
-   background-color: yellow;
+   background-color: #eee;
    margin-bottom: 20px;
-   font-weight: bold;
+   font-size: 9pt;
 }
 
 .boxer .box-row {
