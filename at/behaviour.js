@@ -45,7 +45,7 @@ function update() {
 				});
 				$more = $('<div/>', {class: "more"});
 				$less = $('<div/>', {class: "less"});
-				$more.append('<button/>', {class: "toggle", text:"More"});
+				$more.append($('<button/>', {class: "toggle", text:"More"}));
 				newValue.find('p.first:last').addClass('first').append($more);
 				newValue.find('p:last').addClass('last').append($less);
 
