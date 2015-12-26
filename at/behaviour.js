@@ -14,7 +14,7 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		show:"fadeIn",
 		position: { my: 'top', at: 'top+15' },
 		close: function (event, ui) {
-			$('#commentDialog').detach();
+			$('#commentDialog > iframe').detach();
 		}
 	});
 
