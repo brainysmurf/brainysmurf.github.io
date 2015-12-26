@@ -32,17 +32,42 @@ function update() {
 
 	$('*[column]').each(function (item) { 
 		var value = $(this).parents('.wrapper').data( $(this).attr('column') );
-		if ($(this).attr('paragraphs') === "") {
-			// convert value to html-friendly paragraphs
-			var newValue = $("<div/>");
-			value.split('\n').forEach(function (iValue, ii, aa) {
-				newValue.append($('<p/>', {text:iValue, class:'paragraph'}));
-			});
-			value = newValue;
-		}
 		if ($(this).attr('attr')) {
 			var attr = $(this).attr('attr');
 			$(this).attr(attr, value);
+		} else if ($(this).attr('paragraphs') === "") {
+			// convert value to html-friendly paragraphs
+			// with more and less button if there are a large amount of them
+			var newValue = $("<div/>");
+			if (value.split('\n') > 3) {
+				value.split('\n').forEach(function (iValue, ii, aa) {
+					newValue.append($('<p/>', {text:iValue, class:'paragraph' + ii >=2 ? ' first' : ''}));
+				});
+				$more = $('<span/>', {class: "more"});
+				$less = $('<span/>', {class: "less"});
+				$more.append('<button/>', {class: "toggle", text:"More"});
+				newValue.find('p.first:last').addClass('first').append($more);
+				newValue.find('p:last').addClass('last').append($less);
+
+				// Hide all of them, except those labeled as first
+				$('#introduction p').hide();.slice(0,1).addClass('fixed').show();
+				$('.toggle').click(function(){
+					 $('.more').toggle();
+					 $('p:not(.toggle,.fixed)').slideToggle();
+				});
+				$(this).append(newValue);
+				newValue.find('p').hide();
+				newValue.find('p.first').show();
+				newValue.find('.toggle').click(function () {
+					newValue.find('.more').toggle();
+					newValue.find('p:not(.first,.toggle)').slideToggle();
+				});
+			} else {
+				value.split('\n').forEach(function (iValue, ii, aa) {
+					newValue.append($('<p/>', {text:iValue, class:'paragraph'}));
+				});
+				$(this).append(newValue);
+			}
 		} else if ($(this).attr('stringified') === "") {
 			// make a new div that will replace this one
 			//var comments = JSON.parse(value);
