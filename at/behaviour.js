@@ -5,7 +5,6 @@ awtble.updateComment = function(commentUrl, prefill) {
 
 awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 	awtble.$container.before($('<div/>', {id:"commentDialog", style: "display:none;", title:dialogTitle}));
-	var iframe = $('<iframe/>', {id:'commentIframe', src:awtble.commentUrl, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'});
 	$("#commentDialog").append(iframe);
 	$('#commentDialog').dialog({
 		autoOpen:false, 
@@ -15,6 +14,9 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		draggable:false,
 		show:"fadeIn",
 		position: { my: 'top', at: 'top+15' },
+		close: function (event, ui) {
+			$('#commentDialog').detach();
+		}
 	});
 
 	$('button.comment-button').on('click', function (e) { // button.comment-button
@@ -22,7 +24,7 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 
 		// Add prefill information to the source
 		var src = awtble.commentUrl + '?' + awtble.commentPrefill + '=' + uniqueId;
-		$('#commentDialog > iframe').attr('src', src);
+		var iframe = $('<iframe/>', {id:'commentIframe', src:awtble.commentUrl, src:src, height:"100%", width:"100%", frameborder: 0, marginheight:0, text:'Loading…'});
 		$('#commentDialog').dialog("open");
 	});
 
