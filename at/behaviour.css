@@ -147,6 +147,6 @@ div.charts-menu-button-dropdown {
   padding-bottom: 3px;
 }
 
-.spacer {
+.spacer:before {
   content: '&nbsp;';
 }
