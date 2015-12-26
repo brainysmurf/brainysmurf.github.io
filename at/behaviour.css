@@ -148,5 +148,5 @@ div.charts-menu-button-dropdown {
 }
 
 .spacer:before {
-  content: '&nbsp;';
+  margin-bottom: 10px;
 }
