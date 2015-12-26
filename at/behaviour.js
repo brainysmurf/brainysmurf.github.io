@@ -15,6 +15,7 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 		position: { my: 'top', at: 'top+15' },
 		close: function (event, ui) {
 			$('#commentDialog > iframe').detach();
+			window.location.reload();
 		}
 	});
 

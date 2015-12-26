@@ -36,7 +36,11 @@ this.awtble = {};
 			modal:true, 
 			draggable:false,
 			show:"fadeIn",
-			position: { my: 'top', at: 'top+15' }
+			position: { my: 'top', at: 'top+15' },
+			close: function (event, ui) {
+				$('#addNewDialog > iframe').detach();
+				window.location.reload();
+			}
 		});
 		$('#newButton').click(function() {
 			$('#addNewDialog').dialog("open");
