@@ -39,7 +39,7 @@
 
 .mainInfo {
    padding: 5px;
-   width: 250px;
+   width: 25%;
    min-height: 200px;
    border: 2px solid #999;
    border-right: 1px solid #eee;
@@ -51,7 +51,7 @@
    padding: 5px;
    border: 2px solid #999;
    border-left: 1px solid #eee;
-   width: 100%;
+   width: 75%;
    border-top-right-radius: 5px;
    border-bottom-right-radius: 5px;
 }
