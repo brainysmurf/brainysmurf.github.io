@@ -190,3 +190,19 @@ button.toggle {
   background: linear-gradient(to right, rgba(255,130,130,1) 0%, rgba(255,255,255,0.91) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8282', endColorstr='#ffffff', GradientType=1 );
 }
+
+#controlers1 {
+  margin-left: 10px;
+}
+
+#newButton {
+  margin-left: 10px;
+}
+
+.numberOfResultsShown {
+  margin-left: 18px;
+}
+
+#pagination {
+  margin-right: 10px;
+}
