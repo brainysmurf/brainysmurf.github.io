@@ -131,10 +131,11 @@ div.charts-menu-button-dropdown {
     font-size: 14px;
 }
 
-.sidebackground {
-  float:right;
-  margin-top: 1px;
-  margin-right: 2px;
+.kindIcon {
+  position:fixed;
+  right: 20px;
+  opacity: 0.1;
+  color:black;
 }
 
 .comments {
