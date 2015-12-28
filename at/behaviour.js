@@ -131,13 +131,10 @@ function update() {
 
 	$('*[classif]').each(function (item) {
 		var value = $(this).attr('classif');
-		console.log(value);
 		var split = value.split(' ');
-		console.log(split);
 		if (split.length == 0) return;
 		var klass = split[0];
 		var split = split[1].split('=');
-		console.log(split);
 		if (split.length == 0) return;
 		var column = split[0];
 		var variable = $(this).parents('.wrapper').data(column.toLowerCase());
