@@ -131,9 +131,12 @@ div.charts-menu-button-dropdown {
     font-size: 14px;
 }
 
-.kindIcon {
-  opacity: 0.1;
-  color:black;
+.fa {
+  opacity: 0.5;
+}
+
+.hover {
+  margin-right: 10px;
 }
 
 .comments {
