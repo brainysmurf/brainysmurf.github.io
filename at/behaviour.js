@@ -33,6 +33,8 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 
 function update() {
 
+	awtble.makeCommentDialog('New Comment', "Enter a new comment");
+
 	$('*[column]').each(function (item) { 
 		var value = $(this).parents('.wrapper').data( $(this).attr('column') );
 		if ($(this).attr('attr')) {
@@ -153,7 +155,6 @@ function main(params) {
 	awtble.updateComment(params.commentUrl, params.commentPrefill);
 	awtble.makeNewButton('Add New', "Enter a new item");
 	awtble.makeReloadButton();
-	awtble.makeCommentDialog('New Comment', "Enter a new comment");
 
 	$('#controlers0').find('.charts-menu-button-caption').text("Filter by kind");
 	$('#controlers1').find('input')
