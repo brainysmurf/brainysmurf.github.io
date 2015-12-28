@@ -20,7 +20,7 @@ awtble.makeCommentDialog = function(buttonTitle, dialogTitle) {
 	});
 
 	$('button.comment-button').on('click', function (e) { // button.comment-button
-		var uniqueId = $(this).parents('.wrapper').data('x');
+		var uniqueId = $(this).parents('.wrapper').data('y');
 
 		// Add prefill information to the source
 		var src = awtble.commentUrl + '?' + awtble.commentPrefill + '=' + uniqueId;
