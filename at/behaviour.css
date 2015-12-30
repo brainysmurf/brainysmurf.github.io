@@ -1,11 +1,3 @@
-.white-popup {
-  position: relative;
-  background: #FFF;
-  padding: 20px;
-  width: auto;
-  max-width: 500px;
-  margin: 20px auto;
-}
 
 .studentSearch {
   width: 350px;
@@ -13,54 +5,6 @@
   height: 23px !important;
 }
 
-.banner {
-   padding: 10px;
-   background-color: #eee;
-   margin-bottom: 20px;
-   font-size: 9pt;
-}
-
-.boxer .box-row {
-   display: table-row;
-   width:100%;
-   background-color: #FFF;
-}
-
-.boxer {
-   padding: 5px;
-}
- 
-.boxer .box {
-   display: table-cell;
-   text-align: left;
-   vertical-align: top;
-}
-
-.mainInfo {
-   padding: 30px;
-   padding-top: 18px;
-   width: 25%;
-   min-height: 500px;
-   border: 2px solid #999;
-   border-right: none;
-   border-top-left-radius: 5px;
-   border-bottom-left-radius: 5px;
-   font-size: 80%;
-}
-
-.sideInfo {
-   padding: 5px;
-   padding-left: 30px;
-   padding-right: 30px;
-   padding-top: 15px;
-   border: 2px solid #999;
-   border-left: none;
-   width: 75%;
-   font-size: 110%;
-   min-height: 500px;
-   border-top-right-radius: 5px;
-   border-bottom-right-radius: 5px;
-}
 
 .google-visualization-table-tr-sel td,
 .google-visualization-table-tr-over td {
@@ -69,16 +13,6 @@
 
 .siderow {
    margin-bottom: 5px !important;
-}
-
-.solid {
-   padding: 3px 10px 3px 10px;
-   border: 1px solid #999;
-}
-
-.dotted {
-   padding: 3px 10px 3px 10px;
-   border: 1px dashed #999;
 }
 
 .google-visualization-table-tr-sel td,
