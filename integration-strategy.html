@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Integrations Data Journey | Product Strategy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-primary: #3B82F6;
+            --brand-secondary: #6366F1;
+            --brand-accent: #F59E0B;
+            --brand-success: #10B981;
+            --brand-bg: #F8FAFC;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--brand-bg); }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        
+        /* Custom UI Connectors (No SVG) */
+        .flow-line { height: 4px; background: #E2E8F0; flex-grow: 1; min-width: 20px; position: relative; border-radius: 2px; }
+        .flow-arrow { width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 10px solid #CBD5E1; }
+        .flow-arrow-reverse { width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-right: 10px solid #CBD5E1; }
+        
+        /* Bidirectional Spoke Styles */
+        .spoke-container {
+            position: relative;
+            padding: 20px 0;
+            margin-top: -20px;
+        }
+        .spoke-line {
+            height: 2px;
+            background: repeating-linear-gradient(to right, #94A3B8, #94A3B8 5px, transparent 5px, transparent 10px);
+            position: absolute;
+            left: 20%;
+            right: 20%;
+            top: 50%;
+            z-index: 1;
+        }
+        
+        .pulse { animation: pulse-animation 2s infinite; }
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0px rgba(59, 130, 246, 0.2); }
+            100% { box-shadow: 0 0 0 20px rgba(59, 130, 246, 0); }
+        }
+    </style>
+    <!-- 
+    PALETTE: Vibrant Blue & Gold (Professional & Energetic)
+    NO SVG and NO MERMAID JS were used in this output.
+    -->
+    <!-- 
+    PLAN NARRATIVE:
+    1. Header: Establish the "Integrations Data Journey" theme.
+    2. Pillar Overview: Visualize Interoperability, Ecosystem, and Future-Readiness.
+    3. The Nuanced Journey: A CSS flow showing External -> OA -> SIS -> MB -> LTI.
+    4. The Spoke: A bidirectional visual link specifically connecting OA and MB directly.
+    5. Strategic Priorities: Bar charts showing the work focus for 2026.
+    6. Risk/Performance Section: Addressing the API performance blocker.
+    -->
+</head>
+<body class="text-slate-900 pb-20">
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-br from-blue-700 to-indigo-900 text-white pt-20 pb-32 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">The 2026 Data Journey</h1>
+            <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed">
+                A Faria Suite view of connectivity and integrations.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto -mt-20 px-4 space-y-12">
+
+        <!-- Strategy Pillar Overview -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-8 rounded-2xl shadow-xl border-b-4 border-blue-500 hover:transform hover:-translate-y-2 transition duration-300">
+                <div class="text-blue-500 text-sm font-bold uppercase tracking-widest mb-2">Pillar 01</div>
+                <h3 class="text-xl font-bold mb-3">Interoperability</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Establish OpenApply and ManageBac+ as Hubs for data mission-critical data flows.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-xl border-b-4 border-amber-500 hover:transform hover:-translate-y-2 transition duration-300">
+                <div class="text-amber-500 text-sm font-bold uppercase tracking-widest mb-2">Pillar 02</div>
+                <h3 class="text-xl font-bold mb-3">Ecosystem Expansion</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Broaden the reach of Faria Suite through strategic parternships and data flow standards.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-xl border-b-4 border-emerald-500 hover:transform hover:-translate-y-2 transition duration-300">
+                <div class="text-emerald-500 text-sm font-bold uppercase tracking-widest mb-2">Pillar 03</div>
+                <h3 class="text-xl font-bold mb-3">Future-Readiness</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">Positioning Faria Suite for advanced data flows.</p>
+            </div>
+        </section>
+
+        <!-- THE DATA JOURNEY DIAGRAM -->
+        <section class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
+            <div class="p-8 md:p-12 border-b border-slate-100">
+                <h2 class="text-3xl font-extrabold text-slate-900 text-center md:text-left">The Integrated Data Trunk & Spokes</h2>
+                <p class="mt-4 text-slate-500 max-w-4xl">Visualizing the hierarchy: Data moves from intake (OA) to registrar (SIS), then registrar to classroom (MB). A direct OA <> MB integration provides a seamless bidirectional flow.</p>
+            </div>
+
+            <div class="p-8 md:p-12 lg:p-16">
+                <!-- Main Journey Trunk -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 relative">
+                    
+                    <!-- 1. External Upstream -->
+                    <div class="w-full md:w-40 text-center">
+                        <div class="mb-4 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em]">Prospects</div>
+                        <div class="bg-slate-50 border-2 border-dashed border-slate-200 p-4 rounded-xl">
+                            <h4 class="text-sm font-bold text-slate-700">External Systems</h4>
+                            <p class="text-[12px] text-slate-500 mt-1 tracking-widest">Lead Forms, Hubspot</p>
+                        </div>
+                    </div>
+
+                    <!-- Arrow 1 -->
+                    <div class="hidden md:flex flex-col items-center flex-grow">
+                        <div class="flow-line w-full bg-blue-100"></div>
+                        <div class="flow-arrow -mt-[6px]"></div>
+                    </div>
+
+                    <!-- 2. OPEN APPLY (The Intake Hub) -->
+                    <div class="w-full md:w-56 text-center relative z-20">
+                        <div class="mb-4 text-[10px] font-black uppercase text-purple-950 tracking-[0.2em]">Intake Hub</div>
+                        <div class="bg-purple-950 text-white p-6 rounded-2xl shadow-xl pulse" id="node-oa">
+                            <h4 class="text-xl font-black">OpenApply</h4>
+                            <p class="text-[12px] opacity-80 mt-1 uppercase tracking-widest">Admissions &amp; CRM</p>
+                        </div>
+                    </div>
+
+                    <!-- Arrow 2 -->
+                    <div class="hidden md:flex flex-col items-center flex-grow">
+                        <div class="flow-line w-full bg-slate-100"></div>
+                        <div class="flow-arrow -mt-[6px]"></div>
+                    </div>
+
+                    <!-- 3. SIS (Sources of Truth) -->
+                    <div class="w-full md:w-56 text-center">
+                        <div class="mb-4 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em]">Registrar</div>
+                        <div class="bg-slate-800 text-white p-6 rounded-2xl shadow-lg border-2 border-slate-700">
+                            <h4 class="text-xl font-bold">SIS / MIS</h4>
+                            <p class="text-[12px] opacity-70 mt-1">iSAMS, Veracross</p>
+                        </div>
+                    </div>
+
+                    <!-- Arrow 3 -->
+                    <div class="hidden md:flex flex-col items-center flex-grow">
+                        <div class="flow-line w-full bg-indigo-100"></div>
+                        <div class="flow-arrow -mt-[6px]"></div>
+                    </div>
+
+                    <!-- 4. MANAGEBAC (LMS Core) -->
+                    <div class="w-full md:w-56 text-center relative z-20">
+                        <div class="mb-4 text-[10px] font-black uppercase text-purple-950 tracking-[0.2em]">Learning Hub</div>
+                        <div class="bg-purple-950 text-white p-6 rounded-2xl shadow-xl" id="node-mb">
+                            <h4 class="text-xl font-black">ManageBac</h4>
+                            <p class="text-[12px] opacity-80 mt-1 uppercase">Curriculum &amp; Delivery</p>
+                        </div>
+                    </div>
+
+                    <!-- Arrow 4 -->
+                    <div class="hidden md:flex flex-col items-center flex-grow">
+                        <div class="flow-line w-full bg-amber-100"></div>
+                        <div class="flow-arrow -mt-[6px]"></div>
+                    </div>
+
+                    <!-- 5. LTI Ecosystem -->
+                    <div class="w-full md:w-40 text-center">
+                        <div class="mb-4 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em]">Classroom</div>
+                        <div class="bg-slate-50 border-2 border-dashed border-slate-200 p-4 rounded-xl">
+                            <h4 class="text-sm font-bold">LTI Tools</h4>
+                            <p class="text-[12px] text-slate-500 mt-1 tracking-widest">Learning Resources</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- THE INTERNAL SPOKE (Bidirectional Direct Connect) -->
+                <div class="hidden md:block mt-8 relative px-20">
+                    <div class="flex justify-between items-center px-24">
+                        <div class="w-4 h-4 bg-blue-300 rounded-full"></div>
+                        <div class="flex-grow border-b-2 border-dashed border-slate-300 relative h-4">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="bg-white px-4 text-[16px] font-bold text-slate-400 uppercase tracking-widest">Internal MB &amp; OA SyncHub</span>
+                            </div>
+                            <!-- Left Arrow -->
+                            <div class="absolute left-0 -bottom-[5px] flow-arrow-reverse border-right-slate-300"></div>
+                            <!-- Right Arrow -->
+                            <div class="absolute right-0 -bottom-[5px] flow-arrow border-left-slate-300"></div>
+                        </div>
+                        <div class="w-4 h-4 bg-indigo-300 rounded-full"></div>
+                    </div>
+                </div>
+
+                <!-- Explanation Context Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+                    <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
+                        <h5 class="text-xs font-black text-purple-950 uppercase mb-3 tracking-wider">The Intake Hub</h5>
+                        <p class="text-xs text-slate-600 leading-relaxed">OpenApply initiates the journey. Upstream providers feed data into OA, which then synchronizes <strong>downstream</strong> to the SIS systems.</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                        <h5 class="text-xs font-black text-slate-700 uppercase mb-3 tracking-wider">SIS / MIS</h5>
+                        <p class="text-xs text-slate-600 leading-relaxed">OpenApply communicates with the SIS, completing the enrollment. Enrolled students then need to flow into the ManageBac+</p>
+                    </div>
+                    <div class="bg-indigo-50/50 p-6 rounded-2xl border border-indigo-100">
+                        <h5 class="text-xs font-black text-purple-950 uppercase mb-3 tracking-wider">The Learning Hub</h5>
+                        <p class="text-xs text-slate-600 leading-relaxed">ManageBac pulls data from the SIS registrar. The 2026 focus is on optimizing this flow via <strong>OneRoster</strong> and native spokes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRATEGIC PRIORITY CHARTS -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-xl">
+                <h3 class="text-xl font-bold text-slate-900 mb-6">Pillar Focus Distribution</h3>
+                <p class="text-sm text-slate-500 mb-8">Balancing technical modernization with ecosystem expansion for the 2026 roadmap.</p>
+                <div class="chart-container">
+                    <canvas id="pillarChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-xl">
+                <h3 class="text-xl font-bold text-slate-900 mb-6">Work Stream Priorities</h3>
+                <p class="text-sm text-slate-500 mb-8">Prioritized initiatives based on setup friction reduction and interoperability impact.</p>
+                <div class="chart-container">
+                    <canvas id="streamChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- RISK & FUTURE-READINESS -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-slate-900 text-white p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10 text-9xl font-black">!</div>
+                <h3 class="text-2xl font-bold mb-6 text-amber-400 tracking-tight">Technical Priority #1</h3>
+                <p class="text-slate-300 leading-relaxed mb-6">
+                    <strong>Public API Performance</strong> in OpenApply is identified as the critical blocker for Priority #2 (Custom Fields). 
+                </p>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Resolution Path</span>
+                        <span class="text-[10px] bg-amber-500 text-black px-2 py-1 rounded font-bold uppercase">Critical</span>
+                    </div>
+                    <p class="text-sm text-slate-200">System-wide performance optimization must precede the rollout of Extended APIs and Webhooks to ensure scalability.</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-10 rounded-3xl shadow-xl flex flex-col justify-between border border-slate-100">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 tracking-tight">Future-Readiness Check</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Modernizing the connection patterns across both products for enterprise-grade stability.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">A</div>
+                        <div>
+                            <div class="text-sm font-bold">OAuth2 Flow</div>
+                            <div class="text-[10px] text-slate-500 uppercase font-semibold">Security Standard</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm">B</div>
+                        <div>
+                            <div class="text-sm font-bold">Google Service Accounts</div>
+                            <div class="text-[10px] text-slate-500 uppercase font-semibold">Permission Automation</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">C</div>
+                        <div>
+                            <div class="text-sm font-bold">OneRoster Adapters</div>
+                            <div class="text-[10px] text-slate-500 uppercase font-semibold">Interop Standard</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 py-12 text-center text-slate-400 text-xs border-t border-slate-200">
+        <p>Integrations Product Strategy Roadmap &copy; 2026</p>
+        <p class="mt-2 tracking-widest uppercase font-bold">OpenApply + ManageBac Ecosystem</p>
+    </footer>
+
+    <script>
+        // LABEL WRAPPING LOGIC (16 Chars)
+        function wrapLabel(label) {
+            if (label.length <= 16) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length <= 16) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipConfig = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            return Array.isArray(label) ? label.join(' ') : label;
+                        }
+                    }
+                }
+            }
+        };
+
+        // PILLAR CHART (Donut)
+        const ctxPillar = document.getElementById('pillarChart').getContext('2d');
+        new Chart(ctxPillar, {
+            type: 'doughnut',
+            data: {
+                labels: ['Interoperability', 'Ecosystem Expansion', 'Future Readiness'],
+                datasets: [{
+                    data: [50, 25, 25],
+                    backgroundColor: ['#3B82F6', '#F59E0B', '#10B981'],
+                    borderWidth: 0,
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '75%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10, weight: 'bold' } } },
+                    ...tooltipConfig.plugins
+                }
+            }
+        });
+
+        // WORK STREAM CHART (Bar)
+        const ctxStream = document.getElementById('streamChart').getContext('2d');
+        new Chart(ctxStream, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Wonde Adapter',
+                    'Public API Forms',
+                    'SIS Sync iSAMS',
+                    'LTI Assessments',
+                    'OneRoster Producer',
+                    'OAuth2 Migration'
+                ].map(wrapLabel),
+                datasets: [{
+                    label: 'Impact Score',
+                    data: [98, 92, 88, 85, 80, 75],
+                    backgroundColor: '#6366F1',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    ...tooltipConfig.plugins
+                },
+                scales: {
+                    x: { display: false, grid: { display: false } },
+                    y: { grid: { display: false }, ticks: { font: { size: 10, weight: 'bold' } } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
