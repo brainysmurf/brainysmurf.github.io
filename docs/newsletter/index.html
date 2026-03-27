@@ -55,7 +55,7 @@
       
         <a href="/about/" class="nav-link">About</a>
       
-        <a href="https://www.linkedin.com/newsletters/chasing-change-reforming-edu-7063350324320768000/" class="nav-link">Newsletter</a>
+        <a href="/newsletter/" class="nav-link">Newsletter</a>
       
 
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
@@ -325,6 +325,46 @@
       .page-newsletter-embed {
         margin-top: var(--space-10);
       }
+      .single-post-newsletter {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: var(--space-8);
+        text-align: center;
+      }
+      .newsletter-prompt {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-xl);
+        color: var(--color-accent);
+        margin-bottom: var(--space-3);
+        font-weight: var(--font-weight-semibold);
+      }
+      .newsletter-desc {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-6);
+        max-width: 40ch;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .newsletter-btn {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        padding: var(--space-3) var(--space-6);
+        background: var(--color-accent);
+        color: var(--color-bg);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius-md);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+        display: inline-block;
+      }
+      .newsletter-btn:hover {
+        background: var(--color-accent-hover);
+        border-color: var(--color-accent-hover);
+        color: var(--color-bg);
+      }
       @media (max-width: 768px) {
         .page-title {
           font-size: var(--font-size-2xl);
@@ -341,13 +381,17 @@
       <div class="page-body prose">
         <h2 id="stay-in-the-loop">Stay in the loop</h2>
 <p>I write about product management, software development, and education technology.</p>
-<p><a href="https://www.linkedin.com/newsletters/chasing-change-reforming-edu-7063350324320768000/" target="_blank" rel="noopener">Join my LinkedIn newsletter</a>
-</p>
 
       </div>
 
       
       
+        
+          <div class="single-post-newsletter page-newsletter-embed">
+            <div class="newsletter-prompt">&gt; subscribe</div>
+            <p class="newsletter-desc">Get new posts delivered to your inbox. No spam, unsubscribe anytime.</p>
+            <a href="https://www.linkedin.com/newsletters/chasing-change-reforming-edu-7063350324320768000/" class="newsletter-btn" target="_blank" rel="noopener">Join my LinkedIn newsletter</a>
+          </div>
         
       
     </article>
