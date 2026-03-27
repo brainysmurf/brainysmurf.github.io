@@ -1,0 +1,128 @@
+/* ============================================
+   DESIGN TOKENS — "The Builder 2" Theme
+   Terminal aesthetic, developer-focused.
+   Blue terminal accent. Dark mode first. 4px base grid.
+   ============================================ */
+
+:root {
+  /* ---- COLOR PALETTE (Dark Mode Default) ---- */
+
+  /* Primary background — deep navy blue */
+  --color-bg: #1E3A5F;
+
+  /* Surface — slightly lighter navy for cards/panels */
+  --color-surface: #264a73;
+
+  /* Border — subtle separation */
+  --color-border: #3a6090;
+
+  /* Primary text — crisp white */
+  --color-text-primary: #f0f2f5;
+
+  /* Secondary text — light grey, readable on navy */
+  --color-text-secondary: #c8d0da;
+
+  /* Muted text — metadata, timestamps */
+  --color-text-muted: #8a9bb5;
+
+  /* Accent — light gold for contrast on navy */
+  --color-accent: #e8c860;
+
+  /* Accent hover — brighter on interaction */
+  --color-accent-hover: #f0d878;
+
+  /* Accent subtle — backgrounds, tags */
+  --color-accent-subtle: rgba(232, 200, 96, 0.12);
+
+  /* Success — confirmations */
+  --color-success: #1E3A5F;
+
+  /* Warning — attention needed */
+  --color-warning: #f0b840;
+
+  /* ---- TYPOGRAPHY ---- */
+
+  /* Sans-serif for body text */
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Monospace for headings, accents, UI chrome */
+  --font-mono: 'IBM Plex Mono', 'Menlo', 'Consolas', monospace;
+
+  /* Type scale — modular, rem-based */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 2rem;      /* 32px */
+  --font-size-4xl: 2.75rem;   /* 44px */
+
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ---- SPACING (4px base grid) ---- */
+  --space-1: 0.25rem;   /*  4px */
+  --space-2: 0.5rem;    /*  8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* ---- BORDER RADIUS ---- */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* ---- TRANSITIONS ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* ---- SHADOWS (cool-toned with accent glow) ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 4px rgba(68, 136, 255, 0.03);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 8px rgba(68, 136, 255, 0.04);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(68, 136, 255, 0.05);
+
+  /* ---- LAYOUT ---- */
+
+  /* Optimal reading width */
+  --max-width-prose: 65ch;
+
+  /* Maximum site width */
+  --max-width-site: 1200px;
+}
+
+/* ---- LIGHT MODE (explicit toggle only, no system preference) ---- */
+[data-theme="light"] {
+  --color-bg: #f4f4f8;
+  --color-surface: #ffffff;
+  --color-border: #d4d4de;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #4a4a5a;
+  --color-text-muted: #8a8a96;
+  --color-accent: #1E3A5F;
+  --color-accent-hover: #2a4f7a;
+  --color-accent-subtle: rgba(30, 58, 95, 0.08);
+  --color-success: #1E3A5F;
+  --color-warning: #c49200;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 4px rgba(30, 58, 95, 0.03);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 8px rgba(30, 58, 95, 0.04);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12), 0 0 16px rgba(30, 58, 95, 0.05);
+}

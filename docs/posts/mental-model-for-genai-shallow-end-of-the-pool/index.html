@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en-us" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Model for GenAI: Shallow end of the pool — Adam Morris</title>
+  <meta name="description" content="A useful mental model for understanding GenAI prompts: think of it as a pool with a shallow end and a deep end.">
+
+  
+  <meta property="og:title" content="Mental Model for GenAI: Shallow end of the pool">
+  <meta property="og:description" content="A useful mental model for understanding GenAI prompts: think of it as a pool with a shallow end and a deep end.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mistermorris.com/posts/mental-model-for-genai-shallow-end-of-the-pool/">
+  
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/theme.css">
+
+  
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    })();
+  </script>
+
+
+</head>
+<body>
+    
+  
+<nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner container">
+    <a href="/" class="nav-brand" aria-label="Home">
+      <span class="nav-prompt">&gt;_</span> Adam Morris
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <div class="nav-links" id="nav-links">
+      
+        <a href="/posts/" class="nav-link">Posts</a>
+      
+        <a href="/about/" class="nav-link">About</a>
+      
+        <a href="/newsletter/" class="nav-link">Newsletter</a>
+      
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    transition: padding var(--transition-base), background var(--transition-base);
+    padding: var(--space-4) 0;
+  }
+
+  [data-theme="light"] .site-nav {
+    background: rgba(245, 245, 240, 0.85);
+  }
+
+  .site-nav.scrolled {
+    padding: var(--space-2) 0;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    white-space: nowrap;
+  }
+
+  .nav-brand:hover {
+    color: var(--color-accent);
+  }
+
+  .nav-prompt {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link[aria-current="page"] {
+    color: var(--color-accent);
+  }
+
+  .nav-link[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+   
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-2);
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .theme-toggle-icon::before {
+    content: '☀';
+    font-size: var(--font-size-base);
+  }
+
+  [data-theme="light"] .theme-toggle-icon::before {
+    content: '☾';
+  }
+
+   
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+  }
+
+  .nav-toggle-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text-primary);
+    border-radius: var(--radius-full);
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  .nav-toggle.active .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.active .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.active .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+   
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--color-bg);
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-8);
+      transform: translateX(100%);
+      transition: transform var(--transition-base);
+      z-index: 999;
+    }
+
+    .nav-links.open {
+      transform: translateX(0);
+    }
+
+    .nav-link {
+      font-size: var(--font-size-2xl);
+    }
+  }
+</style>
+
+<script>
+  (function() {
+     
+    var toggle = document.getElementById('nav-toggle');
+    var links = document.getElementById('nav-links');
+    if (toggle && links) {
+      toggle.addEventListener('click', function() {
+        var isOpen = links.classList.toggle('open');
+        toggle.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', isOpen);
+      });
+    }
+
+     
+    var themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', function() {
+        var html = document.documentElement;
+        var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
+
+     
+    var nav = document.getElementById('site-nav');
+    if (nav) {
+      var scrollThreshold = 50;
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > scrollThreshold) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    }
+  })();
+</script>
+
+  <main class="container">
+    
+<article class="single-post">
+  <header class="single-post-header">
+    <div class="single-post-meta">
+      <time datetime="2023-10-02">2023-10-02</time>
+      <span>4 min read</span>
+    </div>
+
+    <h1 class="single-post-title">Mental Model for GenAI: Shallow end of the pool</h1>
+
+    
+      <div class="single-post-tags">
+        
+          <a href="/tags/ai/" class="single-post-tag">#ai</a>
+        
+          <a href="/tags/education/" class="single-post-tag">#education</a>
+        
+          <a href="/tags/mental-models/" class="single-post-tag">#mental-models</a>
+        
+      </div>
+    
+  </header>
+
+  
+    <div class="single-post-hero-image">
+      <img src="/images/posts/shallow-end-pool.png" alt="">
+    </div>
+  
+
+  <div class="single-post-content prose">
+    <p>A mental model is one of those terms I&rsquo;m not sure I hear too often in EDU context, but I hear it often in the engineering podcasts I listen to, and it&rsquo;s one of those power concepts worth adopting.</p>
+<p>When we&rsquo;re working with complex software, we form visualizations that allow us to navigate certain features. To take a familiar example, when you use spreadsheet software, you&rsquo;ll have a mental model of how all the cells are recalculated when one cell changes. Do you visualize it as a domino effect, where one changed value causes the next cell to change? Or maybe you think of it as a broadcast system, where cells are telling each other &ldquo;hey, I&rsquo;ve changed, you need to recalculate too.&rdquo;</p>
+<p>A good mental model has at least two of the following characteristics:</p>
+<ul>
+<li>Understandable to the mind</li>
+<li>Representative of the tool</li>
+</ul>
+<p>Notice that I am not identifying a main characteristic that the mental model be accurate. The goal of a mental model is to enable the operator to understand complexity, not to describe how it actually works. The way it actually works it is itself often complex anyway, and the point is to simplify it.</p>
+<p>The mental model for GenAI that I have found effective is to think of it as a pool with a shallow end and a deep end. The shallow end is where boundaries are clear, the bottom can be seen, and one can stand up in it. The deep end is where swimming is necessary.</p>
+<p>When GenAI is asked questions, the prompt itself either takes the machine into the deep end, where it has far more to navigate, or the shallow end where it is much more effective.</p>
+<p>Examples of prompts where boundaries are well formed are ones that contain solvable problems. In an EDU context, asking it to check for grammar is a solvable problem, for the &ldquo;grammar&rdquo; itself has a boundary that is well defined already. Note that shallow prompts can also be very complex, what really matters is if there are boundaries. A timetable is complex, as all schedulers know, but the rules are well established, so &ldquo;help me to build a timetable&rdquo; is a shallow-end prompt.</p>
+<p>Examples of prompts in the deep end are ones that require creativity, or balancing of trade-offs, or professional judgment. For example, &ldquo;help me build a unit plan&rdquo; is not solvable because there aren&rsquo;t established boundaries that describe a unit plan fully. It&rsquo;s even weird to think of a unit plan as &ldquo;solved.&rdquo; However, there are lots of examples of curriculum documents, and so GenAI will be able to produce output, but will have to do so in the deep end.</p>
+<p>Where this mental model is useful is understanding that when thrown into the deep end, it responds by bringing the problem back to the shallow end. It has to pick and choose some boundaries that perhaps the prompt does not contain in order to navigate what has been requested of it.</p>
+<p>Since a machine has to establish boundaries, it does so even when the prompt it requires diving into the depths of uncertainty. For example, it responds to &ldquo;tell me a story&rdquo; by having to decide on which genre of story, the main characters etc. If the prompt itself however has the boundaries already established, it will just take that and run with it.</p>
+<p>This isn&rsquo;t how it actually works, however, but it doesn&rsquo;t matter. In the case of a spreadsheet, the way recalculation works is through a dependency graph. Knowing that would help us if we wanted to make a spreadsheet, but it would probably get in the way of using a spreadsheet to balance a budget.</p>
+<p>In this way, the mental model of GenAI as navigating the deep end of the pool by navigating itself back towards the shallow end helps us answer a core issue when using the tool:</p>
+<p><strong>Is the prompt I have in mind a good one?</strong></p>
+
+  </div>
+
+  <footer class="single-post-footer">
+    <a href="/posts/" class="single-post-back">&larr; cd /posts</a>
+
+    
+      <div class="single-post-newsletter">
+        <div class="newsletter-prompt">&gt; subscribe</div>
+        <p class="newsletter-desc">Get new posts delivered to your inbox. No spam, unsubscribe anytime.</p>
+        <a href="https://embeds.beehiiv.com/PLACEHOLDER" class="newsletter-btn" target="_blank" rel="noopener">Join the newsletter</a>
+      </div>
+    
+  </footer>
+</article>
+
+<style>
+  .single-post {
+    padding: var(--space-24) 0 var(--space-16);
+    max-width: var(--max-width-prose);
+    margin: 0 auto;
+  }
+
+  .single-post-hero-image {
+    margin-bottom: var(--space-10);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+
+  .single-post-hero-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .single-post-header {
+    margin-bottom: var(--space-10);
+  }
+
+  .single-post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .single-post-meta span::before {
+    content: '·';
+    margin-right: var(--space-4);
+  }
+
+  .single-post-title {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .single-post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .single-post-tag {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background var(--transition-fast);
+  }
+
+  .single-post-tag:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+   
+  .single-post-content h2 {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-2xl);
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .single-post-content h3 {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xl);
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-3);
+  }
+
+  .single-post-content h4 {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+  }
+
+  .single-post-content p {
+    font-family: var(--font-sans);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+    color: var(--color-text-secondary);
+  }
+
+  .single-post-content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-subtle);
+    text-underline-offset: 2px;
+    transition: text-decoration-color var(--transition-fast);
+  }
+
+  .single-post-content a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+
+  .single-post-content a[href^="http"]::after {
+    content: '\2009↗';
+    font-size: 0.75em;
+    vertical-align: super;
+  }
+
+  [data-theme="light"] .single-post-content a {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .single-post-content pre {
+    position: relative;
+    margin: var(--space-8) 0;
+    border-radius: var(--radius-md);
+  }
+
+  .single-post-content pre::before {
+    content: 'code';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-1) var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    background: var(--color-border);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  .single-post-content pre code {
+    display: block;
+    padding-top: var(--space-8);
+  }
+
+  .single-post-content blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding: var(--space-4) var(--space-6);
+    margin: var(--space-8) 0;
+    background: var(--color-accent-subtle);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+
+  .single-post-content blockquote p {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  .single-post-content ul,
+  .single-post-content ol {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-6);
+  }
+
+  .single-post-content li {
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-2);
+  }
+
+  .single-post-content img {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin: var(--space-8) 0;
+  }
+
+   
+  .single-post-footer {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .single-post-back {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    display: inline-block;
+    margin-bottom: var(--space-10);
+  }
+
+  .single-post-back:hover {
+    color: var(--color-accent);
+  }
+
+   
+  .single-post-newsletter {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-8);
+    text-align: center;
+  }
+
+  .newsletter-prompt {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xl);
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .newsletter-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+    max-width: 40ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .newsletter-btn {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-3) var(--space-6);
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    display: inline-block;
+  }
+
+  .newsletter-btn:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-bg);
+  }
+
+  @media (max-width: 768px) {
+    .single-post {
+      padding: var(--space-20) 0 var(--space-12);
+    }
+
+    .single-post-title {
+      font-size: var(--font-size-2xl);
+    }
+  }
+</style>
+
+  </main>
+
+    
+  
+<footer class="site-footer">
+  <div class="site-footer-inner container">
+    <p class="site-footer-message">Built with curiosity and code.</p>
+
+    <nav class="site-footer-links" aria-label="Footer navigation">
+      <a href="/posts/">Posts</a>
+      <a href="/about/">About</a>
+      <a href="/newsletter/">Newsletter</a>
+      
+        <a href="https://linkedin.com/in/adammorris" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      
+    </nav>
+
+    <p class="site-footer-copy">
+      &copy; 2026 Adam Morris. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-12) 0;
+    margin-top: var(--space-16);
+  }
+
+  .site-footer-inner {
+    text-align: center;
+  }
+
+  .site-footer-message {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+    font-style: italic;
+  }
+
+  .site-footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .site-footer-links a {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .site-footer-links a:hover {
+    color: var(--color-accent);
+  }
+
+  .site-footer-copy {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+</style>
+
+
+  </body>
+</html>

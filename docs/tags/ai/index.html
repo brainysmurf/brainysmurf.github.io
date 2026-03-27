@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-us" data-theme="dark">
 <head>
-	<meta name="generator" content="Hugo 0.152.2">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adam Morris</title>
+  <title>Ai — Adam Morris</title>
   <meta name="description" content="Teacher-turned-product-leader. Still writing code. Still in EDU.">
 
   
-  <meta property="og:title" content="Adam Morris">
+  <meta property="og:title" content="Ai">
   <meta property="og:description" content="Teacher-turned-product-leader. Still writing code. Still in EDU.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mistermorris.com/">
+  <meta property="og:url" content="https://mistermorris.com/tags/ai/">
   
 
   
@@ -280,194 +279,38 @@
   })();
 </script>
 
-  <main>
-    
-<section class="hero">
-  <div class="hero-inner container">
-    <h1 class="hero-name">
-      <span class="hero-hash">#</span> Adam Morris
-    </h1>
-
-    <div class="hero-role">
-      <span class="hero-hash">##</span> Product Engineer
-    </div>
-
-    <p class="hero-bio">
-      <span class="hero-typed" id="hero-typed"></span><span class="hero-cursor" aria-hidden="true">|</span>
-    </p>
-
-    <div class="hero-actions">
-      <a href="/posts/" class="hero-cta hero-cta--primary">[Read Posts](./posts)</a>
-      
-        <a href="/newsletter/" class="hero-cta hero-cta--secondary">[Subscribe](./newsletter)</a>
-      
-    </div>
-  </div>
-</section>
-
-<style>
-  .hero {
-    padding: var(--space-24) 0 var(--space-16);
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-  }
-
-  .hero-inner {
-    max-width: var(--max-width-prose);
-  }
-
-  .hero-hash {
-    color: var(--color-text-muted);
-    font-weight: var(--font-weight-normal);
-    user-select: none;
-    flex-shrink: 0;
-    width: 3rem;
-    text-align: left;
-  }
-
-  .hero-name {
-    font-family: var(--font-mono);
-    font-size: var(--font-size-4xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
-    margin-bottom: var(--space-4);
-    letter-spacing: -0.02em;
-    display: flex;
-    align-items: baseline;
-  }
-
-  .hero-role {
-    font-family: var(--font-mono);
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-accent);
-    margin-bottom: var(--space-8);
-    display: flex;
-    align-items: baseline;
-  }
-
-  .hero-bio {
-    font-family: var(--font-mono);
-    font-size: var(--font-size-lg);
-    color: var(--color-text-secondary);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: var(--space-8);
-    max-width: 50ch;
-    min-height: 3.5em;
-  }
-
-  .hero-typed {
-    display: inline;
-  }
-
-  .hero-cursor {
-    display: inline-block;
-    color: var(--color-accent);
-    animation: blink 1s step-end infinite;
-    font-weight: var(--font-weight-normal);
-    margin-left: 1px;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: var(--space-4);
-    flex-wrap: wrap;
-  }
-
-  .hero-cta {
-    font-family: var(--font-mono);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    padding: var(--space-3) var(--space-6);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    transition: all var(--transition-fast);
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .hero-cta--primary {
-    background: var(--color-accent);
-    color: var(--color-bg);
-    border: 1px solid var(--color-accent);
-  }
-
-  .hero-cta--primary:hover {
-    background: var(--color-accent-hover);
-    border-color: var(--color-accent-hover);
-    color: var(--color-bg);
-  }
-
-  .hero-cta--secondary {
-    background: var(--color-accent);
-    color: var(--color-bg);
-    border: 1px solid var(--color-accent);
-  }
-
-  .hero-cta--secondary:hover {
-    background: var(--color-accent-hover);
-    border-color: var(--color-accent-hover);
-    color: var(--color-bg);
-  }
-
-  @media (max-width: 768px) {
-    .hero {
-      padding: var(--space-20) 0 var(--space-12);
-      min-height: auto;
-    }
-
-    .hero-name {
-      font-size: var(--font-size-3xl);
-    }
-
-    .hero-role {
-      font-size: var(--font-size-xl);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .hero-name {
-      color: var(--color-accent);
-    }
-  }
-
-  [data-theme="dark"] .hero-name {
-    color: var(--color-accent);
-  }
-</style>
-
-<script>
-  (function() {
-    var el = document.getElementById('hero-typed');
-    if (!el) return;
-
-    var text = "Teacher-turned-product-leader. Still writing code. Still in EDU.";
-    var i = 0;
-    var speed = 40;
-
-    function type() {
-      if (i < text.length) {
-        el.textContent += text.charAt(i);
-        i++;
-        setTimeout(type, speed + Math.random() * 30);
+  <main class="container">
+    <style>
+      .list-header {
+        padding-top: var(--space-24);
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-6);
+        border-bottom: 1px solid var(--color-border);
       }
-    }
-
-    setTimeout(type, 400);
-  })();
-</script>
-
-    <div class="container">
-      <h2 class="section-heading">
-        <span class="section-heading-prompt">~/</span>recent posts
-      </h2>
+      .list-title {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-3xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-3);
+      }
+      .list-title-prompt {
+        color: var(--color-text-muted);
+        font-weight: var(--font-weight-normal);
+      }
+      .list-desc {
+        font-size: var(--font-size-base);
+        color: var(--color-text-secondary);
+        max-width: var(--max-width-prose);
+      }
+    </style>
+    <div class="list-header">
+      <h1 class="list-title">
+        <span class="list-title-prompt">~/</span>Ai
+      </h1>
       
+    </div>
+    
 
 
 
@@ -838,25 +681,7 @@
   }
 </style>
 
-    </div>
   </main>
-
-  <style>
-    .section-heading {
-      font-family: var(--font-mono);
-      font-size: var(--font-size-xl);
-      font-weight: var(--font-weight-semibold);
-      color: var(--color-text-primary);
-      margin-bottom: var(--space-6);
-      padding-bottom: var(--space-3);
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .section-heading-prompt {
-      color: var(--color-text-muted);
-      font-weight: var(--font-weight-normal);
-    }
-  </style>
 
     
   
