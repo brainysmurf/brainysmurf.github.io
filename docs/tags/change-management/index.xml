@@ -1,3 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Change-Management on Adam Morris</title><link>https://mistermorris.com/tags/change-management/</link><description>Recent content in Change-Management on Adam Morris</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mistermorris.com/tags/change-management/index.xml" rel="self" type="application/rss+xml"/><item><title>Sign-posting change: Done, Now, Next, Later</title><link>https://mistermorris.com/posts/sign-posting-change-done-now-next-later/</link><pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate><guid>https://mistermorris.com/posts/sign-posting-change-done-now-next-later/</guid><description>&lt;p&gt;Your school offers a Gardening after school activity. You have four plots.&lt;/p&gt;
-&lt;p&gt;In order to track what vegetables are to be grown when, you would like a simple visualization tool to produce a chart to blow up and put on the classroom wall.&lt;/p&gt;
-&lt;p&gt;In reality, vegetables don&amp;rsquo;t grow for just a few days as indicated above, but this is the sort of chart you want, right? It&amp;rsquo;s a just a pretty timeline.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Change-Management on Adam Morris</title>
+    <link>http://localhost:62797/tags/change-management/</link>
+    <description>Recent content in Change-Management on Adam Morris</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:62797/tags/change-management/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sign-posting change: Done, Now, Next, Later</title>
+      <link>http://localhost:62797/posts/sign-posting-change-done-now-next-later/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62797/posts/sign-posting-change-done-now-next-later/</guid>
+      <description>&lt;p&gt;Your school offers a Gardening after school activity. You have four plots.&lt;/p&gt;&#xA;&lt;p&gt;In order to track what vegetables are to be grown when, you would like a simple visualization tool to produce a chart to blow up and put on the classroom wall.&lt;/p&gt;&#xA;&lt;p&gt;In reality, vegetables don&amp;rsquo;t grow for just a few days as indicated above, but this is the sort of chart you want, right? It&amp;rsquo;s a just a pretty timeline.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
