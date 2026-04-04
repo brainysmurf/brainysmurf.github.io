@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Claude-Code on Adam Morris</title>
-    <link>https://mistermorris.com/tags/claude-code/</link>
+    <link>http://localhost:1313/tags/claude-code/</link>
     <description>Recent content in Claude-Code on Adam Morris</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 29 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://mistermorris.com/tags/claude-code/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/claude-code/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Agents are just prompts done right</title>
-      <link>https://mistermorris.com/screencasts/claude-code-content-agent/</link>
+      <link>http://localhost:1313/screencasts/claude-code-content-agent/</link>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://mistermorris.com/screencasts/claude-code-content-agent/</guid>
+      <guid>http://localhost:1313/screencasts/claude-code-content-agent/</guid>
       <description>&lt;p&gt;Open a terminal. Type &lt;code&gt;claude&lt;/code&gt;. That&amp;rsquo;s it — you&amp;rsquo;re doing prompt engineering now.&lt;/p&gt;&#xA;&lt;p&gt;The &lt;code&gt;/init&lt;/code&gt; command sets context. The prompt you type next becomes the agent. There&amp;rsquo;s no framework, no config file, no abstraction layer. Just you, a terminal, and a well-crafted sentence telling the machine what to do.&lt;/p&gt;&#xA;&lt;p&gt;The animation above walks through the whole thing: launching Claude Code, initializing a project, and creating an agent that scans your old teaching materials for connections you missed. The agent writes its discoveries as markdown in &lt;code&gt;ideas/&lt;/code&gt; — structured, searchable, ready to become your next post.&lt;/p&gt;</description>
     </item>
   </channel>

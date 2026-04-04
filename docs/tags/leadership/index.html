@@ -44,12 +44,6 @@
       <span class="nav-prompt">&gt;_</span> Adam Morris
     </a>
 
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-    </button>
-
     <div class="nav-links" id="nav-links">
       
         <a href="/posts/" class="nav-link">Posts</a>
@@ -63,6 +57,25 @@
         <span class="theme-toggle-icon" aria-hidden="true"></span>
       </button>
     </div>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile" id="nav-mobile">
+    
+      <a href="/posts/" class="nav-mobile-link">Posts</a>
+    
+      <a href="/about/" class="nav-mobile-link">About</a>
+    
+      <a href="/newsletter/" class="nav-mobile-link">Newsletter</a>
+    
+    <button class="theme-toggle theme-toggle--mobile" id="theme-toggle-mobile" aria-label="Toggle dark/light mode" title="Toggle theme">
+      <span class="theme-toggle-icon" aria-hidden="true"></span>
+    </button>
   </div>
 </nav>
 
@@ -211,32 +224,58 @@
   }
 
    
+  .nav-mobile {
+    display: none;
+  }
+
+   
   @media (max-width: 768px) {
     .nav-toggle {
       display: flex;
     }
 
     .nav-links {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--color-bg);
+      display: none;
+    }
+
+    .nav-mobile {
+      display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: var(--space-8);
-      transform: translateX(100%);
-      transition: transform var(--transition-base);
-      z-index: 999;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-base);
+      border-top: 1px solid transparent;
+      padding: 0;
+      background: rgb(10, 10, 15);
     }
 
-    .nav-links.open {
-      transform: translateX(0);
+    [data-theme="light"] .nav-mobile {
+      background: rgb(245, 245, 240);
     }
 
-    .nav-link {
-      font-size: var(--font-size-2xl);
+    .nav-mobile.open {
+      max-height: 80vh;
+      border-top-color: var(--color-border);
+      padding: var(--space-6) 0;
+    }
+
+    .nav-mobile-link {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xl);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+      padding: var(--space-4) var(--space-6);
+      width: 100%;
+      text-align: center;
+    }
+
+    .nav-mobile-link:hover,
+    .nav-mobile-link[aria-current="page"] {
+      color: var(--color-accent);
     }
   }
 </style>
@@ -245,25 +284,27 @@
   (function() {
      
     var toggle = document.getElementById('nav-toggle');
-    var links = document.getElementById('nav-links');
-    if (toggle && links) {
+    var mobile = document.getElementById('nav-mobile');
+    if (toggle && mobile) {
       toggle.addEventListener('click', function() {
-        var isOpen = links.classList.toggle('open');
+        var isOpen = mobile.classList.toggle('open');
         toggle.classList.toggle('active');
         toggle.setAttribute('aria-expanded', isOpen);
       });
     }
 
      
-    var themeBtn = document.getElementById('theme-toggle');
-    if (themeBtn) {
-      themeBtn.addEventListener('click', function() {
+    function applyThemeToggle(btn) {
+      if (!btn) return;
+      btn.addEventListener('click', function() {
         var html = document.documentElement;
         var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         html.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
       });
     }
+    applyThemeToggle(document.getElementById('theme-toggle'));
+    applyThemeToggle(document.getElementById('theme-toggle-mobile'));
 
      
     var nav = document.getElementById('site-nav');
