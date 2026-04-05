@@ -95,7 +95,7 @@
   }
 
   [data-theme="light"] .site-nav {
-    background: var(--color-nav-bg);
+    background: var(--color-nav-bg-solid);
   }
 
   .site-nav.scrolled {
@@ -262,6 +262,10 @@
       padding: var(--space-6) 0;
     }
 
+    [data-theme="light"] .nav-mobile.open {
+      border-top-color: transparent;
+    }
+
     .nav-mobile-link {
       font-family: var(--font-mono);
       font-size: var(--font-size-xl);
@@ -384,10 +388,11 @@
 <p>Crystalizing this for me is that <code>grep</code> has now slipped into my active vernacular as a verb only recently, even though it&rsquo;s been part of my nerdy milieu for as far back as I can remember. When I initiate a new session with an LLM, one of the frames I use in my own mental model is &ldquo;What does it need to <em>grep</em> in order to build the context it needs?&rdquo;</p>
 <p>The origin of <code>grep</code> is a Unix command from 1974, a sequence of four letters that unlocked the most powerful aspects of compute. You give it a pattern, a regular expression and the global context to search; it returns the matches. Find the signal, discard the noise. To my mind <code>grep</code> was the inverse of <span class="tooltip-word" tabindex="0">grok<span class="tooltip-bubble" role="tooltip">&#34;Understand empathically&#34; — an arbitrary formation by Robert A. Heinlein in Stranger in a Strange Land (1961). Said to mean etymologically &#34;to drink.&#34; Attained popular use in 1960s–70s counterculture.<span class="tooltip-attribution">— <a href="https://www.etymonline.com/word/grok" target="_blank" rel="noopener">etymonline.com</a></span></span></span>
  — an invented term from the same era. Rather than seeking outward to pinpoint something — grepping — if one &ldquo;grokked&rdquo; something it meant to understand it from the inside out, as if consumed by it.</p>
-<p>The terminal used to demand exactly this fluency — pattern, precision, intent. You even picked the tool. The machine supplied the haystack.</p>
+<p>The terminal used to demand exactly this fluency — pattern, precision, intent.   To grep well, you had to grok first. You supplied the needle, you chose the tool; the machine furnished the haystack.</p>
 <p>Yet now, the binary can talk back, and it seems like cognition.</p>
 <h2 id="its-still-just-software">It&rsquo;s still just software</h2>
-<p>It&rsquo;s not just a black screen anymore — we&rsquo;ve gone from an environment of deficit to a marketplace of surplus. The harnesses that have been built around LLMs no longer crash on vague instructions; it evaluates whether to ask the user, or whether it can take liberties. It&rsquo;ll produce something — perhaps adjacent to the desired result, or maybe a miss entirely.  In either case, the tooling allows for the course correction to be supervised.</p>
+<p>It&rsquo;s not just a black screen anymore — we&rsquo;ve gone from an environment of deficit to a marketplace of surplus. But surplus has its own failure mode. The <span class="tooltip-word" tabindex="0">harnesses<span class="tooltip-bubble" role="tooltip">[A]n agent harness is the software infrastructure that wraps around a large language model (LLM) or AI agent … essentially everything except the LLM itself.<span class="tooltip-attribution">— <a href="https://parallel.ai/articles/what-is-an-agent-harness" target="_blank" rel="noopener">parallel.ai</a></span></span></span>
+ built around LLMs don&rsquo;t just tolerate vague instructions — they intercept them, asking whether to clarify or proceed. That checkpoint matters: without it, the model follows its best guess down a path you never intended, producing something plausible but wrong. Instead of a crash, you get a confident detour.</p>
 <p>Take a typical ongoing project, such as &ldquo;improve parent communication&rdquo; when we haven&rsquo;t yet decided what that means, let alone how to measure it. We are naturally imprecise about what we want, and we still need ways to tease details out. Tools like Claude Code and Antigravity provide us the means to do so.</p>
 <p>Schools have long had frameworks for exactly this process as well: SMART goals. Specific, Measurable, Achievable, Relevant, Time-bound. They went viral in presentations and in practices because it forced the translation of intention into something formed enough to act upon.</p>
 <p>The terminal used to enforce a similar mechanical precision — you either grokked its language or got nothing back. Now we have software that can detect ambiguity and make a prediction based on the bits and bytes of the given context. Instead of error messages, we get artifacts to modulate — blurring the line between author and editor.</p>

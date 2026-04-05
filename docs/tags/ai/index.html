@@ -95,7 +95,7 @@
   }
 
   [data-theme="light"] .site-nav {
-    background: var(--color-nav-bg);
+    background: var(--color-nav-bg-solid);
   }
 
   .site-nav.scrolled {
@@ -260,6 +260,10 @@
       max-height: 80vh;
       border-top-color: var(--color-border);
       padding: var(--space-6) 0;
+    }
+
+    [data-theme="light"] .nav-mobile.open {
+      border-top-color: transparent;
     }
 
     .nav-mobile-link {
