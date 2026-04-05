@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { display:flex; align-items:center; justify-content:center; height:100%; overflow:hidden; }
+canvas { display:block; width:100%; border-radius:8px; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+(function(){
+  var theme = new URLSearchParams(window.location.search).get('theme') || 'dark';
+  var isLight = theme === 'light';
+  document.body.style.background = isLight ? '#f4f4f8' : '#264a73';
+
+  var C = document.getElementById('c'), ctx = C.getContext('2d');
+  C.width = 680; C.height = 420;
+  var W = C.width, H = C.height;
+
+  // Monitor layout
+  var BW=460, BH=295, BX=(W-BW)/2, BY=Math.round((H-BH)/2)-15;
+  var SP=22, SX=BX+SP, SY=BY+SP, SW=BW-SP*2, SH=BH-SP*2;
+
+  // Timing (seconds)
+  var TFI=0.7,  // fade in monitor
+      TPO=1.1,  // power on screen
+      TID=0.7,  // idle — prompt + blinking cursor
+      TTY=1.9,  // type "grep needle"
+      THO=0.6,  // hold — full command, cursor blinks
+      TGR=3.2,  // grep output — haystack stream with needle highlighted
+      TPF=0.85, // power off
+      TFO=0.55; // fade out monitor
+  var P1=TFI, P2=P1+TPO, P3=P2+TID, P4=P3+TTY, P5=P4+THO, P6=P5+TGR, P7=P6+TPF;
+  var TOTAL = P7+TFO;
+
+  var PROMPT = '$ ';
+  var CMD    = 'grep needle';
+
+  var t=0, lastTs=null;
+
+  // Offscreen canvas for monitor — lets us composite the whole thing at one alpha
+  var offC = document.createElement('canvas');
+  offC.width = W; offC.height = H;
+  var offCtx = offC.getContext('2d');
+
+  function ease(x){ return x<0.5?2*x*x:1-Math.pow(-2*x+2,2)/2; }
+
+  function rr(c, x,y,w,h,r){
+    c.beginPath();
+    c.moveTo(x+r,y); c.lineTo(x+w-r,y); c.arcTo(x+w,y,x+w,y+r,r);
+    c.lineTo(x+w,y+h-r); c.arcTo(x+w,y+h,x+w-r,y+h,r);
+    c.lineTo(x+r,y+h); c.arcTo(x,y+h,x,y+h-r,r);
+    c.lineTo(x,y+r); c.arcTo(x,y,x+r,y,r);
+    c.closePath();
+  }
+
+  function drawMonitor(a){
+    if(a<=0) return;
+
+    // Draw everything onto offscreen canvas at full opacity
+    var c = offCtx;
+    c.clearRect(0,0,W,H);
+
+    // Stand neck + base
+    var nw=88, nx=(W-nw)/2, ny=BY+BH;
+    var bw=148, bx=(W-bw)/2;
+    c.fillStyle='#3a3a3a';
+    c.beginPath();
+    c.moveTo(nx,ny); c.lineTo(nx+nw,ny);
+    c.lineTo(bx+bw,ny+30); c.lineTo(bx,ny+30);
+    c.closePath(); c.fill();
+    c.fillStyle='#303030';
+    c.beginPath();
+    c.moveTo(bx-4,ny+30); c.lineTo(bx+bw+4,ny+30);
+    c.lineTo(bx+bw+1,ny+42); c.lineTo(bx-1,ny+42);
+    c.closePath(); c.fill();
+
+    // Bezel — shadow + gradient fill
+    c.shadowColor='rgba(0,0,0,0.85)';
+    c.shadowBlur=28; c.shadowOffsetY=7;
+    var g=c.createLinearGradient(BX,BY,BX,BY+BH);
+    g.addColorStop(0,'#686868'); g.addColorStop(1,'#404040');
+    rr(c,BX,BY,BW,BH,16); c.fillStyle=g; c.fill();
+    c.shadowColor='transparent'; c.shadowBlur=0; c.shadowOffsetY=0;
+
+    // Bezel top-edge highlight
+    c.strokeStyle='rgba(255,255,255,0.10)'; c.lineWidth=1;
+    rr(c,BX+1,BY+1,BW-2,BH-2,15); c.stroke();
+
+    // Screen recess
+    c.fillStyle='#1a1a1a';
+    rr(c,SX-5,SY-5,SW+10,SH+10,5); c.fill();
+
+    // Ambient CRT glow
+    c.shadowColor='rgba(232,200,96,0.22)'; c.shadowBlur=32;
+    rr(c,SX,SY,SW,SH,3); c.fillStyle='rgba(0,0,0,0)'; c.fill();
+    c.shadowBlur=0;
+
+    // Composite the offscreen canvas onto the main canvas at the desired alpha
+    ctx.save();
+    ctx.globalAlpha = a;
+    ctx.drawImage(offC, 0, 0);
+    ctx.restore();
+  }
+
+  function drawScreen(powerProg, promptShown, typedN, cursorOn, grepProg){
+    ctx.save();
+    rr(ctx,SX,SY,SW,SH,3); ctx.clip();
+
+    // Background
+    ctx.fillStyle='#0d1e30'; ctx.fillRect(SX,SY,SW,SH);
+
+    if(powerProg > 0){
+      var bandH = SH * powerProg;
+      var cy    = SY + SH/2;
+
+      if(powerProg < 1){
+        // Clip content to expanding/collapsing band
+        ctx.save();
+        ctx.beginPath(); ctx.rect(SX, cy-bandH/2, SW, bandH); ctx.clip();
+        drawContent(promptShown, typedN, cursorOn, grepProg);
+        if(grepProg > 0) drawGrepOutput(grepProg);
+        ctx.restore();
+
+        // Bright edge lines at band boundary
+        var ea = (1 - powerProg) * 0.88;
+        ctx.shadowColor='#f0d878'; ctx.shadowBlur=10;
+        ctx.fillStyle='rgba(240,216,120,'+ea+')';
+        if(bandH > 2){
+          ctx.fillRect(SX, cy-bandH/2-1, SW, 2);
+          ctx.fillRect(SX, cy+bandH/2-1, SW, 2);
+        } else {
+          // Fully collapsed — single bright centre line
+          ctx.fillRect(SX, cy-1, SW, 2);
+        }
+        ctx.shadowBlur=0;
+      } else {
+        drawContent(promptShown, typedN, cursorOn, grepProg);
+        if(grepProg > 0) drawGrepOutput(grepProg);
+      }
+    }
+
+    // Scanlines
+    ctx.globalAlpha=0.13; ctx.fillStyle='#000';
+    for(var sy=SY; sy<SY+SH; sy+=3) ctx.fillRect(SX,sy,SW,1);
+
+    // Vignette
+    ctx.globalAlpha=0.68;
+    var v=ctx.createRadialGradient(SX+SW/2,SY+SH/2,SH*0.12,SX+SW/2,SY+SH/2,SH*0.84);
+    v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,0.72)');
+    ctx.fillStyle=v; ctx.fillRect(SX,SY,SW,SH);
+
+    // Subtle glare
+    ctx.globalAlpha=0.032;
+    var gl=ctx.createLinearGradient(SX,SY,SX+SW*0.55,SY+SH*0.45);
+    gl.addColorStop(0,'rgba(255,255,255,1)'); gl.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=gl; ctx.fillRect(SX,SY,SW,SH);
+
+    ctx.restore();
+  }
+
+  // Pre-generated haystack layout: each row is an array of {word, isNeedle}
+  // We build this once so it's stable across frames.
+  // Screen width SW ~416px; "haystack" at 13px Courier ≈ 64px + 10px gap = 74px → 5 cols fits (~370px)
+  var HAYSTACK_ROWS = (function(){
+    var rows = [];
+    var COLS = 5, ROWS = 10;
+    var needleRow = 4, needleCol = 2; // 0-indexed, middle of the grid
+    for(var r=0; r<ROWS; r++){
+      var cols = [];
+      for(var c=0; c<COLS; c++){
+        var isN = (r===needleRow && c===needleCol);
+        cols.push({ word: isN ? 'needle' : 'haystack', isNeedle: isN });
+      }
+      rows.push(cols);
+    }
+    return rows;
+  })();
+
+  function drawGrepOutput(progress){
+    // progress: 0→1 over TGR seconds
+    // Rows of haystack words scroll in from top; needle glows yellow mid-stream.
+    var lineH = 22;
+    var tx = SX + 18;
+    // Start below the prompt line (which sits near the top of the screen in this phase)
+    var promptLineY = SY + 16;
+    var topY = promptLineY + lineH + 4;
+
+    ctx.font = '13px "Courier New",Courier,monospace';
+    ctx.textBaseline = 'top';
+
+    var totalRows = HAYSTACK_ROWS.length;
+    // Animate rows appearing: last row fully visible at progress ~0.85
+    var rowsVisible = Math.min(totalRows, (progress / 0.85) * totalRows);
+
+    for(var r=0; r < totalRows; r++){
+      var rowAlpha = Math.max(0, Math.min(1, rowsVisible - r));
+      if(rowAlpha <= 0) continue;
+      ctx.globalAlpha = rowAlpha;
+
+      var x = tx;
+      var y = topY + r * lineH;
+      var row = HAYSTACK_ROWS[r];
+      for(var c=0; c < row.length; c++){
+        var cell = row[c];
+        if(cell.isNeedle){
+          ctx.shadowColor = '#f0d878'; ctx.shadowBlur = 14;
+          ctx.fillStyle = '#f0d878';
+        } else {
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = '#5a6270';
+        }
+        ctx.fillText(cell.word, x, y);
+        x += ctx.measureText(cell.word).width + 14;
+      }
+      ctx.shadowBlur = 0;
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function drawContent(promptShown, typedN, cursorOn, grepProg){
+    ctx.globalAlpha=1;
+    // When grep output is showing, slide the prompt line up to the top
+    var centreY = SY + SH/2;
+    var topY    = SY + 16 + 6; // baseline-middle equivalent for 17px font
+    var ty = grepProg > 0 ? topY + (centreY - topY) * (1 - Math.min(1, grepProg * 4)) : centreY;
+    var tx=SX+18;
+    ctx.font='17px "Courier New",Courier,monospace';
+    ctx.textBaseline='middle';
+
+    var line = (promptShown ? PROMPT : '') + CMD.slice(0,typedN);
+    ctx.shadowColor='#e8c860'; ctx.shadowBlur=16;
+    ctx.fillStyle='#f0d878';
+    ctx.fillText(line, tx, ty);
+    ctx.shadowBlur=0;
+
+    if(cursorOn){
+      var tw = ctx.measureText(line).width;
+      ctx.shadowColor='#e8c860'; ctx.shadowBlur=12;
+      ctx.fillStyle='#f0d878';
+      ctx.fillRect(tx+tw+1, ty-9, 10, 18); // block cursor
+      ctx.shadowBlur=0;
+    }
+  }
+
+  function frame(ts){
+    if(!lastTs) lastTs=ts;
+    var dt=Math.min((ts-lastTs)/1000, 0.05);
+    lastTs=ts; t=(t+dt)%TOTAL;
+
+    ctx.fillStyle = isLight ? '#f4f4f8' : '#264a73'; ctx.fillRect(0,0,W,H);
+
+    var monA=0, powerProg=0, promptShown=false, typedN=0, cursorOn=false, showScr=false, grepProg=0;
+
+    // Cursor blink ~1 Hz
+    cursorOn = Math.sin(ts * Math.PI / 520) > 0;
+
+    if(t < P1){
+      // Fade in monitor, screen off
+      monA = ease(t/TFI);
+
+    } else if(t < P2){
+      // Power on — screen expands from centre
+      monA=1; showScr=true;
+      powerProg = ease((t-P1)/TPO);
+      cursorOn=false;  // no cursor during power-on
+
+    } else if(t < P3){
+      // Idle — prompt visible, cursor blinks
+      monA=1; showScr=true; powerProg=1; promptShown=true;
+
+    } else if(t < P4){
+      // Typing "grep needle"
+      monA=1; showScr=true; powerProg=1; promptShown=true;
+      typedN = Math.min(CMD.length, Math.floor(((t-P3)/TTY)*CMD.length));
+      cursorOn=true;  // cursor follows typing
+
+    } else if(t < P5){
+      // Hold — full command, cursor blinks
+      monA=1; showScr=true; powerProg=1; promptShown=true; typedN=CMD.length;
+
+    } else if(t < P6){
+      // Grep output — haystack stream floods screen, needle glows yellow
+      monA=1; showScr=true; powerProg=1; promptShown=true; typedN=CMD.length;
+      cursorOn=false;
+      grepProg = ease((t-P5)/TGR);
+
+    } else if(t < P7){
+      // Power off — screen collapses to centre line
+      monA=1; showScr=true; promptShown=true; typedN=CMD.length; grepProg=1;
+      powerProg = 1 - ease((t-P6)/TPF);
+
+    } else {
+      // Fade out monitor
+      monA = 1 - ease((t-P7)/TFO);
+    }
+
+    drawMonitor(monA);
+    if(showScr) drawScreen(powerProg, promptShown, typedN, cursorOn, grepProg);
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

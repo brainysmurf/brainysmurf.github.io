@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Adam Morris</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://mistermorris.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The terminal was training me all along</title>
+      <link>https://mistermorris.com/posts/the-terminal-was-training-me/</link>
+      <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://mistermorris.com/posts/the-terminal-was-training-me/</guid>
+      <description>&lt;p&gt;There&amp;rsquo;s a black screen. A blinking cursor. Nothing is happening, and nothing will happen … not until you convert thoughts to keystrokes.  All of those taps are minor translation projects from cognition to binary.&lt;/p&gt;&#xA;&lt;p&gt;Thus was my initial experience with coding — and now with &lt;em&gt;skills&lt;/em&gt; and &lt;em&gt;agents&lt;/em&gt; and &lt;em&gt;commands&lt;/em&gt; defining the substrates for agentic workflows, I&amp;rsquo;m doing more typing than ever. My first computer science projects were headphones &lt;em&gt;on&lt;/em&gt;, terminal &lt;em&gt;up&lt;/em&gt;. But in this newly-inspiring LLM landscape that sits before us, the terminal has become even &lt;em&gt;more&lt;/em&gt; engrained to me now than then. I have more console tabs open than I do browser tabs. I&amp;rsquo;m seeing more terminals open in coffee shops.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>From Dragon-Slayer Skeptic to AI Convert</title>
       <link>https://mistermorris.com/posts/from-dragon-slayer-skeptic-to-ai-convert/</link>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tools on Adam Morris</title>
-    <link>http://localhost:1313/tags/tools/</link>
+    <link>https://mistermorris.com/tags/tools/</link>
     <description>Recent content in Tools on Adam Morris</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mistermorris.com/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>The terminal was training you all along</title>
-      <link>http://localhost:1313/posts/the-terminal-was-training-you/</link>
-      <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/the-terminal-was-training-you/</guid>
-      <description>&lt;p&gt;There&amp;rsquo;s a black screen. A blinking cursor. Nothing is happening, and nothing will happen, until you decide what you want.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been thinking about the terminal lately — as you might be able to tell it the core visual motif for my website. Partly, it&amp;rsquo;s nostalgia — I came up through open source, and the command line was where I learned to think. Headphones on, terminal up. But I&amp;rsquo;m thinking of it partly because something is happening that I didn&amp;rsquo;t expect: the terminal&amp;rsquo;s vocabulary is crossing over into mainstream conversation. Specifically, the word &lt;em&gt;grepping&lt;/em&gt;.&lt;/p&gt;</description>
+      <title>The terminal was training me all along</title>
+      <link>https://mistermorris.com/posts/the-terminal-was-training-me/</link>
+      <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://mistermorris.com/posts/the-terminal-was-training-me/</guid>
+      <description>&lt;p&gt;There&amp;rsquo;s a black screen. A blinking cursor. Nothing is happening, and nothing will happen … not until you convert thoughts to keystrokes.  All of those taps are minor translation projects from cognition to binary.&lt;/p&gt;&#xA;&lt;p&gt;Thus was my initial experience with coding — and now with &lt;em&gt;skills&lt;/em&gt; and &lt;em&gt;agents&lt;/em&gt; and &lt;em&gt;commands&lt;/em&gt; defining the substrates for agentic workflows, I&amp;rsquo;m doing more typing than ever. My first computer science projects were headphones &lt;em&gt;on&lt;/em&gt;, terminal &lt;em&gt;up&lt;/em&gt;. But in this newly-inspiring LLM landscape that sits before us, the terminal has become even &lt;em&gt;more&lt;/em&gt; engrained to me now than then. I have more console tabs open than I do browser tabs. I&amp;rsquo;m seeing more terminals open in coffee shops.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

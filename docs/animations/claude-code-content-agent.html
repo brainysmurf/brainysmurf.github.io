@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { display:flex; align-items:center; justify-content:center; height:100%; overflow:hidden; }
+canvas { display:block; width:100%; border-radius:8px; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+(function(){
+  var theme = new URLSearchParams(window.location.search).get('theme') || 'dark';
+  var isLight = theme === 'light';
+  document.body.style.background = isLight ? '#f4f4f8' : '#2F4970';
+
+  var C = document.getElementById('c'), ctx = C.getContext('2d');
+  C.width = 680; C.height = 420;
+  var W = 680, H = 420;
+
+  // Window layout
+  var WX = 14, WY = 8, WW = W - 28, WH = H - 16;
+  var TB = 28; // title bar height
+  var TX = WX + 14, TY = WY + TB + 14; // first text position
+  var LH = 18;
+  var FONT = '13px "SF Mono","Menlo","Courier New",monospace';
+
+  // Colors
+  var BG   = isLight ? '#f4f4f8' : '#2F4970';
+  var WIN  = '#0d1b2e';
+  var TBG  = '#162236';
+  var GOLD = '#e8c860';
+  var WHT  = '#e0e0e0';
+  var MUT  = '#7d8590';
+  var GRN  = '#7ee787';
+  var DIM  = '#484f58';
+
+  // Lines: [text, color, startTime, endTime]
+  // startTime === endTime → appears instantly
+  // endTime > startTime  → typed character-by-character
+  var L = [
+    ['$ claude',                                WHT, 0.5,   1.17],
+    ['',                                        null, 1.5,   1.5],
+    ['  Claude Code v1.0.0',                    DIM,  1.8,   1.8],
+    ['',                                        null, 2.5,   2.5],
+    ['> /init This project is a personal brand', WHT, 3.2,   4.7],
+    ['  site. resources/ contains teaching',     WHT, 4.7,   6.02],
+    ['  materials, workshops, and blog drafts.', WHT, 6.02,  7.49],
+    ['',                                         null, 8.0,   8.0],
+    ['  \u2713 CLAUDE.md created',               GRN,  8.4,   8.4],
+    ['',                                         null, 9.0,   9.0],
+    ['> Scan resources/ for connections between', WHT, 9.5,  11.18],
+    ['  topics. Save each discovery as a',        WHT, 11.18, 12.58],
+    ['  markdown file in ideas/',                 WHT, 12.58, 13.58],
+    ['',                                          null, 14.1,  14.1],
+    ['  Scanning 23 files...',                    MUT,  14.5,  14.5],
+    ['  \u2713 ideas/terminal-discipline.md',     GRN,  15.2,  15.2],
+    ['  \u2713 ideas/assessment-paradox.md',      GRN,  15.8,  15.8],
+    ['  \u2713 ideas/parent-feedback-loops.md',   GRN,  16.4,  16.4],
+    ['',                                          null, 17.0,  17.0],
+    ['  3 discoveries written.',                  MUT,  17.3,  17.3]
+  ];
+
+  var FADE_START = 19.5, FADE_END = 21.0, TOTAL = 21.5;
+  var t = 0, lastTs = null;
+
+  function ease(x){ return x<0.5 ? 2*x*x : 1-Math.pow(-2*x+2,2)/2; }
+
+  function rr(x, y, w, h, r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
+    ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+    ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
+    ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r);
+    ctx.closePath();
+  }
+
+  function frame(ts){
+    if(!lastTs) lastTs = ts;
+    var dt = Math.min((ts - lastTs)/1000, 0.05);
+    lastTs = ts;
+    t = (t + dt) % TOTAL;
+
+    // Clear
+    ctx.fillStyle = BG;
+    ctx.fillRect(0, 0, W, H);
+
+    // Fade envelope
+    var alpha = 1;
+    if(t < 0.4) alpha = ease(t / 0.4);
+    else if(t >= FADE_START && t < FADE_END) alpha = 1 - ease((t - FADE_START)/(FADE_END - FADE_START));
+    else if(t >= FADE_END) alpha = 0;
+
+    if(alpha <= 0){ requestAnimationFrame(frame); return; }
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
+    // Window shadow
+    ctx.shadowColor = 'rgba(0,0,0,0.4)';
+    ctx.shadowBlur = 16; ctx.shadowOffsetY = 4;
+    rr(WX, WY, WW, WH, 8);
+    ctx.fillStyle = WIN; ctx.fill();
+    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+
+    // Title bar background (clipped to window shape)
+    ctx.save();
+    rr(WX, WY, WW, WH, 8); ctx.clip();
+    ctx.fillStyle = TBG;
+    ctx.fillRect(WX, WY, WW, TB);
+    ctx.fillStyle = 'rgba(255,255,255,0.04)';
+    ctx.fillRect(WX, WY + TB - 1, WW, 1);
+    ctx.restore();
+
+    // Traffic-light dots
+    var dy = WY + TB/2, dx = WX + 16;
+    [['#ff5f57',0],['#febc2e',20],['#28c840',40]].forEach(function(d){
+      ctx.fillStyle = d[0];
+      ctx.beginPath(); ctx.arc(dx+d[1], dy, 5, 0, Math.PI*2); ctx.fill();
+    });
+
+    // Title text
+    ctx.font = '11px -apple-system,"Helvetica Neue",sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = MUT;
+    ctx.fillText('Terminal \u2014 claude', WX + WW/2, dy);
+    ctx.textAlign = 'left';
+
+    // --- Content lines ---
+    ctx.font = FONT;
+    ctx.textBaseline = 'top';
+
+    var activeLine = -1, curX = 0, curY = 0;
+
+    for(var i = 0; i < L.length; i++){
+      var text = L[i][0], color = L[i][1], s = L[i][2], e = L[i][3];
+      if(t < s) break;
+      if(!text) continue;
+
+      var y = TY + i * LH;
+      var typed = e > s;
+      var n;
+
+      if(typed && t < e){
+        n = Math.floor(((t - s)/(e - s)) * text.length);
+        activeLine = i;
+      } else {
+        n = text.length;
+      }
+
+      var display = text.substring(0, n);
+      var px = TX;
+
+      // Render prompt prefix ($ or >) in gold, rest in line color
+      if((text.charAt(0)==='$' || text.charAt(0)==='>') && text.charAt(1)===' ' && n > 0){
+        var pn = Math.min(2, n);
+        ctx.fillStyle = GOLD;
+        ctx.fillText(display.substring(0, pn), px, y);
+        if(n > 2){
+          var pw = ctx.measureText(display.substring(0, pn)).width;
+          ctx.fillStyle = color;
+          ctx.fillText(display.substring(2), px + pw, y);
+        }
+      } else {
+        ctx.fillStyle = color;
+        ctx.fillText(display, px, y);
+      }
+
+      if(activeLine === i){
+        curX = px + ctx.measureText(display).width;
+        curY = y;
+      }
+    }
+
+    // Block cursor (visible only during typing phases)
+    if(activeLine >= 0){
+      ctx.fillStyle = GOLD;
+      ctx.fillRect(curX + 2, curY + 1, 8, LH - 4);
+    }
+
+    ctx.restore();
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

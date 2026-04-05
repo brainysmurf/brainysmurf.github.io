@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign-posting change: Done, Now, Next, Later — Adam Morris</title>
-  <meta name="description" content="Instead of Gantt charts and timelines, use a simple Done/Now/Next/Later framework to track change in schools — and signal when input is welcome.">
+  <title>The terminal was training me all along — Adam Morris</title>
+  <meta name="description" content="An homage to terminal and the skills necessary for succesfully using AI in schools.">
 
   
-  <meta property="og:title" content="Sign-posting change: Done, Now, Next, Later">
-  <meta property="og:description" content="Instead of Gantt charts and timelines, use a simple Done/Now/Next/Later framework to track change in schools — and signal when input is welcome.">
+  <meta property="og:title" content="The terminal was training me all along">
+  <meta property="og:description" content="An homage to terminal and the skills necessary for succesfully using AI in schools.">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://mistermorris.com/posts/sign-posting-change-done-now-next-later/">
+  <meta property="og:url" content="https://mistermorris.com/posts/the-terminal-was-training-me/">
   
 
   
@@ -326,20 +326,22 @@
 <article class="single-post">
   <header class="single-post-header">
     <div class="single-post-meta">
-      <time datetime="2024-03-31">2024-03-31</time>
-      <span>2 min read</span>
+      <time datetime="2026-04-02">2026-04-02</time>
+      <span>4 min read</span>
     </div>
 
-    <h1 class="single-post-title">Sign-posting change: Done, Now, Next, Later</h1>
+    <h1 class="single-post-title">The terminal was training me all along</h1>
 
     
       <div class="single-post-tags">
         
-          <a href="/tags/change-management/" class="single-post-tag">#change-management</a>
+          <a href="/tags/ai/" class="single-post-tag">#ai</a>
         
           <a href="/tags/education/" class="single-post-tag">#education</a>
         
           <a href="/tags/leadership/" class="single-post-tag">#leadership</a>
+        
+          <a href="/tags/tools/" class="single-post-tag">#tools</a>
         
       </div>
     
@@ -347,23 +349,53 @@
 
   
     <div class="single-post-hero-image">
-      <img src="/images/posts/sign-posting-change.png" alt="">
+      <iframe
+        id="post-animation"
+        data-src="/animations/grep-terminal.html"
+        style="width:100%; aspect-ratio:680/420; border:none; display:block; background:var(--color-surface);"
+        scrolling="no"
+        title="Animation for The terminal was training me all along"
+      ></iframe>
     </div>
+    <script>
+      (function() {
+        var iframe = document.getElementById('post-animation');
+        if (!iframe) return;
+        var base = iframe.getAttribute('data-src');
+
+        function setTheme() {
+          var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+          iframe.src = base + '?theme=' + theme;
+        }
+
+        
+        setTheme();
+
+        
+        var observer = new MutationObserver(setTheme);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      })();
+    </script>
   
 
   <div class="single-post-content prose">
-    <p>Your school offers a Gardening after school activity. You have four plots.</p>
-<p>In order to track what vegetables are to be grown when, you would like a simple visualization tool to produce a chart to blow up and put on the classroom wall.</p>
-<p>In reality, vegetables don&rsquo;t grow for just a few days as indicated above, but this is the sort of chart you want, right? It&rsquo;s a just a pretty timeline.</p>
-<p>Now, imagine a more complex project at your school, for example reviewing policies. Just like the gardening chart above, there will be tasks that have a definitive start and end date. Some tasks, however, will be interrelated; for example the task to re-write an Academic Integrity Policy might depend on a revision of another key policy like the Mission Statement.</p>
-<p>We might wish this could be visualized with a simple timeline chart, but in reality what is needed is a way to navigate something much more complex. So you can&rsquo;t really use a timeline. You could use a Gantt chart instead!</p>
-<p>Are you horrified at the idea of using such a chart in a school to track a project&rsquo;s progress? Yeah, me too. Let&rsquo;s use something simpler.</p>
-<h2 id="done-now-next-later">&ldquo;Done, Now, Next, Later&rdquo;</h2>
-<p>Instead of tracking progress objectively with dates, projects can be tracked in relative terms. When the school mission has been finalized, it can be put into the &ldquo;Done&rdquo; pile. Then, the next project that was waiting for it, becomes put into the &ldquo;Now&rdquo; pile.</p>
-<p>Then after completed with the Academic Integrity, we&rsquo;ll start on Code of Conduct, and then sometime after that, Attendance Policies. The tasks would shift around in the columns as they progress.</p>
-<p>Where I think this is useful in terms of change management, isn&rsquo;t in understanding the timeline though, but in understanding to what extent changes can be made. From the above, since &ldquo;Attendance Policies&rdquo; is in the Later column, other staff members will know immediately that if they have some ideas for consideration, then it&rsquo;s a good time to make a note to yourself and give the suggestion when it&rsquo;s in the Next column. Meanwhile, it&rsquo;s the perfect time to given suggestions for the Code of Conduct, but it&rsquo;s too late to be giving suggestions for the Academic Integrity policy, as group has already started on the work.</p>
-<p>If something needs to be changed for the Mission Statement, it&rsquo;ll have to be rescheduled to the next time that topic is tackled.</p>
-<p>Instead of tracking progress, it&rsquo;s really just tracking change itself.</p>
+    <p>There&rsquo;s a black screen. A blinking cursor. Nothing is happening, and nothing will happen … not until you convert thoughts to keystrokes.  All of those taps are minor translation projects from cognition to binary.</p>
+<p>Thus was my initial experience with coding — and now with <em>skills</em> and <em>agents</em> and <em>commands</em> defining the substrates for agentic workflows, I&rsquo;m doing more typing than ever. My first computer science projects were headphones <em>on</em>, terminal <em>up</em>. But in this newly-inspiring LLM landscape that sits before us, the terminal has become even <em>more</em> engrained to me now than then. I have more console tabs open than I do browser tabs. I&rsquo;m seeing more terminals open in coffee shops.</p>
+<p>Crystalizing this for me is that <code>grep</code> has now slipped into my active vernacular as a verb only recently, even though it&rsquo;s been part of my nerdy milieu for as far back as I can remember. When I initiate a new session with an LLM, one of the frames I use in my own mental model is &ldquo;What does it need to <em>grep</em> in order to build the context it needs?&rdquo;</p>
+<p>The origin of <code>grep</code> is a Unix command from 1974, a sequence of four letters that unlocked the most powerful aspects of compute. You give it a pattern, a regular expression and the global context to search; it returns the matches. Find the signal, discard the noise. To my mind <code>grep</code> was the inverse of <span class="tooltip-word" tabindex="0">grok<span class="tooltip-bubble" role="tooltip">&#34;Understand empathically&#34; — an arbitrary formation by Robert A. Heinlein in Stranger in a Strange Land (1961). Said to mean etymologically &#34;to drink.&#34; Attained popular use in 1960s–70s counterculture.<span class="tooltip-attribution">— <a href="https://www.etymonline.com/word/grok" target="_blank" rel="noopener">etymonline.com</a></span></span></span>
+ — an invented term from the same era. Rather than seeking outward to pinpoint something — grepping — if one &ldquo;grokked&rdquo; something it meant to understand it from the inside out, as if consumed by it.</p>
+<p>The terminal used to demand exactly this fluency — pattern, precision, intent. You even picked the tool. The machine supplied the haystack.</p>
+<p>Yet now, the binary can talk back, and it seems like cognition.</p>
+<h2 id="its-still-just-software">It&rsquo;s still just software</h2>
+<p>It&rsquo;s not just a black screen anymore — we&rsquo;ve gone from an environment of deficit to a marketplace of surplus. The harnesses that have been built around LLMs no longer crash on vague instructions; it evaluates whether to ask the user, or whether it can take liberties. It&rsquo;ll produce something — perhaps adjacent to the desired result, or maybe a miss entirely.  In either case, the tooling allows for the course correction to be supervised.</p>
+<p>Take a typical ongoing project, such as &ldquo;improve parent communication&rdquo; when we haven&rsquo;t yet decided what that means, let alone how to measure it. We are naturally imprecise about what we want, and we still need ways to tease details out. Tools like Claude Code and Antigravity provide us the means to do so.</p>
+<p>Schools have long had frameworks for exactly this process as well: SMART goals. Specific, Measurable, Achievable, Relevant, Time-bound. They went viral in presentations and in practices because it forced the translation of intention into something formed enough to act upon.</p>
+<p>The terminal used to enforce a similar mechanical precision — you either grokked its language or got nothing back. Now we have software that can detect ambiguity and make a prediction based on the bits and bytes of the given context. Instead of error messages, we get artifacts to modulate — blurring the line between author and editor.</p>
+<h2 id="what-does-this-mean-for-schools">What does this mean for schools?</h2>
+<p>While barriers have been lifted, what remains however is the underlying requirement to frame the problem and identify outcomes.</p>
+<p>Extracting maximum value from AI tools doesn&rsquo;t require a computer science background — but it does require the kind of discipline that SMART goals were always asking for. The staff who will thrive aren&rsquo;t necessarily the ones who know the tools. They&rsquo;re the ones who know what they&rsquo;re trying to do.</p>
+<p>The word <em>grepping</em> didn&rsquo;t leak into this one person&rsquo;s vernacular through computer science classes. It&rsquo;s arrived there now because the concept underneath it — find the relevant thing, bring it in, act on it — turned out to be universal. It was always going to be needed. It just waited, like the cursor, for something powerful enough to put it to use.</p>
+<p>The cursor seems to be blinking back at us — but we can still remain in control.</p>
 
   </div>
 

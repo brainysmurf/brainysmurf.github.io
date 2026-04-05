@@ -34,6 +34,11 @@
   /* Accent subtle — backgrounds, tags */
   --color-accent-subtle: rgba(232, 200, 96, 0.12);
 
+  /* Nav background — semi-transparent dark for dark mode */
+  --color-nav-bg: rgba(10, 10, 15, 0.85);
+  /* Nav mobile background — opaque, no blur */
+  --color-nav-bg-solid: rgb(10, 10, 15);
+
   /* Success — confirmations */
   --color-success: #1E3A5F;
 
@@ -51,7 +56,7 @@
   /* Type scale — modular, rem-based */
   --font-size-xs: 0.75rem;    /* 12px */
   --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
+  --font-size-base: 1.0625rem; /* 17px */
   --font-size-lg: 1.125rem;   /* 18px */
   --font-size-xl: 1.25rem;    /* 20px */
   --font-size-2xl: 1.5rem;    /* 24px */
@@ -113,15 +118,20 @@
 [data-theme="light"] {
   --color-bg: #f4f4f8;
   --color-surface: #ffffff;
-  --color-border: #d4d4de;
+  --color-border: #c49200;
   --color-text-primary: #1a1a2e;
-  --color-text-secondary: #4a4a5a;
+  --color-text-secondary: #111;
   --color-text-muted: #8a8a96;
   --color-accent: #1E3A5F;
   --color-accent-hover: #2a4f7a;
   --color-accent-subtle: rgba(30, 58, 95, 0.08);
   --color-success: #1E3A5F;
   --color-warning: #c49200;
+
+  /* Nav background — pale gold tint matching animation gold (#c8a84b) at low opacity */
+  --color-nav-bg: rgba(200, 168, 75, 0.9);
+  /* Nav mobile background — opaque gold tint */
+  --color-nav-bg-solid: rgb(245, 240, 220);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 4px rgba(30, 58, 95, 0.03);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 8px rgba(30, 58, 95, 0.04);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12), 0 0 16px rgba(30, 58, 95, 0.05);

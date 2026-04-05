@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" data-theme="dark">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Claude-Code — Adam Morris</title>
@@ -10,7 +10,7 @@
   <meta property="og:title" content="Claude-Code">
   <meta property="og:description" content="Teacher-turned-product-leader. Still writing code. Still in EDU.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:1313/tags/claude-code/">
+  <meta property="og:url" content="http://localhost:1314/tags/claude-code/">
   
 
   
@@ -44,12 +44,6 @@
       <span class="nav-prompt">&gt;_</span> Adam Morris
     </a>
 
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-    </button>
-
     <div class="nav-links" id="nav-links">
       
         <a href="/posts/" class="nav-link">Posts</a>
@@ -63,6 +57,25 @@
         <span class="theme-toggle-icon" aria-hidden="true"></span>
       </button>
     </div>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile" id="nav-mobile">
+    
+      <a href="/posts/" class="nav-mobile-link">Posts</a>
+    
+      <a href="/about/" class="nav-mobile-link">About</a>
+    
+      <a href="/newsletter/" class="nav-mobile-link">Newsletter</a>
+    
+    <button class="theme-toggle theme-toggle--mobile" id="theme-toggle-mobile" aria-label="Toggle dark/light mode" title="Toggle theme">
+      <span class="theme-toggle-icon" aria-hidden="true"></span>
+    </button>
   </div>
 </nav>
 
@@ -73,7 +86,7 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(10, 10, 15, 0.85);
+    background: var(--color-nav-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
@@ -82,7 +95,7 @@
   }
 
   [data-theme="light"] .site-nav {
-    background: rgba(245, 245, 240, 0.85);
+    background: var(--color-nav-bg);
   }
 
   .site-nav.scrolled {
@@ -211,32 +224,58 @@
   }
 
    
+  .nav-mobile {
+    display: none;
+  }
+
+   
   @media (max-width: 768px) {
     .nav-toggle {
       display: flex;
     }
 
     .nav-links {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--color-bg);
+      display: none;
+    }
+
+    .nav-mobile {
+      display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: var(--space-8);
-      transform: translateX(100%);
-      transition: transform var(--transition-base);
-      z-index: 999;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-base);
+      border-top: 1px solid transparent;
+      padding: 0;
+      background: var(--color-nav-bg-solid);
     }
 
-    .nav-links.open {
-      transform: translateX(0);
+    [data-theme="light"] .nav-mobile {
+      background: var(--color-nav-bg-solid);
     }
 
-    .nav-link {
-      font-size: var(--font-size-2xl);
+    .nav-mobile.open {
+      max-height: 80vh;
+      border-top-color: var(--color-border);
+      padding: var(--space-6) 0;
+    }
+
+    .nav-mobile-link {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xl);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+      padding: var(--space-4) var(--space-6);
+      width: 100%;
+      text-align: center;
+    }
+
+    .nav-mobile-link:hover,
+    .nav-mobile-link[aria-current="page"] {
+      color: var(--color-accent);
     }
   }
 </style>
@@ -245,25 +284,27 @@
   (function() {
      
     var toggle = document.getElementById('nav-toggle');
-    var links = document.getElementById('nav-links');
-    if (toggle && links) {
+    var mobile = document.getElementById('nav-mobile');
+    if (toggle && mobile) {
       toggle.addEventListener('click', function() {
-        var isOpen = links.classList.toggle('open');
+        var isOpen = mobile.classList.toggle('open');
         toggle.classList.toggle('active');
         toggle.setAttribute('aria-expanded', isOpen);
       });
     }
 
      
-    var themeBtn = document.getElementById('theme-toggle');
-    if (themeBtn) {
-      themeBtn.addEventListener('click', function() {
+    function applyThemeToggle(btn) {
+      if (!btn) return;
+      btn.addEventListener('click', function() {
         var html = document.documentElement;
         var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         html.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
       });
     }
+    applyThemeToggle(document.getElementById('theme-toggle'));
+    applyThemeToggle(document.getElementById('theme-toggle-mobile'));
 
      
     var nav = document.getElementById('site-nav');
@@ -318,7 +359,7 @@
 <section class="post-list">
   <div class="post-grid">
     
-      <a href="http://localhost:1313/posts/the-terminal-was-training-you/" class="post-card">
+      <a href="http://localhost:1314/posts/the-terminal-was-training-me/" class="post-card">
         
           <div class="post-card__image">
             <img src="/images/posts/grep-terminal.png" alt="" loading="lazy">
@@ -334,7 +375,7 @@
             
           </div>
 
-          <h3 class="post-card-title">The terminal was training you all along</h3>
+          <h3 class="post-card-title">The terminal was training me all along</h3>
 
           
             <p class="post-card-desc">A homage to the terminal, and what its core discipline — form a complete intention before you act — means for school leaders navigating AI tools.</p>
@@ -356,7 +397,7 @@
         </div>
       </a>
     
-      <a href="http://localhost:1313/posts/from-dragon-slayer-skeptic-to-ai-convert/" class="post-card">
+      <a href="http://localhost:1314/posts/from-dragon-slayer-skeptic-to-ai-convert/" class="post-card">
         
           <div class="post-card__image">
             <img src="/images/posts/dragon-slayer-to-convert.png" alt="" loading="lazy">
@@ -392,7 +433,7 @@
         </div>
       </a>
     
-      <a href="http://localhost:1313/posts/sign-posting-change-done-now-next-later/" class="post-card">
+      <a href="http://localhost:1314/posts/sign-posting-change-done-now-next-later/" class="post-card">
         
           <div class="post-card__image">
             <img src="/images/posts/sign-posting-change.png" alt="" loading="lazy">
@@ -428,7 +469,7 @@
         </div>
       </a>
     
-      <a href="http://localhost:1313/posts/calling-it-now-agi-is-a-dragon/" class="post-card">
+      <a href="http://localhost:1314/posts/calling-it-now-agi-is-a-dragon/" class="post-card">
         
           <div class="post-card__image">
             <img src="/images/posts/agi-is-a-dragon.png" alt="" loading="lazy">
@@ -464,7 +505,7 @@
         </div>
       </a>
     
-      <a href="http://localhost:1313/posts/openai-speculation-why-sam-altman-got-fired/" class="post-card">
+      <a href="http://localhost:1314/posts/openai-speculation-why-sam-altman-got-fired/" class="post-card">
         
           <div class="post-card__image">
             <img src="/images/posts/sam-altman-fired.png" alt="" loading="lazy">
@@ -500,7 +541,7 @@
         </div>
       </a>
     
-      <a href="http://localhost:1313/posts/mental-model-for-genai-shallow-end-of-the-pool/" class="post-card">
+      <a href="http://localhost:1314/posts/mental-model-for-genai-shallow-end-of-the-pool/" class="post-card">
         
           <div class="post-card__image">
             <img src="/images/posts/shallow-end-pool.png" alt="" loading="lazy">
@@ -536,7 +577,7 @@
         </div>
       </a>
     
-      <a href="http://localhost:1313/posts/genai-dud-application-detection/" class="post-card">
+      <a href="http://localhost:1314/posts/genai-dud-application-detection/" class="post-card">
         
           <div class="post-card__image">
             <img src="/images/posts/dud-detection.png" alt="" loading="lazy">
