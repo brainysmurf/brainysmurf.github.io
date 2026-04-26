@@ -195,6 +195,11 @@ th {
   color: var(--color-bg);
 }
 
+[data-theme="light"] ::selection {
+  background: #1E3A5F;
+  color: #f4f4f8;
+}
+
 /* ---- SCROLLBAR (Webkit) ---- */
 
 ::-webkit-scrollbar {
