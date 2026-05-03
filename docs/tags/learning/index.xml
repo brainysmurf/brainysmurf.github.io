@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Learning on Adam Morris</title>
-    <link>https://mistermorris.com/tags/learning/</link>
+    <link>http://localhost:1313/tags/learning/</link>
     <description>Recent content in Learning on Adam Morris</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 26 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://mistermorris.com/tags/learning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Learning is Polishing until Done</title>
-      <link>https://mistermorris.com/posts/then-now-always/</link>
+      <link>http://localhost:1313/posts/then-now-always/</link>
       <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://mistermorris.com/posts/then-now-always/</guid>
+      <guid>http://localhost:1313/posts/then-now-always/</guid>
       <description>&lt;h2 id=&#34;then&#34;&gt;Then&lt;/h2&gt;&#xA;&lt;p&gt;I used to haunt my middle school early just to get face time with a Macintosh Plus before homeroom. I can still picture the seat in the lab that was mine and the thunk of the floppy disk that started every session. I recall being transfixed that keying letters and mousing clicks could replace pen and paper. I can hear the voice of my teacher surfacing desktop publishing concepts as I discover them. The world of typography, layouts, and structures were laid bare to me on screen, motivating me to do it all again the next day.&lt;/p&gt;</description>
     </item>
   </channel>

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { display:flex; align-items:center; justify-content:center; height:100%; overflow:hidden; }
+canvas { display:block; width:100%; border-radius:8px; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+(function(){
+  var theme = new URLSearchParams(window.location.search).get('theme') || 'dark';
+  var isLight = theme === 'light';
+  document.body.style.background = isLight ? '#f0f0f4' : '#264a73';
+
+  var C = document.getElementById('c'), ctx = C.getContext('2d');
+  C.width = 680; C.height = 380;
+  var W = C.width, H = C.height;
+
+  var LOOP  = 20.0;   // 20 second loop
+  var MID   = W / 2;
+  var GAP   = 28;
+
+  var SHAPE_H   = 210;
+  var SHAPE_TOP = (H - SHAPE_H) / 2;
+
+  // ── helpers ──────────────────────────────────────────────────────────────────
+  function clamp(v,a,b){ return v<a?a:v>b?b:v; }
+  function eio(x){ return x<0.5?2*x*x:1-Math.pow(-2*x+2,2)/2; }
+  function eio3(x){ return x<0.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2; }
+  function sat(x){ return clamp(x,0,1); }
+  function osc(t,p,ph){ return Math.sin((t/p)*Math.PI*2+ph); }
+
+  function roundRect(c,x,y,w,h,r){
+    c.beginPath();
+    c.moveTo(x+r,y); c.lineTo(x+w-r,y); c.arcTo(x+w,y,x+w,y+r,r);
+    c.lineTo(x+w,y+h-r); c.arcTo(x+w,y+h,x+w-r,y+h,r);
+    c.lineTo(x+r,y+h); c.arcTo(x,y+h,x,y+h-r,r);
+    c.lineTo(x,y+r); c.arcTo(x,y,x+r,y,r);
+    c.closePath();
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PCB BOARD
+  // ═══════════════════════════════════════════════════════════════════════════
+  var BRD_W = 190, BRD_H = SHAPE_H;
+
+  var TRACES = [
+    {th:0.05, pts:[[0.0,0.30],[1.0,0.30]]},
+    {th:0.05, pts:[[0.0,0.50],[1.0,0.50]]},
+    {th:0.05, pts:[[0.0,0.70],[1.0,0.70]]},
+    {th:0.05, pts:[[0.25,0.0],[0.25,1.0]]},
+    {th:0.05, pts:[[0.50,0.0],[0.50,1.0]]},
+    {th:0.05, pts:[[0.75,0.0],[0.75,1.0]]},
+    {th:0.15, pts:[[0.25,0.30],[0.38,0.43],[0.38,0.57],[0.25,0.70]]},
+    {th:0.15, pts:[[0.75,0.30],[0.62,0.43],[0.62,0.57],[0.75,0.70]]},
+    {th:0.15, pts:[[0.25,0.30],[0.38,0.17],[0.50,0.17]]},
+    {th:0.15, pts:[[0.75,0.30],[0.62,0.17],[0.50,0.17]]},
+    {th:0.15, pts:[[0.25,0.70],[0.38,0.83],[0.50,0.83]]},
+    {th:0.15, pts:[[0.75,0.70],[0.62,0.83],[0.50,0.83]]},
+    {th:0.25, pts:[[0.10,0.30],[0.10,0.15]]},
+    {th:0.25, pts:[[0.10,0.70],[0.10,0.85]]},
+    {th:0.25, pts:[[0.90,0.30],[0.90,0.15]]},
+    {th:0.25, pts:[[0.90,0.70],[0.90,0.85]]},
+    {th:0.25, pts:[[0.50,0.17],[0.50,0.05]]},
+    {th:0.25, pts:[[0.50,0.83],[0.50,0.95]]},
+    {th:0.30, pts:[[0.10,0.50],[0.0,0.50]]},
+    {th:0.30, pts:[[0.90,0.50],[1.0,0.50]]},
+    {th:0.40, thin:true, pts:[[0.25,0.50],[0.15,0.50],[0.15,0.30]]},
+    {th:0.40, thin:true, pts:[[0.75,0.50],[0.85,0.50],[0.85,0.30]]},
+    {th:0.40, thin:true, pts:[[0.25,0.50],[0.15,0.60],[0.15,0.70]]},
+    {th:0.40, thin:true, pts:[[0.75,0.50],[0.85,0.60],[0.85,0.70]]},
+    {th:0.45, thin:true, pts:[[0.50,0.30],[0.42,0.30],[0.42,0.17]]},
+    {th:0.45, thin:true, pts:[[0.50,0.70],[0.58,0.70],[0.58,0.83]]},
+    {th:0.50, thin:true, pts:[[0.10,0.15],[0.18,0.15],[0.25,0.22]]},
+    {th:0.50, thin:true, pts:[[0.90,0.15],[0.82,0.15],[0.75,0.22]]},
+    {th:0.50, thin:true, pts:[[0.10,0.85],[0.18,0.85],[0.25,0.78]]},
+    {th:0.50, thin:true, pts:[[0.90,0.85],[0.82,0.85],[0.75,0.78]]},
+  ];
+
+  var COMPONENTS = [
+    {type:'ic',      th:0.60, fx:0.50,fy:0.50, fw:0.28,fh:0.28},
+    {type:'inductor',th:0.70, fx:0.10,fy:0.18, fw:0.13,fh:0.13},
+    {type:'inductor',th:0.70, fx:0.90,fy:0.18, fw:0.13,fh:0.13},
+    {type:'inductor',th:0.72, fx:0.10,fy:0.82, fw:0.13,fh:0.13},
+    {type:'inductor',th:0.72, fx:0.90,fy:0.82, fw:0.13,fh:0.13},
+    {type:'inductor',th:0.75, fx:0.50,fy:0.10, fw:0.09,fh:0.09},
+    {type:'inductor',th:0.75, fx:0.50,fy:0.90, fw:0.09,fh:0.09},
+    {type:'smd',     th:0.80, fx:0.17,fy:0.30, fw:0.05,fh:0.025},
+    {type:'smd',     th:0.80, fx:0.83,fy:0.30, fw:0.05,fh:0.025},
+    {type:'smd',     th:0.80, fx:0.17,fy:0.70, fw:0.05,fh:0.025},
+    {type:'smd',     th:0.80, fx:0.83,fy:0.70, fw:0.05,fh:0.025},
+    {type:'smd',     th:0.82, fx:0.35,fy:0.15, fw:0.025,fh:0.04},
+    {type:'smd',     th:0.82, fx:0.65,fy:0.15, fw:0.025,fh:0.04},
+    {type:'smd',     th:0.82, fx:0.35,fy:0.85, fw:0.025,fh:0.04},
+    {type:'smd',     th:0.82, fx:0.65,fy:0.85, fw:0.025,fh:0.04},
+    {type:'smd',     th:0.84, fx:0.12,fy:0.50, fw:0.04,fh:0.022},
+    {type:'smd',     th:0.84, fx:0.88,fy:0.50, fw:0.04,fh:0.022},
+    {type:'smd',     th:0.85, fx:0.22,fy:0.42, fw:0.022,fh:0.04},
+    {type:'smd',     th:0.85, fx:0.78,fy:0.58, fw:0.022,fh:0.04},
+  ];
+
+  // ── PCB "live" effect — signal pulses, IC glow, trace brightening ────────────
+  // liveP: 0→1 how strongly the board is "powered on"
+  // t: absolute time for animation
+  function drawPCBLive(ox, oy, liveP, t){
+    if(liveP <= 0) return;
+    ctx.save();
+    ctx.globalAlpha = liveP;
+
+    var bx = ox + BRD_W/2, by = oy + BRD_H/2; // board centre (IC centre)
+
+    // ── Ambient board brightening — warm teal wash over substrate ──
+    var wash = ctx.createRadialGradient(bx,by,0,bx,by,BRD_W*0.7);
+    wash.addColorStop(0, isLight?'rgba(160,240,230,0.22)':'rgba(80,255,220,0.18)');
+    wash.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = wash;
+    ctx.fillRect(ox, oy, BRD_W, BRD_H);
+
+    // ── IC chip glow — pulsing amber-to-cyan halo ──
+    var IC = COMPONENTS[0]; // first component is the IC
+    var icX = ox + IC.fx*BRD_W, icY = oy + IC.fy*BRD_H;
+    var icW = IC.fw*BRD_W,      icH = IC.fh*BRD_H;
+    // Slow pulse: 2.2s cycle
+    var pulse = 0.55 + 0.45*Math.sin((t/2.2)*Math.PI*2);
+    var haloR = Math.max(icW,icH)*0.78 + pulse*8;
+    var halo = ctx.createRadialGradient(icX,icY,icW*0.2,icX,icY,haloR);
+    halo.addColorStop(0, isLight?'rgba(255,210,80,'+(0.35*pulse)+')':'rgba(255,220,90,'+(0.40*pulse)+')');
+    halo.addColorStop(0.5,isLight?'rgba(80,220,210,'+(0.20*pulse)+')':'rgba(60,230,200,'+(0.25*pulse)+')');
+    halo.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = halo;
+    ctx.beginPath(); ctx.arc(icX, icY, haloR, 0, Math.PI*2); ctx.fill();
+
+    // Bright inner glow on IC surface
+    ctx.shadowColor = isLight?'rgba(255,210,80,0.5)':'rgba(255,220,90,0.55)';
+    ctx.shadowBlur  = 14 + pulse*8;
+    roundRect(ctx, icX-icW/2+2, icY-icH/2+2, icW-4, icH-4, 2);
+    ctx.strokeStyle = isLight?'rgba(255,210,80,'+(0.5*pulse)+')':'rgba(255,225,100,'+(0.6*pulse)+')';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // ── Signal pulses travelling along main traces ──
+    // Each pulse: a bright dot travelling from one end to the other
+    var PULSE_TRACES = [0,1,2,3,4,5]; // indices into TRACES (the main bus lines)
+    PULSE_TRACES.forEach(function(ti, idx){
+      var tr = TRACES[ti];
+      // Stagger pulse timing per trace
+      var speed  = 0.6 + idx*0.11;   // different speeds
+      var offset = idx * 0.17;        // phase offset
+      var ppos   = ((t*speed + offset) % 1.0); // 0→1 along trace
+
+      // Interpolate position along polyline
+      var pts = tr.pts;
+      var totalLen = 0;
+      var segs = [];
+      for(var i=1;i<pts.length;i++){
+        var dx2=pts[i][0]-pts[i-1][0], dy2=pts[i][1]-pts[i-1][1];
+        var l=Math.sqrt(dx2*dx2+dy2*dy2);
+        segs.push({len:l, dx:dx2/l, dy:dy2/l, x0:pts[i-1][0], y0:pts[i-1][1]});
+        totalLen+=l;
+      }
+      var target = ppos*totalLen;
+      var accum=0, px2=pts[0][0], py2=pts[0][1];
+      for(var si=0;si<segs.length;si++){
+        if(accum+segs[si].len>=target){
+          var r2=(target-accum)/segs[si].len;
+          px2=segs[si].x0+segs[si].dx*r2; py2=segs[si].y0+segs[si].dy*r2;
+          break;
+        }
+        accum+=segs[si].len;
+      }
+
+      var px3 = ox+px2*BRD_W, py3 = oy+py2*BRD_H;
+      ctx.shadowColor = isLight?'rgba(120,240,220,0.8)':'rgba(80,255,230,0.85)';
+      ctx.shadowBlur  = 8;
+      ctx.fillStyle   = isLight?'rgba(180,255,240,0.95)':'rgba(140,255,235,0.95)';
+      ctx.beginPath(); ctx.arc(px3, py3, 2.5, 0, Math.PI*2); ctx.fill();
+      ctx.shadowBlur  = 0;
+    });
+
+    // ── Indicator LEDs on the corner inductors — small coloured dots ──
+    var LED_COMPS = [1,2,3,4]; // four corner inductors
+    LED_COMPS.forEach(function(ci2, idx){
+      var comp = COMPONENTS[ci2];
+      var cx2 = ox+comp.fx*BRD_W, cy2 = oy+comp.fy*BRD_H;
+      // Blink at slightly different rates
+      var blink = 0.5 + 0.5*Math.sin((t*(1.1+idx*0.23))*Math.PI*2);
+      var ledCols = ['rgba(80,220,100,','rgba(80,180,255,','rgba(255,160,60,','rgba(200,80,255,'];
+      ctx.shadowColor = ledCols[idx]+'0.7)';
+      ctx.shadowBlur  = 6+blink*6;
+      ctx.fillStyle   = ledCols[idx]+(0.6+blink*0.4)+')';
+      ctx.beginPath(); ctx.arc(cx2, cy2-comp.fh*BRD_H*0.28, 2.2, 0, Math.PI*2); ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    ctx.restore();
+  }
+
+  function drawPCB(ox, oy, buildP, liveP, t){
+    ctx.save();
+    var grad = ctx.createLinearGradient(ox,oy,ox+BRD_W,oy+BRD_H);
+    if(isLight){
+      grad.addColorStop(0,'#c2dede'); grad.addColorStop(0.5,'#aecece'); grad.addColorStop(1,'#b8d8d8');
+    } else {
+      grad.addColorStop(0,'#0d2828'); grad.addColorStop(0.5,'#0a2020'); grad.addColorStop(1,'#0e2a2a');
+    }
+    ctx.fillStyle=grad; ctx.fillRect(ox,oy,BRD_W,BRD_H);
+    ctx.strokeStyle=isLight?'rgba(120,180,180,0.7)':'rgba(60,140,130,0.6)';
+    ctx.lineWidth=1.5; ctx.strokeRect(ox+0.75,oy+0.75,BRD_W-1.5,BRD_H-1.5);
+
+    if(buildP>0.02){
+      var dotA=Math.min(1,buildP/0.08)*0.18;
+      ctx.fillStyle=isLight?'rgba(100,160,160,'+dotA+')':'rgba(60,130,120,'+dotA+')';
+      for(var gx=0.1;gx<1.0;gx+=0.1) for(var gy=0.1;gy<1.0;gy+=0.1){
+        ctx.beginPath(); ctx.arc(ox+gx*BRD_W,oy+gy*BRD_H,1,0,Math.PI*2); ctx.fill();
+      }
+    }
+
+    TRACES.forEach(function(tr){
+      if(buildP<tr.th-0.08) return;
+      var trA=sat((buildP-tr.th+0.08)/0.12);
+      ctx.strokeStyle=tr.thin
+        ?(isLight?'rgba(160,210,210,'+trA*0.7+')':'rgba(100,200,190,'+trA*0.65+')')
+        :(isLight?'rgba(180,230,225,'+trA*0.85+')':'rgba(140,225,215,'+trA*0.80+')');
+      ctx.lineWidth=tr.thin?0.8:1.5;
+      if(trA<0.6&&trA>0.05){ ctx.shadowColor=isLight?'rgba(160,240,230,0.5)':'rgba(100,255,235,0.55)'; ctx.shadowBlur=6; }
+      ctx.beginPath();
+      ctx.moveTo(ox+tr.pts[0][0]*BRD_W,oy+tr.pts[0][1]*BRD_H);
+      for(var i=1;i<tr.pts.length;i++) ctx.lineTo(ox+tr.pts[i][0]*BRD_W,oy+tr.pts[i][1]*BRD_H);
+      ctx.stroke(); ctx.shadowBlur=0;
+      [tr.pts[0],tr.pts[tr.pts.length-1]].forEach(function(pt){
+        ctx.fillStyle=tr.thin
+          ?(isLight?'rgba(150,210,205,'+trA*0.6+')':'rgba(90,190,180,'+trA*0.55+')')
+          :(isLight?'rgba(190,235,230,'+trA*0.85+')':'rgba(150,230,220,'+trA*0.80+')');
+        ctx.beginPath(); ctx.arc(ox+pt[0]*BRD_W,oy+pt[1]*BRD_H,tr.thin?1.2:2.2,0,Math.PI*2); ctx.fill();
+      });
+    });
+
+    COMPONENTS.forEach(function(comp){
+      if(buildP<comp.th-0.06) return;
+      var cA=sat((buildP-comp.th+0.06)/0.10); if(cA<=0) return;
+      var cx=ox+comp.fx*BRD_W, cy=oy+comp.fy*BRD_H, cw=comp.fw*BRD_W, ch=comp.fh*BRD_H;
+      ctx.save(); ctx.globalAlpha=cA;
+      if(comp.type==='ic'){
+        var shadow=ctx.createLinearGradient(cx-cw/2,cy-ch/2,cx+cw/2,cy+ch/2);
+        shadow.addColorStop(0,'#2a2a2a'); shadow.addColorStop(1,'#111');
+        ctx.shadowColor='rgba(0,0,0,0.7)'; ctx.shadowBlur=10; ctx.shadowOffsetY=3;
+        ctx.fillStyle=shadow; roundRect(ctx,cx-cw/2,cy-ch/2,cw,ch,3); ctx.fill();
+        ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+        ctx.strokeStyle='rgba(80,80,80,0.6)'; ctx.lineWidth=1;
+        roundRect(ctx,cx-cw/2+1,cy-ch/2+1,cw-2,ch-2,2); ctx.stroke();
+        var PIN_COUNT=10,PIN_W=2.5,PIN_H=4,PIN_GAP;
+        PIN_GAP=(cw-PIN_COUNT*PIN_W)/(PIN_COUNT+1);
+        ctx.fillStyle=isLight?'rgba(200,175,80,0.9)':'rgba(210,185,85,0.88)';
+        for(var pi=0;pi<PIN_COUNT;pi++){
+          var px=cx-cw/2+PIN_GAP*(pi+1)+PIN_W*pi;
+          ctx.fillRect(px,cy-ch/2-PIN_H,PIN_W,PIN_H);
+          ctx.fillRect(px,cy+ch/2,PIN_W,PIN_H);
+        }
+        PIN_GAP=(ch-PIN_COUNT*PIN_H)/(PIN_COUNT+1);
+        for(var pi=0;pi<PIN_COUNT;pi++){
+          var py=cy-ch/2+PIN_GAP*(pi+1)+PIN_H*pi;
+          ctx.fillRect(cx-cw/2-PIN_H,py,PIN_H,PIN_W);
+          ctx.fillRect(cx+cw/2,py,PIN_H,PIN_W);
+        }
+        ctx.strokeStyle='rgba(200,200,200,0.18)'; ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(cx-cw/5,cy-4); ctx.lineTo(cx+cw/5,cy-4); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(cx-cw/6,cy+2); ctx.lineTo(cx+cw/6,cy+2); ctx.stroke();
+        ctx.fillStyle='rgba(220,220,220,0.25)';
+        ctx.beginPath(); ctx.arc(cx-cw/2+5,cy-ch/2+5,2,0,Math.PI*2); ctx.fill();
+      } else if(comp.type==='inductor'){
+        var r=Math.min(cw,ch)*0.28;
+        ctx.shadowColor='rgba(0,0,0,0.6)'; ctx.shadowBlur=8; ctx.shadowOffsetY=2;
+        var ig=ctx.createLinearGradient(cx-cw/2,cy-ch/2,cx-cw/2,cy+ch/2);
+        ig.addColorStop(0,'#3a3a3a'); ig.addColorStop(0.3,'#242424'); ig.addColorStop(1,'#161616');
+        ctx.fillStyle=ig; roundRect(ctx,cx-cw/2,cy-ch/2,cw,ch,r); ctx.fill();
+        ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+        ctx.strokeStyle='rgba(90,90,90,0.55)'; ctx.lineWidth=1;
+        roundRect(ctx,cx-cw/2+0.5,cy-ch/2+0.5,cw-1,ch-1,r); ctx.stroke();
+        ctx.strokeStyle='rgba(50,50,50,0.7)'; ctx.lineWidth=1.5;
+        ctx.beginPath(); ctx.arc(cx,cy,Math.min(cw,ch)*0.22,0,Math.PI*2); ctx.stroke();
+        ctx.fillStyle='rgba(190,175,80,0.75)';
+        ctx.fillRect(cx-cw/2-2,cy-2.5,3,5); ctx.fillRect(cx+cw/2-1,cy-2.5,3,5);
+      } else if(comp.type==='smd'){
+        ctx.shadowColor='rgba(0,0,0,0.4)'; ctx.shadowBlur=3; ctx.shadowOffsetY=1;
+        ctx.fillStyle=isLight?'#d4c890':'#c8bc78';
+        roundRect(ctx,cx-cw/2,cy-ch/2,cw,ch,1); ctx.fill();
+        ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+        ctx.fillStyle=isLight?'rgba(180,190,195,0.95)':'rgba(160,175,180,0.90)';
+        var capW=cw*0.22;
+        if(cw>=ch){
+          ctx.fillRect(cx-cw/2,cy-ch/2,capW,ch); ctx.fillRect(cx+cw/2-capW,cy-ch/2,capW,ch);
+        } else {
+          ctx.fillRect(cx-cw/2,cy-ch/2,cw,capW); ctx.fillRect(cx-cw/2,cy+ch/2-capW,cw,capW);
+        }
+      }
+      ctx.restore();
+    });
+
+    // Draw live effects on top if powered
+    if(liveP > 0) drawPCBLive(ox, oy, liveP, t);
+
+    ctx.restore();
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MULTI-DOC REPO — same bounding box as PCB, grid of small documents
+  // 4 commits over 20s → one commit every 5s
+  // Each commit: lines flash red (del) or green (add) then fade back to neutral
+  // ═══════════════════════════════════════════════════════════════════════════
+  var REPO_W = BRD_W, REPO_H = BRD_H;
+
+  // Grid of documents: 3 columns × 2 rows = 6 docs
+  var DOCS_COLS = 3, DOCS_ROWS = 2;
+  var DOC_PAD   = 5;   // gap between docs
+  var DOC_W     = (REPO_W - DOC_PAD*(DOCS_COLS+1)) / DOCS_COLS;
+  var DOC_H     = (REPO_H - DOC_PAD*(DOCS_ROWS+1)) / DOCS_ROWS;
+
+  // Lines per document
+  var LINES_PER_DOC = 10;
+
+  // Seeded pseudo-random line widths — stable, not random each frame
+  function seededWidths(seed, n){
+    var out=[], x=seed;
+    for(var i=0;i<n;i++){
+      x=(x*1664525+1013904223)>>>0; out.push(0.35+(x%1000)/1000*0.55);
+    }
+    return out;
+  }
+
+  // Each doc gets a fixed set of line widths
+  var DOC_COUNT = DOCS_COLS * DOCS_ROWS;
+  var DOC_LINES = [];
+  for(var d=0;d<DOC_COUNT;d++) DOC_LINES.push(seededWidths(d*7919+13, LINES_PER_DOC));
+
+  // 6 commits — each targets a subset of docs and lines within them
+  var COMMITS = [
+    // commit 0
+    { changes:[
+      {d:0,l:2,type:'add'},{d:0,l:5,type:'add'},{d:0,l:8,type:'del'},
+      {d:1,l:1,type:'del'},{d:1,l:4,type:'add'},{d:1,l:7,type:'add'},
+    ]},
+    // commit 1
+    { changes:[
+      {d:2,l:0,type:'add'},{d:2,l:3,type:'add'},{d:2,l:6,type:'del'},{d:2,l:9,type:'add'},
+      {d:3,l:2,type:'del'},{d:3,l:5,type:'del'},{d:3,l:8,type:'add'},
+    ]},
+    // commit 2
+    { changes:[
+      {d:1,l:0,type:'del'},{d:1,l:3,type:'add'},{d:1,l:6,type:'add'},
+      {d:4,l:1,type:'add'},{d:4,l:4,type:'del'},{d:4,l:7,type:'add'},{d:4,l:9,type:'del'},
+      {d:5,l:2,type:'add'},{d:5,l:5,type:'add'},
+    ]},
+    // commit 3
+    { changes:[
+      {d:0,l:1,type:'del'},{d:0,l:6,type:'add'},
+      {d:2,l:2,type:'add'},{d:2,l:7,type:'del'},
+      {d:3,l:0,type:'add'},{d:3,l:4,type:'add'},{d:3,l:8,type:'del'},
+      {d:5,l:1,type:'del'},{d:5,l:6,type:'add'},{d:5,l:9,type:'add'},
+    ]},
+    // commit 4
+    { changes:[
+      {d:0,l:3,type:'add'},{d:0,l:7,type:'del'},{d:0,l:9,type:'add'},
+      {d:2,l:1,type:'add'},{d:2,l:5,type:'del'},
+      {d:4,l:0,type:'add'},{d:4,l:3,type:'del'},{d:4,l:6,type:'add'},
+      {d:5,l:4,type:'del'},{d:5,l:8,type:'add'},
+    ]},
+    // commit 5
+    { changes:[
+      {d:1,l:2,type:'del'},{d:1,l:5,type:'add'},{d:1,l:8,type:'add'},
+      {d:3,l:1,type:'add'},{d:3,l:3,type:'del'},{d:3,l:7,type:'add'},
+      {d:4,l:2,type:'del'},{d:4,l:5,type:'add'},{d:4,l:8,type:'del'},
+      {d:0,l:4,type:'add'},{d:0,l:0,type:'del'},
+    ]},
+  ];
+
+  // Commit timing: 6 commits evenly spaced over LOOP
+  var COMMIT_INTERVAL = LOOP / 6;  // 3.33s each
+  var FLASH_IN   = 0.4;
+  var FLASH_HOLD = 0.6;
+  var FLASH_OUT  = 0.8;
+  var FLASH_TOTAL = FLASH_IN + FLASH_HOLD + FLASH_OUT;
+
+  // Colour helpers
+  function ctxLineCol(alpha){
+    return isLight?'rgba(60,80,115,'+alpha+')':'rgba(155,185,220,'+alpha+')';
+  }
+  function addLineCol(intensity){
+    // intensity 0→1: neutral→green
+    if(isLight) return 'rgba(30,155,70,'+intensity+')';
+    return 'rgba(70,220,125,'+intensity+')';
+  }
+  function delLineCol(intensity){
+    if(isLight) return 'rgba(195,55,55,'+intensity+')';
+    return 'rgba(255,105,105,'+intensity+')';
+  }
+  function addBg(intensity){
+    if(isLight) return 'rgba(30,155,70,'+(intensity*0.09)+')';
+    return 'rgba(70,220,125,'+(intensity*0.09)+')';
+  }
+  function delBg(intensity){
+    if(isLight) return 'rgba(195,55,55,'+(intensity*0.08)+')';
+    return 'rgba(255,105,105,'+(intensity*0.08)+')';
+  }
+
+  // Draw a single small document
+  // lineStates: array of {type:'neutral'|'add'|'del', intensity:0-1} per line
+  function drawSmallDoc(dx, dy, lineWidths, lineStates){
+    ctx.save();
+
+    // Doc bg + border
+    ctx.shadowColor=isLight?'rgba(0,0,0,0.08)':'rgba(0,0,0,0.50)';
+    ctx.shadowBlur=4; ctx.shadowOffsetY=2;
+    ctx.fillStyle=isLight?'#f5f8fc':'#111a29';
+    roundRect(ctx,dx,dy,DOC_W,DOC_H,3); ctx.fill();
+    ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+
+    ctx.strokeStyle=isLight?'rgba(100,120,160,0.18)':'rgba(90,130,190,0.20)';
+    ctx.lineWidth=0.75;
+    roundRect(ctx,dx,dy,DOC_W,DOC_H,3); ctx.stroke();
+
+    // Gutter
+    ctx.fillStyle=isLight?'rgba(0,0,0,0.03)':'rgba(255,255,255,0.025)';
+    ctx.fillRect(dx,dy,8,DOC_H);
+
+    var lineH = (DOC_H-6) / LINES_PER_DOC;
+    for(var i=0;i<LINES_PER_DOC;i++){
+      var ly = dy+3+i*lineH;
+      var lx = dx+11;
+      var lw = (DOC_W-14)*lineWidths[i];
+      var ls = lineStates[i];
+
+      // Row background for changed lines
+      if(ls.type==='add' && ls.intensity>0.01){
+        ctx.fillStyle=addBg(ls.intensity);
+        ctx.fillRect(dx,ly,DOC_W,lineH-0.5);
+      } else if(ls.type==='del' && ls.intensity>0.01){
+        ctx.fillStyle=delBg(ls.intensity);
+        ctx.fillRect(dx,ly,DOC_W,lineH-0.5);
+      }
+
+      // Line bar
+      var barH = Math.max(1.5, lineH-3);
+      if(ls.type==='add' && ls.intensity>0.01){
+        ctx.fillStyle=addLineCol(ls.intensity);
+        // Slightly wider on add to suggest inserted line
+        ctx.beginPath(); roundRect(ctx,lx,ly+1.5,lw*Math.min(1,1+ls.intensity*0.1),barH,1.5); ctx.fill();
+      } else if(ls.type==='del' && ls.intensity>0.01){
+        ctx.fillStyle=delLineCol(ls.intensity);
+        // Strikethrough feel — slightly shorter
+        ctx.beginPath(); roundRect(ctx,lx,ly+1.5,lw*Math.max(0.4,1-ls.intensity*0.15),barH,1.5); ctx.fill();
+        // Strikethrough line
+        ctx.strokeStyle=delLineCol(ls.intensity*0.7);
+        ctx.lineWidth=0.75;
+        ctx.beginPath(); ctx.moveTo(lx,ly+lineH/2); ctx.lineTo(lx+lw*0.85,ly+lineH/2); ctx.stroke();
+      } else {
+        ctx.fillStyle=ctxLineCol(0.38);
+        ctx.beginPath(); roundRect(ctx,lx,ly+1.5,lw,barH,1.5); ctx.fill();
+      }
+    }
+
+    ctx.restore();
+  }
+
+  // Build lineStates for all docs given current time
+  function buildLineStates(t){
+    // Start with all neutral
+    var states = [];
+    for(var d=0;d<DOC_COUNT;d++){
+      var docStates=[];
+      for(var l=0;l<LINES_PER_DOC;l++) docStates.push({type:'neutral',intensity:0});
+      states.push(docStates);
+    }
+
+    // For each commit, compute how far through its flash we are
+    for(var ci=0;ci<COMMITS.length;ci++){
+      var commitT = ci * COMMIT_INTERVAL;         // absolute start time in loop
+      var age = (t - commitT + LOOP) % LOOP;      // how long ago this commit fired
+
+      // Only active within FLASH_TOTAL seconds of firing
+      if(age > FLASH_TOTAL) continue;
+
+      var intensity;
+      if(age < FLASH_IN){
+        intensity = eio(age / FLASH_IN);
+      } else if(age < FLASH_IN + FLASH_HOLD){
+        intensity = 1.0;
+      } else {
+        intensity = 1.0 - eio((age - FLASH_IN - FLASH_HOLD) / FLASH_OUT);
+      }
+      if(intensity < 0.01) continue;
+
+      COMMITS[ci].changes.forEach(function(ch){
+        var cur = states[ch.d][ch.l];
+        // Higher intensity wins if two commits overlap on same line
+        if(intensity > cur.intensity){
+          states[ch.d][ch.l] = {type:ch.type, intensity:intensity};
+        }
+      });
+    }
+
+    return states;
+  }
+
+  function drawRepo(rx, ry, t){
+    ctx.save();
+
+    // Outer container — very subtle bg so docs sit on something
+    ctx.fillStyle=isLight?'rgba(220,228,240,0.30)':'rgba(15,25,45,0.35)';
+    roundRect(ctx,rx-DOC_PAD,ry-DOC_PAD,REPO_W+DOC_PAD*2,REPO_H+DOC_PAD*2,4);
+    ctx.fill();
+
+    var lineStates = buildLineStates(t);
+
+    for(var row=0;row<DOCS_ROWS;row++){
+      for(var col=0;col<DOCS_COLS;col++){
+        var di = row*DOCS_COLS+col;
+        var dx = rx + DOC_PAD + col*(DOC_W+DOC_PAD);
+        var dy = ry + DOC_PAD + row*(DOC_H+DOC_PAD);
+        drawSmallDoc(dx, dy, DOC_LINES[di], lineStates[di]);
+      }
+    }
+
+    ctx.restore();
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Layout & tension
+  // ═══════════════════════════════════════════════════════════════════════════
+  var CHIP_REST_CX      = MID - GAP - BRD_W/2 - 28;
+  var CHIP_MAX_RIGHT_CX = MID - GAP - BRD_W/2;
+  var DIFF_REST_LX      = MID + GAP + 28;
+  var DIFF_MAX_LEFT_LX  = MID + GAP;
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Main loop
+  // ═══════════════════════════════════════════════════════════════════════════
+  var t=0, lastTs=null;
+
+  function frame(ts){
+    if(!lastTs) lastTs=ts;
+    var dt=Math.min((ts-lastTs)/1000,0.05);
+    lastTs=ts; t=(t+dt)%LOOP;
+
+    ctx.fillStyle=isLight?'#f0f0f4':'#264a73';
+    ctx.fillRect(0,0,W,H);
+
+    var p=t/LOOP, oy=SHAPE_TOP;
+
+    // ── Tension oscillations ──
+    var chipTension=osc(t,LOOP*0.37,0.0);   // ~7.4s period
+    var diffTension=osc(t,LOOP*0.295,1.5);  // ~5.9s period
+    var chipCX=CHIP_REST_CX+chipTension*(CHIP_MAX_RIGHT_CX-CHIP_REST_CX);
+    chipCX=Math.min(chipCX,CHIP_MAX_RIGHT_CX);
+    var diffLX=DIFF_REST_LX-diffTension*(DIFF_REST_LX-DIFF_MAX_LEFT_LX);
+    diffLX=Math.max(diffLX,DIFF_MAX_LEFT_LX);
+    var chipOX=chipCX-BRD_W/2;
+
+    // ── Board build progress ──
+    // Build completes in first 30% of loop (~6s), then stays fully built.
+    // No teardown — board remains live for the rest of the loop.
+    var BUILD_END = 0.30;   // p at which build finishes
+    var LIVE_START = 0.22;  // pulses start fading in before build fully done
+    var buildP = p < BUILD_END ? eio3(p / BUILD_END) : 1.0;
+    // liveP: ramps in from LIVE_START → BUILD_END+0.04, stays at 1 until loop end
+    var liveP = p < LIVE_START ? 0
+              : p < BUILD_END + 0.04 ? eio((p - LIVE_START) / (BUILD_END + 0.04 - LIVE_START))
+              : 1.0;
+
+    // ── Draw ──
+    drawRepo(diffLX, oy, t);
+    drawPCB(chipOX, oy, buildP, liveP, t);
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

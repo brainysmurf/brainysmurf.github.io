@@ -3,14 +3,14 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mental Model for GenAI: Shallow end of the pool — Adam Morris</title>
-  <meta name="description" content="A useful mental model for understanding GenAI prompts: think of it as a pool with a shallow end and a deep end.">
+  <title>Hardware Brain, Software Brain — Adam Morris</title>
+  <meta name="description" content="Two recognisable modes of leadership in schools — and why the tension between them matters more than ever.">
 
   
-  <meta property="og:title" content="Mental Model for GenAI: Shallow end of the pool">
-  <meta property="og:description" content="A useful mental model for understanding GenAI prompts: think of it as a pool with a shallow end and a deep end.">
+  <meta property="og:title" content="Hardware Brain, Software Brain">
+  <meta property="og:description" content="Two recognisable modes of leadership in schools — and why the tension between them matters more than ever.">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="http://localhost:1313/posts/mental-model-for-genai-shallow-end-of-the-pool/">
+  <meta property="og:url" content="http://localhost:1313/posts/hardware-vs-software-brain/">
   
 
   
@@ -330,11 +330,11 @@
 <article class="single-post">
   <header class="single-post-header">
     <div class="single-post-meta">
-      <time datetime="2023-10-02">2023-10-02</time>
-      <span>4 min read</span>
+      <time datetime="2026-05-03">2026-05-03</time>
+      <span>5 min read</span>
     </div>
 
-    <h1 class="single-post-title">Mental Model for GenAI: Shallow end of the pool</h1>
+    <h1 class="single-post-title">Hardware Brain, Software Brain</h1>
 
     
       <div class="single-post-tags">
@@ -343,7 +343,7 @@
         
           <a href="/tags/education/" class="single-post-tag">#education</a>
         
-          <a href="/tags/mental-models/" class="single-post-tag">#mental-models</a>
+          <a href="/tags/leadership/" class="single-post-tag">#leadership</a>
         
       </div>
     
@@ -351,28 +351,66 @@
 
   
     <div class="single-post-hero-image">
-      <img src="/images/posts/shallow-end-pool.png" alt="">
+      <iframe
+        id="post-animation"
+        data-src="/animations/hardware-software-brain.html"
+        style="width:100%; aspect-ratio:680/420; border:none; display:block; background:var(--color-surface);"
+        scrolling="no"
+        title="Animation for Hardware Brain, Software Brain"
+      ></iframe>
     </div>
+    <script>
+      (function() {
+        var iframe = document.getElementById('post-animation');
+        if (!iframe) return;
+        var base = iframe.getAttribute('data-src');
+
+        function setTheme() {
+          var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+          iframe.src = base + '?theme=' + theme;
+        }
+
+        
+        setTheme();
+
+        
+        var observer = new MutationObserver(setTheme);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      })();
+    </script>
   
 
   <div class="single-post-content prose">
-    <p>A mental model is one of those terms I&rsquo;m not sure I hear too often in EDU context, but I hear it often in the engineering podcasts I listen to, and it&rsquo;s one of those power concepts worth adopting.</p>
-<p>When we&rsquo;re working with complex software, we form visualizations that allow us to navigate certain features. To take a familiar example, when you use spreadsheet software, you&rsquo;ll have a mental model of how all the cells are recalculated when one cell changes. Do you visualize it as a domino effect, where one changed value causes the next cell to change? Or maybe you think of it as a broadcast system, where cells are telling each other &ldquo;hey, I&rsquo;ve changed, you need to recalculate too.&rdquo;</p>
-<p>A good mental model has at least two of the following characteristics:</p>
+    <p>John Gruber, one of my favorite bloggers, made a stark contrast when commenting on a current event — unrelated to schools entirely — but nonetheless seems apt to apply to leadership.</p>
+<p>Last April, the New York Times <a href="https://daringfireball.net/2026/04/nyt_wrong_crossword_grid" target="_blank" rel="noopener">published</a>
+ a crossword puzzle grid with the wrong clues. The correct puzzle was available in the app and on the web — the whoopsie was just in the print version. John thought the moment taught us something important about the difference between hardware brain and software brain:</p>
+<blockquote>
+<p>Print, effectively, is hardware. Atoms, not bits. The web is literally software. If you make a mistake in software that results in incorrect mathematical results, you ship an update. If you make a mistake in a CPU such that it results in incorrect floating-point math, perhaps only in 1 out of every 9 billion calculations, people will remember the mistake 30 years later.</p>
+</blockquote>
+<p>He draws a parallel that print is the successful deployment of hardware, whereas a web application is the successful deployment of software. It got me conceptualizing the idea of schools as oscillating between two analogous instincts.</p>
+<h2 id="when-a-school-is-like-a-printing-company">When a School is like a Printing Company</h2>
+<p>Or, when does a school display hardware-brain thinking?</p>
+<p>When engineers do chip design, they are seeking permanence. The logic is going to be etched into silicon, and the other pieces all route back towards it. It is the focus point of the architecture.</p>
+<p>Likewise, schools operate on annual budget cycles, multi-year staffing contracts, and physical infrastructure with long lifespans. When you build a timetable, hire for a department, or set an assessment calendar, you are cutting hardware. They are not easily modifiable mid-year. International schools have accreditation bodies with fixed cycles and certain expectations that schools need to demonstrate competency at fulfilling.</p>
+<p>Two other artifacts that schools hard-wire into the world are the transcript and the report card. Unlike a website that can silently correct an error, a report card issued with a mistake requires a formal reprint and a notification. The grades determine things like GPA or credits — there is no shipping a patch.</p>
+<p>When a school carries its hardware brain to the fore, every choice carries irreversible downstream weight. This demands a particular kind of thinking: slow to commit, precise in execution, deeply attentive to the <strong>why</strong>.</p>
+<h2 id="when-a-school-is-like-a-web-application">When a School is like a Web Application</h2>
+<p>Software engineers treat lines of code as behaviours whose correctness is defined by tests. It is more iterative, exploratory, comfortable with contextualised framing; software is done when it simply meets the expectations. It is not up to the software itself to define the expectations.</p>
+<p>Similarly, a school&rsquo;s learning initiatives and community development initiatives are about building layers for the next round of leaders to stand on. The school culture cannot be written into the mission statement — instead it is a series of actions responsive to established norms.</p>
+<p>Many of the pivotal roles in schools live almost entirely in software-brain mode. A counsellor supporting a student won&rsquo;t follow a fixed script — they read the student, adjust the conversation, and respond to what surfaces. An admissions coordinator fielding enquiries from prospective families will need to recalibrate messaging depending on a changing market. Activities and learning coordinators cooperate to synthesise academic standards with other competing priorities, such as wellbeing.</p>
+<p>When considering how a school utilises a software brain, it&rsquo;s about being able to adapt to the moment, and reflection is often used as the substrate for this activity. The kind of thinking here is more about voicing <strong>how</strong> the school meets its goals.</p>
+<h2 id="the-tension-demonstrated">The Tension, Demonstrated</h2>
+<p>Hardware-thinking defines the architectural pillars; software-thinking services the community. Schools both &ldquo;write code&rdquo; when confronted with new realities, and also fall back on &ldquo;logic gates&rdquo; that have withstood the test of time.</p>
+<p>Consider this as an example that demonstrates the tension: When ChatGPT arrived, schools everywhere were suddenly confronted with a competent robot essayist. They responded either by utilising hardware-thinking or initiating software-thinking. Either pen and paper, timed conditions in invigilated rooms became the new standard — and/or training was prescribed. The first explicitly removed software entirely and fell back on architecture. The second is like rewriting a module that doesn&rsquo;t suit some new use cases.</p>
+<p>These aren&rsquo;t abstract philosophies. <strong>They describe two recognisable modes that leadership can recognise.</strong> In education, both will be present, perpetually in tension.</p>
+<h2 id="and-now">And now…</h2>
+<p>Organizations of every shape and color face existential challenges, leading to perhaps dramatic changes, just as newspapers had to pivot from print to the web. Likewise, the advent of agentic AI tooling provide schools a lot of runway to re-imagining what it looks like to nurture young minds from toddler to young adult.</p>
+<p>The next era of schooling will have to figure out how to etch the approaches in silicon, and compile the details on demand. Distinctions such as those above  provide a deployable mental model, summed up as the following:</p>
 <ul>
-<li>Understandable to the mind</li>
-<li>Representative of the tool</li>
+<li>The hardware brain is going to ask: <em>how do we protect what we know works well?</em></li>
+<li>The software brain will ask: <em>where can we innovate next?</em></li>
 </ul>
-<p>Notice that I am not identifying a main characteristic that the mental model be accurate. The goal of a mental model is to enable the operator to understand complexity, not to describe how it actually works. The way it actually works it is itself often complex anyway, and the point is to simplify it.</p>
-<p>The mental model for GenAI that I have found effective is to think of it as a pool with a shallow end and a deep end. The shallow end is where boundaries are clear, the bottom can be seen, and one can stand up in it. The deep end is where swimming is necessary.</p>
-<p>When GenAI is asked questions, the prompt itself either takes the machine into the deep end, where it has far more to navigate, or the shallow end where it is much more effective.</p>
-<p>Examples of prompts where boundaries are well formed are ones that contain solvable problems. In an EDU context, asking it to check for grammar is a solvable problem, for the &ldquo;grammar&rdquo; itself has a boundary that is well defined already. Note that shallow prompts can also be very complex, what really matters is if there are boundaries. A timetable is complex, as all schedulers know, but the rules are well established, so &ldquo;help me to build a timetable&rdquo; is a shallow-end prompt.</p>
-<p>Examples of prompts in the deep end are ones that require creativity, or balancing of trade-offs, or professional judgment. For example, &ldquo;help me build a unit plan&rdquo; is not solvable because there aren&rsquo;t established boundaries that describe a unit plan fully. It&rsquo;s even weird to think of a unit plan as &ldquo;solved.&rdquo; However, there are lots of examples of curriculum documents, and so GenAI will be able to produce output, but will have to do so in the deep end.</p>
-<p>Where this mental model is useful is understanding that when thrown into the deep end, it responds by bringing the problem back to the shallow end. It has to pick and choose some boundaries that perhaps the prompt does not contain in order to navigate what has been requested of it.</p>
-<p>Since a machine has to establish boundaries, it does so even when the prompt it requires diving into the depths of uncertainty. For example, it responds to &ldquo;tell me a story&rdquo; by having to decide on which genre of story, the main characters etc. If the prompt itself however has the boundaries already established, it will just take that and run with it.</p>
-<p>This isn&rsquo;t how it actually works, however, but it doesn&rsquo;t matter. In the case of a spreadsheet, the way recalculation works is through a dependency graph. Knowing that would help us if we wanted to make a spreadsheet, but it would probably get in the way of using a spreadsheet to balance a budget.</p>
-<p>In this way, the mental model of GenAI as navigating the deep end of the pool by navigating itself back towards the shallow end helps us answer a core issue when using the tool:</p>
-<p><strong>Is the prompt I have in mind a good one?</strong></p>
+<p>The reality is that there are times in an organic community when one sits at the forefront more than the other; collectively, both questions are equally pertinent to what comes next.</p>
 
   </div>
 
