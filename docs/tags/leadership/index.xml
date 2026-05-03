@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Leadership on Adam Morris</title>
-    <link>http://localhost:1313/tags/leadership/</link>
+    <link>https://mistermorris.com/tags/leadership/</link>
     <description>Recent content in Leadership on Adam Morris</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 03 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/leadership/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mistermorris.com/tags/leadership/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hardware Brain, Software Brain</title>
-      <link>http://localhost:1313/posts/hardware-vs-software-brain/</link>
+      <link>https://mistermorris.com/posts/hardware-vs-software-brain/</link>
       <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/hardware-vs-software-brain/</guid>
-      <description>&lt;p&gt;John Gruber, one of my favorite bloggers, made a stark contrast when commenting on a current event — unrelated to schools entirely — but nonetheless seems apt to apply it to leadership.&lt;/p&gt;&#xA;&lt;p&gt;Last April, the New York Times &lt;a href=&#34;https://daringfireball.net/2026/04/nyt_wrong_crossword_grid&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;published&lt;/a&gt;&#xA; a crossword puzzle grid with the wrong clues. The correct puzzle was available in the app and on the web — the whoopsie was just in the print version. Hilariously, the ink and paper solvers reported feeling despondent they couldn&amp;rsquo;t get any of the clues. John thought the moment taught us something important about the difference between hardware brain and software brain:&lt;/p&gt;</description>
+      <guid>https://mistermorris.com/posts/hardware-vs-software-brain/</guid>
+      <description>&lt;p&gt;John Gruber, one of my favorite bloggers, made a stark contrast when commenting on a current event — unrelated to schools entirely — but nonetheless seems apt to apply to leadership.&lt;/p&gt;&#xA;&lt;p&gt;Last April, the New York Times &lt;a href=&#34;https://daringfireball.net/2026/04/nyt_wrong_crossword_grid&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;published&lt;/a&gt;&#xA; a crossword puzzle grid with the wrong clues. The correct puzzle was available in the app and on the web — the whoopsie was just in the print version. John thought the moment taught us something important about the difference between hardware brain and software brain:&lt;/p&gt;</description>
     </item>
     <item>
       <title>The terminal was training me all along</title>
-      <link>http://localhost:1313/posts/the-terminal-was-training-me/</link>
+      <link>https://mistermorris.com/posts/the-terminal-was-training-me/</link>
       <pubDate>Sun, 05 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/the-terminal-was-training-me/</guid>
+      <guid>https://mistermorris.com/posts/the-terminal-was-training-me/</guid>
       <description>&lt;p&gt;There&amp;rsquo;s a black screen. A blinking cursor. Nothing is happening, and nothing will happen … not until you convert thoughts to keystrokes.  All of those taps are minor translation projects from cognition to binary.&lt;/p&gt;&#xA;&lt;p&gt;Thus was my initial experience with coding — and now with &lt;em&gt;skills&lt;/em&gt; and &lt;em&gt;agents&lt;/em&gt; and &lt;em&gt;commands&lt;/em&gt; defining the substrates for agentic workflows, I&amp;rsquo;m doing more typing than ever. My first computer science projects were headphones &lt;em&gt;on&lt;/em&gt;, terminal &lt;em&gt;up&lt;/em&gt;. But in this newly-inspiring LLM landscape that sits before us, the terminal has become even &lt;em&gt;more&lt;/em&gt; engrained to me now than then. I have more console tabs open than I do browser tabs. I&amp;rsquo;m seeing more terminals open in coffee shops.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Sign-posting change: Done, Now, Next, Later</title>
-      <link>http://localhost:1313/posts/sign-posting-change-done-now-next-later/</link>
+      <link>https://mistermorris.com/posts/sign-posting-change-done-now-next-later/</link>
       <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/sign-posting-change-done-now-next-later/</guid>
+      <guid>https://mistermorris.com/posts/sign-posting-change-done-now-next-later/</guid>
       <description>&lt;p&gt;Your school offers a Gardening after school activity. You have four plots.&lt;/p&gt;&#xA;&lt;p&gt;In order to track what vegetables are to be grown when, you would like a simple visualization tool to produce a chart to blow up and put on the classroom wall.&lt;/p&gt;&#xA;&lt;p&gt;In reality, vegetables don&amp;rsquo;t grow for just a few days as indicated above, but this is the sort of chart you want, right? It&amp;rsquo;s a just a pretty timeline.&lt;/p&gt;</description>
     </item>
   </channel>
