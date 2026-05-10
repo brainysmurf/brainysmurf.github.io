@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { display:flex; align-items:center; justify-content:center; height:100%; overflow:hidden; }
+canvas { display:block; width:100%; border-radius:8px; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+(function(){
+  var theme = new URLSearchParams(window.location.search).get('theme') || 'dark';
+  var isLight = theme === 'light';
+  document.body.style.background = isLight ? '#f0f2f8' : '#264a73';
+
+  var C = document.getElementById('c'), ctx = C.getContext('2d');
+  C.width = 600; C.height = 420;
+  var W = C.width, H = C.height;
+
+  // ── Helpers ──
+  function eio(x){ return x<0.5?2*x*x:1-Math.pow(-2*x+2,2)/2; }
+  function clamp(v,a,b){ return v<a?a:v>b?b:v; }
+  function lerp(a,b,t){ return a+(b-a)*t; }
+
+  function roundRect(c,x,y,w,h,r){
+    c.beginPath();
+    c.moveTo(x+r,y); c.lineTo(x+w-r,y); c.arcTo(x+w,y,x+w,y+r,r);
+    c.lineTo(x+w,y+h-r); c.arcTo(x+w,y+h,x+w-r,y+h,r);
+    c.lineTo(x+r,y+h); c.arcTo(x,y+h,x,y+h-r,r);
+    c.lineTo(x,y+r); c.arcTo(x,y,x+r,y,r);
+    c.closePath();
+  }
+
+  // ── Colours ──
+  var BG       = isLight ? '#f0f2f8' : '#264a73';
+  var RAIL_CLR = isLight ? 'rgba(80,100,140,0.18)' : 'rgba(140,180,220,0.15)';
+  var MARK_CLR = isLight ? 'rgba(40,60,110,0.85)' : 'rgba(160,200,240,0.80)';
+  var DOC_BG   = isLight ? '#f8f6f0' : '#e8e4d8';
+  var DOC_BRD  = isLight ? 'rgba(80,70,50,0.15)' : 'rgba(80,70,50,0.30)';
+  var TXT_CLR2 = isLight ? 'rgba(50,55,70,0.35)' : 'rgba(40,35,25,0.30)';
+  var PENCIL_CLR = isLight ? 'rgba(70,60,40,0.40)' : 'rgba(60,50,30,0.40)';
+  var GRID_CLR = isLight ? 'rgba(80,100,140,0.22)' : 'rgba(100,130,170,0.25)';
+  var FORMULA_CLR = isLight ? 'rgba(60,100,160,0.50)' : 'rgba(80,130,200,0.50)';
+  var TAB_CLR  = isLight ? 'rgba(90,120,170,0.35)' : 'rgba(100,140,200,0.40)';
+  var TAB_BG   = isLight ? '#eceaf0' : '#d8d4c8';
+  var TAB_ACTIVE_BG = isLight ? '#f8f6f0' : '#e8e4d8';
+  var NODE_CLR = isLight ? 'rgba(90,120,170,0.55)' : 'rgba(100,140,200,0.60)';
+  var EDGE_CLR = isLight ? 'rgba(90,120,170,0.30)' : 'rgba(100,140,200,0.35)';
+  var GOLD_CLR = isLight ? 'rgba(180,150,60,0.65)' : 'rgba(210,180,70,0.65)';
+  var ARROW_CLR= isLight ? 'rgba(80,100,140,0.25)' : 'rgba(140,180,220,0.22)';
+
+  // ── Layout: document is stationary, centred ──
+  var DOCW = 200;
+  var DOCH = 260;
+  var DOC_X = (W - DOCW) / 2;
+  var DOC_Y = (H - DOCH) / 2 - 5;
+  var DOC_CX = DOC_X + DOCW/2;
+  var DOC_CY = DOC_Y + DOCH/2;
+
+  var RAIL_L = DOC_X - 30;
+  var RAIL_R = DOC_X + DOCW + 30;
+
+  // ── Timing — 14 second loop, 5 phases ──
+  // Phase 4 gets a longer rise for the morph transition
+  var PHASES = 5;
+  var RISE_T = 0.8;
+  var HOLD_T = 1.2;
+  var PHASE_T = RISE_T + HOLD_T; // 2.0s per phase (phases 0-3)
+  var MORPH_RISE_T = 1.6; // longer rise for phase 3→4 morph
+  var MORPH_PHASE_T = MORPH_RISE_T + HOLD_T; // 2.8s for phase 4
+  var ACTIVE_TIME = 4 * PHASE_T + MORPH_PHASE_T; // 10.8s
+  var LOOP = ACTIVE_TIME + 2.5; // ~13.3s
+
+  var TOTAL_SCROLL = 750;
+  var NUM_MARKERS = 18;
+  var MARKER_SPACING = TOTAL_SCROLL / (NUM_MARKERS - 1);
+
+  // ── Seeded line widths ──
+  function seededWidths(seed, n){
+    var out=[], x=seed;
+    for(var i=0;i<n;i++){
+      x=(x*1664525+1013904223)>>>0;
+      out.push(0.3 + (x%1000)/1000 * 0.6);
+    }
+    return out;
+  }
+  function seededWobbly(seed, n){
+    var out=[], x=seed;
+    for(var i=0;i<n;i++){
+      x=(x*1664525+1013904223)>>>0;
+      out.push(0.2 + (x%1000)/1000 * 0.5);
+    }
+    return out;
+  }
+  var HAND_LINES = seededWobbly(31, 10);
+
+  // ═══════════════════════════════════════════════════════════════
+  // Phase 0: Paper — handwritten financial scribbles
+  // ═══════════════════════════════════════════════════════════════
+  function drawPhase0(alpha, t){
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    var pad = 18;
+    var lineH = 16;
+    var startY = DOC_Y + pad + 8;
+
+    // Faint ruled lines
+    ctx.strokeStyle = isLight ? 'rgba(160,180,210,0.18)' : 'rgba(100,90,70,0.15)';
+    ctx.lineWidth = 0.5;
+    for(var ri=0; ri<14; ri++){
+      var ry = DOC_Y + pad + ri * lineH;
+      if(ry > DOC_Y + DOCH - pad) break;
+      ctx.beginPath();
+      ctx.moveTo(DOC_X + pad - 4, ry);
+      ctx.lineTo(DOC_X + DOCW - pad + 4, ry);
+      ctx.stroke();
+    }
+
+    // Handwritten financial scribbles
+    ctx.fillStyle = PENCIL_CLR;
+    ctx.textBaseline = 'middle';
+    ctx.lineCap = 'round';
+
+    var lines = [
+      {text: 'Revenue', x: 0, font: '11px Georgia, serif'},
+      {text: '$4,200', x: 0.55, font: '12px Georgia, serif'},
+      {text: 'Signs (lg)', x: 0.02, font: '10px Georgia, serif'},
+      {text: '$2,800', x: 0.55, font: '10px Georgia, serif'},
+      {text: 'Signs (sm)', x: 0.02, font: '10px Georgia, serif'},
+      {text: '$1,400', x: 0.55, font: '10px Georgia, serif'},
+      {text: '', x: 0, font: '10px Georgia, serif'},
+      {text: 'Costs', x: 0, font: '11px Georgia, serif'},
+      {text: 'Materials', x: 0.02, font: '10px Georgia, serif'},
+      {text: '$1,150', x: 0.55, font: '10px Georgia, serif', strike: true, correction: '$1,320'},
+      {text: 'Rent', x: 0.02, font: '10px Georgia, serif'},
+      {text: '$600', x: 0.55, font: '10px Georgia, serif'},
+      {text: 'Net???', x: 0, font: '11px Georgia, serif'},
+      {text: '~$2,280', x: 0.55, font: '12px Georgia, serif', underline: true},
+    ];
+
+    var lineW = DOCW - pad*2;
+    for(var i=0; i<lines.length; i++){
+      var li = lines[i];
+      var y = startY + i * lineH;
+      if(y > DOC_Y + DOCH - pad - 8) break;
+      if(!li.text) continue;
+      var x = DOC_X + pad + li.x * lineW;
+
+      // Slight wobble per character for handwritten feel
+      var oy = Math.sin(i * 3.7 + 1.2) * 1.2;
+      var ox = Math.cos(i * 2.1 + 0.8) * 0.8;
+      ctx.font = li.font;
+      ctx.textAlign = 'left';
+      ctx.fillText(li.text, x + ox, y + oy);
+
+      // Strikethrough with correction
+      if(li.strike){
+        ctx.save();
+        ctx.strokeStyle = PENCIL_CLR;
+        ctx.lineWidth = 0.8;
+        var tw = ctx.measureText(li.text).width;
+        ctx.beginPath();
+        ctx.moveTo(x + ox - 2, y + oy + Math.sin(i*1.3)*0.5);
+        ctx.lineTo(x + ox + tw + 2, y + oy + Math.sin(i*1.3+3)*0.8);
+        ctx.stroke();
+        ctx.restore();
+        // Correction squeezed above
+        ctx.font = '9px Georgia, serif';
+        ctx.fillText(li.correction, x + ox + tw + 6, y + oy - 5);
+      }
+
+      // Underline
+      if(li.underline){
+        ctx.save();
+        ctx.strokeStyle = PENCIL_CLR;
+        ctx.lineWidth = 0.9;
+        var tw2 = ctx.measureText(li.text).width;
+        ctx.beginPath();
+        ctx.moveTo(x + ox - 1, y + oy + 7);
+        var segs = 4;
+        for(var s=1; s<=segs; s++){
+          ctx.lineTo(x + ox + tw2 * s/segs, y + oy + 7 + Math.sin(s*2.3)*0.6);
+        }
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    ctx.restore();
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // Phase 1: Handwritten numbers in a table
+  // ═══════════════════════════════════════════════════════════════
+  function drawPhase1(alpha, t){
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    var pad = 18;
+    var cols = 4;
+    var rows = 8;
+    var cellW = (DOCW - pad*2) / cols;
+    var cellH = 22;
+    var startX = DOC_X + pad;
+    var startY = DOC_Y + pad + 10;
+
+    // Draw faint hand-drawn grid lines
+    ctx.strokeStyle = isLight ? 'rgba(100,90,70,0.18)' : 'rgba(80,70,50,0.18)';
+    ctx.lineWidth = 0.6;
+    ctx.lineCap = 'round';
+
+    // Horizontal lines (wobbly)
+    for(var r=0; r<=rows; r++){
+      var y = startY + r * cellH;
+      if(y > DOC_Y + DOCH - pad) break;
+      ctx.beginPath();
+      ctx.moveTo(startX, y);
+      for(var s=1; s<=8; s++){
+        var wx = startX + (DOCW - pad*2) * s / 8;
+        var wobble = Math.sin(r * 2.3 + s * 1.7) * 0.8;
+        ctx.lineTo(wx, y + wobble);
+      }
+      ctx.stroke();
+    }
+
+    // Vertical lines (wobbly)
+    for(var c=0; c<=cols; c++){
+      var x = startX + c * cellW;
+      ctx.beginPath();
+      ctx.moveTo(x, startY);
+      for(var s=1; s<=6; s++){
+        var wy = startY + rows * cellH * s / 6;
+        if(wy > DOC_Y + DOCH - pad) wy = DOC_Y + DOCH - pad;
+        var wobble = Math.sin(c * 3.1 + s * 2.5) * 0.7;
+        ctx.lineTo(x + wobble, wy);
+      }
+      ctx.stroke();
+    }
+
+    // Handwritten numbers
+    ctx.font = '11px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = PENCIL_CLR;
+
+    var numbers = [
+      ['', 'Jan', 'Feb', 'Mar'],
+      ['Rev', '42', '58', '37'],
+      ['Cost', '18', '24', '15'],
+      ['Net', '24', '34', '22'],
+      ['Tax', '6', '8', '5'],
+      ['', '18', '26', '17'],
+      ['Adj', '3', '4', '2'],
+      ['Tot', '15', '22', '15'],
+    ];
+
+    for(var r=0; r<rows; r++){
+      for(var c=0; c<cols; c++){
+        var y = startY + r * cellH + cellH/2;
+        if(y > DOC_Y + DOCH - pad - 5) break;
+        var x = startX + c * cellW + cellW/2;
+        var val = numbers[r] ? (numbers[r][c] || '') : '';
+        // Slight random offset for handwritten feel
+        var ox = Math.sin(r*3.1+c*7.2) * 1.5;
+        var oy = Math.cos(r*5.3+c*2.1) * 1.0;
+        ctx.fillText(val, x + ox, y + oy);
+      }
+    }
+
+    ctx.restore();
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // Phase 2: Clean grid with formulas
+  // ═══════════════════════════════════════════════════════════════
+  function drawPhase2(alpha, t){
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    var pad = 14;
+    var cols = 4;
+    var rows = 9;
+    var cellW = (DOCW - pad*2) / cols;
+    var cellH = 20;
+    var startX = DOC_X + pad;
+    var startY = DOC_Y + pad + 6;
+
+    // Header row background
+    ctx.fillStyle = isLight ? 'rgba(90,120,170,0.10)' : 'rgba(80,110,160,0.12)';
+    ctx.fillRect(startX, startY, DOCW - pad*2, cellH);
+
+    // Row header column background
+    ctx.fillStyle = isLight ? 'rgba(90,120,170,0.06)' : 'rgba(80,110,160,0.07)';
+    ctx.fillRect(startX, startY, cellW, rows * cellH);
+
+    // Clean grid lines
+    ctx.strokeStyle = GRID_CLR;
+    ctx.lineWidth = 0.7;
+    for(var r=0; r<=rows; r++){
+      var y = startY + r * cellH;
+      if(y > DOC_Y + DOCH - pad) break;
+      ctx.beginPath();
+      ctx.moveTo(startX, y);
+      ctx.lineTo(startX + cols * cellW, y);
+      ctx.stroke();
+    }
+    for(var c=0; c<=cols; c++){
+      var x = startX + c * cellW;
+      var maxY = Math.min(startY + rows * cellH, DOC_Y + DOCH - pad);
+      ctx.beginPath();
+      ctx.moveTo(x, startY);
+      ctx.lineTo(x, maxY);
+      ctx.stroke();
+    }
+
+    // Cell contents
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    var data = [
+      ['', 'Q1', 'Q2', 'Q3'],
+      ['Rev', '142', '158', '171'],
+      ['COGS', '68', '74', '79'],
+      ['Gross', '=B2-B3', '=C2-C3', '=D2-D3'],
+      ['OpEx', '32', '35', '38'],
+      ['EBIT', '=B4-B5', '=C4-C5', '=D4-D5'],
+      ['Tax', '=B6*.25', '=C6*.25', '=D6*.25'],
+      ['Net', '=B6-B7', '=C6-C7', '=D6-D7'],
+      ['Mgn', '=B8/B2', '=C8/C2', '=D8/D2'],
+    ];
+
+    for(var r=0; r<rows; r++){
+      for(var c=0; c<cols; c++){
+        var y = startY + r * cellH + cellH/2;
+        if(y > DOC_Y + DOCH - pad - 5) break;
+        var x = startX + c * cellW + cellW/2;
+        var val = data[r] ? (data[r][c] || '') : '';
+        var isFormula = val.charAt(0) === '=';
+        ctx.font = isFormula ? '8px monospace' : (r===0 ? 'bold 9px sans-serif' : '9px sans-serif');
+        ctx.fillStyle = isFormula ? FORMULA_CLR : TXT_CLR2;
+        ctx.fillText(val, x, y);
+      }
+    }
+
+    ctx.restore();
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // Phase 3: Tabs of grids (multiple sheet tabs)
+  // ═══════════════════════════════════════════════════════════════
+  function drawPhase3(alpha, t){
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    var pad = 14;
+
+    // Sheet tabs at bottom of doc
+    var tabH = 16;
+    var tabW = 40;
+    var tabY = DOC_Y + DOCH - tabH - 2;
+    var tabNames = ['P&L', 'BS', 'CF', 'Proj'];
+    var activeTab = 0;
+
+    for(var ti=0; ti<tabNames.length; ti++){
+      var tx = DOC_X + pad + ti * (tabW + 3);
+      ctx.fillStyle = ti === activeTab ? TAB_ACTIVE_BG : TAB_BG;
+      roundRect(ctx, tx, tabY, tabW, tabH, 2);
+      ctx.fill();
+      ctx.strokeStyle = GRID_CLR;
+      ctx.lineWidth = 0.6;
+      roundRect(ctx, tx, tabY, tabW, tabH, 2);
+      ctx.stroke();
+      ctx.fillStyle = ti === activeTab ? (isLight ? 'rgba(50,55,70,0.55)' : 'rgba(40,35,25,0.55)') : (isLight ? 'rgba(50,55,70,0.25)' : 'rgba(40,35,25,0.25)');
+      ctx.font = '8px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(tabNames[ti], tx + tabW/2, tabY + tabH/2);
+    }
+
+    // Active sheet: compact grid
+    var cols = 5;
+    var rows = 9;
+    var cellW = (DOCW - pad*2) / cols;
+    var cellH = 18;
+    var startX = DOC_X + pad;
+    var startY = DOC_Y + pad + 4;
+    var maxGridY = tabY - 6;
+
+    // Header row
+    ctx.fillStyle = isLight ? 'rgba(90,120,170,0.10)' : 'rgba(80,110,160,0.12)';
+    ctx.fillRect(startX, startY, DOCW - pad*2, cellH);
+
+    // Row header col
+    ctx.fillStyle = isLight ? 'rgba(90,120,170,0.06)' : 'rgba(80,110,160,0.07)';
+    ctx.fillRect(startX, startY, cellW, Math.min(rows * cellH, maxGridY - startY));
+
+    // Grid
+    ctx.strokeStyle = GRID_CLR;
+    ctx.lineWidth = 0.5;
+    for(var r=0; r<=rows; r++){
+      var y = startY + r * cellH;
+      if(y > maxGridY) break;
+      ctx.beginPath();
+      ctx.moveTo(startX, y);
+      ctx.lineTo(startX + cols * cellW, y);
+      ctx.stroke();
+    }
+    for(var c=0; c<=cols; c++){
+      var x = startX + c * cellW;
+      ctx.beginPath();
+      ctx.moveTo(x, startY);
+      ctx.lineTo(x, Math.min(startY + rows * cellH, maxGridY));
+      ctx.stroke();
+    }
+
+    // Data with some cell references and formulas
+    var data = [
+      ['', 'Q1', 'Q2', 'Q3', 'YTD'],
+      ['Rev', '142', '158', '171', '=SUM'],
+      ['COGS', '68', '74', '79', '=SUM'],
+      ['Gross', '=B2-B3', '=C2-C3', '=D2-D3', '=SUM'],
+      ['OpEx', '32', '35', '38', '=SUM'],
+      ['EBIT', '=B4-B5', '=C4-C5', '=D4-D5', '=SUM'],
+      ['Tax%', '25%', '25%', '25%', ''],
+      ['Net', '=B6*(1-B7)', '=...', '=...', '=SUM'],
+      ['Mgn%', '=B8/B2', '=...', '=...', ''],
+    ];
+
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for(var r=0; r<rows; r++){
+      for(var c=0; c<cols; c++){
+        var y = startY + r * cellH + cellH/2;
+        if(y > maxGridY - 4) break;
+        var x = startX + c * cellW + cellW/2;
+        var val = data[r] ? (data[r][c] || '') : '';
+        var isFormula = val.charAt(0) === '=';
+        ctx.font = isFormula ? '7px monospace' : (r===0 ? 'bold 8px sans-serif' : '8px sans-serif');
+        ctx.fillStyle = isFormula ? FORMULA_CLR : TXT_CLR2;
+        ctx.fillText(val, x, y);
+      }
+    }
+
+    // Subtle stacked-sheets effect behind the doc (depth cue for multiple tabs)
+    ctx.globalAlpha = alpha * 0.3;
+    ctx.strokeStyle = DOC_BRD;
+    ctx.lineWidth = 0.6;
+    roundRect(ctx, DOC_X + 3, DOC_Y + 3, DOCW, DOCH, 4);
+    ctx.stroke();
+    roundRect(ctx, DOC_X + 6, DOC_Y + 6, DOCW, DOCH, 4);
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // Phase 4: 3D hologram with morphing grid
+  // morphP: 0 = flat spreadsheet grid, 1 = full 3D perspective
+  // ═══════════════════════════════════════════════════════════════
+
+  // Phase 3 (flat) grid geometry
+  var P3_PAD = 14;
+  var P3_COLS = 5;
+  var P3_ROWS = 9;
+  var P3_CELL_W = (DOCW - P3_PAD*2) / P3_COLS;
+  var P3_CELL_H = 18;
+  var P3_START_X = DOC_X + P3_PAD;
+  var P3_START_Y = DOC_Y + P3_PAD + 4;
+  var P3_TAB_H = 16;
+  var P3_MAX_Y = DOC_Y + DOCH - P3_TAB_H - 8;
+  var P3_GRID_W = P3_COLS * P3_CELL_W;
+  var P3_GRID_H = Math.min(P3_ROWS * P3_CELL_H, P3_MAX_Y - P3_START_Y);
+
+  // Phase 4 (3D) grid geometry
+  var P4_PAD = 16;
+  var P4_GRID_W = DOCW - P4_PAD*2 - 20;
+  var P4_GRID_H = P4_GRID_W * 0.5;
+  var P4_GRID_CX = DOC_CX;
+  var P4_GRID_CY = DOC_CY + 30;
+  var P4_SKEW = 15;
+  var P4_ROWS = 6;
+  var P4_COLS = 6;
+
+  function drawPhase4(alpha, t, morphP){
+    if(morphP === undefined) morphP = 1;
+    var mp = eio(morphP);
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
+    // ── Interpolate grid geometry ──
+    // Flat source: rectangle from P3 grid area
+    // 3D target: skewed perspective grid
+
+    // Flat grid corners
+    var flatL = P3_START_X;
+    var flatR = P3_START_X + P3_GRID_W;
+    var flatT = P3_START_Y;
+    var flatB = P3_START_Y + P3_GRID_H;
+
+    // 3D grid corners (with skew)
+    var tgtTL_x = P4_GRID_CX - P4_GRID_W/2 + (-0.5)*P4_SKEW;
+    var tgtTR_x = P4_GRID_CX + P4_GRID_W/2 + (-0.5)*P4_SKEW;
+    var tgtBL_x = P4_GRID_CX - P4_GRID_W/2 + (0.5)*P4_SKEW;
+    var tgtBR_x = P4_GRID_CX + P4_GRID_W/2 + (0.5)*P4_SKEW;
+    var tgtT_y = P4_GRID_CY - P4_GRID_H/2;
+    var tgtB_y = P4_GRID_CY + P4_GRID_H/2;
+
+    // Interpolated corners
+    var cTL_x = lerp(flatL, tgtTL_x, mp);
+    var cTR_x = lerp(flatR, tgtTR_x, mp);
+    var cBL_x = lerp(flatL, tgtBL_x, mp);
+    var cBR_x = lerp(flatR, tgtBR_x, mp);
+    var cT_y  = lerp(flatT, tgtT_y, mp);
+    var cB_y  = lerp(flatB, tgtB_y, mp);
+
+    // Number of grid lines interpolates from P3 counts to P4 counts
+    var gRows = Math.round(lerp(P3_ROWS, P4_ROWS, mp));
+    var gCols = Math.round(lerp(P3_COLS, P4_COLS, mp));
+
+    // Grid line color intensifies during morph
+    var gridAlpha = lerp(0.22, 0.35, mp);
+    ctx.strokeStyle = isLight
+      ? 'rgba(90,120,170,' + gridAlpha + ')'
+      : 'rgba(100,140,200,' + gridAlpha + ')';
+    ctx.lineWidth = lerp(0.5, 1.0, mp);
+
+    // Horizontal lines
+    for(var r=0; r<=gRows; r++){
+      var t2 = r / gRows;
+      var lx = lerp(cTL_x, cBL_x, t2);
+      var rx = lerp(cTR_x, cBR_x, t2);
+      var y  = lerp(cT_y, cB_y, t2);
+      ctx.beginPath();
+      ctx.moveTo(lx, y);
+      ctx.lineTo(rx, y);
+      ctx.stroke();
+    }
+
+    // Vertical lines
+    for(var c=0; c<=gCols; c++){
+      var t2 = c / gCols;
+      var topX = lerp(cTL_x, cTR_x, t2);
+      var botX = lerp(cBL_x, cBR_x, t2);
+      ctx.beginPath();
+      ctx.moveTo(topX, cT_y);
+      ctx.lineTo(botX, cB_y);
+      ctx.stroke();
+    }
+
+    // Outer border gets bolder
+    if(mp > 0.2){
+      var borderA = lerp(0, 0.45, clamp((mp-0.2)/0.8, 0, 1));
+      ctx.strokeStyle = isLight
+        ? 'rgba(90,120,170,' + borderA + ')'
+        : 'rgba(100,140,200,' + borderA + ')';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(cTL_x, cT_y);
+      ctx.lineTo(cTR_x, cT_y);
+      ctx.lineTo(cBR_x, cB_y);
+      ctx.lineTo(cBL_x, cB_y);
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+    // ── 3D nodes and edges fade in during second half of morph ──
+    var nodeAlpha = clamp((mp - 0.4) / 0.6, 0, 1);
+    if(nodeAlpha > 0){
+      var nodes = [
+        {x: -0.3, y: -0.2, z: 0.8},
+        {x:  0.3, y: -0.3, z: 0.6},
+        {x: -0.1, y:  0.2, z: 0.9},
+        {x:  0.35, y: 0.15, z: 0.5},
+        {x:  0.0,  y: -0.1, z: 1.0},
+        {x: -0.35, y: 0.0,  z: 0.7},
+        {x:  0.15, y: 0.3,  z: 0.4},
+        {x: -0.2,  y:-0.35, z: 0.6},
+      ];
+
+      var edges = [[0,1],[1,3],[3,6],[6,2],[2,0],[4,0],[4,1],[4,2],[4,3],[5,0],[5,2],[7,0],[7,1]];
+
+      // Use the current interpolated grid center for node positioning
+      var nCX = (cTL_x + cTR_x + cBL_x + cBR_x) / 4;
+      var nCY = (cT_y + cB_y) / 2;
+      var nW = (cTR_x - cTL_x + cBR_x - cBL_x) / 2;
+      var nH = cB_y - cT_y;
+
+      var projected = [];
+      var slow = t * 0.12;
+      // Nodes lift off the grid plane as morph progresses
+      var liftP = clamp((mp - 0.4) / 0.6, 0, 1);
+      for(var ni=0; ni<nodes.length; ni++){
+        var n = nodes[ni];
+        var rx = n.x * Math.cos(slow) - n.y * Math.sin(slow);
+        var ry2 = n.x * Math.sin(slow) + n.y * Math.cos(slow);
+        var sx = nCX + rx * nW * 0.8;
+        var sy = nCY + ry2 * nH * 0.7 - n.z * 55 * liftP;
+        projected.push({x:sx, y:sy, z:n.z});
+      }
+
+      ctx.save();
+      ctx.globalAlpha = alpha * nodeAlpha;
+
+      ctx.strokeStyle = EDGE_CLR;
+      ctx.lineWidth = 0.7;
+      for(var ei=0; ei<edges.length; ei++){
+        var a = projected[edges[ei][0]], b = projected[edges[ei][1]];
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+
+      // Drop lines (only when lifted)
+      if(liftP > 0.1){
+        ctx.strokeStyle = isLight ? 'rgba(90,120,170,0.10)' : 'rgba(100,140,200,0.10)';
+        ctx.setLineDash([2,3]);
+        for(var ni=0; ni<projected.length; ni++){
+          var p = projected[ni];
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p.x, p.y + nodes[ni].z * 55 * liftP);
+          ctx.stroke();
+        }
+        ctx.setLineDash([]);
+      }
+
+      for(var ni=0; ni<projected.length; ni++){
+        var p = projected[ni];
+        var r = 3 + p.z * 2;
+        ctx.shadowColor = isLight ? 'rgba(90,120,170,0.30)' : 'rgba(100,160,230,0.35)';
+        ctx.shadowBlur = 6 * nodeAlpha;
+        ctx.fillStyle = ni === 4 ? GOLD_CLR : NODE_CLR;
+        ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI*2); ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // Scrolling environment
+  // ═══════════════════════════════════════════════════════════════
+  function drawEnvironment(scrollOffset, tAbs, showChevron){
+    ctx.save();
+
+    ctx.strokeStyle = RAIL_CLR;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(RAIL_L, 0); ctx.lineTo(RAIL_L, H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(RAIL_R, 0); ctx.lineTo(RAIL_R, H); ctx.stroke();
+
+    for(var mi=0; mi<NUM_MARKERS; mi++){
+      var worldY = mi * MARKER_SPACING;
+      var screenY = H + 40 - (worldY - scrollOffset + TOTAL_SCROLL * 0.1);
+      if(screenY < -20 || screenY > H + 20) continue;
+
+      ctx.strokeStyle = MARK_CLR;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(RAIL_L - 10, screenY); ctx.lineTo(RAIL_L + 10, screenY); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(RAIL_R - 10, screenY); ctx.lineTo(RAIL_R + 10, screenY); ctx.stroke();
+    }
+
+    var rivetSpacing = 28;
+    var numRivets = Math.ceil((TOTAL_SCROLL + H) / rivetSpacing);
+    ctx.fillStyle = isLight ? 'rgba(80,100,140,0.10)' : 'rgba(140,180,220,0.08)';
+    for(var ri=0; ri<numRivets; ri++){
+      var wy = ri * rivetSpacing;
+      var sy = H + 40 - (wy - scrollOffset + TOTAL_SCROLL * 0.1);
+      if(sy < -5 || sy > H + 5) continue;
+      ctx.beginPath(); ctx.arc(RAIL_L, sy, 1.5, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(RAIL_R, sy, 1.5, 0, Math.PI*2); ctx.fill();
+    }
+
+    // Blinking up chevron
+    if(showChevron){
+      var arrowCX = W / 2;
+      var arrowY = DOC_Y - 22;
+      var blink = 0.3 + 0.7 * Math.max(0, Math.sin(tAbs * Math.PI * 2 / 1.2));
+      ctx.save();
+      ctx.globalAlpha = blink;
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = isLight ? 'rgba(80,100,140,0.40)' : 'rgba(140,180,220,0.35)';
+      ctx.beginPath();
+      ctx.moveTo(arrowCX - 10, arrowY + 7);
+      ctx.lineTo(arrowCX, arrowY);
+      ctx.lineTo(arrowCX + 10, arrowY + 7);
+      ctx.stroke();
+      ctx.globalAlpha = blink * 0.4;
+      ctx.beginPath();
+      ctx.moveTo(arrowCX - 8, arrowY - 3);
+      ctx.lineTo(arrowCX, arrowY - 9);
+      ctx.lineTo(arrowCX + 8, arrowY - 3);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // Main loop — non-uniform phase timing
+  // ═══════════════════════════════════════════════════════════════
+  // Phase boundaries: phases 0-3 each take PHASE_T, phase 4 takes MORPH_PHASE_T
+  var phaseBounds = [];
+  for(var pi=0; pi<4; pi++) phaseBounds.push(pi * PHASE_T);
+  phaseBounds.push(4 * PHASE_T); // phase 4 start
+  // phase 4 end = ACTIVE_TIME
+
+  // Get phase info from absolute time
+  function getPhaseInfo(t){
+    if(t >= ACTIVE_TIME) return {seg:-1, segT:0, riseT:0, holdT:0};
+    if(t >= phaseBounds[4]){
+      return {seg:4, segT: t - phaseBounds[4], riseT: MORPH_RISE_T, holdT: HOLD_T};
+    }
+    var seg = Math.min(3, Math.floor(t / PHASE_T));
+    return {seg: seg, segT: t - seg * PHASE_T, riseT: RISE_T, holdT: HOLD_T};
+  }
+
+  // Scroll progress: each phase contributes 1/5 of scroll
+  function getScrollP(t){
+    if(t >= ACTIVE_TIME) return 1.0;
+    var info = getPhaseInfo(t);
+    var base = info.seg / PHASES;
+    if(info.segT < info.riseT){
+      return base + eio(info.segT / info.riseT) / PHASES;
+    }
+    return (info.seg + 1) / PHASES;
+  }
+
+  var drawFns = [drawPhase0, drawPhase1, drawPhase2, drawPhase3];
+  var tAbs = 0, lastTs = null;
+
+  function frame(ts){
+    if(!lastTs) lastTs = ts;
+    var dt = Math.min((ts - lastTs)/1000, 0.05);
+    lastTs = ts;
+    tAbs = (tAbs + dt) % LOOP;
+
+    ctx.fillStyle = BG;
+    ctx.fillRect(0, 0, W, H);
+
+    var pauseTime = LOOP - ACTIVE_TIME;
+    var scrollP = getScrollP(tAbs);
+    var scrollOffset = scrollP * TOTAL_SCROLL;
+
+    // ── Scene-wide fade for loop reset ──
+    var sceneAlpha = 1.0;
+    var resetScroll = false;
+    if(tAbs >= ACTIVE_TIME){
+      var pauseElapsed = tAbs - ACTIVE_TIME;
+      var holdEnd    = pauseTime * 0.30;
+      var fadeOutEnd = pauseTime * 0.60;
+      var blackEnd   = pauseTime * 0.70;
+
+      if(pauseElapsed < holdEnd){
+        sceneAlpha = 1.0;
+      } else if(pauseElapsed < fadeOutEnd){
+        sceneAlpha = 1.0 - eio((pauseElapsed - holdEnd) / (fadeOutEnd - holdEnd));
+      } else if(pauseElapsed < blackEnd){
+        sceneAlpha = 0.0;
+        resetScroll = true;
+      } else {
+        sceneAlpha = eio((pauseElapsed - blackEnd) / (pauseTime - blackEnd));
+        resetScroll = true;
+      }
+    }
+
+    if(resetScroll) scrollOffset = 0;
+
+    ctx.save();
+    ctx.globalAlpha = sceneAlpha;
+
+    var info = getPhaseInfo(tAbs);
+    drawEnvironment(scrollOffset, tAbs, info.seg < 4);
+
+    // ── Document paper visibility ──
+    // Paper visible for phases 0-3, fades out during phase 4 morph
+    var docAlpha = 1.0;
+    if(info.seg === 4){
+      // Fade paper out over first 60% of the morph rise
+      var fadeLen = MORPH_RISE_T * 0.6;
+      docAlpha = info.segT < fadeLen ? 1.0 - eio(info.segT / fadeLen) : 0.0;
+    } else if(info.seg === -1){
+      docAlpha = resetScroll ? 1.0 : 0.0;
+    }
+
+    // ── Draw document paper ──
+    if(docAlpha > 0.01){
+      ctx.save();
+      ctx.globalAlpha = sceneAlpha * docAlpha;
+
+      ctx.fillStyle = isLight ? 'rgba(0,0,0,0.06)' : 'rgba(0,0,0,0.18)';
+      roundRect(ctx, DOC_X+2, DOC_Y+2, DOCW, DOCH, 4);
+      ctx.fill();
+
+      ctx.fillStyle = DOC_BG;
+      roundRect(ctx, DOC_X, DOC_Y, DOCW, DOCH, 4);
+      ctx.fill();
+
+      ctx.strokeStyle = DOC_BRD;
+      ctx.lineWidth = 0.8;
+      roundRect(ctx, DOC_X, DOC_Y, DOCW, DOCH, 4);
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    // ── Document content ──
+    if(info.seg >= 0 && info.seg <= 3){
+      // Normal phases 0-3 with crossfade transitions
+      if(info.segT < info.riseT && info.seg > 0){
+        var halfRise = info.riseT / 2;
+        if(info.segT < halfRise){
+          var outP = eio(info.segT / halfRise);
+          drawFns[info.seg-1](1 - outP, tAbs);
+        } else {
+          var inP = eio((info.segT - halfRise) / halfRise);
+          drawFns[info.seg](inP, tAbs);
+        }
+      } else {
+        drawFns[info.seg](1, tAbs);
+      }
+    } else if(info.seg === 4){
+      // Phase 3→4 morph transition
+      var morphP = clamp(info.segT / MORPH_RISE_T, 0, 1);
+
+      // Phase 3 text/tabs fade out over first 40% of morph
+      var textFadeP = clamp(morphP / 0.4, 0, 1);
+      if(textFadeP < 1){
+        drawPhase3(1 - eio(textFadeP), tAbs);
+      }
+
+      // The morphing grid + emerging 3D nodes
+      drawPhase4(1, tAbs, morphP);
+    } else {
+      // Pause period
+      if(sceneAlpha > 0.01){
+        if(resetScroll){
+          drawPhase0(1, tAbs);
+        } else {
+          drawPhase4(1, tAbs, 1);
+        }
+      }
+    }
+
+    ctx.restore();
+
+    // ── "the floor is rising" ──
+    ctx.save();
+    ctx.font = '10px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = isLight ? 'rgba(60,70,100,0.25)' : 'rgba(180,200,230,0.20)';
+    ctx.fillText('the floor is rising', W/2, H - 18);
+    ctx.restore();
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
