@@ -1,0 +1,118 @@
+<style>
+  .postlist-blogger {
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-6) var(--space-12);
+  }
+  .postlist-blogger__heading {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--font-size-xs);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .postitem-blogger {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-4);
+    text-decoration: none;
+    display: block;
+    color: inherit;
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid transparent;
+    overflow: hidden;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .postitem-blogger:hover {
+    color: inherit;
+    border-left-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+  }
+  .postitem-blogger__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .postitem-blogger__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+  .postitem-blogger:hover .postitem-blogger__image img {
+    transform: scale(1.03);
+  }
+  .postitem-blogger__body {
+    padding: var(--space-6);
+  }
+  .postitem-blogger__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-2);
+    color: var(--color-text-primary);
+    transition: color var(--transition-fast);
+  }
+  .postitem-blogger:hover .postitem-blogger__title {
+    color: var(--color-accent);
+  }
+  .postitem-blogger__meta {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+  .postitem-blogger__desc {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-normal);
+  }
+  .postitem-blogger__tags {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .postitem-blogger__tag {
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+  }
+</style>
+
+<div class="postlist-blogger">
+  <div class="postlist-blogger__heading">Latest Posts</div>
+  {{ range . }}
+    <a href="{{ .Permalink }}" class="postitem-blogger">
+      {{ with .Params.image }}
+        <div class="postitem-blogger__image">
+          <img src="{{ . }}" alt="" loading="lazy">
+        </div>
+      {{ end }}
+      <div class="postitem-blogger__body">
+        <h2 class="postitem-blogger__title">{{ .Title }}</h2>
+        <div class="postitem-blogger__meta">
+          <time>{{ .Date.Format "January 2, 2006" }}</time>
+          {{ with .Params.readTime }}<span>· {{ . }}</span>{{ end }}
+        </div>
+        {{ with .Description }}
+          <p class="postitem-blogger__desc">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.tags }}
+          <div class="postitem-blogger__tags">
+            {{ range . }}<span class="postitem-blogger__tag">{{ . }}</span>{{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </a>
+  {{ end }}
+</div>

@@ -1,0 +1,134 @@
+/* ============================================
+   EDITORIAL THEME — Design Tokens
+   Rich, warm, publication quality. Confident typography.
+   ============================================ */
+
+:root {
+  /* --- Colors (Dark mode default) --- */
+  --color-bg: #141820;              /* Deep navy — rich, editorial warmth */
+  --color-surface: #1c2029;          /* Slightly lifted for cards */
+  --color-border: #2a2f3a;           /* Warm gray borders */
+  --color-text-primary: #ede8e0;     /* Cream white — warm, not clinical */
+  --color-text-secondary: #b0a898;   /* Warm muted for supporting text */
+  --color-text-muted: #736b60;       /* Quiet metadata */
+  --color-accent: #d4a853;           /* Warm amber/gold — editorial confidence */
+  --color-accent-hover: #e0bb6a;     /* Brighter gold on hover */
+  --color-accent-subtle: rgba(212, 168, 83, 0.1); /* Subtle gold tint */
+  --color-success: #7cb88a;          /* Muted green */
+  --color-warning: #c47a53;          /* Warm orange */
+
+  /* --- Typography --- */
+  --font-heading: 'Fraunces', 'Georgia', serif;
+  --font-sans: 'Source Sans 3', 'Source Sans Pro', -apple-system, sans-serif;
+  --font-mono: 'Fira Code', 'Consolas', monospace;
+
+  /* Type scale — slightly larger for editorial presence */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1.0625rem;  /* 17px — slightly larger base for readability */
+  --font-size-lg: 1.1875rem;
+  --font-size-xl: 1.375rem;
+  --font-size-2xl: 1.75rem;
+  --font-size-3xl: 2.25rem;
+  --font-size-4xl: 3rem;
+
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.8;   /* Extra generous for long-form reading */
+
+  /* --- Spacing (4px base grid) --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* --- Border radius — minimal rounding, editorial precision --- */
+  --radius-none: 0;
+  --radius-sm: 0.1875rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-full: 9999px;
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 400ms ease-in-out;
+
+  /* --- Shadows — warm-toned --- */
+  --shadow-sm: 0 1px 3px rgba(20, 15, 10, 0.15);
+  --shadow-md: 0 3px 10px rgba(20, 15, 10, 0.2);
+  --shadow-lg: 0 6px 20px rgba(20, 15, 10, 0.25);
+
+  /* --- Layout --- */
+  --max-width-prose: 65ch;
+  --max-width-site: 1200px;
+}
+
+/* Light mode overrides */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --color-bg: #faf7f2;
+    --color-surface: #ffffff;
+    --color-border: #e6e0d6;
+    --color-text-primary: #1a1610;
+    --color-text-secondary: #5a5348;
+    --color-text-muted: #958d82;
+    --color-accent: #b08a30;
+    --color-accent-hover: #9a7828;
+    --color-accent-subtle: rgba(176, 138, 48, 0.08);
+    --color-success: #4a8a5a;
+    --color-warning: #a06030;
+    --shadow-sm: 0 1px 3px rgba(20, 15, 10, 0.06);
+    --shadow-md: 0 3px 10px rgba(20, 15, 10, 0.08);
+    --shadow-lg: 0 6px 20px rgba(20, 15, 10, 0.1);
+  }
+}
+
+[data-theme="light"] {
+  --color-bg: #faf7f2;
+  --color-surface: #ffffff;
+  --color-border: #e6e0d6;
+  --color-text-primary: #1a1610;
+  --color-text-secondary: #5a5348;
+  --color-text-muted: #958d82;
+  --color-accent: #b08a30;
+  --color-accent-hover: #9a7828;
+  --color-accent-subtle: rgba(176, 138, 48, 0.08);
+  --color-success: #4a8a5a;
+  --color-warning: #a06030;
+  --shadow-sm: 0 1px 3px rgba(20, 15, 10, 0.06);
+  --shadow-md: 0 3px 10px rgba(20, 15, 10, 0.08);
+  --shadow-lg: 0 6px 20px rgba(20, 15, 10, 0.1);
+}
+
+[data-theme="dark"] {
+  --color-bg: #141820;
+  --color-surface: #1c2029;
+  --color-border: #2a2f3a;
+  --color-text-primary: #ede8e0;
+  --color-text-secondary: #b0a898;
+  --color-text-muted: #736b60;
+  --color-accent: #d4a853;
+  --color-accent-hover: #e0bb6a;
+  --color-accent-subtle: rgba(212, 168, 83, 0.1);
+  --color-success: #7cb88a;
+  --color-warning: #c47a53;
+  --shadow-sm: 0 1px 3px rgba(20, 15, 10, 0.15);
+  --shadow-md: 0 3px 10px rgba(20, 15, 10, 0.2);
+  --shadow-lg: 0 6px 20px rgba(20, 15, 10, 0.25);
+}

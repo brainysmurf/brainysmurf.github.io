@@ -1,0 +1,71 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  <main>
+    <article class="page-company container">
+      <header class="page-company__header">
+        <h1 class="page-company__title">
+          {{ .Title }}
+        </h1>
+      </header>
+
+      <div class="page-company__body prose">
+        {{ .Content }}
+
+        {{ if and (eq .Title "Newsletter") .Site.Params.beehiivUrl }}
+          <div class="page-company__embed">
+            <iframe src="{{ .Site.Params.beehiivUrl }}" data-test-id="beehiiv-embed" width="100%" height="320" frameborder="0" scrolling="no" style="border-radius: var(--radius-lg); background: transparent;"></iframe>
+          </div>
+        {{ end }}
+      </div>
+    </article>
+  </main>
+
+  <style>
+    .page-company {
+      max-width: 800px;
+      padding-top: var(--space-20);
+      padding-bottom: var(--space-16);
+    }
+
+    .page-company__header {
+      margin-bottom: var(--space-10);
+      padding-bottom: var(--space-6);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .page-company__title {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-extrabold);
+      letter-spacing: -0.03em;
+    }
+
+    .page-company__body {
+      font-size: var(--font-size-lg);
+      line-height: var(--line-height-relaxed);
+    }
+
+    .page-company__body h2 {
+      margin-top: var(--space-12);
+      margin-bottom: var(--space-4);
+    }
+
+    .page-company__body h3 {
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-3);
+    }
+
+    .page-company__embed {
+      margin-top: var(--space-8);
+    }
+
+    @media (max-width: 768px) {
+      .page-company__title {
+        font-size: var(--font-size-3xl);
+      }
+    }
+  </style>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

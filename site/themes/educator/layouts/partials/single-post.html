@@ -1,0 +1,195 @@
+<style>
+  .single-educator {
+    max-width: var(--max-width-prose);
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6) var(--space-16);
+  }
+  .single-educator__back {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-8);
+    transition: color var(--transition-fast), background var(--transition-fast);
+  }
+  .single-educator__back:hover {
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+  }
+  .single-educator__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.03em;
+  }
+  .single-educator__meta {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    padding-bottom: var(--space-6);
+    margin-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .single-educator__tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+  .single-educator__tag {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+  }
+  .single-educator__hero-image {
+    margin-bottom: var(--space-8);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .single-educator__hero-image img {
+    width: 100%;
+    height: auto;
+  }
+  /* Prose content */
+  .single-educator__content {
+    line-height: var(--line-height-relaxed);
+  }
+  .single-educator__content h2 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.02em;
+  }
+  .single-educator__content h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+  }
+  .single-educator__content p {
+    margin-bottom: var(--space-4);
+  }
+  .single-educator__content ul, .single-educator__content ol {
+    margin-bottom: var(--space-4);
+    padding-left: var(--space-6);
+  }
+  .single-educator__content li {
+    margin-bottom: var(--space-2);
+  }
+  .single-educator__content blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding: var(--space-4) var(--space-6);
+    margin: var(--space-6) 0;
+    background: var(--color-accent-subtle);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-lg);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .single-educator__content pre {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    overflow-x: auto;
+    margin: var(--space-6) 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+  }
+  .single-educator__content code {
+    font-size: var(--font-size-sm);
+  }
+  .single-educator__content p code,
+  .single-educator__content li code {
+    background: var(--color-surface);
+    padding: 0.15em 0.4em;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+  }
+  .single-educator__content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(59, 94, 201, 0.3);
+  }
+  .single-educator__content a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+  .single-educator__content strong {
+    font-weight: var(--font-weight-semibold);
+  }
+  /* Newsletter CTA */
+  .single-educator__newsletter {
+    margin-top: var(--space-12);
+    padding: var(--space-8);
+    background: var(--color-hero-bg);
+    border-radius: var(--radius-xl);
+    text-align: center;
+  }
+  .single-educator__newsletter h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.02em;
+  }
+  .single-educator__newsletter p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-5);
+  }
+  .single-educator__newsletter a {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--space-3) var(--space-8);
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 14px rgba(59, 94, 201, 0.3);
+  }
+  .single-educator__newsletter a:hover {
+    background: var(--color-accent-hover);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+</style>
+
+<article class="single-educator">
+  <a href="/posts/" class="single-educator__back">← Back to posts</a>
+  <h1 class="single-educator__title">{{ .Title }}</h1>
+  <div class="single-educator__meta">
+    <time>{{ .Date.Format "January 2, 2006" }}</time>
+    {{ with .Params.readTime }}<span>· {{ . }}</span>{{ end }}
+    {{ with .Params.tags }}
+      <span>·</span>
+      <div class="single-educator__tags">
+        {{ range . }}<span class="single-educator__tag">{{ . }}</span>{{ end }}
+      </div>
+    {{ end }}
+  </div>
+  {{ with .Params.image }}
+    <div class="single-educator__hero-image">
+      <img src="{{ . }}" alt="">
+    </div>
+  {{ end }}
+  <div class="single-educator__content">
+    {{ .Content }}
+  </div>
+  <div class="single-educator__newsletter">
+    <h3>Subscribe</h3>
+    <p>New posts on product, code, and education — delivered to your inbox.</p>
+    <a href="/newsletter/">Subscribe to the newsletter</a>
+  </div>
+</article>

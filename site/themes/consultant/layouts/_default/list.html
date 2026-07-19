@@ -1,0 +1,46 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  <main>
+    <div class="container">
+      <header class="list-header fade-in">
+        <h1 class="list-header__title">{{ .Title }}</h1>
+        <div class="list-header__rule"></div>
+        {{ with .Description }}
+          <p class="list-header__desc">{{ . }}</p>
+        {{ end }}
+      </header>
+      {{ partial "post-list.html" . }}
+    </div>
+  </main>
+
+  <style>
+    .list-header {
+      padding: var(--space-24) 0 var(--space-8);
+      text-align: center;
+    }
+
+    .list-header__title {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-light);
+      letter-spacing: 0.02em;
+      margin-bottom: var(--space-4);
+    }
+
+    .list-header__rule {
+      width: 40px;
+      height: 2px;
+      background: var(--color-accent);
+      margin: 0 auto var(--space-4);
+    }
+
+    .list-header__desc {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-light);
+      color: var(--color-text-secondary);
+    }
+  </style>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

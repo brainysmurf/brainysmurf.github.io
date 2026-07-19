@@ -1,0 +1,122 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  <main class="container">
+    <style>
+      .page-content {
+        padding-top: var(--space-24);
+        padding-bottom: var(--space-16);
+        max-width: var(--max-width-prose);
+        margin: 0 auto;
+      }
+      .page-header {
+        margin-bottom: var(--space-10);
+        padding-bottom: var(--space-6);
+        border-bottom: 1px solid var(--color-border);
+      }
+      .page-title {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-3xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-text-primary);
+      }
+      .page-title-prompt {
+        color: var(--color-accent);
+        font-weight: var(--font-weight-normal);
+      }
+      .page-body p {
+        color: var(--color-text-secondary);
+        line-height: var(--line-height-relaxed);
+        margin-bottom: var(--space-6);
+      }
+      .page-body h2 {
+        font-family: var(--font-mono);
+        margin-top: var(--space-10);
+        margin-bottom: var(--space-4);
+      }
+      .page-body h3 {
+        font-family: var(--font-mono);
+        margin-top: var(--space-8);
+        margin-bottom: var(--space-3);
+      }
+      .page-body a {
+        color: var(--color-accent);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .page-newsletter-embed {
+        margin-top: var(--space-10);
+      }
+      .single-post-newsletter {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: var(--space-8);
+        text-align: center;
+      }
+      .newsletter-prompt {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-xl);
+        color: var(--color-accent);
+        margin-bottom: var(--space-3);
+        font-weight: var(--font-weight-semibold);
+      }
+      .newsletter-desc {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-6);
+        max-width: 40ch;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .newsletter-btn {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+        padding: var(--space-3) var(--space-6);
+        background: var(--color-accent);
+        color: var(--color-bg);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius-md);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+        display: inline-block;
+      }
+      .newsletter-btn:hover {
+        background: var(--color-accent-hover);
+        border-color: var(--color-accent-hover);
+        color: var(--color-bg);
+      }
+      @media (max-width: 768px) {
+        .page-title {
+          font-size: var(--font-size-2xl);
+        }
+      }
+    </style>
+    <article class="page-content">
+      <header class="page-header">
+        <h1 class="page-title">
+          <span class="page-title-prompt">&gt;_</span> {{ .Title }}
+        </h1>
+      </header>
+
+      <div class="page-body prose">
+        {{ .Content }}
+      </div>
+
+      {{/* Newsletter page — CTA */}}
+      {{ if in (lower .Title) "newsletter" }}
+        {{ with .Site.Params.newsletterUrl }}
+          <div class="single-post-newsletter page-newsletter-embed">
+            <div class="newsletter-prompt">&gt; subscribe</div>
+            <p class="newsletter-desc">Get new posts delivered to your inbox. No spam, unsubscribe anytime.</p>
+            <a href="{{ . }}" class="newsletter-btn" target="_blank" rel="noopener">Join my LinkedIn newsletter</a>
+          </div>
+        {{ end }}
+      {{ end }}
+    </article>
+  </main>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

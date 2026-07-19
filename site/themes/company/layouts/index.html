@@ -1,0 +1,39 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  <main>
+    {{ partial "hero.html" . }}
+
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Latest Posts</h2>
+        <p class="section-subtitle">Thoughts on product, technology, and education.</p>
+      </div>
+      {{ partial "post-list.html" . }}
+    </div>
+  </main>
+
+  <style>
+    .section-header {
+      text-align: center;
+      padding: var(--space-16) 0 var(--space-8);
+    }
+
+    .section-title {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      margin-bottom: 0;
+    }
+  </style>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

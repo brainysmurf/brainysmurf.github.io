@@ -1,0 +1,120 @@
+<style>
+  .nav-minimal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-6);
+  }
+  .nav-minimal__name {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+  .nav-minimal__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    list-style: none;
+  }
+  .nav-minimal__links a {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .nav-minimal__links a:hover {
+    color: var(--color-text-primary);
+  }
+  .nav-minimal__toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    padding: var(--space-1) var(--space-2);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+  }
+  .nav-minimal__toggle:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-text-muted);
+  }
+  .nav-minimal__hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    padding: var(--space-1);
+    font-size: var(--font-size-lg);
+  }
+  .nav-minimal__mobile {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    border-top: 1px solid var(--color-border);
+  }
+  .nav-minimal__mobile.open {
+    display: flex;
+  }
+  .nav-minimal__mobile a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+  }
+  @media (max-width: 768px) {
+    .nav-minimal__links { display: none; }
+    .nav-minimal__hamburger { display: block; }
+  }
+</style>
+
+<nav>
+  <div class="nav-minimal">
+    <a href="/" class="nav-minimal__name">{{ .Site.Title }}</a>
+    <ul class="nav-minimal__links">
+      {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+      <li>
+        <button class="nav-minimal__toggle" id="theme-toggle" aria-label="Toggle theme">◐</button>
+      </li>
+    </ul>
+    <button class="nav-minimal__hamburger" id="menu-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+  <div class="nav-minimal__mobile" id="mobile-menu">
+    {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}">{{ .Name }}</a>
+    {{ end }}
+    <button class="nav-minimal__toggle" id="theme-toggle-mobile" aria-label="Toggle theme">◐</button>
+  </div>
+</nav>
+
+<script>
+(function() {
+  // Dark mode toggle
+  const saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  }
+
+  document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+  const mobileToggle = document.getElementById('theme-toggle-mobile');
+  if (mobileToggle) mobileToggle.addEventListener('click', toggleTheme);
+
+  // Mobile menu toggle
+  document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  });
+})();
+</script>

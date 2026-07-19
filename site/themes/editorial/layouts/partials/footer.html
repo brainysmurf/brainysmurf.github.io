@@ -1,0 +1,65 @@
+<style>
+  .footer-editorial {
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+  .footer-editorial__left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .footer-editorial__links {
+    display: flex;
+    gap: var(--space-4);
+    list-style: none;
+  }
+  .footer-editorial__links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .footer-editorial__links a:hover { color: var(--color-accent); }
+  .footer-editorial__right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .footer-editorial__tagline {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+  .footer-editorial__social a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .footer-editorial__social a:hover { color: var(--color-accent); }
+</style>
+
+<footer class="footer-editorial">
+  <div class="footer-editorial__left">
+    <span>© {{ now.Year }} {{ .Site.Params.author }}</span>
+    <ul class="footer-editorial__links">
+      <li><a href="/posts/">Posts</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/newsletter/">Newsletter</a></li>
+    </ul>
+  </div>
+  <div class="footer-editorial__right">
+    <span class="footer-editorial__tagline">Writing about what happens when code meets classrooms.</span>
+    <div class="footer-editorial__social">
+      {{ with .Site.Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">LinkedIn →</a>{{ end }}
+    </div>
+  </div>
+</footer>

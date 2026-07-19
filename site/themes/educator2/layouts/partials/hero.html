@@ -1,0 +1,125 @@
+<style>
+  .hero-educator {
+    background: var(--color-hero-bg);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-educator__inner {
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-6) var(--space-20);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+  }
+  .hero-educator__content { z-index: 1; }
+  .hero-educator__name {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.03em;
+  }
+  .hero-educator__role {
+    font-size: var(--font-size-lg);
+    color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-6);
+  }
+  .hero-educator__bio {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-8);
+  }
+  .hero-educator__ctas {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .hero-educator__cta {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--space-3) var(--space-8);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+  .hero-educator__cta--primary {
+    background: var(--color-accent);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(196, 53, 106, 0.3);
+  }
+  .hero-educator__cta--primary:hover {
+    background: var(--color-accent-hover);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(196, 53, 106, 0.35);
+  }
+  .hero-educator__cta--secondary {
+    border: 1.5px solid var(--color-accent);
+    color: var(--color-accent);
+  }
+  .hero-educator__cta--secondary:hover {
+    background: var(--color-accent-subtle);
+  }
+  .hero-educator__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-educator__graphic {
+    width: 280px;
+    height: 280px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, var(--color-accent-subtle), var(--color-accent));
+    opacity: 0.15;
+  }
+  .hero-educator__wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+  }
+  .hero-educator__wave svg {
+    display: block;
+    width: 100%;
+    height: 60px;
+  }
+  @media (max-width: 768px) {
+    .hero-educator__inner {
+      grid-template-columns: 1fr;
+      padding: var(--space-10) var(--space-6) var(--space-16);
+    }
+    .hero-educator__visual { display: none; }
+    .hero-educator__name { font-size: var(--font-size-3xl); }
+  }
+</style>
+
+<section class="hero-educator">
+  <div class="hero-educator__inner">
+    <div class="hero-educator__content">
+      <h1 class="hero-educator__name">{{ .Site.Params.author }}</h1>
+      <p class="hero-educator__role">{{ .Site.Params.role }}</p>
+      <p class="hero-educator__bio">{{ .Site.Params.description }}</p>
+      <div class="hero-educator__ctas">
+        <a href="/posts/" class="hero-educator__cta hero-educator__cta--primary">Explore Posts</a>
+        <a href="/newsletter/" class="hero-educator__cta hero-educator__cta--secondary">Subscribe</a>
+      </div>
+    </div>
+    <div class="hero-educator__visual">
+      <div class="hero-educator__graphic"></div>
+    </div>
+  </div>
+  <div class="hero-educator__wave">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="var(--color-bg)">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,30 1440,40 L1440,60 L0,60 Z"></path>
+    </svg>
+  </div>
+</section>

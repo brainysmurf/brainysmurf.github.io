@@ -1,0 +1,37 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  <main>
+    <div class="container">
+      <header class="list-header-company fade-in">
+        <h1 class="list-header-company__title">{{ .Title }}</h1>
+        {{ with .Description }}
+          <p class="list-header-company__desc">{{ . }}</p>
+        {{ end }}
+      </header>
+      {{ partial "post-list.html" . }}
+    </div>
+  </main>
+
+  <style>
+    .list-header-company {
+      padding: var(--space-20) 0 var(--space-8);
+      text-align: center;
+    }
+
+    .list-header-company__title {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-extrabold);
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-3);
+    }
+
+    .list-header-company__desc {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+    }
+  </style>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

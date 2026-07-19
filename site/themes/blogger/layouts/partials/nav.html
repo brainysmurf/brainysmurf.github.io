@@ -1,0 +1,132 @@
+<style>
+  .nav-blogger {
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: var(--space-5) var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--color-accent);
+  }
+  .nav-blogger__brand {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+  .nav-blogger__name {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1;
+  }
+  .nav-blogger__tagline {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+    font-style: italic;
+  }
+  .nav-blogger__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    list-style: none;
+  }
+  .nav-blogger__link {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: var(--space-1) 0;
+    transition: color var(--transition-fast);
+  }
+  .nav-blogger__link:hover,
+  .nav-blogger__link--active {
+    color: var(--color-accent);
+  }
+  .nav-blogger__toggle {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    padding: var(--space-1);
+    transition: color var(--transition-fast);
+  }
+  .nav-blogger__toggle:hover {
+    color: var(--color-accent);
+  }
+  .nav-blogger__hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    font-size: var(--font-size-xl);
+    padding: var(--space-1);
+  }
+  .nav-blogger__mobile {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .nav-blogger__mobile.open { display: flex; }
+  .nav-blogger__mobile a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+  }
+  .nav-blogger__mobile a:hover { color: var(--color-accent); }
+  @media (max-width: 768px) {
+    .nav-blogger__links { display: none; }
+    .nav-blogger__hamburger { display: block; }
+  }
+</style>
+
+<nav>
+  <div class="nav-blogger">
+    <a href="/" class="nav-blogger__brand">
+      <span class="nav-blogger__name">{{ .Site.Title }}</span>
+      <span class="nav-blogger__tagline">{{ .Site.Params.description }}</span>
+    </a>
+    <ul class="nav-blogger__links">
+      {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}" class="nav-blogger__link">{{ .Name }}</a></li>
+      {{ end }}
+      <li><button class="nav-blogger__toggle" id="theme-toggle" aria-label="Toggle theme">◐</button></li>
+    </ul>
+    <button class="nav-blogger__hamburger" id="menu-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+  <div class="nav-blogger__mobile" id="mobile-menu">
+    {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}">{{ .Name }}</a>
+    {{ end }}
+    <button class="nav-blogger__toggle" id="theme-toggle-mobile" aria-label="Toggle theme">◐</button>
+  </div>
+</nav>
+
+<script>
+(function() {
+  var saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+  function toggleTheme() {
+    var c = document.documentElement.getAttribute('data-theme');
+    var n = c === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', n);
+    localStorage.setItem('theme', n);
+  }
+
+  document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+  var mt = document.getElementById('theme-toggle-mobile');
+  if (mt) mt.addEventListener('click', toggleTheme);
+
+  document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  });
+})();
+</script>

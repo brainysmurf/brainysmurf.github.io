@@ -1,0 +1,156 @@
+{{/* Single Post — "Company" */}}
+<article class="article-company container">
+  <header class="article-company__header">
+    <div class="article-company__meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ with .ReadingTime }}<span class="article-company__reading">{{ . }} min read</span>{{ end }}
+    </div>
+    <h1 class="article-company__title">{{ .Title }}</h1>
+    {{ with .Description }}
+      <p class="article-company__lead">{{ . }}</p>
+    {{ end }}
+    {{ with .Params.tags }}
+      <div class="article-company__tags">
+        {{ range . }}
+          <span class="article-company__tag">{{ . }}</span>
+        {{ end }}
+      </div>
+    {{ end }}
+  </header>
+
+  {{ with .Params.image }}
+    <div class="article-company__hero-image">
+      <img src="{{ . }}" alt="">
+    </div>
+  {{ end }}
+
+  <div class="article-company__body prose">
+    {{ .Content }}
+  </div>
+
+  <footer class="article-company__footer">
+    <a href="/posts/" class="article-company__back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m0 0l4 4M3 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      All Posts
+    </a>
+  </footer>
+</article>
+
+<style>
+  .article-company {
+    max-width: 800px;
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-16);
+  }
+
+  .article-company__header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .article-company__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .article-company__reading::before {
+    content: '\00b7';
+    margin-right: var(--space-3);
+  }
+
+  .article-company__title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+  }
+
+  .article-company__lead {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .article-company__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .article-company__tag {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+  }
+
+  .article-company__hero-image {
+    margin-bottom: var(--space-10);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .article-company__hero-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .article-company__body {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-primary);
+  }
+
+  .article-company__body h2 {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-company__body h3 {
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+  }
+
+  .article-company__body img {
+    border-radius: var(--radius-md);
+    margin: var(--space-8) 0;
+  }
+
+  .article-company__footer {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article-company__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: gap var(--transition-fast);
+  }
+
+  .article-company__back:hover {
+    gap: var(--space-3);
+  }
+
+  @media (max-width: 768px) {
+    .article-company__title {
+      font-size: var(--font-size-3xl);
+    }
+  }
+</style>

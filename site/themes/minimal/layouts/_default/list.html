@@ -1,0 +1,11 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  <div style="max-width: var(--max-width-site); margin: 0 auto; padding: var(--space-8) var(--space-6) var(--space-4);">
+    <h1 style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold);">{{ .Title }}</h1>
+  </div>
+  {{ partial "post-list.html" .Pages }}
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

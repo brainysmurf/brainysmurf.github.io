@@ -1,0 +1,10 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  <main class="container">
+    {{ partial "single-post.html" . }}
+  </main>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

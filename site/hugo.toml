@@ -1,0 +1,28 @@
+baseURL = "https://mistermorris.com/"
+languageCode = "en-us"
+publishDir = "/Users/adammorris/src/brainysmurf.github.io/docs"
+title = "Adam Morris"
+theme = "builder2"
+[pagination]
+  pagerSize = 10
+
+[params]
+  author = "Adam Morris"
+  role = "Product Engineer"
+  description = "Teacher-turned-product-leader. Still writing code. Still in EDU."
+  newsletterUrl = "https://www.linkedin.com/newsletters/chasing-change-reforming-edu-7063350324320768000/"
+  linkedin = "https://www.linkedin.com/in/adam-morris-6286b6206/"
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+  [[menu.main]]
+    name = "Newsletter"
+    url = "/newsletter/"
+    weight = 3

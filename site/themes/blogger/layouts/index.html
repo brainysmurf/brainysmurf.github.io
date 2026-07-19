@@ -1,0 +1,9 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  {{ partial "hero.html" . }}
+  {{ partial "post-list.html" (where .Site.RegularPages "Section" "posts") }}
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

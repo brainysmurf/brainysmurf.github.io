@@ -1,0 +1,201 @@
+{{/* Post List — "Consultant" — Elegant card grid with thumbnails */}}
+{{ $pages := where .Site.RegularPages "Section" "posts" }}
+{{ if .IsSection }}
+  {{ $pages = .Pages }}
+{{ end }}
+
+<section class="post-list-consul">
+  <div class="post-grid-consul">
+    {{ range $pages }}
+      <a href="{{ .Permalink }}" class="post-card-consul fade-in">
+        {{ with .Params.image }}
+          <div class="post-card-consul__image">
+            <img src="{{ . }}" alt="" loading="lazy">
+          </div>
+        {{ end }}
+        <div class="post-card-consul__content">
+          <div class="post-card-consul__meta">
+            <time class="post-card-consul__date" datetime="{{ .Date.Format "2006-01-02" }}">
+              {{ .Date.Format "Jan 2, 2006" }}
+            </time>
+            {{ with .ReadingTime }}
+              <span class="post-card-consul__reading">{{ . }} min read</span>
+            {{ end }}
+          </div>
+
+          <h3 class="post-card-consul__title">{{ .Title }}</h3>
+
+          {{ with .Description }}
+            <p class="post-card-consul__desc">{{ . }}</p>
+          {{ else }}
+            {{ with .Summary }}
+              <p class="post-card-consul__desc">{{ . | plainify | truncate 120 }}</p>
+            {{ end }}
+          {{ end }}
+
+          {{ with .Params.tags }}
+            <div class="post-card-consul__tags">
+              {{ range . }}
+                <span class="post-card-consul__tag">{{ . }}</span>
+              {{ end }}
+            </div>
+          {{ end }}
+
+          <span class="post-card-consul__more">Read more</span>
+        </div>
+      </a>
+    {{ else }}
+      <p class="post-list-consul__empty">No posts yet. Check back soon.</p>
+    {{ end }}
+  </div>
+</section>
+
+<style>
+  .post-list-consul {
+    padding: var(--space-4) 0 var(--space-16);
+  }
+
+  .post-grid-consul {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 640px) {
+    .post-grid-consul {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .post-grid-consul {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  .post-card-consul {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    overflow: hidden;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+
+  .post-card-consul:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+  }
+
+  .post-card-consul__image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .post-card-consul__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .post-card-consul:hover .post-card-consul__image img {
+    transform: scale(1.04);
+  }
+
+  .post-card-consul__content {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .post-card-consul__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+
+  .post-card-consul__date {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .post-card-consul__reading {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .post-card-consul__reading::before {
+    content: '\2014';
+    margin-right: var(--space-3);
+  }
+
+  .post-card-consul__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-3);
+    line-height: var(--line-height-tight);
+  }
+
+  .post-card-consul:hover .post-card-consul__title {
+    color: var(--color-accent-hover);
+  }
+
+  .post-card-consul__desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+    flex-grow: 1;
+  }
+
+  .post-card-consul__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .post-card-consul__tag {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .post-card-consul__tag + .post-card-consul__tag::before {
+    content: '/';
+    margin-right: var(--space-2);
+    color: var(--color-text-muted);
+  }
+
+  .post-card-consul__more {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: color var(--transition-fast);
+  }
+
+  .post-card-consul:hover .post-card-consul__more {
+    color: var(--color-accent-hover);
+  }
+
+  .post-list-consul__empty {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--space-12) 0;
+  }
+</style>

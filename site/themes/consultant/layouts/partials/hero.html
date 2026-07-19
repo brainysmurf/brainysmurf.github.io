@@ -1,0 +1,135 @@
+{{/* Hero — "Consultant" — Clean, elegant, text-focused hero */}}
+<section class="hero-consul">
+  <div class="hero-consul__content container">
+    <p class="hero-consul__eyebrow">{{ .Site.Params.role | default "Product Engineer" }}</p>
+    <h1 class="hero-consul__title">
+      {{ .Site.Params.author | default .Site.Title }}
+    </h1>
+    <div class="hero-consul__rule"></div>
+    <p class="hero-consul__subtitle">{{ .Site.Params.description }}</p>
+    <div class="hero-consul__actions">
+      <a href="/posts/" class="hero-consul__cta hero-consul__cta--primary">
+        Read Posts
+      </a>
+      {{ with .Site.Params.newsletterUrl }}
+        <a href="{{ . }}" class="hero-consul__cta hero-consul__cta--secondary">Subscribe</a>
+      {{ else }}
+        <a href="/newsletter/" class="hero-consul__cta hero-consul__cta--secondary">Subscribe</a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-consul {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: var(--space-24) 0 var(--space-20);
+    background: var(--gradient-hero);
+  }
+
+  .hero-consul__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .hero-consul__eyebrow {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-consul__title {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-light);
+    color: #ffffff;
+    margin-bottom: var(--space-6);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+
+  .hero-consul__rule {
+    width: 50px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    margin: 0 auto var(--space-6);
+  }
+
+  .hero-consul__subtitle {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-light);
+    color: rgba(255, 255, 255, 0.7);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-10);
+    max-width: 50ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-consul__actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-consul__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: var(--space-3) var(--space-8);
+    text-decoration: none;
+    transition: all var(--transition-base);
+  }
+
+  .hero-consul__cta--primary {
+    background: #ffffff;
+    color: #0e2e47;
+    border: 1px solid #ffffff;
+  }
+
+  .hero-consul__cta--primary:hover {
+    background: transparent;
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .hero-consul__cta--secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  .hero-consul__cta--secondary:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .hero-consul {
+      min-height: auto;
+      padding: var(--space-24) 0 var(--space-16);
+    }
+
+    .hero-consul__title {
+      font-size: var(--font-size-3xl);
+    }
+
+    .hero-consul__subtitle {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>

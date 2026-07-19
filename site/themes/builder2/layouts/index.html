@@ -1,0 +1,33 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  <main>
+    {{ partial "hero.html" . }}
+    <div class="container">
+      <h2 class="section-heading">
+        <span class="section-heading-prompt">~/</span>recent posts
+      </h2>
+      {{ partial "post-list.html" . }}
+    </div>
+  </main>
+
+  <style>
+    .section-heading {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .section-heading-prompt {
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-normal);
+    }
+  </style>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

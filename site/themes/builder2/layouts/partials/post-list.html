@@ -1,0 +1,194 @@
+{{/* Post List — "The Dense Grid" */}}
+{{ $pages := where .Site.RegularPages "Section" "posts" }}
+{{ if .IsSection }}
+  {{ $pages = .Pages }}
+{{ end }}
+
+<section class="post-list">
+  <div class="post-grid">
+    {{ range $pages }}
+      <a href="{{ .Permalink }}" class="post-card">
+        {{ with .Params.image }}
+          <div class="post-card__image">
+            <img src="{{ . }}" alt="" loading="lazy">
+          </div>
+        {{ end }}
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02" }}">
+              {{ .Date.Format "2006-01-02" }}
+            </time>
+            {{ with .ReadingTime }}
+              <span class="post-card-reading">{{ . }} min</span>
+            {{ end }}
+          </div>
+
+          <h3 class="post-card-title">{{ .Title }}</h3>
+
+          {{ with .Description }}
+            <p class="post-card-desc">{{ . }}</p>
+          {{ else }}
+            {{ with .Summary }}
+              <p class="post-card-desc">{{ . | plainify | truncate 120 }}</p>
+            {{ end }}
+          {{ end }}
+
+          {{ with .Params.tags }}
+            <div class="post-card-tags">
+              {{ range . }}
+                <span class="post-card-tag">{{ . }}</span>
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+      </a>
+    {{ else }}
+      <p class="post-list-empty">No posts yet. Check back soon.</p>
+    {{ end }}
+  </div>
+</section>
+
+<style>
+  .post-list {
+    padding: var(--space-4) 0 var(--space-16);
+  }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .post-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  .post-card {
+    display: block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .post-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .post-card__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .post-card__image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(30, 58, 95, 0.25) 0%,
+      rgba(30, 58, 95, 0.25) 60%,
+      var(--color-bg) 100%
+    );
+    pointer-events: none;
+    transition: opacity var(--transition-base);
+  }
+
+  .post-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.6) brightness(0.85);
+    transition: transform var(--transition-base), filter var(--transition-base);
+  }
+
+  .post-card:hover .post-card__image img {
+    transform: scale(1.03);
+    filter: saturate(1) brightness(1);
+  }
+
+  .post-card:hover .post-card__image::after {
+    opacity: 0;
+  }
+
+  .post-card__body {
+    padding: var(--space-6);
+  }
+
+  .post-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .post-card-date {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .post-card-reading {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .post-card-reading::before {
+    content: '·';
+    margin-right: var(--space-4);
+  }
+
+  .post-card-title {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-tight);
+  }
+
+  .post-card:hover .post-card-title {
+    color: var(--color-accent);
+  }
+
+  .post-card-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--space-3);
+  }
+
+  .post-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .post-card-tag {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+  }
+
+  .post-list-empty {
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--space-12) 0;
+  }
+</style>

@@ -1,0 +1,173 @@
+{{/* Hero — "The Builder" — Typing animation, terminal aesthetic */}}
+<section class="hero">
+  <div class="hero-inner container">
+    <h1 class="hero-name">{{ .Site.Params.author | default .Site.Title }}</h1>
+
+    <div class="hero-role">
+      <span class="hero-prompt">$</span>
+      <span class="hero-typed" id="hero-typed" aria-label="{{ .Site.Params.role | default "Product Engineer" }}"></span>
+      <span class="hero-cursor" aria-hidden="true">|</span>
+    </div>
+
+    <p class="hero-bio">
+      <span class="hero-bio-prompt">&gt;</span>
+      {{ .Site.Params.description }}
+    </p>
+
+    <div class="hero-actions">
+      <a href="/posts/" class="hero-cta hero-cta--primary">ls ./posts</a>
+      {{ with .Site.Params.newsletterUrl }}
+        <a href="{{ . }}" class="hero-cta hero-cta--secondary">subscribe</a>
+      {{ else }}
+        <a href="/newsletter/" class="hero-cta hero-cta--secondary">subscribe</a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: var(--space-24) 0 var(--space-16);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-inner {
+    max-width: var(--max-width-prose);
+  }
+
+  .hero-name {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-role {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-2xl);
+    color: var(--color-accent);
+    margin-bottom: var(--space-8);
+    min-height: 2.4em;
+  }
+
+  .hero-prompt {
+    color: var(--color-text-muted);
+    user-select: none;
+  }
+
+  .hero-typed {
+    display: inline;
+  }
+
+  .hero-cursor {
+    display: inline-block;
+    color: var(--color-accent);
+    animation: blink 1s step-end infinite;
+    font-weight: var(--font-weight-normal);
+    margin-left: 1px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-bio {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-8);
+    max-width: 50ch;
+  }
+
+  .hero-bio-prompt {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    margin-right: var(--space-2);
+    user-select: none;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .hero-cta {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .hero-cta--primary {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border: 1px solid var(--color-accent);
+  }
+
+  .hero-cta--primary:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-bg);
+  }
+
+  .hero-cta--secondary {
+    background: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-border);
+  }
+
+  .hero-cta--secondary:hover {
+    border-color: var(--color-accent);
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--space-20) 0 var(--space-12);
+      min-height: auto;
+    }
+
+    .hero-name {
+      font-size: var(--font-size-3xl);
+    }
+
+    .hero-role {
+      font-size: var(--font-size-xl);
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var el = document.getElementById('hero-typed');
+    if (!el) return;
+
+    var text = "{{ .Site.Params.role | default "Product Engineer" }}";
+    var i = 0;
+    var speed = 80;
+
+    function type() {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, speed + Math.random() * 40);
+      }
+    }
+
+    /* Start typing after a short delay for effect */
+    setTimeout(type, 600);
+  })();
+</script>

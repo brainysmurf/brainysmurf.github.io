@@ -1,0 +1,93 @@
+{{/* Footer — "Company" — Clean corporate footer */}}
+<footer class="site-footer-company">
+  <div class="site-footer-company__inner container">
+    <div class="site-footer-company__top">
+      <div class="site-footer-company__brand">
+        <p class="site-footer-company__name">{{ .Site.Params.author | default .Site.Title }}</p>
+        <p class="site-footer-company__tagline">{{ .Site.Params.role | default "Product Engineer" }}</p>
+      </div>
+      <nav class="site-footer-company__links" aria-label="Footer navigation">
+        <a href="/posts/">Posts</a>
+        <a href="/about/">About</a>
+        <a href="/newsletter/">Newsletter</a>
+        {{ with .Site.Params.linkedin }}
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        {{ end }}
+      </nav>
+    </div>
+    <div class="site-footer-company__bottom">
+      <p class="site-footer-company__copy">
+        &copy; {{ now.Year }} {{ .Site.Params.author | default .Site.Title }}. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer-company {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-12) 0 var(--space-8);
+    margin-top: var(--space-16);
+    background: var(--color-surface);
+  }
+
+  .site-footer-company__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-footer-company__name {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .site-footer-company__tagline {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+
+  .site-footer-company__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+  }
+
+  .site-footer-company__links a {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .site-footer-company__links a:hover {
+    color: var(--color-accent);
+  }
+
+  .site-footer-company__bottom {
+    text-align: center;
+  }
+
+  .site-footer-company__copy {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .site-footer-company__top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+</style>

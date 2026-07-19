@@ -1,0 +1,118 @@
+<style>
+  .postlist-editorial {
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6) var(--space-12);
+  }
+  .postitem-editorial {
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    display: flex;
+    gap: var(--space-6);
+    align-items: flex-start;
+    color: inherit;
+    transition: background var(--transition-fast);
+  }
+  .postitem-editorial__image {
+    flex-shrink: 0;
+    width: 200px;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .postitem-editorial__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+  .postitem-editorial:hover .postitem-editorial__image img {
+    transform: scale(1.03);
+  }
+  .postitem-editorial__body {
+    flex: 1;
+    min-width: 0;
+  }
+  @media (max-width: 600px) {
+    .postitem-editorial { flex-direction: column; }
+    .postitem-editorial__image { width: 100%; }
+  }
+  .postitem-editorial:last-child {
+    border-bottom: none;
+  }
+  .postitem-editorial:hover {
+    color: inherit;
+  }
+  .postitem-editorial__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-2);
+    color: var(--color-text-primary);
+    transition: color var(--transition-fast);
+  }
+  .postitem-editorial:hover .postitem-editorial__title {
+    color: var(--color-accent);
+  }
+  .postitem-editorial__meta {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+  .postitem-editorial__desc {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-normal);
+    max-width: 70ch;
+  }
+  .postitem-editorial__tags {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+  .postitem-editorial__tag {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .postitem-editorial__tag::before {
+    content: "·  ";
+    color: var(--color-text-muted);
+  }
+  .postitem-editorial__tag:first-child::before {
+    content: "";
+  }
+</style>
+
+<div class="postlist-editorial">
+  {{ range . }}
+    <a href="{{ .Permalink }}" class="postitem-editorial">
+      {{ with .Params.image }}
+        <div class="postitem-editorial__image">
+          <img src="{{ . }}" alt="" loading="lazy">
+        </div>
+      {{ end }}
+      <div class="postitem-editorial__body">
+        <h2 class="postitem-editorial__title">{{ .Title }}</h2>
+        <div class="postitem-editorial__meta">
+          <time>{{ .Date.Format "January 2, 2006" }}</time>
+          {{ with .Params.readTime }}<span>{{ . }}</span>{{ end }}
+        </div>
+        {{ with .Description }}
+          <p class="postitem-editorial__desc">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.tags }}
+          <div class="postitem-editorial__tags">
+            {{ range . }}<span class="postitem-editorial__tag">{{ . }}</span>{{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </a>
+  {{ end }}
+</div>

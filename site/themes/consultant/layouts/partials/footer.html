@@ -1,0 +1,65 @@
+{{/* Footer — "Consultant" — Minimal, centered footer */}}
+<footer class="site-footer-consul">
+  <div class="site-footer-consul__inner container">
+    <div class="site-footer-consul__rule"></div>
+
+    <nav class="site-footer-consul__links" aria-label="Footer navigation">
+      <a href="/posts/">Posts</a>
+      <a href="/about/">About</a>
+      <a href="/newsletter/">Newsletter</a>
+      {{ with .Site.Params.linkedin }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      {{ end }}
+    </nav>
+
+    <p class="site-footer-consul__copy">
+      &copy; {{ now.Year }} {{ .Site.Params.author | default .Site.Title }}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer-consul {
+    padding: var(--space-16) 0 var(--space-8);
+    margin-top: var(--space-16);
+  }
+
+  .site-footer-consul__inner {
+    text-align: center;
+  }
+
+  .site-footer-consul__rule {
+    width: 40px;
+    height: 1px;
+    background: var(--color-border);
+    margin: 0 auto var(--space-8);
+  }
+
+  .site-footer-consul__links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .site-footer-consul__links a {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: color var(--transition-fast);
+  }
+
+  .site-footer-consul__links a:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .site-footer-consul__copy {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+</style>

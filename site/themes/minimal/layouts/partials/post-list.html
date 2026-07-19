@@ -1,0 +1,101 @@
+<style>
+  .postlist-minimal {
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: 0 var(--space-6) var(--space-12);
+    display: grid;
+    gap: var(--space-6);
+  }
+  .postcard-minimal {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    text-decoration: none;
+    display: block;
+    color: inherit;
+    overflow: hidden;
+  }
+  .postcard-minimal:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: inherit;
+  }
+  .postcard-minimal__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .postcard-minimal__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+  }
+  .postcard-minimal:hover .postcard-minimal__image img {
+    transform: scale(1.03);
+  }
+  .postcard-minimal__body {
+    padding: var(--space-6);
+  }
+  .postcard-minimal__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-2);
+    color: var(--color-text-primary);
+  }
+  .postcard-minimal__meta {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .postcard-minimal__desc {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-normal);
+  }
+  .postcard-minimal__tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-top: var(--space-3);
+  }
+  .postcard-minimal__tag {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    background: var(--color-accent-subtle);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+  }
+</style>
+
+<div class="postlist-minimal">
+  {{ range . }}
+    <a href="{{ .Permalink }}" class="postcard-minimal">
+      {{ with .Params.image }}
+        <div class="postcard-minimal__image">
+          <img src="{{ . }}" alt="" loading="lazy">
+        </div>
+      {{ end }}
+      <div class="postcard-minimal__body">
+        <h2 class="postcard-minimal__title">{{ .Title }}</h2>
+        <div class="postcard-minimal__meta">
+          <time>{{ .Date.Format "Jan 2, 2006" }}</time>
+          {{ with .Params.readTime }}<span>{{ . }}</span>{{ end }}
+        </div>
+        {{ with .Description }}
+          <p class="postcard-minimal__desc">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.tags }}
+          <div class="postcard-minimal__tags">
+            {{ range . }}<span class="postcard-minimal__tag">{{ . }}</span>{{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </a>
+  {{ end }}
+</div>

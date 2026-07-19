@@ -1,0 +1,65 @@
+<style>
+  .footer-blogger {
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6);
+    border-top: 3px solid var(--color-accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+  .footer-blogger__left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .footer-blogger__links {
+    display: flex;
+    gap: var(--space-4);
+    list-style: none;
+  }
+  .footer-blogger__links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .footer-blogger__links a:hover { color: var(--color-accent); }
+  .footer-blogger__right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .footer-blogger__tagline {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+  .footer-blogger__social a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .footer-blogger__social a:hover { color: var(--color-accent); }
+</style>
+
+<footer class="footer-blogger">
+  <div class="footer-blogger__left">
+    <span>© {{ now.Year }} {{ .Site.Params.author }}</span>
+    <ul class="footer-blogger__links">
+      <li><a href="/posts/">Posts</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/newsletter/">Newsletter</a></li>
+    </ul>
+  </div>
+  <div class="footer-blogger__right">
+    <span class="footer-blogger__tagline">Writing about what happens when code meets classrooms.</span>
+    <div class="footer-blogger__social">
+      {{ with .Site.Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">LinkedIn →</a>{{ end }}
+    </div>
+  </div>
+</footer>

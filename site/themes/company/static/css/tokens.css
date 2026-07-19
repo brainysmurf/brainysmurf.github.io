@@ -1,0 +1,131 @@
+/* ============================================
+   DESIGN TOKENS — "Company" Theme
+   Corporate polish, gradient accents, Faria-inspired.
+   Light mode first.
+   ============================================ */
+
+:root {
+  /* ---- COLOR PALETTE (Light Mode Default) ---- */
+
+  --color-bg: #f8f6f3;
+  --color-surface: #ffffff;
+  --color-border: #e4e0da;
+  --color-text-primary: #1e1a2d;
+  --color-text-secondary: #4a4560;
+  --color-text-muted: #8a8698;
+  --color-accent: #6b3fa0;
+  --color-accent-hover: #5a2e8f;
+  --color-accent-subtle: rgba(107, 63, 160, 0.08);
+  --color-success: #2a9d6e;
+  --color-warning: #d4880f;
+
+  /* Gradient — purple palette */
+  --gradient-accent: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);
+  --gradient-hero: linear-gradient(160deg, #1e1a2d 0%, #2d1b4e 35%, #4c1d95 70%, #5b21b6 100%);
+
+  /* ---- TYPOGRAPHY ---- */
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+
+  /* Type scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.75rem;
+  --font-size-5xl: 3.5rem;
+
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Line heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ---- SPACING (4px base grid) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ---- BORDER RADIUS ---- */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ---- TRANSITIONS ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* ---- SHADOWS ---- */
+  --shadow-sm: 0 1px 3px rgba(30, 26, 45, 0.06);
+  --shadow-md: 0 4px 16px rgba(30, 26, 45, 0.08);
+  --shadow-lg: 0 8px 32px rgba(30, 26, 45, 0.12);
+  --shadow-xl: 0 16px 48px rgba(30, 26, 45, 0.16);
+
+  /* ---- LAYOUT ---- */
+  --max-width-prose: 65ch;
+  --max-width-site: 1200px;
+}
+
+/* ---- DARK MODE ---- */
+[data-theme="dark"] {
+  --color-bg: #0f0d1a;
+  --color-surface: #1a1726;
+  --color-border: #2a2640;
+  --color-text-primary: #eee9f5;
+  --color-text-secondary: #b0a8c5;
+  --color-text-muted: #6a6280;
+  --color-accent: #b07ce8;
+  --color-accent-hover: #c49af0;
+  --color-accent-subtle: rgba(176, 124, 232, 0.1);
+  --color-success: #34d399;
+  --color-warning: #f0b840;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #0f0d1a;
+    --color-surface: #1a1726;
+    --color-border: #2a2640;
+    --color-text-primary: #eee9f5;
+    --color-text-secondary: #b0a8c5;
+    --color-text-muted: #6a6280;
+    --color-accent: #b07ce8;
+    --color-accent-hover: #c49af0;
+    --color-accent-subtle: rgba(176, 124, 232, 0.1);
+    --color-success: #34d399;
+    --color-warning: #f0b840;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+  }
+}

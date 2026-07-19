@@ -1,0 +1,141 @@
+<style>
+  .nav-educator {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(248, 249, 252, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  [data-theme="dark"] .nav-educator {
+    background: rgba(15, 17, 24, 0.85);
+  }
+  .nav-educator__inner {
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-educator__name {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-educator__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+  }
+  .nav-educator__link {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    transition: color var(--transition-fast), background var(--transition-fast);
+  }
+  .nav-educator__link:hover,
+  .nav-educator__link--active {
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+  }
+  .nav-educator__toggle {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    transition: color var(--transition-fast), background var(--transition-fast);
+  }
+  .nav-educator__toggle:hover {
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+  }
+  .nav-educator__hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    font-size: var(--font-size-xl);
+    padding: var(--space-2);
+  }
+  .nav-educator__mobile {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-6);
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav-educator__mobile.open { display: flex; }
+  .nav-educator__mobile a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+  }
+  .nav-educator__mobile a:hover {
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+  }
+  @media (max-width: 768px) {
+    .nav-educator__links { display: none; }
+    .nav-educator__hamburger { display: block; }
+  }
+</style>
+
+<nav class="nav-educator">
+  <div class="nav-educator__inner">
+    <a href="/" class="nav-educator__name">{{ .Site.Title }}</a>
+    <ul class="nav-educator__links">
+      {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}" class="nav-educator__link">{{ .Name }}</a></li>
+      {{ end }}
+      <li><button class="nav-educator__toggle" id="theme-toggle" aria-label="Toggle theme">◐</button></li>
+    </ul>
+    <button class="nav-educator__hamburger" id="menu-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+  <div class="nav-educator__mobile" id="mobile-menu">
+    {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}">{{ .Name }}</a>
+    {{ end }}
+    <button class="nav-educator__toggle" id="theme-toggle-mobile" aria-label="Toggle theme">◐</button>
+  </div>
+</nav>
+
+<script>
+(function() {
+  var saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+  function toggleTheme() {
+    var c = document.documentElement.getAttribute('data-theme');
+    var n = c === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', n);
+    localStorage.setItem('theme', n);
+  }
+
+  document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+  var mt = document.getElementById('theme-toggle-mobile');
+  if (mt) mt.addEventListener('click', toggleTheme);
+
+  document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  });
+})();
+</script>

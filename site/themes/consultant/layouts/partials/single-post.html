@@ -1,0 +1,169 @@
+{{/* Single Post — "Consultant" — Clean editorial layout */}}
+<article class="article-consul container">
+  <header class="article-consul__header">
+    <div class="article-consul__meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ with .ReadingTime }}<span class="article-consul__reading">{{ . }} min read</span>{{ end }}
+    </div>
+    <h1 class="article-consul__title">{{ .Title }}</h1>
+    {{ with .Description }}
+      <p class="article-consul__lead">{{ . }}</p>
+    {{ end }}
+    <div class="article-consul__rule"></div>
+    {{ with .Params.tags }}
+      <div class="article-consul__tags">
+        {{ range . }}
+          <span class="article-consul__tag">{{ . }}</span>
+        {{ end }}
+      </div>
+    {{ end }}
+  </header>
+
+  {{ with .Params.image }}
+    <div class="article-consul__hero-image">
+      <img src="{{ . }}" alt="">
+    </div>
+  {{ end }}
+
+  <div class="article-consul__body prose">
+    {{ .Content }}
+  </div>
+
+  <footer class="article-consul__footer">
+    <a href="/posts/" class="article-consul__back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m0 0l4 4M3 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      All Posts
+    </a>
+  </footer>
+</article>
+
+<style>
+  .article-consul {
+    max-width: 800px;
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-16);
+  }
+
+  .article-consul__header {
+    margin-bottom: var(--space-10);
+  }
+
+  .article-consul__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .article-consul__reading::before {
+    content: '\2014';
+    margin-right: var(--space-3);
+  }
+
+  .article-consul__title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-4);
+    line-height: var(--line-height-tight);
+  }
+
+  .article-consul__lead {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-light);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .article-consul__rule {
+    width: 40px;
+    height: 2px;
+    background: var(--color-accent);
+    margin-bottom: var(--space-6);
+  }
+
+  .article-consul__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .article-consul__tag {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .article-consul__tag + .article-consul__tag::before {
+    content: '/';
+    margin-right: var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .article-consul__hero-image {
+    margin-bottom: var(--space-10);
+  }
+
+  .article-consul__hero-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .article-consul__body {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-primary);
+  }
+
+  .article-consul__body h2 {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-consul__body h3 {
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+  }
+
+  .article-consul__body img {
+    margin: var(--space-8) 0;
+  }
+
+  .article-consul__footer {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article-consul__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: gap var(--transition-fast);
+  }
+
+  .article-consul__back:hover {
+    gap: var(--space-3);
+    color: var(--color-accent-hover);
+  }
+
+  @media (max-width: 768px) {
+    .article-consul__title {
+      font-size: var(--font-size-3xl);
+    }
+  }
+</style>

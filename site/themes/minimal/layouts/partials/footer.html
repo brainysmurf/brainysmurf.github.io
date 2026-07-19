@@ -1,0 +1,38 @@
+<style>
+  .footer-minimal {
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+  .footer-minimal__links {
+    display: flex;
+    gap: var(--space-4);
+    list-style: none;
+  }
+  .footer-minimal__links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .footer-minimal__links a:hover {
+    color: var(--color-text-secondary);
+  }
+</style>
+
+<footer class="footer-minimal">
+  <span>© {{ now.Year }} {{ .Site.Params.author }}</span>
+  <ul class="footer-minimal__links">
+    <li><a href="/posts/">Posts</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/newsletter/">Newsletter</a></li>
+    {{ with .Site.Params.linkedin }}<li><a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a></li>{{ end }}
+  </ul>
+</footer>

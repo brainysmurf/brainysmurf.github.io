@@ -1,0 +1,152 @@
+{{/* Hero — "Company" — Bold gradient hero inspired by Faria solutions pages */}}
+<section class="hero-company">
+  <div class="hero-company__bg" aria-hidden="true">
+    <div class="hero-company__gradient"></div>
+    <div class="hero-company__dots"></div>
+  </div>
+  <div class="hero-company__content container">
+    <p class="hero-company__eyebrow">{{ .Site.Params.role | default "Product Engineer" }}</p>
+    <h1 class="hero-company__title">
+      {{ .Site.Params.author | default .Site.Title }}
+    </h1>
+    <p class="hero-company__subtitle">{{ .Site.Params.description }}</p>
+    <div class="hero-company__actions">
+      <a href="/posts/" class="hero-company__cta hero-company__cta--primary">
+        Read Posts
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      {{ with .Site.Params.newsletterUrl }}
+        <a href="{{ . }}" class="hero-company__cta hero-company__cta--secondary">Subscribe</a>
+      {{ else }}
+        <a href="/newsletter/" class="hero-company__cta hero-company__cta--secondary">Subscribe</a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-company {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: var(--space-24) 0 var(--space-20);
+  }
+
+  .hero-company__bg {
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-hero);
+    z-index: 0;
+  }
+
+  .hero-company__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 20%, rgba(139, 92, 246, 0.35), transparent),
+      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(167, 139, 250, 0.25), transparent),
+      radial-gradient(ellipse 50% 40% at 90% 70%, rgba(124, 58, 237, 0.2), transparent);
+  }
+
+  .hero-company__dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .hero-company__content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+  }
+
+  .hero-company__eyebrow {
+    display: inline-block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: var(--space-4);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-full);
+  }
+
+  .hero-company__title {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-extrabold);
+    color: #ffffff;
+    margin-bottom: var(--space-6);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .hero-company__subtitle {
+    font-size: var(--font-size-xl);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-10);
+    max-width: 50ch;
+  }
+
+  .hero-company__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .hero-company__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--space-3) var(--space-8);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .hero-company__cta--primary {
+    background: #ffffff;
+    color: #1e1a2d;
+  }
+
+  .hero-company__cta--primary:hover {
+    background: #f0ecf8;
+    color: #1e1a2d;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  .hero-company__cta--secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .hero-company__cta--secondary:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .hero-company {
+      min-height: auto;
+      padding: var(--space-20) 0 var(--space-16);
+    }
+
+    .hero-company__title {
+      font-size: var(--font-size-3xl);
+    }
+
+    .hero-company__subtitle {
+      font-size: var(--font-size-lg);
+    }
+  }
+</style>

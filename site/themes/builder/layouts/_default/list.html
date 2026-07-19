@@ -1,0 +1,42 @@
+{{ define "main" }}
+  {{ partial "nav.html" . }}
+  <main class="container">
+    <style>
+      .list-header {
+        padding-top: var(--space-24);
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-6);
+        border-bottom: 1px solid var(--color-border);
+      }
+      .list-title {
+        font-family: var(--font-mono);
+        font-size: var(--font-size-3xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-3);
+      }
+      .list-title-prompt {
+        color: var(--color-text-muted);
+        font-weight: var(--font-weight-normal);
+      }
+      .list-desc {
+        font-size: var(--font-size-base);
+        color: var(--color-text-secondary);
+        max-width: var(--max-width-prose);
+      }
+    </style>
+    <div class="list-header">
+      <h1 class="list-title">
+        <span class="list-title-prompt">~/</span>{{ .Title | default "Posts" }}
+      </h1>
+      {{ with .Description }}
+        <p class="list-desc">{{ . }}</p>
+      {{ end }}
+    </div>
+    {{ partial "post-list.html" . }}
+  </main>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

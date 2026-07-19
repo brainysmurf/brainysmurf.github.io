@@ -1,0 +1,180 @@
+<style>
+  .single-editorial {
+    max-width: var(--max-width-prose);
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6) var(--space-16);
+  }
+  .single-editorial__back {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: var(--space-8);
+    transition: color var(--transition-fast);
+  }
+  .single-editorial__back:hover { color: var(--color-accent); }
+  .single-editorial__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-4);
+  }
+  .single-editorial__meta {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--color-accent);
+    margin-bottom: var(--space-8);
+  }
+  .single-editorial__tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+  .single-editorial__tag {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .single-editorial__hero-image {
+    margin-bottom: var(--space-8);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .single-editorial__hero-image img {
+    width: 100%;
+    height: auto;
+  }
+  /* Prose content */
+  .single-editorial__content {
+    line-height: var(--line-height-relaxed);
+  }
+  .single-editorial__content h2 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-4);
+  }
+  .single-editorial__content h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+  }
+  .single-editorial__content p {
+    margin-bottom: var(--space-4);
+  }
+  .single-editorial__content ul, .single-editorial__content ol {
+    margin-bottom: var(--space-4);
+    padding-left: var(--space-6);
+  }
+  .single-editorial__content li {
+    margin-bottom: var(--space-2);
+  }
+  .single-editorial__content blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-5);
+    margin: var(--space-6) 0;
+    color: var(--color-text-secondary);
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    font-style: italic;
+  }
+  .single-editorial__content pre {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    overflow-x: auto;
+    margin: var(--space-6) 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+  }
+  .single-editorial__content code {
+    font-size: var(--font-size-sm);
+  }
+  .single-editorial__content p code,
+  .single-editorial__content li code {
+    background: var(--color-surface);
+    padding: 0.15em 0.35em;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+  }
+  .single-editorial__content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-accent-subtle);
+  }
+  .single-editorial__content a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+  .single-editorial__content strong {
+    font-weight: var(--font-weight-semibold);
+  }
+  /* Newsletter CTA */
+  .single-editorial__newsletter {
+    margin-top: var(--space-12);
+    padding: var(--space-8);
+    border-top: 2px solid var(--color-accent);
+    text-align: center;
+  }
+  .single-editorial__newsletter h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-3);
+  }
+  .single-editorial__newsletter p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-5);
+  }
+  .single-editorial__newsletter a {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--space-3) var(--space-8);
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background var(--transition-fast);
+  }
+  .single-editorial__newsletter a:hover {
+    background: var(--color-accent-hover);
+    color: var(--color-bg);
+  }
+</style>
+
+<article class="single-editorial">
+  <a href="/posts/" class="single-editorial__back">← Back to posts</a>
+  <h1 class="single-editorial__title">{{ .Title }}</h1>
+  <div class="single-editorial__meta">
+    <time>{{ .Date.Format "January 2, 2006" }}</time>
+    {{ with .Params.readTime }}<span>· {{ . }}</span>{{ end }}
+    {{ with .Params.tags }}
+      <span>·</span>
+      <div class="single-editorial__tags">
+        {{ range . }}<span class="single-editorial__tag">{{ . }}</span>{{ end }}
+      </div>
+    {{ end }}
+  </div>
+  {{ with .Params.image }}
+    <div class="single-editorial__hero-image">
+      <img src="{{ . }}" alt="">
+    </div>
+  {{ end }}
+  <div class="single-editorial__content">
+    {{ .Content }}
+  </div>
+  <div class="single-editorial__newsletter">
+    <h3>Subscribe</h3>
+    <p>New posts on product, code, and education — delivered to your inbox.</p>
+    <a href="/newsletter/">Subscribe to the newsletter</a>
+  </div>
+</article>
