@@ -1,2 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mental-Models on Adam Morris</title><link>https://mistermorris.com/tags/mental-models/</link><description>Recent content in Mental-Models on Adam Morris</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 02 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mistermorris.com/tags/mental-models/index.xml" rel="self" type="application/rss+xml"/><item><title>Mental Model for GenAI: Shallow end of the pool</title><link>https://mistermorris.com/posts/mental-model-for-genai-shallow-end-of-the-pool/</link><pubDate>Mon, 02 Oct 2023 00:00:00 +0000</pubDate><guid>https://mistermorris.com/posts/mental-model-for-genai-shallow-end-of-the-pool/</guid><description>&lt;p&gt;A mental model is one of those terms I&amp;rsquo;m not sure I hear too often in EDU context, but I hear it often in the engineering podcasts I listen to, and it&amp;rsquo;s one of those power concepts worth adopting.&lt;/p&gt;
-&lt;p&gt;When we&amp;rsquo;re working with complex software, we form visualizations that allow us to navigate certain features. To take a familiar example, when you use spreadsheet software, you&amp;rsquo;ll have a mental model of how all the cells are recalculated when one cell changes. Do you visualize it as a domino effect, where one changed value causes the next cell to change? Or maybe you think of it as a broadcast system, where cells are telling each other &amp;ldquo;hey, I&amp;rsquo;ve changed, you need to recalculate too.&amp;rdquo;&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mental-Models on Adam Morris</title>
+    <link>https://mistermorris.com/tags/mental-models/</link>
+    <description>Recent content in Mental-Models on Adam Morris</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mistermorris.com/tags/mental-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mental Model for GenAI: Shallow end of the pool</title>
+      <link>https://mistermorris.com/posts/mental-model-for-genai-shallow-end-of-the-pool/</link>
+      <pubDate>Mon, 02 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>https://mistermorris.com/posts/mental-model-for-genai-shallow-end-of-the-pool/</guid>
+      <description>&lt;p&gt;A mental model is one of those terms I&amp;rsquo;m not sure I hear too often in EDU context, but I hear it often in the engineering podcasts I listen to, and it&amp;rsquo;s one of those power concepts worth adopting.&lt;/p&gt;&#xA;&lt;p&gt;When we&amp;rsquo;re working with complex software, we form visualizations that allow us to navigate certain features. To take a familiar example, when you use spreadsheet software, you&amp;rsquo;ll have a mental model of how all the cells are recalculated when one cell changes. Do you visualize it as a domino effect, where one changed value causes the next cell to change? Or maybe you think of it as a broadcast system, where cells are telling each other &amp;ldquo;hey, I&amp;rsquo;ve changed, you need to recalculate too.&amp;rdquo;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

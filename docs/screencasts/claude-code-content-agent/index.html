@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-us" data-theme="dark">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learning is Polishing until Done — Adam Morris</title>
-  <meta name="description" content="Teacher-turned-product-leader. Still writing code. Still in EDU.">
+  <title>Agents are just prompts done right — Adam Morris</title>
+  <meta name="description" content="A terminal walkthrough showing that Claude Code&#39;s agents are really just prompt engineering made tangible.">
 
   
-  <meta property="og:title" content="Learning is Polishing until Done">
-  <meta property="og:description" content="Teacher-turned-product-leader. Still writing code. Still in EDU.">
+  <meta property="og:title" content="Agents are just prompts done right">
+  <meta property="og:description" content="A terminal walkthrough showing that Claude Code&#39;s agents are really just prompt engineering made tangible.">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://mistermorris.com/posts/then-now-always/">
+  <meta property="og:url" content="http://localhost:1313/screencasts/claude-code-content-agent/">
   
 
   
@@ -330,18 +330,22 @@
 <article class="single-post">
   <header class="single-post-header">
     <div class="single-post-meta">
-      <time datetime="2026-04-26">2026-04-26</time>
-      <span>3 min read</span>
+      <time datetime="2026-03-29">2026-03-29</time>
+      <span>1 min read</span>
     </div>
 
-    <h1 class="single-post-title">Learning is Polishing until Done</h1>
+    <h1 class="single-post-title">Agents are just prompts done right</h1>
 
     
       <div class="single-post-tags">
         
           <a href="/tags/ai/" class="single-post-tag">#ai</a>
         
-          <a href="/tags/learning/" class="single-post-tag">#learning</a>
+          <a href="/tags/claude-code/" class="single-post-tag">#claude-code</a>
+        
+          <a href="/tags/prompt-engineering/" class="single-post-tag">#prompt-engineering</a>
+        
+          <a href="/tags/agents/" class="single-post-tag">#agents</a>
         
       </div>
     
@@ -351,10 +355,10 @@
     <div class="single-post-hero-image">
       <iframe
         id="post-animation"
-        data-src="/animations/ninety-percent.html"
+        data-src="/animations/claude-code-content-agent.html"
         style="width:100%; aspect-ratio:680/420; border:none; display:block; background:var(--color-surface);"
         scrolling="no"
-        title="Animation for Learning is Polishing until Done"
+        title="Animation for Agents are just prompts done right"
       ></iframe>
     </div>
     <script>
@@ -379,24 +383,15 @@
   
 
   <div class="single-post-content prose">
-    <h2 id="then">Then</h2>
-<p>I used to haunt my middle school early just to get face time with a Macintosh Plus before homeroom. I can still picture the seat in the lab that was mine and the thunk of the floppy disk that started every session. I recall being transfixed that keying letters and mousing clicks could replace pen and paper. I can hear the voice of my teacher surfacing desktop publishing concepts as I discover them. The world of typography, layouts, and structures were laid bare to me on screen, motivating me to do it all again the next day.</p>
-<p>But for all the marvel of that new tool, I still had the hard task of knowing what to write and how to say it. The craft of writing still involved the chore of drafting and redrafting, iterating and reconsidering, of filling that white space with content.</p>
-<h2 id="now">Now</h2>
-<p>Thirty-odd years later, I’m working at a pace that I couldn’t even conceive of prior to the advent of LLMs. Just like that 15-year-old boy, I’m marveling at the productivity boost— what would have taken weeks is now a <code>SKILL.md</code>.</p>
-<p>The cost though, is that when everything is fast to start, I tend to just be starting. <em>That’s a great idea, I’ll just open a new LLM session.</em> The dopamine is in the beginning now — the scaffolding, the first draft, the proof of concept. Filling that content space is so much easier.</p>
-<p>I used to worry about all the things I hadn’t been able to get started yet. My &ldquo;backlog&rdquo; was the source of stress. Now I worry about the things I&rsquo;ve started but never quite polished or shared out. The problem used to be an empty page. Now it’s a room full of drafts.</p>
-<h2 id="always">Always</h2>
-<p>Even though the technologies have shifted dramatically within a single lifetime, there is one thing that always seems to remain the case:</p>
-<p><strong>You still need to sweat the details.</strong></p>
-<p>That 12-year-old in the computer lab didn&rsquo;t learn desktop publishing from reading about it — he learned it by wrestling with a newsletter that wouldn&rsquo;t quite look right, by nudging margins and swapping fonts until something clicked. The tool lowered the barrier to entry, but the education lived in the completion.</p>
-<p>The same trap is just sitting there waiting for us now. A prototype isn&rsquo;t a product. A first draft isn&rsquo;t an essay. A scaffold isn&rsquo;t a building. The LLM can hand me a room full of promising starts, but the understanding only arrives when I pick one up and refuse to put it down until it&rsquo;s done.</p>
-<p>The last ten percent of any project still takes ninety percent of the effort. That&rsquo;s not a bug — that&rsquo;s where the learning is.</p>
+    <p>Open a terminal. Type <code>claude</code>. That&rsquo;s it — you&rsquo;re doing prompt engineering now.</p>
+<p>The <code>/init</code> command sets context. The prompt you type next becomes the agent. There&rsquo;s no framework, no config file, no abstraction layer. Just you, a terminal, and a well-crafted sentence telling the machine what to do.</p>
+<p>The animation above walks through the whole thing: launching Claude Code, initializing a project, and creating an agent that scans your old teaching materials for connections you missed. The agent writes its discoveries as markdown in <code>ideas/</code> — structured, searchable, ready to become your next post.</p>
+<p>That&rsquo;s the quiet trick: <strong>an agent is a prompt you got right</strong>. The terminal just makes it obvious.</p>
 
   </div>
 
   <footer class="single-post-footer">
-    <a href="/posts/" class="single-post-back">&larr; cd /posts</a>
+    <a href="/screencasts/" class="single-post-back">&larr; cd /screencasts</a>
 
     
       <div class="single-post-newsletter">

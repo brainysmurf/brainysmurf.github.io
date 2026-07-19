@@ -1,53 +1,1190 @@
-<!doctype html><html lang=en-us data-theme=dark><head><meta name=generator content="Hugo 0.152.2"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Adam Morris</title><meta name=description content="Teacher-turned-product-leader. Still writing code. Still in EDU."><meta property="og:title" content="Adam Morris"><meta property="og:description" content="Teacher-turned-product-leader. Still writing code. Still in EDU."><meta property="og:type" content="website"><meta property="og:url" content="https://mistermorris.com/"><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/css/tokens.css><link rel=stylesheet href=/css/theme.css><script>(function(){var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)})()</script><script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "2744d96ad8214b7ca2afe707347acd58"}'></script></head><body><nav class=site-nav id=site-nav role=navigation aria-label="Main navigation"><div class="nav-inner container"><a href=/ class=nav-brand aria-label=Home><span class=nav-prompt>>_</span> Adam Morris</a><div class=nav-links id=nav-links><a href=/posts/ class=nav-link>Posts</a>
-<a href=/about/ class=nav-link>About</a>
-<a href=/newsletter/ class=nav-link>Newsletter</a>
-<button class=theme-toggle id=theme-toggle aria-label="Toggle dark/light mode" title="Toggle theme">
-<span class=theme-toggle-icon aria-hidden=true></span></button></div><button class=nav-toggle id=nav-toggle aria-label="Toggle menu" aria-expanded=false>
-<span class=nav-toggle-bar></span>
-<span class=nav-toggle-bar></span>
-<span class=nav-toggle-bar></span></button></div><div class=nav-mobile id=nav-mobile><a href=/posts/ class=nav-mobile-link>Posts</a>
-<a href=/about/ class=nav-mobile-link>About</a>
-<a href=/newsletter/ class=nav-mobile-link>Newsletter</a>
-<button class="theme-toggle theme-toggle--mobile" id=theme-toggle-mobile aria-label="Toggle dark/light mode" title="Toggle theme">
-<span class=theme-toggle-icon aria-hidden=true></span></button></div></nav><style>.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--color-nav-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border);transition:padding var(--transition-base),background var(--transition-base);padding:var(--space-4)0}[data-theme=light] .site-nav{background:var(--color-nav-bg-solid)}.site-nav.scrolled{padding:var(--space-2)0}.nav-inner{display:flex;align-items:center;justify-content:space-between}.nav-brand{font-family:var(--font-mono);font-size:var(--font-size-lg);font-weight:var(--font-weight-bold);color:var(--color-text-primary);text-decoration:none;display:flex;align-items:center;gap:var(--space-1);white-space:nowrap}.nav-brand:hover{color:var(--color-accent)}.nav-prompt{color:var(--color-accent);font-weight:var(--font-weight-normal)}.nav-links{display:flex;align-items:center;gap:var(--space-6)}.nav-link{font-family:var(--font-mono);font-size:var(--font-size-sm);color:var(--color-text-secondary);text-decoration:none;transition:color var(--transition-fast);position:relative}.nav-link:hover,.nav-link[aria-current=page]{color:var(--color-accent)}.nav-link[aria-current=page]::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--color-accent)}.theme-toggle{background:0 0;border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-2);cursor:pointer;color:var(--color-text-secondary);font-size:var(--font-size-sm);line-height:1;transition:color var(--transition-fast),border-color var(--transition-fast);display:flex;align-items:center;justify-content:center;width:34px;height:34px}.theme-toggle:hover{color:var(--color-accent);border-color:var(--color-accent)}.theme-toggle-icon::before{content:'☀';font-size:var(--font-size-base)}[data-theme=light] .theme-toggle-icon::before{content:'☾'}.nav-toggle{display:none;flex-direction:column;gap:5px;background:0 0;border:none;cursor:pointer;padding:var(--space-2)}.nav-toggle-bar{display:block;width:22px;height:2px;background:var(--color-text-primary);border-radius:var(--radius-full);transition:transform var(--transition-fast),opacity var(--transition-fast)}.nav-toggle.active .nav-toggle-bar:nth-child(1){transform:translateY(7px)rotate(45deg)}.nav-toggle.active .nav-toggle-bar:nth-child(2){opacity:0}.nav-toggle.active .nav-toggle-bar:nth-child(3){transform:translateY(-7px)rotate(-45deg)}.nav-mobile{display:none}@media(max-width:768px){.nav-toggle{display:flex}.nav-links{display:none}.nav-mobile{display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:0;max-height:0;overflow:hidden;transition:max-height var(--transition-base);border-top:1px solid transparent;padding:0;background:var(--color-nav-bg-solid)}[data-theme=light] .nav-mobile{background:var(--color-nav-bg-solid)}.nav-mobile.open{max-height:80vh;border-top-color:var(--color-border);padding:var(--space-6)0}[data-theme=light] .nav-mobile.open{border-top-color:transparent}.nav-mobile-link{font-family:var(--font-mono);font-size:var(--font-size-xl);color:var(--color-text-secondary);text-decoration:none;transition:color var(--transition-fast);padding:var(--space-4)var(--space-6);width:100%;text-align:center}.nav-mobile-link:hover,.nav-mobile-link[aria-current=page]{color:var(--color-accent)}}</style><script>(function(){var t,o,e=document.getElementById("nav-toggle"),n=document.getElementById("nav-mobile");e&&n&&e.addEventListener("click",function(){var t=n.classList.toggle("open");e.classList.toggle("active"),e.setAttribute("aria-expanded",t)});function s(e){if(!e)return;e.addEventListener("click",function(){var e=document.documentElement,t=e.getAttribute("data-theme")==="light"?"dark":"light";e.setAttribute("data-theme",t),localStorage.setItem("theme",t)})}s(document.getElementById("theme-toggle")),s(document.getElementById("theme-toggle-mobile")),t=document.getElementById("site-nav"),t&&(o=50,window.addEventListener("scroll",function(){window.scrollY>o?t.classList.add("scrolled"):t.classList.remove("scrolled")},{passive:!0}))})()</script><main><section class=hero><div class="hero-inner container"><h1 class=hero-name><span class=hero-hash>#</span> Adam Morris</h1><div class=hero-role><span class=hero-hash>##</span> Product Engineer</div><p class=hero-bio><span class=hero-typed id=hero-typed></span><span class=hero-cursor aria-hidden=true>|</span></p><div class=hero-actions><a href=/posts/ class="hero-cta hero-cta--primary">[Read Posts](./posts)</a>
-<a href=/newsletter/ class="hero-cta hero-cta--secondary">[Subscribe](./newsletter)</a></div></div></section><style>.hero{padding:var(--space-24)0 var(--space-16);min-height:70vh;display:flex;align-items:center}.hero-inner{max-width:var(--max-width-prose)}.hero-hash{color:var(--color-text-muted);font-weight:var(--font-weight-normal);user-select:none;flex-shrink:0;width:3rem;text-align:left}.hero-name{font-family:var(--font-mono);font-size:var(--font-size-4xl);font-weight:var(--font-weight-bold);color:var(--color-text-primary);margin-bottom:var(--space-4);letter-spacing:-.02em;display:flex;align-items:baseline}.hero-role{font-family:var(--font-mono);font-size:var(--font-size-2xl);font-weight:var(--font-weight-semibold);color:var(--color-accent);margin-bottom:var(--space-8);display:flex;align-items:baseline}.hero-bio{font-family:var(--font-mono);font-size:var(--font-size-lg);color:var(--color-text-secondary);line-height:var(--line-height-relaxed);margin-bottom:var(--space-8);max-width:50ch;min-height:3.5em}.hero-typed{display:inline}.hero-cursor{display:inline-block;color:var(--color-accent);animation:blink 1s step-end infinite;font-weight:var(--font-weight-normal);margin-left:1px}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.hero-actions{display:flex;gap:var(--space-4);flex-wrap:wrap}.hero-cta{font-family:var(--font-mono);font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);padding:var(--space-3)var(--space-6);border-radius:var(--radius-md);text-decoration:none;transition:all var(--transition-fast);display:inline-flex;align-items:center}.hero-cta--primary{background:var(--color-accent);color:var(--color-bg);border:1px solid var(--color-accent)}.hero-cta--primary:hover{background:var(--color-accent-hover);border-color:var(--color-accent-hover);color:var(--color-bg)}.hero-cta--secondary{background:var(--color-accent);color:var(--color-bg);border:1px solid var(--color-accent)}.hero-cta--secondary:hover{background:var(--color-accent-hover);border-color:var(--color-accent-hover);color:var(--color-bg)}@media(max-width:768px){.hero{padding:calc(var(--space-20) + 65px)0 var(--space-20);min-height:auto}.hero-name{font-size:var(--font-size-3xl)}.hero-role{font-size:var(--font-size-xl)}}@media(prefers-color-scheme:dark){.hero-name{color:var(--color-accent)}}[data-theme=dark] .hero-name{color:var(--color-accent)}</style><script>(function(){var e,t,s,n=document.getElementById("hero-typed");if(!n)return;t="Teacher-turned-product-leader. Still writing code. Still in EDU.",e=0,s=40;function o(){e<t.length&&(n.textContent+=t.charAt(e),e++,setTimeout(o,s+Math.random()*30))}setTimeout(o,400)})()</script><div class=container><h2 class=section-heading><span class=section-heading-prompt>~/</span>recent posts</h2><section class=post-list><div class=post-grid><a href=https://mistermorris.com/posts/pace-of-breakthroughs/ class=post-card><div class="post-card__image post-card__image--animation"><iframe class=post-card-animation data-src=/animations/rising-floor.html style=width:100%;height:100%;border:none;display:block;pointer-events:none scrolling=no tabindex=-1 aria-hidden=true></iframe></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2026-05-09>2026-05-09
-</time><span class=post-card-reading>3 min</span></div><h3 class=post-card-title>The spreadsheet moment</h3><p class=post-card-desc>The pace of AI breakthroughs isn't unprecedented — it follows a pattern we've seen before. What the spreadsheet tells us about what's coming.</p><div class=post-card-tags><span class=post-card-tag>ai</span>
-<span class=post-card-tag>education</span>
-<span class=post-card-tag>leadership</span>
-<span class=post-card-tag>software</span>
-<span class=post-card-tag>trends</span></div></div></a><a href=https://mistermorris.com/posts/spreadsheet-moment/ class=post-card><div class="post-card__image post-card__image--animation"><iframe class=post-card-animation data-src=/animations/rising-floor.html style=width:100%;height:100%;border:none;display:block;pointer-events:none scrolling=no tabindex=-1 aria-hidden=true></iframe></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2026-05-09>2026-05-09
-</time><span class=post-card-reading>3 min</span></div><h3 class=post-card-title>The spreadsheet moment</h3><p class=post-card-desc>The pace of AI breakthroughs isn't unprecedented — it follows a pattern we've seen before. What the spreadsheet tells us about what's coming.</p><div class=post-card-tags><span class=post-card-tag>ai</span>
-<span class=post-card-tag>education</span>
-<span class=post-card-tag>leadership</span>
-<span class=post-card-tag>software</span>
-<span class=post-card-tag>trends</span></div></div></a><a href=https://mistermorris.com/posts/hardware-vs-software-brain/ class=post-card><div class="post-card__image post-card__image--animation"><iframe class=post-card-animation data-src=/animations/hardware-software-brain.html style=width:100%;height:100%;border:none;display:block;pointer-events:none scrolling=no tabindex=-1 aria-hidden=true></iframe></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2026-05-03>2026-05-03
-</time><span class=post-card-reading>5 min</span></div><h3 class=post-card-title>Hardware Brain, Software Brain</h3><p class=post-card-desc>Two recognisable modes of leadership in schools — and why the tension between them matters more than ever.</p><div class=post-card-tags><span class=post-card-tag>ai</span>
-<span class=post-card-tag>education</span>
-<span class=post-card-tag>leadership</span></div></div></a><a href=https://mistermorris.com/posts/then-now-always/ class=post-card><div class="post-card__image post-card__image--animation"><iframe class=post-card-animation data-src=/animations/ninety-percent.html style=width:100%;height:100%;border:none;display:block;pointer-events:none scrolling=no tabindex=-1 aria-hidden=true></iframe></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2026-04-26>2026-04-26
-</time><span class=post-card-reading>3 min</span></div><h3 class=post-card-title>Learning is Polishing until Done</h3><p class=post-card-desc>Then I used to haunt my middle school early just to get face time with a Macintosh Plus before homeroom. I can still …</p><div class=post-card-tags><span class=post-card-tag>ai</span>
-<span class=post-card-tag>learning</span></div></div></a><a href=https://mistermorris.com/posts/the-terminal-was-training-me/ class=post-card><div class="post-card__image post-card__image--animation"><iframe class=post-card-animation data-src=/animations/grep-terminal.html style=width:100%;height:100%;border:none;display:block;pointer-events:none scrolling=no tabindex=-1 aria-hidden=true></iframe></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2026-04-05>2026-04-05
-</time><span class=post-card-reading>4 min</span></div><h3 class=post-card-title>The terminal was training me all along</h3><p class=post-card-desc>An homage to terminal and the skills necessary for succesfully using AI in schools.</p><div class=post-card-tags><span class=post-card-tag>ai</span>
-<span class=post-card-tag>education</span>
-<span class=post-card-tag>leadership</span>
-<span class=post-card-tag>tools</span></div></div></a><a href=https://mistermorris.com/posts/from-dragon-slayer-skeptic-to-ai-convert/ class=post-card><div class="post-card__image post-card__image--animation"><iframe class=post-card-animation data-src=/animations/draco-to-hammer.html style=width:100%;height:100%;border:none;display:block;pointer-events:none scrolling=no tabindex=-1 aria-hidden=true></iframe></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2026-03-27>2026-03-27
-</time><span class=post-card-reading>5 min</span></div><h3 class=post-card-title>From Dragon-Slayer Skeptic to AI Convert</h3><p class=post-card-desc>A year ago I called AGI a dragon — mythological and impossible. After building real tools with AI every day, the ground has shifted under my argument.</p><div class=post-card-tags><span class=post-card-tag>ai</span>
-<span class=post-card-tag>education</span>
-<span class=post-card-tag>opinion</span></div></div></a><a href=https://mistermorris.com/posts/sign-posting-change-done-now-next-later/ class=post-card><div class=post-card__image><img src=/images/posts/sign-posting-change.png alt loading=lazy></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2024-03-31>2024-03-31
-</time><span class=post-card-reading>2 min</span></div><h3 class=post-card-title>Sign-posting change: Done, Now, Next, Later</h3><p class=post-card-desc>Instead of Gantt charts and timelines, use a simple Done/Now/Next/Later framework to track change in schools — and signal when input is welcome.</p><div class=post-card-tags><span class=post-card-tag>change-management</span>
-<span class=post-card-tag>education</span>
-<span class=post-card-tag>leadership</span></div></div></a><a href=https://mistermorris.com/posts/calling-it-now-agi-is-a-dragon/ class=post-card><div class=post-card__image><img src=/images/posts/agi-is-a-dragon.png alt loading=lazy></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2023-11-22>2023-11-22
-</time><span class=post-card-reading>3 min</span></div><h3 class=post-card-title>Calling it now: AGI is a Dragon</h3><p class=post-card-desc>Why Artificial General Intelligence will perpetuate as a concept and never as a reality — and what that means for schools.</p><div class=post-card-tags><span class=post-card-tag>ai</span>
-<span class=post-card-tag>education</span>
-<span class=post-card-tag>opinion</span></div></div></a><a href=https://mistermorris.com/posts/openai-speculation-why-sam-altman-got-fired/ class=post-card><div class=post-card__image><img src=/images/posts/sam-altman-fired.png alt loading=lazy></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2023-11-18>2023-11-18
-</time><span class=post-card-reading>3 min</span></div><h3 class=post-card-title>OpenAI: Speculation as to why Sam Altman got fired</h3><p class=post-card-desc>A speculative take on the Sam Altman firing — and what GPT technology becoming accessible to everyone means for schools.</p><div class=post-card-tags><span class=post-card-tag>ai</span>
-<span class=post-card-tag>education</span>
-<span class=post-card-tag>opinion</span></div></div></a><a href=https://mistermorris.com/posts/mental-model-for-genai-shallow-end-of-the-pool/ class=post-card><div class=post-card__image><img src=/images/posts/shallow-end-pool.png alt loading=lazy></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2023-10-02>2023-10-02
-</time><span class=post-card-reading>4 min</span></div><h3 class=post-card-title>Mental Model for GenAI: Shallow end of the pool</h3><p class=post-card-desc>A useful mental model for understanding GenAI prompts: think of it as a pool with a shallow end and a deep end.</p><div class=post-card-tags><span class=post-card-tag>ai</span>
-<span class=post-card-tag>education</span>
-<span class=post-card-tag>mental-models</span></div></div></a><a href=https://mistermorris.com/posts/genai-dud-application-detection/ class=post-card><div class=post-card__image><img src=/images/posts/dud-detection.png alt loading=lazy></div><div class=post-card__body><div class=post-card-meta><time class=post-card-date datetime=2023-09-10>2023-09-10
-</time><span class=post-card-reading>2 min</span></div><h3 class=post-card-title>GenAI's "dud" application: detection</h3><p class=post-card-desc>Why AI detection tools are the 'dud app' of the GenAI era — and why educators should not rely on them.</p><div class=post-card-tags><span class=post-card-tag>ai</span>
-<span class=post-card-tag>education</span>
-<span class=post-card-tag>academic-integrity</span></div></div></a></div></section><style>.post-list{padding:var(--space-4)0 var(--space-16)}.post-grid{display:grid;grid-template-columns:1fr;gap:var(--space-4)}@media(min-width:768px){.post-grid{grid-template-columns:1fr 1fr;gap:var(--space-6)}}.post-card{display:block;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);text-decoration:none;overflow:hidden;transition:border-color var(--transition-fast),box-shadow var(--transition-fast),transform var(--transition-fast)}.post-card:hover{border-color:var(--color-accent);box-shadow:var(--shadow-md);transform:translateY(-1px)}.post-card__image{width:100%;aspect-ratio:16/9;overflow:hidden;position:relative}.post-card__image::after{content:'';position:absolute;inset:0;background:linear-gradient( to bottom,rgba(30,58,95,.25) 0%,rgba(30,58,95,.25) 60%,var(--color-bg) 100% );pointer-events:none;transition:opacity var(--transition-base)}.post-card__image img{width:100%;height:100%;object-fit:cover;filter:saturate(.6)brightness(.85);transition:transform var(--transition-base),filter var(--transition-base)}.post-card:hover .post-card__image img{transform:scale(1.03);filter:saturate(1)brightness(1)}.post-card:hover .post-card__image::after{opacity:0}.post-card__body{padding:var(--space-6)}.post-card-meta{display:flex;align-items:center;gap:var(--space-4);margin-bottom:var(--space-3)}.post-card-date{font-family:var(--font-mono);font-size:var(--font-size-xs);color:var(--color-text-muted)}.post-card-reading{font-family:var(--font-mono);font-size:var(--font-size-xs);color:var(--color-text-muted)}.post-card-reading::before{content:'·';margin-right:var(--space-4)}.post-card-title{font-family:var(--font-mono);font-size:var(--font-size-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);margin-bottom:var(--space-2);line-height:var(--line-height-tight)}.post-card:hover .post-card-title{color:var(--color-accent)}.post-card-desc{font-size:var(--font-size-sm);color:var(--color-text-secondary);line-height:var(--line-height-normal);margin-bottom:var(--space-3)}.post-card-tags{display:flex;flex-wrap:wrap;gap:var(--space-2)}.post-card-tag{font-family:var(--font-mono);font-size:var(--font-size-xs);color:var(--color-accent);background:var(--color-accent-subtle);padding:var(--space-1)var(--space-2);border-radius:var(--radius-sm)}.post-list-empty{font-family:var(--font-mono);color:var(--color-text-muted);font-size:var(--font-size-sm);grid-column:1/-1;text-align:center;padding:var(--space-12)0}.post-card__image--animation{aspect-ratio:680/420}.post-card__image--animation::after{display:none}</style><script>(function(){function e(e){document.querySelectorAll(".post-card-animation").forEach(function(t){var n=t.getAttribute("data-src");n&&(t.src=n+"?theme="+e)})}var t,n=document.documentElement.getAttribute("data-theme")||"dark";e(n),t=new MutationObserver(function(){var t=document.documentElement.getAttribute("data-theme")||"dark";e(t)}),t.observe(document.documentElement,{attributes:!0,attributeFilter:["data-theme"]})})()</script></div></main><style>.section-heading{font-family:var(--font-mono);font-size:var(--font-size-xl);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);margin-bottom:var(--space-6);padding-bottom:var(--space-3);border-bottom:1px solid var(--color-border)}.section-heading-prompt{color:var(--color-text-muted);font-weight:var(--font-weight-normal)}</style><footer class=site-footer><div class="site-footer-inner container"><p class=site-footer-message>Built with curiosity and code.</p><nav class=site-footer-links aria-label="Footer navigation"><a href=/posts/>Posts</a>
-<a href=/about/>About</a>
-<a href=/newsletter/>Newsletter</a>
-<a href=https://www.linkedin.com/in/adam-morris-6286b6206/ target=_blank rel="noopener noreferrer">LinkedIn</a></nav><p class=site-footer-copy>&copy; 2026 Adam Morris. All rights reserved.</p></div></footer><style>.site-footer{border-top:1px solid var(--color-border);padding:var(--space-12)0;margin-top:var(--space-16)}.site-footer-inner{text-align:center}.site-footer-message{font-family:var(--font-sans);font-size:var(--font-size-base);color:var(--color-text-secondary);margin-bottom:var(--space-6);font-style:italic}.site-footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--space-6);margin-bottom:var(--space-6)}.site-footer-links a{font-family:var(--font-mono);font-size:var(--font-size-sm);color:var(--color-text-muted);text-decoration:none;transition:color var(--transition-fast)}.site-footer-links a:hover{color:var(--color-accent)}.site-footer-copy{font-family:var(--font-mono);font-size:var(--font-size-xs);color:var(--color-text-muted);margin-bottom:0}</style></body></html>
+<!DOCTYPE html>
+<html lang="en-us" data-theme="dark">
+<head>
+	<meta name="generator" content="Hugo 0.152.2">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adam Morris</title>
+  <meta name="description" content="Teacher-turned-product-leader. Still writing code. Still in EDU.">
+
+  
+  <meta property="og:title" content="Adam Morris">
+  <meta property="og:description" content="Teacher-turned-product-leader. Still writing code. Still in EDU.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mistermorris.com/">
+  
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/theme.css">
+
+  
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    })();
+  </script>
+
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2744d96ad8214b7ca2afe707347acd58"}'></script>
+
+</head>
+<body>
+    
+  
+<nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner container">
+    <a href="/" class="nav-brand" aria-label="Home">
+      <span class="nav-prompt">&gt;_</span> Adam Morris
+    </a>
+
+    <div class="nav-links" id="nav-links">
+      
+        <a href="/posts/" class="nav-link">Posts</a>
+      
+        <a href="/about/" class="nav-link">About</a>
+      
+        <a href="/newsletter/" class="nav-link">Newsletter</a>
+      
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile" id="nav-mobile">
+    
+      <a href="/posts/" class="nav-mobile-link">Posts</a>
+    
+      <a href="/about/" class="nav-mobile-link">About</a>
+    
+      <a href="/newsletter/" class="nav-mobile-link">Newsletter</a>
+    
+    <button class="theme-toggle theme-toggle--mobile" id="theme-toggle-mobile" aria-label="Toggle dark/light mode" title="Toggle theme">
+      <span class="theme-toggle-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+<style>
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--color-nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    transition: padding var(--transition-base), background var(--transition-base);
+    padding: var(--space-4) 0;
+  }
+
+  [data-theme="light"] .site-nav {
+    background: var(--color-nav-bg-solid);
+  }
+
+  .site-nav.scrolled {
+    padding: var(--space-2) 0;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    white-space: nowrap;
+  }
+
+  .nav-brand:hover {
+    color: var(--color-accent);
+  }
+
+  .nav-prompt {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link[aria-current="page"] {
+    color: var(--color-accent);
+  }
+
+  .nav-link[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+   
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-2);
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .theme-toggle-icon::before {
+    content: '☀';
+    font-size: var(--font-size-base);
+  }
+
+  [data-theme="light"] .theme-toggle-icon::before {
+    content: '☾';
+  }
+
+   
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+  }
+
+  .nav-toggle-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text-primary);
+    border-radius: var(--radius-full);
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  .nav-toggle.active .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.active .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.active .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+   
+  .nav-mobile {
+    display: none;
+  }
+
+   
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .nav-mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-base);
+      border-top: 1px solid transparent;
+      padding: 0;
+      background: var(--color-nav-bg-solid);
+    }
+
+    [data-theme="light"] .nav-mobile {
+      background: var(--color-nav-bg-solid);
+    }
+
+    .nav-mobile.open {
+      max-height: 80vh;
+      border-top-color: var(--color-border);
+      padding: var(--space-6) 0;
+    }
+
+    [data-theme="light"] .nav-mobile.open {
+      border-top-color: transparent;
+    }
+
+    .nav-mobile-link {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xl);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+      padding: var(--space-4) var(--space-6);
+      width: 100%;
+      text-align: center;
+    }
+
+    .nav-mobile-link:hover,
+    .nav-mobile-link[aria-current="page"] {
+      color: var(--color-accent);
+    }
+  }
+</style>
+
+<script>
+  (function() {
+     
+    var toggle = document.getElementById('nav-toggle');
+    var mobile = document.getElementById('nav-mobile');
+    if (toggle && mobile) {
+      toggle.addEventListener('click', function() {
+        var isOpen = mobile.classList.toggle('open');
+        toggle.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', isOpen);
+      });
+    }
+
+     
+    function applyThemeToggle(btn) {
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        var html = document.documentElement;
+        var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
+    applyThemeToggle(document.getElementById('theme-toggle'));
+    applyThemeToggle(document.getElementById('theme-toggle-mobile'));
+
+     
+    var nav = document.getElementById('site-nav');
+    if (nav) {
+      var scrollThreshold = 50;
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > scrollThreshold) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    }
+  })();
+</script>
+
+  <main>
+    
+<section class="hero">
+  <div class="hero-inner container">
+    <h1 class="hero-name">
+      <span class="hero-hash">#</span> Adam Morris
+    </h1>
+
+    <div class="hero-role">
+      <span class="hero-hash">##</span> Product Engineer
+    </div>
+
+    <p class="hero-bio">
+      <span class="hero-typed" id="hero-typed"></span><span class="hero-cursor" aria-hidden="true">|</span>
+    </p>
+
+    <div class="hero-actions">
+      <a href="/posts/" class="hero-cta hero-cta--primary">[Read Posts](./posts)</a>
+      <a href="/newsletter/" class="hero-cta hero-cta--secondary">[Subscribe](./newsletter)</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: var(--space-24) 0 var(--space-16);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-inner {
+    max-width: var(--max-width-prose);
+  }
+
+  .hero-hash {
+    color: var(--color-text-muted);
+    font-weight: var(--font-weight-normal);
+    user-select: none;
+    flex-shrink: 0;
+    width: 3rem;
+    text-align: left;
+  }
+
+  .hero-name {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: baseline;
+  }
+
+  .hero-role {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent);
+    margin-bottom: var(--space-8);
+    display: flex;
+    align-items: baseline;
+  }
+
+  .hero-bio {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-8);
+    max-width: 50ch;
+    min-height: 3.5em;
+  }
+
+  .hero-typed {
+    display: inline;
+  }
+
+  .hero-cursor {
+    display: inline-block;
+    color: var(--color-accent);
+    animation: blink 1s step-end infinite;
+    font-weight: var(--font-weight-normal);
+    margin-left: 1px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .hero-cta {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .hero-cta--primary {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border: 1px solid var(--color-accent);
+  }
+
+  .hero-cta--primary:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-bg);
+  }
+
+  .hero-cta--secondary {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border: 1px solid var(--color-accent);
+  }
+
+  .hero-cta--secondary:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-bg);
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: calc(var(--space-20) + 65px) 0 var(--space-20);
+      min-height: auto;
+    }
+
+    .hero-name {
+      font-size: var(--font-size-3xl);
+    }
+
+    .hero-role {
+      font-size: var(--font-size-xl);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .hero-name {
+      color: var(--color-accent);
+    }
+  }
+
+  [data-theme="dark"] .hero-name {
+    color: var(--color-accent);
+  }
+</style>
+
+<script>
+  (function() {
+    var el = document.getElementById('hero-typed');
+    if (!el) return;
+
+    var text = "Teacher-turned-product-leader. Still writing code. Still in EDU.";
+    var i = 0;
+    var speed = 40;
+
+    function type() {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, speed + Math.random() * 30);
+      }
+    }
+
+    setTimeout(type, 400);
+  })();
+</script>
+
+    <div class="container">
+      <h2 class="section-heading">
+        <span class="section-heading-prompt">~/</span>recent posts
+      </h2>
+      
+
+
+
+<section class="post-list">
+  <div class="post-grid">
+    
+      <a href="https://mistermorris.com/posts/spreadsheet-moment/" class="post-card">
+        
+          <div class="post-card__image post-card__image--animation">
+            <iframe
+              class="post-card-animation"
+              data-src="/animations/rising-floor.html"
+              style="width:100%; height:100%; border:none; display:block; pointer-events:none;"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+        
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="2026-05-09">
+              2026-05-09
+            </time>
+            
+              <span class="post-card-reading">3 min</span>
+            
+          </div>
+
+          <h3 class="post-card-title">The spreadsheet moment</h3>
+
+          
+            <p class="post-card-desc">The pace of AI breakthroughs isn&#39;t unprecedented — it follows a pattern we&#39;ve seen before. What the spreadsheet tells us about what&#39;s coming.</p>
+          
+
+          
+            <div class="post-card-tags">
+              
+                <span class="post-card-tag">ai</span>
+              
+                <span class="post-card-tag">education</span>
+              
+                <span class="post-card-tag">leadership</span>
+              
+                <span class="post-card-tag">software</span>
+              
+                <span class="post-card-tag">trends</span>
+              
+            </div>
+          
+        </div>
+      </a>
+    
+      <a href="https://mistermorris.com/posts/hardware-vs-software-brain/" class="post-card">
+        
+          <div class="post-card__image post-card__image--animation">
+            <iframe
+              class="post-card-animation"
+              data-src="/animations/hardware-software-brain.html"
+              style="width:100%; height:100%; border:none; display:block; pointer-events:none;"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+        
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="2026-05-03">
+              2026-05-03
+            </time>
+            
+              <span class="post-card-reading">5 min</span>
+            
+          </div>
+
+          <h3 class="post-card-title">Hardware Brain, Software Brain</h3>
+
+          
+            <p class="post-card-desc">Two recognisable modes of leadership in schools — and why the tension between them matters more than ever.</p>
+          
+
+          
+            <div class="post-card-tags">
+              
+                <span class="post-card-tag">ai</span>
+              
+                <span class="post-card-tag">education</span>
+              
+                <span class="post-card-tag">leadership</span>
+              
+            </div>
+          
+        </div>
+      </a>
+    
+      <a href="https://mistermorris.com/posts/then-now-always/" class="post-card">
+        
+          <div class="post-card__image post-card__image--animation">
+            <iframe
+              class="post-card-animation"
+              data-src="/animations/ninety-percent.html"
+              style="width:100%; height:100%; border:none; display:block; pointer-events:none;"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+        
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="2026-04-26">
+              2026-04-26
+            </time>
+            
+              <span class="post-card-reading">3 min</span>
+            
+          </div>
+
+          <h3 class="post-card-title">Learning is Polishing until Done</h3>
+
+          
+            
+              <p class="post-card-desc">Then I used to haunt my middle school early just to get face time with a Macintosh Plus before homeroom. I can still …</p>
+            
+          
+
+          
+            <div class="post-card-tags">
+              
+                <span class="post-card-tag">ai</span>
+              
+                <span class="post-card-tag">learning</span>
+              
+            </div>
+          
+        </div>
+      </a>
+    
+      <a href="https://mistermorris.com/posts/the-terminal-was-training-me/" class="post-card">
+        
+          <div class="post-card__image post-card__image--animation">
+            <iframe
+              class="post-card-animation"
+              data-src="/animations/grep-terminal.html"
+              style="width:100%; height:100%; border:none; display:block; pointer-events:none;"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+        
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="2026-04-05">
+              2026-04-05
+            </time>
+            
+              <span class="post-card-reading">4 min</span>
+            
+          </div>
+
+          <h3 class="post-card-title">The terminal was training me all along</h3>
+
+          
+            <p class="post-card-desc">An homage to terminal and the skills necessary for succesfully using AI in schools.</p>
+          
+
+          
+            <div class="post-card-tags">
+              
+                <span class="post-card-tag">ai</span>
+              
+                <span class="post-card-tag">education</span>
+              
+                <span class="post-card-tag">leadership</span>
+              
+                <span class="post-card-tag">tools</span>
+              
+            </div>
+          
+        </div>
+      </a>
+    
+      <a href="https://mistermorris.com/posts/from-dragon-slayer-skeptic-to-ai-convert/" class="post-card">
+        
+          <div class="post-card__image post-card__image--animation">
+            <iframe
+              class="post-card-animation"
+              data-src="/animations/draco-to-hammer.html"
+              style="width:100%; height:100%; border:none; display:block; pointer-events:none;"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+          </div>
+        
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="2026-03-27">
+              2026-03-27
+            </time>
+            
+              <span class="post-card-reading">5 min</span>
+            
+          </div>
+
+          <h3 class="post-card-title">From Dragon-Slayer Skeptic to AI Convert</h3>
+
+          
+            <p class="post-card-desc">A year ago I called AGI a dragon — mythological and impossible. After building real tools with AI every day, the ground has shifted under my argument.</p>
+          
+
+          
+            <div class="post-card-tags">
+              
+                <span class="post-card-tag">ai</span>
+              
+                <span class="post-card-tag">education</span>
+              
+                <span class="post-card-tag">opinion</span>
+              
+            </div>
+          
+        </div>
+      </a>
+    
+      <a href="https://mistermorris.com/posts/sign-posting-change-done-now-next-later/" class="post-card">
+        
+          <div class="post-card__image">
+            <img src="/images/posts/sign-posting-change.png" alt="" loading="lazy">
+          </div>
+        
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="2024-03-31">
+              2024-03-31
+            </time>
+            
+              <span class="post-card-reading">2 min</span>
+            
+          </div>
+
+          <h3 class="post-card-title">Sign-posting change: Done, Now, Next, Later</h3>
+
+          
+            <p class="post-card-desc">Instead of Gantt charts and timelines, use a simple Done/Now/Next/Later framework to track change in schools — and signal when input is welcome.</p>
+          
+
+          
+            <div class="post-card-tags">
+              
+                <span class="post-card-tag">change-management</span>
+              
+                <span class="post-card-tag">education</span>
+              
+                <span class="post-card-tag">leadership</span>
+              
+            </div>
+          
+        </div>
+      </a>
+    
+      <a href="https://mistermorris.com/posts/calling-it-now-agi-is-a-dragon/" class="post-card">
+        
+          <div class="post-card__image">
+            <img src="/images/posts/agi-is-a-dragon.png" alt="" loading="lazy">
+          </div>
+        
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="2023-11-22">
+              2023-11-22
+            </time>
+            
+              <span class="post-card-reading">3 min</span>
+            
+          </div>
+
+          <h3 class="post-card-title">Calling it now: AGI is a Dragon</h3>
+
+          
+            <p class="post-card-desc">Why Artificial General Intelligence will perpetuate as a concept and never as a reality — and what that means for schools.</p>
+          
+
+          
+            <div class="post-card-tags">
+              
+                <span class="post-card-tag">ai</span>
+              
+                <span class="post-card-tag">education</span>
+              
+                <span class="post-card-tag">opinion</span>
+              
+            </div>
+          
+        </div>
+      </a>
+    
+      <a href="https://mistermorris.com/posts/openai-speculation-why-sam-altman-got-fired/" class="post-card">
+        
+          <div class="post-card__image">
+            <img src="/images/posts/sam-altman-fired.png" alt="" loading="lazy">
+          </div>
+        
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="2023-11-18">
+              2023-11-18
+            </time>
+            
+              <span class="post-card-reading">3 min</span>
+            
+          </div>
+
+          <h3 class="post-card-title">OpenAI: Speculation as to why Sam Altman got fired</h3>
+
+          
+            <p class="post-card-desc">A speculative take on the Sam Altman firing — and what GPT technology becoming accessible to everyone means for schools.</p>
+          
+
+          
+            <div class="post-card-tags">
+              
+                <span class="post-card-tag">ai</span>
+              
+                <span class="post-card-tag">education</span>
+              
+                <span class="post-card-tag">opinion</span>
+              
+            </div>
+          
+        </div>
+      </a>
+    
+      <a href="https://mistermorris.com/posts/mental-model-for-genai-shallow-end-of-the-pool/" class="post-card">
+        
+          <div class="post-card__image">
+            <img src="/images/posts/shallow-end-pool.png" alt="" loading="lazy">
+          </div>
+        
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="2023-10-02">
+              2023-10-02
+            </time>
+            
+              <span class="post-card-reading">4 min</span>
+            
+          </div>
+
+          <h3 class="post-card-title">Mental Model for GenAI: Shallow end of the pool</h3>
+
+          
+            <p class="post-card-desc">A useful mental model for understanding GenAI prompts: think of it as a pool with a shallow end and a deep end.</p>
+          
+
+          
+            <div class="post-card-tags">
+              
+                <span class="post-card-tag">ai</span>
+              
+                <span class="post-card-tag">education</span>
+              
+                <span class="post-card-tag">mental-models</span>
+              
+            </div>
+          
+        </div>
+      </a>
+    
+      <a href="https://mistermorris.com/posts/genai-dud-application-detection/" class="post-card">
+        
+          <div class="post-card__image">
+            <img src="/images/posts/dud-detection.png" alt="" loading="lazy">
+          </div>
+        
+        <div class="post-card__body">
+          <div class="post-card-meta">
+            <time class="post-card-date" datetime="2023-09-10">
+              2023-09-10
+            </time>
+            
+              <span class="post-card-reading">2 min</span>
+            
+          </div>
+
+          <h3 class="post-card-title">GenAI&#39;s &#34;dud&#34; application: detection</h3>
+
+          
+            <p class="post-card-desc">Why AI detection tools are the &#39;dud app&#39; of the GenAI era — and why educators should not rely on them.</p>
+          
+
+          
+            <div class="post-card-tags">
+              
+                <span class="post-card-tag">ai</span>
+              
+                <span class="post-card-tag">education</span>
+              
+                <span class="post-card-tag">academic-integrity</span>
+              
+            </div>
+          
+        </div>
+      </a>
+    
+  </div>
+</section>
+
+<style>
+  .post-list {
+    padding: var(--space-4) 0 var(--space-16);
+  }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .post-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  .post-card {
+    display: block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .post-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .post-card__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .post-card__image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(30, 58, 95, 0.25) 0%,
+      rgba(30, 58, 95, 0.25) 60%,
+      var(--color-bg) 100%
+    );
+    pointer-events: none;
+    transition: opacity var(--transition-base);
+  }
+
+  .post-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.6) brightness(0.85);
+    transition: transform var(--transition-base), filter var(--transition-base);
+  }
+
+  .post-card:hover .post-card__image img {
+    transform: scale(1.03);
+    filter: saturate(1) brightness(1);
+  }
+
+  .post-card:hover .post-card__image::after {
+    opacity: 0;
+  }
+
+  .post-card__body {
+    padding: var(--space-6);
+  }
+
+  .post-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .post-card-date {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .post-card-reading {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .post-card-reading::before {
+    content: '·';
+    margin-right: var(--space-4);
+  }
+
+  .post-card-title {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-tight);
+  }
+
+  .post-card:hover .post-card-title {
+    color: var(--color-accent);
+  }
+
+  .post-card-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--space-3);
+  }
+
+  .post-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .post-card-tag {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+  }
+
+  .post-list-empty {
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--space-12) 0;
+  }
+
+  .post-card__image--animation {
+    aspect-ratio: 680 / 420;
+  }
+
+  .post-card__image--animation::after {
+    display: none;
+  }
+</style>
+
+<script>
+  (function() {
+    function applyThemeToCardAnimations(theme) {
+      document.querySelectorAll('.post-card-animation').forEach(function(iframe) {
+        var base = iframe.getAttribute('data-src');
+        if (base) {
+          iframe.src = base + '?theme=' + theme;
+        }
+      });
+    }
+
+    var currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyThemeToCardAnimations(currentTheme);
+
+    var observer = new MutationObserver(function() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyThemeToCardAnimations(theme);
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  })();
+</script>
+
+    </div>
+  </main>
+
+  <style>
+    .section-heading {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .section-heading-prompt {
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-normal);
+    }
+  </style>
+
+    
+  
+<footer class="site-footer">
+  <div class="site-footer-inner container">
+    <p class="site-footer-message">Built with curiosity and code.</p>
+
+    <nav class="site-footer-links" aria-label="Footer navigation">
+      <a href="/posts/">Posts</a>
+      <a href="/about/">About</a>
+      <a href="/newsletter/">Newsletter</a>
+      
+        <a href="https://www.linkedin.com/in/adam-morris-6286b6206/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      
+    </nav>
+
+    <p class="site-footer-copy">
+      &copy; 2026 Adam Morris. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-12) 0;
+    margin-top: var(--space-16);
+  }
+
+  .site-footer-inner {
+    text-align: center;
+  }
+
+  .site-footer-message {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+    font-style: italic;
+  }
+
+  .site-footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .site-footer-links a {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .site-footer-links a:hover {
+    color: var(--color-accent);
+  }
+
+  .site-footer-copy {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+</style>
+
+
+  </body>
+</html>

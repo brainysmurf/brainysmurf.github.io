@@ -1,19 +1,827 @@
-<!doctype html><html lang=en-us data-theme=dark><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Hardware Brain, Software Brain — Adam Morris</title><meta name=description content="Two recognisable modes of leadership in schools — and why the tension between them matters more than ever."><meta property="og:title" content="Hardware Brain, Software Brain"><meta property="og:description" content="Two recognisable modes of leadership in schools — and why the tension between them matters more than ever."><meta property="og:type" content="article"><meta property="og:url" content="https://mistermorris.com/posts/hardware-vs-software-brain/"><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/css/tokens.css><link rel=stylesheet href=/css/theme.css><script>(function(){var e=localStorage.getItem("theme");e&&document.documentElement.setAttribute("data-theme",e)})()</script><script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "2744d96ad8214b7ca2afe707347acd58"}'></script></head><body><nav class=site-nav id=site-nav role=navigation aria-label="Main navigation"><div class="nav-inner container"><a href=/ class=nav-brand aria-label=Home><span class=nav-prompt>>_</span> Adam Morris</a><div class=nav-links id=nav-links><a href=/posts/ class=nav-link>Posts</a>
-<a href=/about/ class=nav-link>About</a>
-<a href=/newsletter/ class=nav-link>Newsletter</a>
-<button class=theme-toggle id=theme-toggle aria-label="Toggle dark/light mode" title="Toggle theme">
-<span class=theme-toggle-icon aria-hidden=true></span></button></div><button class=nav-toggle id=nav-toggle aria-label="Toggle menu" aria-expanded=false>
-<span class=nav-toggle-bar></span>
-<span class=nav-toggle-bar></span>
-<span class=nav-toggle-bar></span></button></div><div class=nav-mobile id=nav-mobile><a href=/posts/ class=nav-mobile-link>Posts</a>
-<a href=/about/ class=nav-mobile-link>About</a>
-<a href=/newsletter/ class=nav-mobile-link>Newsletter</a>
-<button class="theme-toggle theme-toggle--mobile" id=theme-toggle-mobile aria-label="Toggle dark/light mode" title="Toggle theme">
-<span class=theme-toggle-icon aria-hidden=true></span></button></div></nav><style>.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--color-nav-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border);transition:padding var(--transition-base),background var(--transition-base);padding:var(--space-4)0}[data-theme=light] .site-nav{background:var(--color-nav-bg-solid)}.site-nav.scrolled{padding:var(--space-2)0}.nav-inner{display:flex;align-items:center;justify-content:space-between}.nav-brand{font-family:var(--font-mono);font-size:var(--font-size-lg);font-weight:var(--font-weight-bold);color:var(--color-text-primary);text-decoration:none;display:flex;align-items:center;gap:var(--space-1);white-space:nowrap}.nav-brand:hover{color:var(--color-accent)}.nav-prompt{color:var(--color-accent);font-weight:var(--font-weight-normal)}.nav-links{display:flex;align-items:center;gap:var(--space-6)}.nav-link{font-family:var(--font-mono);font-size:var(--font-size-sm);color:var(--color-text-secondary);text-decoration:none;transition:color var(--transition-fast);position:relative}.nav-link:hover,.nav-link[aria-current=page]{color:var(--color-accent)}.nav-link[aria-current=page]::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--color-accent)}.theme-toggle{background:0 0;border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-2);cursor:pointer;color:var(--color-text-secondary);font-size:var(--font-size-sm);line-height:1;transition:color var(--transition-fast),border-color var(--transition-fast);display:flex;align-items:center;justify-content:center;width:34px;height:34px}.theme-toggle:hover{color:var(--color-accent);border-color:var(--color-accent)}.theme-toggle-icon::before{content:'☀';font-size:var(--font-size-base)}[data-theme=light] .theme-toggle-icon::before{content:'☾'}.nav-toggle{display:none;flex-direction:column;gap:5px;background:0 0;border:none;cursor:pointer;padding:var(--space-2)}.nav-toggle-bar{display:block;width:22px;height:2px;background:var(--color-text-primary);border-radius:var(--radius-full);transition:transform var(--transition-fast),opacity var(--transition-fast)}.nav-toggle.active .nav-toggle-bar:nth-child(1){transform:translateY(7px)rotate(45deg)}.nav-toggle.active .nav-toggle-bar:nth-child(2){opacity:0}.nav-toggle.active .nav-toggle-bar:nth-child(3){transform:translateY(-7px)rotate(-45deg)}.nav-mobile{display:none}@media(max-width:768px){.nav-toggle{display:flex}.nav-links{display:none}.nav-mobile{display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:0;max-height:0;overflow:hidden;transition:max-height var(--transition-base);border-top:1px solid transparent;padding:0;background:var(--color-nav-bg-solid)}[data-theme=light] .nav-mobile{background:var(--color-nav-bg-solid)}.nav-mobile.open{max-height:80vh;border-top-color:var(--color-border);padding:var(--space-6)0}[data-theme=light] .nav-mobile.open{border-top-color:transparent}.nav-mobile-link{font-family:var(--font-mono);font-size:var(--font-size-xl);color:var(--color-text-secondary);text-decoration:none;transition:color var(--transition-fast);padding:var(--space-4)var(--space-6);width:100%;text-align:center}.nav-mobile-link:hover,.nav-mobile-link[aria-current=page]{color:var(--color-accent)}}</style><script>(function(){var t,o,e=document.getElementById("nav-toggle"),n=document.getElementById("nav-mobile");e&&n&&e.addEventListener("click",function(){var t=n.classList.toggle("open");e.classList.toggle("active"),e.setAttribute("aria-expanded",t)});function s(e){if(!e)return;e.addEventListener("click",function(){var e=document.documentElement,t=e.getAttribute("data-theme")==="light"?"dark":"light";e.setAttribute("data-theme",t),localStorage.setItem("theme",t)})}s(document.getElementById("theme-toggle")),s(document.getElementById("theme-toggle-mobile")),t=document.getElementById("site-nav"),t&&(o=50,window.addEventListener("scroll",function(){window.scrollY>o?t.classList.add("scrolled"):t.classList.remove("scrolled")},{passive:!0}))})()</script><main class=container><article class=single-post><header class=single-post-header><div class=single-post-meta><time datetime=2026-05-03>2026-05-03</time>
-<span>5 min read</span></div><h1 class=single-post-title>Hardware Brain, Software Brain</h1><div class=single-post-tags><a href=/tags/ai/ class=single-post-tag>#ai</a>
-<a href=/tags/education/ class=single-post-tag>#education</a>
-<a href=/tags/leadership/ class=single-post-tag>#leadership</a></div></header><div class=single-post-hero-image><iframe id=post-animation data-src=/animations/hardware-software-brain.html style=width:100%;aspect-ratio:680/420;border:none;display:block;background:var(--color-surface) scrolling=no title="Animation for Hardware Brain, Software Brain"></iframe></div><script>(function(){var t,s,e=document.getElementById("post-animation");if(!e)return;t=e.getAttribute("data-src");function n(){var n=document.documentElement.getAttribute("data-theme")||"dark";e.src=t+"?theme="+n}n(),s=new MutationObserver(n),s.observe(document.documentElement,{attributes:!0,attributeFilter:["data-theme"]})})()</script><div class="single-post-content prose"><p>John Gruber, one of my favorite bloggers, made a stark contrast when commenting on a current event — unrelated to schools entirely — but nonetheless seems apt to apply to leadership.</p><p>Last April, the New York Times <a href=https://daringfireball.net/2026/04/nyt_wrong_crossword_grid target=_blank rel=noopener>published</a>
-a crossword puzzle grid with the wrong clues. The correct puzzle was available in the app and on the web — the whoopsie was just in the print version. John thought the moment taught us something important about the difference between hardware brain and software brain:</p><blockquote><p>Print, effectively, is hardware. Atoms, not bits. The web is literally software. If you make a mistake in software that results in incorrect mathematical results, you ship an update. If you make a mistake in a CPU such that it results in incorrect floating-point math, perhaps only in 1 out of every 9 billion calculations, people will remember the mistake 30 years later.</p></blockquote><p>He draws a parallel that print is the successful deployment of hardware, whereas a web application is the successful deployment of software. It got me conceptualizing the idea of schools as oscillating between two analogous instincts.</p><h2 id=when-a-school-is-like-a-printing-company>When a School is like a Printing Company</h2><p>Or, when does a school display hardware-brain thinking?</p><p>When engineers do chip design, they are seeking permanence. The logic is going to be etched into silicon, and the other pieces all route back towards it. It is the focus point of the architecture.</p><p>Likewise, schools operate on annual budget cycles, multi-year staffing contracts, and physical infrastructure with long lifespans. When you build a timetable, hire for a department, or set an assessment calendar, you are cutting hardware. They are not easily modifiable mid-year. International schools have accreditation bodies with fixed cycles and certain expectations that schools need to demonstrate competency at fulfilling.</p><p>Two other artifacts that schools hard-wire into the world are the transcript and the report card. Unlike a website that can silently correct an error, a report card issued with a mistake requires a formal reprint and a notification. The grades determine things like GPA or credits — there is no shipping a patch.</p><p>When a school carries its hardware brain to the fore, every choice carries irreversible downstream weight. This demands a particular kind of thinking: slow to commit, precise in execution, deeply attentive to the <strong>why</strong>.</p><h2 id=when-a-school-is-like-a-web-application>When a School is like a Web Application</h2><p>Software engineers treat lines of code as behaviours whose correctness is defined by tests. It is more iterative, exploratory, comfortable with contextualised framing; software is done when it simply meets the expectations. It is not up to the software itself to define the expectations.</p><p>Similarly, a school&rsquo;s learning initiatives and community development initiatives are about building layers for the next round of leaders to stand on. The school culture cannot be written into the mission statement — instead it is a series of actions responsive to established norms.</p><p>Many of the pivotal roles in schools live almost entirely in software-brain mode. A counsellor supporting a student won&rsquo;t follow a fixed script — they read the student, adjust the conversation, and respond to what surfaces. An admissions coordinator fielding enquiries from prospective families will need to recalibrate messaging depending on a changing market. Activities and learning coordinators cooperate to synthesise academic standards with other competing priorities, such as wellbeing.</p><p>When considering how a school utilises a software brain, it&rsquo;s about being able to adapt to the moment, and reflection is often used as the substrate for this activity. The kind of thinking here is more about voicing <strong>how</strong> the school meets its goals.</p><h2 id=the-tension-demonstrated>The Tension, Demonstrated</h2><p>Hardware-thinking defines the architectural pillars; software-thinking services the community. Schools both &ldquo;write code&rdquo; when confronted with new realities, and also fall back on &ldquo;logic gates&rdquo; that have withstood the test of time.</p><p>Consider this as an example that demonstrates the tension: When ChatGPT arrived, schools everywhere were suddenly confronted with a competent robot essayist. They responded either by utilising hardware-thinking or initiating software-thinking. Either pen and paper, timed conditions in invigilated rooms became the new standard — and/or training was prescribed. The first explicitly removed software entirely and fell back on architecture. The second is like rewriting a module that doesn&rsquo;t suit some new use cases.</p><p>These aren&rsquo;t abstract philosophies. <strong>They describe two recognisable modes that leadership can recognise.</strong> In education, both will be present, perpetually in tension.</p><h2 id=and-now>And now…</h2><p>Organizations of every shape and color face existential challenges, leading to perhaps dramatic changes, just as newspapers had to pivot from print to the web. Likewise, the advent of agentic AI tooling provide schools a lot of runway to re-imagining what it looks like to nurture young minds from toddler to young adult.</p><p>The next era of schooling will have to figure out how to etch the approaches in silicon, and compile the details on demand. Distinctions such as those above provide a deployable mental model, summed up as the following:</p><ul><li>The hardware brain is going to ask: <em>how do we protect what we know works well?</em></li><li>The software brain will ask: <em>where can we innovate next?</em></li></ul><p>The reality is that there are times in an organic community when one sits at the forefront more than the other; collectively, both questions are equally pertinent to what comes next.</p></div><footer class=single-post-footer><a href=/posts/ class=single-post-back>&larr; cd /posts</a><div class=single-post-newsletter><div class=newsletter-prompt>> subscribe</div><p class=newsletter-desc>Get new posts delivered to your inbox. No spam, unsubscribe anytime.</p><a href=https://www.linkedin.com/newsletters/chasing-change-reforming-edu-7063350324320768000/ class=newsletter-btn target=_blank rel=noopener>Join my LinkedIn newsletter</a></div></footer></article><style>.single-post{padding:var(--space-24)0 var(--space-16);max-width:var(--max-width-prose);margin:0 auto}.single-post-hero-image{margin-bottom:var(--space-10);border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--color-border)}.single-post-hero-image img{width:100%;height:auto}.single-post-header{margin-bottom:var(--space-10)}.single-post-meta{display:flex;align-items:center;gap:var(--space-4);font-family:var(--font-mono);font-size:var(--font-size-sm);color:var(--color-text-muted);margin-bottom:var(--space-4)}.single-post-meta span::before{content:'·';margin-right:var(--space-4)}.single-post-title{font-family:var(--font-mono);font-size:var(--font-size-3xl);font-weight:var(--font-weight-bold);line-height:var(--line-height-tight);color:var(--color-text-primary);margin-bottom:var(--space-4)}.single-post-tags{display:flex;flex-wrap:wrap;gap:var(--space-3)}.single-post-tag{font-family:var(--font-mono);font-size:var(--font-size-xs);color:var(--color-accent);background:var(--color-accent-subtle);padding:var(--space-1)var(--space-3);border-radius:var(--radius-sm);text-decoration:none;transition:background var(--transition-fast)}.single-post-tag:hover{background:var(--color-accent);color:var(--color-bg)}.single-post-content h2{font-family:var(--font-mono);font-size:var(--font-size-2xl);margin-top:var(--space-12);margin-bottom:var(--space-4);padding-bottom:var(--space-2);border-bottom:1px solid var(--color-border)}.single-post-content h3{font-family:var(--font-mono);font-size:var(--font-size-xl);margin-top:var(--space-10);margin-bottom:var(--space-3)}.single-post-content h4{font-family:var(--font-mono);font-size:var(--font-size-lg);margin-top:var(--space-8);margin-bottom:var(--space-3)}.single-post-content p{font-family:var(--font-sans);line-height:var(--line-height-relaxed);margin-bottom:var(--space-6);color:var(--color-text-secondary)}.single-post-content a{color:var(--color-accent);text-decoration:underline;text-decoration-color:var(--color-accent-subtle);text-underline-offset:2px;transition:text-decoration-color var(--transition-fast)}.single-post-content a:hover{text-decoration-color:var(--color-accent)}.single-post-content a[href^=http]::after{content:'\2009↗';font-size:.75em;vertical-align:super}[data-theme=light] .single-post-content a{font-weight:var(--font-weight-semibold)}.single-post-content pre{position:relative;margin:var(--space-8)0;border-radius:var(--radius-md)}.single-post-content pre::before{content:'code';position:absolute;top:0;left:0;right:0;padding:var(--space-1)var(--space-4);font-family:var(--font-mono);font-size:var(--font-size-xs);color:var(--color-text-muted);background:var(--color-border);border-radius:var(--radius-md)var(--radius-md)0 0}.single-post-content pre code{display:block;padding-top:var(--space-8)}.single-post-content blockquote{border-left:3px solid var(--color-accent);padding:var(--space-4)var(--space-6);margin:var(--space-8)0;background:var(--color-accent-subtle);border-radius:0 var(--radius-md)var(--radius-md)0}.single-post-content blockquote p{color:var(--color-text-secondary);font-style:italic;margin-bottom:0}.single-post-content ul,.single-post-content ol{margin-bottom:var(--space-6);padding-left:var(--space-6)}.single-post-content li{color:var(--color-text-secondary);line-height:var(--line-height-relaxed);margin-bottom:var(--space-2)}.single-post-content img{border-radius:var(--radius-md);border:1px solid var(--color-border);margin:var(--space-8)0}.tooltip-word{position:relative;display:inline;cursor:help;border-bottom:1px dashed var(--color-accent);color:inherit}.tooltip-bubble{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--color-surface);color:var(--color-text-primary);font-family:var(--font-sans);font-size:var(--font-size-sm);line-height:var(--line-height-relaxed);padding:var(--space-3)var(--space-4);border-radius:var(--radius-md);border:1px solid var(--color-border);width:22ch;white-space:normal;text-align:left;z-index:100;pointer-events:none}.tooltip-bubble::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--color-surface)}.tooltip-attribution{display:block;margin-top:var(--space-2);font-size:var(--font-size-xs);color:var(--color-text-muted);pointer-events:auto}.tooltip-attribution a{color:var(--color-accent);text-decoration:underline;text-decoration-color:var(--color-accent-subtle)}.tooltip-attribution a::after{content:none!important}.tooltip-word:hover .tooltip-bubble,.tooltip-word:focus .tooltip-bubble{display:block}[data-theme=dark] .tooltip-word{border-bottom-color:var(--color-text-primary)}.single-post-footer{margin-top:var(--space-16);padding-top:var(--space-8);border-top:1px solid var(--color-border)}.single-post-back{font-family:var(--font-mono);font-size:var(--font-size-sm);color:var(--color-text-muted);text-decoration:none;transition:color var(--transition-fast);display:inline-block;margin-bottom:var(--space-10)}.single-post-back:hover{color:var(--color-accent)}.single-post-newsletter{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-8);text-align:center}.newsletter-prompt{font-family:var(--font-mono);font-size:var(--font-size-xl);color:var(--color-accent);margin-bottom:var(--space-3);font-weight:var(--font-weight-semibold)}.newsletter-desc{font-size:var(--font-size-sm);color:var(--color-text-secondary);margin-bottom:var(--space-6);max-width:40ch;margin-left:auto;margin-right:auto}.newsletter-btn{font-family:var(--font-mono);font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);padding:var(--space-3)var(--space-6);background:var(--color-accent);color:var(--color-bg);border:1px solid var(--color-accent);border-radius:var(--radius-md);text-decoration:none;transition:all var(--transition-fast);display:inline-block}.newsletter-btn:hover{background:var(--color-accent-hover);border-color:var(--color-accent-hover);color:var(--color-bg)}@media(max-width:768px){.single-post{padding:var(--space-20)0 var(--space-12)}.single-post-title{font-size:var(--font-size-2xl)}}</style></main><footer class=site-footer><div class="site-footer-inner container"><p class=site-footer-message>Built with curiosity and code.</p><nav class=site-footer-links aria-label="Footer navigation"><a href=/posts/>Posts</a>
-<a href=/about/>About</a>
-<a href=/newsletter/>Newsletter</a>
-<a href=https://www.linkedin.com/in/adam-morris-6286b6206/ target=_blank rel="noopener noreferrer">LinkedIn</a></nav><p class=site-footer-copy>&copy; 2026 Adam Morris. All rights reserved.</p></div></footer><style>.site-footer{border-top:1px solid var(--color-border);padding:var(--space-12)0;margin-top:var(--space-16)}.site-footer-inner{text-align:center}.site-footer-message{font-family:var(--font-sans);font-size:var(--font-size-base);color:var(--color-text-secondary);margin-bottom:var(--space-6);font-style:italic}.site-footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--space-6);margin-bottom:var(--space-6)}.site-footer-links a{font-family:var(--font-mono);font-size:var(--font-size-sm);color:var(--color-text-muted);text-decoration:none;transition:color var(--transition-fast)}.site-footer-links a:hover{color:var(--color-accent)}.site-footer-copy{font-family:var(--font-mono);font-size:var(--font-size-xs);color:var(--color-text-muted);margin-bottom:0}</style></body></html>
+<!DOCTYPE html>
+<html lang="en-us" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hardware Brain, Software Brain — Adam Morris</title>
+  <meta name="description" content="Two recognisable modes of leadership in schools — and why the tension between them matters more than ever.">
+
+  
+  <meta property="og:title" content="Hardware Brain, Software Brain">
+  <meta property="og:description" content="Two recognisable modes of leadership in schools — and why the tension between them matters more than ever.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mistermorris.com/posts/hardware-vs-software-brain/">
+  
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/theme.css">
+
+  
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    })();
+  </script>
+
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2744d96ad8214b7ca2afe707347acd58"}'></script>
+
+</head>
+<body>
+    
+  
+<nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner container">
+    <a href="/" class="nav-brand" aria-label="Home">
+      <span class="nav-prompt">&gt;_</span> Adam Morris
+    </a>
+
+    <div class="nav-links" id="nav-links">
+      
+        <a href="/posts/" class="nav-link">Posts</a>
+      
+        <a href="/about/" class="nav-link">About</a>
+      
+        <a href="/newsletter/" class="nav-link">Newsletter</a>
+      
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile" id="nav-mobile">
+    
+      <a href="/posts/" class="nav-mobile-link">Posts</a>
+    
+      <a href="/about/" class="nav-mobile-link">About</a>
+    
+      <a href="/newsletter/" class="nav-mobile-link">Newsletter</a>
+    
+    <button class="theme-toggle theme-toggle--mobile" id="theme-toggle-mobile" aria-label="Toggle dark/light mode" title="Toggle theme">
+      <span class="theme-toggle-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+<style>
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--color-nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    transition: padding var(--transition-base), background var(--transition-base);
+    padding: var(--space-4) 0;
+  }
+
+  [data-theme="light"] .site-nav {
+    background: var(--color-nav-bg-solid);
+  }
+
+  .site-nav.scrolled {
+    padding: var(--space-2) 0;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    white-space: nowrap;
+  }
+
+  .nav-brand:hover {
+    color: var(--color-accent);
+  }
+
+  .nav-prompt {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link[aria-current="page"] {
+    color: var(--color-accent);
+  }
+
+  .nav-link[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+   
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-2);
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .theme-toggle-icon::before {
+    content: '☀';
+    font-size: var(--font-size-base);
+  }
+
+  [data-theme="light"] .theme-toggle-icon::before {
+    content: '☾';
+  }
+
+   
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+  }
+
+  .nav-toggle-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text-primary);
+    border-radius: var(--radius-full);
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  .nav-toggle.active .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.active .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.active .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+   
+  .nav-mobile {
+    display: none;
+  }
+
+   
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .nav-mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-base);
+      border-top: 1px solid transparent;
+      padding: 0;
+      background: var(--color-nav-bg-solid);
+    }
+
+    [data-theme="light"] .nav-mobile {
+      background: var(--color-nav-bg-solid);
+    }
+
+    .nav-mobile.open {
+      max-height: 80vh;
+      border-top-color: var(--color-border);
+      padding: var(--space-6) 0;
+    }
+
+    [data-theme="light"] .nav-mobile.open {
+      border-top-color: transparent;
+    }
+
+    .nav-mobile-link {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xl);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+      padding: var(--space-4) var(--space-6);
+      width: 100%;
+      text-align: center;
+    }
+
+    .nav-mobile-link:hover,
+    .nav-mobile-link[aria-current="page"] {
+      color: var(--color-accent);
+    }
+  }
+</style>
+
+<script>
+  (function() {
+     
+    var toggle = document.getElementById('nav-toggle');
+    var mobile = document.getElementById('nav-mobile');
+    if (toggle && mobile) {
+      toggle.addEventListener('click', function() {
+        var isOpen = mobile.classList.toggle('open');
+        toggle.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', isOpen);
+      });
+    }
+
+     
+    function applyThemeToggle(btn) {
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        var html = document.documentElement;
+        var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
+    applyThemeToggle(document.getElementById('theme-toggle'));
+    applyThemeToggle(document.getElementById('theme-toggle-mobile'));
+
+     
+    var nav = document.getElementById('site-nav');
+    if (nav) {
+      var scrollThreshold = 50;
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > scrollThreshold) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    }
+  })();
+</script>
+
+  <main class="container">
+    
+<article class="single-post">
+  <header class="single-post-header">
+    <div class="single-post-meta">
+      <time datetime="2026-05-03">2026-05-03</time>
+      <span>5 min read</span>
+    </div>
+
+    <h1 class="single-post-title">Hardware Brain, Software Brain</h1>
+
+    
+      <div class="single-post-tags">
+        
+          <a href="/tags/ai/" class="single-post-tag">#ai</a>
+        
+          <a href="/tags/education/" class="single-post-tag">#education</a>
+        
+          <a href="/tags/leadership/" class="single-post-tag">#leadership</a>
+        
+      </div>
+    
+  </header>
+
+  
+    <div class="single-post-hero-image">
+      <iframe
+        id="post-animation"
+        data-src="/animations/hardware-software-brain.html"
+        style="width:100%; aspect-ratio:680/420; border:none; display:block; background:var(--color-surface);"
+        scrolling="no"
+        title="Animation for Hardware Brain, Software Brain"
+      ></iframe>
+    </div>
+    <script>
+      (function() {
+        var iframe = document.getElementById('post-animation');
+        if (!iframe) return;
+        var base = iframe.getAttribute('data-src');
+
+        function setTheme() {
+          var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+          iframe.src = base + '?theme=' + theme;
+        }
+
+        
+        setTheme();
+
+        
+        var observer = new MutationObserver(setTheme);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      })();
+    </script>
+  
+
+  <div class="single-post-content prose">
+    <p>John Gruber, one of my favorite bloggers, made a stark contrast when commenting on a current event — unrelated to schools entirely — but nonetheless seems apt to apply to leadership.</p>
+<p>Last April, the New York Times <a href="https://daringfireball.net/2026/04/nyt_wrong_crossword_grid" target="_blank" rel="noopener">published</a>
+ a crossword puzzle grid with the wrong clues. The correct puzzle was available in the app and on the web — the whoopsie was just in the print version. John thought the moment taught us something important about the difference between hardware brain and software brain:</p>
+<blockquote>
+<p>Print, effectively, is hardware. Atoms, not bits. The web is literally software. If you make a mistake in software that results in incorrect mathematical results, you ship an update. If you make a mistake in a CPU such that it results in incorrect floating-point math, perhaps only in 1 out of every 9 billion calculations, people will remember the mistake 30 years later.</p>
+</blockquote>
+<p>He draws a parallel that print is the successful deployment of hardware, whereas a web application is the successful deployment of software. It got me conceptualizing the idea of schools as oscillating between two analogous instincts.</p>
+<h2 id="when-a-school-is-like-a-printing-company">When a School is like a Printing Company</h2>
+<p>Or, when does a school display hardware-brain thinking?</p>
+<p>When engineers do chip design, they are seeking permanence. The logic is going to be etched into silicon, and the other pieces all route back towards it. It is the focus point of the architecture.</p>
+<p>Likewise, schools operate on annual budget cycles, multi-year staffing contracts, and physical infrastructure with long lifespans. When you build a timetable, hire for a department, or set an assessment calendar, you are cutting hardware. They are not easily modifiable mid-year. International schools have accreditation bodies with fixed cycles and certain expectations that schools need to demonstrate competency at fulfilling.</p>
+<p>Two other artifacts that schools hard-wire into the world are the transcript and the report card. Unlike a website that can silently correct an error, a report card issued with a mistake requires a formal reprint and a notification. The grades determine things like GPA or credits — there is no shipping a patch.</p>
+<p>When a school carries its hardware brain to the fore, every choice carries irreversible downstream weight. This demands a particular kind of thinking: slow to commit, precise in execution, deeply attentive to the <strong>why</strong>.</p>
+<h2 id="when-a-school-is-like-a-web-application">When a School is like a Web Application</h2>
+<p>Software engineers treat lines of code as behaviours whose correctness is defined by tests. It is more iterative, exploratory, comfortable with contextualised framing; software is done when it simply meets the expectations. It is not up to the software itself to define the expectations.</p>
+<p>Similarly, a school&rsquo;s learning initiatives and community development initiatives are about building layers for the next round of leaders to stand on. The school culture cannot be written into the mission statement — instead it is a series of actions responsive to established norms.</p>
+<p>Many of the pivotal roles in schools live almost entirely in software-brain mode. A counsellor supporting a student won&rsquo;t follow a fixed script — they read the student, adjust the conversation, and respond to what surfaces. An admissions coordinator fielding enquiries from prospective families will need to recalibrate messaging depending on a changing market. Activities and learning coordinators cooperate to synthesise academic standards with other competing priorities, such as wellbeing.</p>
+<p>When considering how a school utilises a software brain, it&rsquo;s about being able to adapt to the moment, and reflection is often used as the substrate for this activity. The kind of thinking here is more about voicing <strong>how</strong> the school meets its goals.</p>
+<h2 id="the-tension-demonstrated">The Tension, Demonstrated</h2>
+<p>Hardware-thinking defines the architectural pillars; software-thinking services the community. Schools both &ldquo;write code&rdquo; when confronted with new realities, and also fall back on &ldquo;logic gates&rdquo; that have withstood the test of time.</p>
+<p>Consider this as an example that demonstrates the tension: When ChatGPT arrived, schools everywhere were suddenly confronted with a competent robot essayist. They responded either by utilising hardware-thinking or initiating software-thinking. Either pen and paper, timed conditions in invigilated rooms became the new standard — and/or training was prescribed. The first explicitly removed software entirely and fell back on architecture. The second is like rewriting a module that doesn&rsquo;t suit some new use cases.</p>
+<p>These aren&rsquo;t abstract philosophies. <strong>They describe two recognisable modes that leadership can recognise.</strong> In education, both will be present, perpetually in tension.</p>
+<h2 id="and-now">And now…</h2>
+<p>Organizations of every shape and color face existential challenges, leading to perhaps dramatic changes, just as newspapers had to pivot from print to the web. Likewise, the advent of agentic AI tooling provide schools a lot of runway to re-imagining what it looks like to nurture young minds from toddler to young adult.</p>
+<p>The next era of schooling will have to figure out how to etch the approaches in silicon, and compile the details on demand. Distinctions such as those above  provide a deployable mental model, summed up as the following:</p>
+<ul>
+<li>The hardware brain is going to ask: <em>how do we protect what we know works well?</em></li>
+<li>The software brain will ask: <em>where can we innovate next?</em></li>
+</ul>
+<p>The reality is that there are times in an organic community when one sits at the forefront more than the other; collectively, both questions are equally pertinent to what comes next.</p>
+
+  </div>
+
+  <footer class="single-post-footer">
+    <a href="/posts/" class="single-post-back">&larr; cd /posts</a>
+
+    
+      <div class="single-post-newsletter">
+        <div class="newsletter-prompt">&gt; subscribe</div>
+        <p class="newsletter-desc">Get new posts delivered to your inbox. No spam, unsubscribe anytime.</p>
+        <a href="https://www.linkedin.com/newsletters/chasing-change-reforming-edu-7063350324320768000/" class="newsletter-btn" target="_blank" rel="noopener">Join my LinkedIn newsletter</a>
+      </div>
+    
+  </footer>
+</article>
+
+<style>
+  .single-post {
+    padding: var(--space-24) 0 var(--space-16);
+    max-width: var(--max-width-prose);
+    margin: 0 auto;
+  }
+
+  .single-post-hero-image {
+    margin-bottom: var(--space-10);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+
+  .single-post-hero-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .single-post-header {
+    margin-bottom: var(--space-10);
+  }
+
+  .single-post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .single-post-meta span::before {
+    content: '·';
+    margin-right: var(--space-4);
+  }
+
+  .single-post-title {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .single-post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .single-post-tag {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background var(--transition-fast);
+  }
+
+  .single-post-tag:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+   
+  .single-post-content h2 {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-2xl);
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .single-post-content h3 {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xl);
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-3);
+  }
+
+  .single-post-content h4 {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+  }
+
+  .single-post-content p {
+    font-family: var(--font-sans);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+    color: var(--color-text-secondary);
+  }
+
+  .single-post-content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-subtle);
+    text-underline-offset: 2px;
+    transition: text-decoration-color var(--transition-fast);
+  }
+
+  .single-post-content a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+
+  .single-post-content a[href^="http"]::after {
+    content: '\2009↗';
+    font-size: 0.75em;
+    vertical-align: super;
+  }
+
+  [data-theme="light"] .single-post-content a {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .single-post-content pre {
+    position: relative;
+    margin: var(--space-8) 0;
+    border-radius: var(--radius-md);
+  }
+
+  .single-post-content pre::before {
+    content: 'code';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-1) var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    background: var(--color-border);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  .single-post-content pre code {
+    display: block;
+    padding-top: var(--space-8);
+  }
+
+  .single-post-content blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding: var(--space-4) var(--space-6);
+    margin: var(--space-8) 0;
+    background: var(--color-accent-subtle);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+
+  .single-post-content blockquote p {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  .single-post-content ul,
+  .single-post-content ol {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-6);
+  }
+
+  .single-post-content li {
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-2);
+  }
+
+  .single-post-content img {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin: var(--space-8) 0;
+  }
+
+   
+  .tooltip-word {
+    position: relative;
+    display: inline;
+    cursor: help;
+    border-bottom: 1px dashed var(--color-accent);
+    color: inherit;
+  }
+
+  .tooltip-bubble {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    width: 22ch;
+    white-space: normal;
+    text-align: left;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  .tooltip-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--color-surface);
+  }
+
+  .tooltip-attribution {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    pointer-events: auto;
+  }
+
+  .tooltip-attribution a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-subtle);
+  }
+
+  .tooltip-attribution a::after {
+    content: none !important;
+  }
+
+  .tooltip-word:hover .tooltip-bubble,
+  .tooltip-word:focus .tooltip-bubble {
+    display: block;
+  }
+
+  [data-theme="dark"] .tooltip-word {
+    border-bottom-color: var(--color-text-primary);
+  }
+
+
+   
+  .single-post-footer {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .single-post-back {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    display: inline-block;
+    margin-bottom: var(--space-10);
+  }
+
+  .single-post-back:hover {
+    color: var(--color-accent);
+  }
+
+   
+  .single-post-newsletter {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-8);
+    text-align: center;
+  }
+
+  .newsletter-prompt {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xl);
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .newsletter-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+    max-width: 40ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .newsletter-btn {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-3) var(--space-6);
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    display: inline-block;
+  }
+
+  .newsletter-btn:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-bg);
+  }
+
+  @media (max-width: 768px) {
+    .single-post {
+      padding: var(--space-20) 0 var(--space-12);
+    }
+
+    .single-post-title {
+      font-size: var(--font-size-2xl);
+    }
+  }
+</style>
+
+  </main>
+
+    
+  
+<footer class="site-footer">
+  <div class="site-footer-inner container">
+    <p class="site-footer-message">Built with curiosity and code.</p>
+
+    <nav class="site-footer-links" aria-label="Footer navigation">
+      <a href="/posts/">Posts</a>
+      <a href="/about/">About</a>
+      <a href="/newsletter/">Newsletter</a>
+      
+        <a href="https://www.linkedin.com/in/adam-morris-6286b6206/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      
+    </nav>
+
+    <p class="site-footer-copy">
+      &copy; 2026 Adam Morris. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-12) 0;
+    margin-top: var(--space-16);
+  }
+
+  .site-footer-inner {
+    text-align: center;
+  }
+
+  .site-footer-message {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+    font-style: italic;
+  }
+
+  .site-footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .site-footer-links a {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .site-footer-links a:hover {
+    color: var(--color-accent);
+  }
+
+  .site-footer-copy {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+</style>
+
+
+  </body>
+</html>

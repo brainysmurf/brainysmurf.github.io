@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Academic-Integrity on Adam Morris</title><link>https://mistermorris.com/tags/academic-integrity/</link><description>Recent content in Academic-Integrity on Adam Morris</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 10 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mistermorris.com/tags/academic-integrity/index.xml" rel="self" type="application/rss+xml"/><item><title>GenAI's "dud" application: detection</title><link>https://mistermorris.com/posts/genai-dud-application-detection/</link><pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate><guid>https://mistermorris.com/posts/genai-dud-application-detection/</guid><description>&lt;p&gt;The first killer application I came across was in the mid-1980s, when my Dad brought home his Kaypro computer. Working in the sign business, he purchased it for its word processing and spreadsheet capability. The word processor was WordStar and it had the ability to print bold face. Using a mark-up language, the boldface feature was turned on with a &lt;code&gt;&amp;lt;b&amp;gt;&lt;/code&gt; and then turned off with an ending &lt;code&gt;&amp;lt;/b&amp;gt;&lt;/code&gt;, just how HTML works today:&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Academic-Integrity on Adam Morris</title>
+    <link>https://mistermorris.com/tags/academic-integrity/</link>
+    <description>Recent content in Academic-Integrity on Adam Morris</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mistermorris.com/tags/academic-integrity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GenAI&#39;s &#34;dud&#34; application: detection</title>
+      <link>https://mistermorris.com/posts/genai-dud-application-detection/</link>
+      <pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://mistermorris.com/posts/genai-dud-application-detection/</guid>
+      <description>&lt;p&gt;The first killer application I came across was in the mid-1980s, when my Dad brought home his Kaypro computer. Working in the sign business, he purchased it for its word processing and spreadsheet capability. The word processor was WordStar and it had the ability to print bold face. Using a mark-up language, the boldface feature was turned on with a &lt;code&gt;&amp;lt;b&amp;gt;&lt;/code&gt; and then turned off with an ending &lt;code&gt;&amp;lt;/b&amp;gt;&lt;/code&gt;, just how HTML works today:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
