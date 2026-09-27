@@ -6,8 +6,15 @@
     <description>Recent content on Adam Morris</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 27 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://mistermorris.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Do I Know What I Built?</title>
+      <link>https://mistermorris.com/posts/the-amnesia-of-agentic-coding/</link>
+      <pubDate>Sun, 27 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://mistermorris.com/posts/the-amnesia-of-agentic-coding/</guid>
+      <description>&lt;p&gt;A while back I built a tool with Claude that pulls student data out of PowerSchool and rosters it into ManageBac. I kept picking at it — spotting patterns in the behavior that weren&amp;rsquo;t quite right — and each pass hardened it a little. In the end, the vibe-coded project was able to sync PowerSchool to ManageBac.&lt;/p&gt;&#xA;&lt;p&gt;Then I forgot about it entirely. Other problems were calling. Opened up more Claude sessions to solve them …&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The spreadsheet moment</title>
       <link>https://mistermorris.com/posts/spreadsheet-moment/</link>
